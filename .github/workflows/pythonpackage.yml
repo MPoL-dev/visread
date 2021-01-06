@@ -29,9 +29,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Install package 
       run: |
+        sudo apt-get install libgfortran3
         pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .
     - name: Test with pytest
       run: |
+        sudo apt-get install libgfortran3
         pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[test]
         pytest
   
