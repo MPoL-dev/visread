@@ -1,4 +1,4 @@
-# visreader
+# visread
 A minimal tool built on CASA6 to read visibilities directly from calibrated CASA Measurement Sets
 
 # Introduction
@@ -9,8 +9,8 @@ The visibilities are returned as an object.
 
 Code Example 
 
-    import visreader
-    vis = visreader.read("myFile.ms")
+    import visread
+    vis = visread.read("myFile.ms")
     print(vis)
 
 More information is provided in the Documentation.
