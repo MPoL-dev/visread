@@ -1,5 +1,5 @@
-Ian Czekala
-Ryan Loomis
-Sean Andrews
-Jane Huang
-Katherine Rosenfeld
+* Ian Czekala
+* Ryan Loomis
+* Sean Andrews
+* Jane Huang
+* Katherine Rosenfeld
