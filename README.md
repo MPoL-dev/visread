@@ -19,6 +19,10 @@ Currently, there is only one primary visibility container for spectral line meas
 
 If you identify and configure an additional visibility container (i.e., polarization), pull requests are welcome.
 
+# Installation
+
+Because this package relies on CASA6, it is unfortunately subject to the stringent package requirements currently imposed by the modular CASA environment. As of January 2021, these are Python=3.6 and `libgfortran3`. This means that CASA6 and by extension this package **will not work on Python 3.7, 3.8, or 3.9**. More information on these requirements is [here](https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing). Beyond this CASA dependency, the `visread` package itself is not tied to Python=3.6, so as the CASA requirements advance, so too will this package.
+
 # Lineage
 
 The code in this package is fairly simple, but it is also built using CASA knowledge gained from a number of collaborators, who are credited in the CONTRIBUTORS.md file. You may also be interested in investigating the [`vis_sample`](https://github.com/AstroChem/vis_sample) and [`UVHDF5`](https://github.com/AstroChem/UVHDF5) packages, as they provide some similar capabilities with additional functionality.
