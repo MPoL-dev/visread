@@ -4,6 +4,7 @@ import casatools
 # initialize the relevant CASA tools
 tb = casatools.table()
 ms = casatools.ms()
+c_ms = 2.99792458e8  # [m s^-1]
 
 
 class Cube:
@@ -82,9 +83,148 @@ class Cube:
             self.data_im = -1.0 * self.data_im
 
 
-def read(filename, average_polarizations=True):
+def read_cube(filename, datacolumn="CORRECTED_DATA"):
     """
     Attempt to read the visibilities and some metadata directly from a CASA measurement set.
     """
 
-    pass
+    # before reading the data itself, we're going to check that the data is in a
+    # minimal format, so that we don't have to make too many assumptions about
+    # how to average it, etc.
+
+    # we do this by opening up many of the "tables" of the measurement set
+    # information on these are in the CASA docs at
+    # https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/the-measurementset
+    # and
+    # https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/measurement-set
+
+    # information on the table too itself is at
+    # https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods
+
+    # check number of spectral windows is 1
+    tb.open(filename + "/DATA_DESCRIPTION")
+    SPECTRAL_WINDOW_ID = tb.getcol("SPECTRAL_WINDOW_ID")
+    tb.close()
+    assert SPECTRAL_WINDOW_ID == [
+        0
+    ], "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
+
+    tb.open(filename)
+    colnames = tb.colnames()
+    spw_id = tb.getcol("DATA_DESC_ID")  # array of int with shape [npol, nchan, nvis]
+    field_id = tb.getcol("FIELD_ID")  # array of int with shape [npol, nchan, nvis]
+    ant1 = tb.getcol("ANTENNA1")  # array of int with shape [nvis]
+    ant2 = tb.getcol("ANTENNA2")  # array of int with shape [nvis]
+    uvw = tb.getcol("UVW")  # array of float64 with shape [3, nvis]
+    weights = tb.getcol("WEIGHT")  # array of float64 with shape [npol, nvis]
+    flag = tb.getcol("FLAG")  # array of bool with shape [npol, nchan, nvis]
+    if datacolumn == "CORRECTED_DATA" and datacolumn not in colnames:
+        print("Couldn't find CORRECTED_DATA in column names, using DATA instead")
+        datacolumn = "DATA"
+    data = tb.getcol(datacolumn)  # array of complex128 with shape [npol, nchan, nvis]
+    tb.close()
+
+    assert np.unique(spw_id) == np.array(
+        [0]
+    ), "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
+
+    # check targets are 1
+    assert np.unique(field_id) == np.array(
+        [0]
+    ), "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
+
+    # check there are no flagged visibilities
+    assert (
+        np.sum(flag) == 0
+    ), "Measurement Set contains flagged visibilities. First export the unflagged visibilities to a new Measurement Set using CASA/split or mstransform."
+
+    assert (
+        len(data.shape) == 3
+    ), "DATA column contains something other than three dimensions (npol, nchan, nvis) and I don't know what to do with this in the context of a data cube."
+
+    assert (
+        len(uvw.shape) == 2
+    ), "UVW baselines contains something other than two dimensions (3, nvis) and I don't know what to do with this."
+
+    assert (
+        len(weights.shape) == 2
+    ), "WEIGHT contains something other than two dimensions (npol, nvis), I don't know what to do with this. WEIGHTSPECTRUM functionality yet to be implemented."
+
+    # get the channel information
+    tb.open(filename + "/SPECTRAL_WINDOW")
+    chan_freq = tb.getcol("CHAN_FREQ")
+    num_chan = tb.getcol("NUM_CHAN")
+    tb.close()
+
+    assert (
+        len(num_chan) == 1
+    ), "More than one spectral window or field still remains in Measurement Set, difficulty reading NUM_CHAN from SPECTRAL_WINDOW table. Inspect with listobs or browsetable."
+
+    assert (
+        chan_freq.shape[1] == 1
+    ), "More than one spectral window or field still remains in Measurement Set, difficulty reading CHAN_FREQ from SPECTRAL_WINDOW table. Inspect with listobs or browsetable."
+
+    chan_freq = chan_freq.flatten()  # Hz
+    nchan = len(chan_freq)
+
+    # check to make sure we're in blushifted - redshifted order, otherwise reverse channel order
+    if (nchan > 1) and (chan_freq[1] > chan_freq[0]):
+        # reverse channels
+        chan_freq = chan_freq[::-1]
+        data = data[:, ::-1, :]
+
+    # keep only the cross-correlation visibilities
+    # and throw out the auto-correlation visibilities (i.e., where ant1 == ant2)
+    xc = np.where(ant1 != ant2)[0]
+    data = data[:, :, xc]
+    uvw = uvw[:, xc]
+    weights = weights[:, xc]
+
+    assert np.all(
+        weights > 0
+    ), "Some visibility weights are negative, check the reduction and calibration."
+
+    # either average the polarizations or remove the pol dimension
+    npol = data.shape[0]
+    if npol == 2:
+        data = np.sum(data * weights[:, np.newaxis, :], axis=0) / np.sum(
+            weights, axis=0
+        )
+        weights = np.sum(weights, axis=0)
+    elif npol == 1:
+        data = np.squeeze(data)
+        weights = np.squeeze(weights)
+    else:
+        raise AssertionError("npol must be 1 or 2. Unknown value:", npol)
+
+    # after this step,
+    # data should be [3, nvis]
+    # weights should be [nvis]
+
+    # convert uu and vv to kilolambda
+    uu, vv, ww = uvw  # unpack into len nvis vectors
+    # broadcast to the same shape as the data
+    # stub to broadcast uu,vv, and weights to all channels
+    broadcast = np.ones((nchan, 1))
+    uu = uu * broadcast
+    vv = vv * broadcast
+    weights = weights * broadcast
+
+    # calculate wavelengths in meters
+    wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
+
+    # calculate baselines in klambda
+    uu = 1e-3 * uu / wavelengths  # [klambda]
+    vv = 1e-3 * vv / wavelengths  # [klambda]
+
+    frequencies = chan_freq * 1e-9  # [GHz]
+
+    return Cube(
+        frequencies,
+        uu,
+        vv,
+        weights,
+        data.real,
+        data.imag,
+        CASA_convention=True,
+    )

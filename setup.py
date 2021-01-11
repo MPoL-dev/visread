@@ -23,7 +23,7 @@ def get_version(rel_path):
 version = get_version("src/visread/__init__.py")
 
 EXTRA_REQUIRES = {
-    "test": ["pytest"],
+    "test": ["pytest", "casatasks"],
     "docs": ["sphinx>=2.3.0", "numpy", "sphinx_rtd_theme", "faculty-sphinx-theme"],
 }
 
