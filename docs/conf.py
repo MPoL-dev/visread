@@ -36,6 +36,8 @@ extensions = [
     "faculty_sphinx_theme",
 ]
 
+autodoc_mock_imports = ["numpy", "casatools"]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
@@ -49,4 +51,3 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = "sphinx_rtd_theme"
-# html_theme = "faculty-sphinx-theme"

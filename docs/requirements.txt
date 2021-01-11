@@ -1,5 +1,0 @@
-sphinx>=2.3.0
-numpy
-sphinx_rtd_theme
---extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple
-casatools

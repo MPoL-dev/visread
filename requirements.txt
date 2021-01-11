@@ -1,3 +1,0 @@
-numpy
---extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple
-casatools
