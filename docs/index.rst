@@ -29,6 +29,26 @@ Usage::
    installation.rst
    api.rst
 
+Citation
+========
+
+If you find this piece of code useful, please cite::
+
+    @software{visread,
+    author       = {Ian Czekala and
+                    Loomis, Ryan and
+                    Andrews, Sean and
+                    Huang, Jane and
+                    Rosenfeld, Katherine},
+    title        = {MPoL-dev/visread},
+    month        = jan,
+    year         = 2021,
+    publisher    = {Zenodo},
+    version      = {v0.0.1},
+    doi          = {10.5281/zenodo.4432501},
+    url          = {https://doi.org/10.5281/zenodo.4432501}
+    }
+
 
 Indices and tables
 ==================

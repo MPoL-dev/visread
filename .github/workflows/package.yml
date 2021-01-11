@@ -1,6 +1,9 @@
 name: Build and Upload
 
-on: [release]
+on: 
+  release:
+    types:
+      - published
 
 jobs:
   deploy:
