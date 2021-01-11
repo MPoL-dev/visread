@@ -83,8 +83,8 @@ def ms_cube_path(tmp_path_factory):
 
 
 def test_read_ms_cont(ms_cont_path):
-    visread.read_cube(ms_cont_path)
+    visread.read(ms_cont_path)
 
 
 def test_read_ms_cube(ms_cube_path):
-    visread.read_cube(ms_cube_path)
+    visread.read(ms_cube_path)

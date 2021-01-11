@@ -67,7 +67,15 @@ class Cube:
 
         # parse kwargs for metadata
 
-    def conjugate(self, CASA_convention):
+    def swap_convention(self, CASA_convention):
+        r"""
+        Change the convention in which visibilities are stored.
+
+        Args:
+            CASA_convention (bool): If True, store the visibilities in the `CASA convention <https://casa.nrao.edu/casadocs/casa-5.6.0/memo-series/casa-memos/casa_memo2_coordconvention_rau.pdf>`_. If False, store them in the standard radio astronomy convention (``CASA_convention==False``, i.e., `Thompson, Moran, and Swenson <https://ui.adsabs.harvard.edu/abs/2017isra.book.....T/abstract>`_ Fig 3.2).
+
+        Returns: None
+        """
         if self.CASA_convention == CASA_convention:
             print(
                 "Visibilities are already set with CASA_convention == {:}".format(
@@ -83,9 +91,15 @@ class Cube:
             self.data_im = -1.0 * self.data_im
 
 
-def read_cube(filename, datacolumn="CORRECTED_DATA"):
+def read(filename, datacolumn="CORRECTED_DATA"):
     """
-    Attempt to read the visibilities and some metadata directly from a CASA measurement set.
+    Attempt to read the visibilities and some metadata directly from a 'minimal' CASA measurement set.
+
+    Args:
+        filename (string): the measurement set path (i.e., `*.ms`)
+        datacolumn (string): which datacolumn to read from the measurement set. By default, attempts to read ``CORRECTED_DATA`` first, and falls back to ``DATA`` if that doesn't exist. More information is available on the `CASA docs <https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/the-measurementset>`_.
+
+    Returns: Instantiated ``visread.Cube`` object
     """
 
     # before reading the data itself, we're going to check that the data is in a
