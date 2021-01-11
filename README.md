@@ -1,6 +1,6 @@
 # visread
 
-![Python package](https://github.com/MPoL-dev/visread/workflows/Python%20package/badge.svg)
+![Python package](https://github.com/MPoL-dev/visread/workflows/Python%20package/badge.svg) [![Documentation Status](https://readthedocs.org/projects/visread/badge/?version=latest)](https://visread.readthedocs.io/en/latest/?badge=latest)
 
 A minimal tool built on CASA6 to read visibilities directly from calibrated CASA Measurement Sets
 
