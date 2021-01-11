@@ -19,6 +19,11 @@ class Cube:
         data_re (2d numpy array): real component of visibility data (units [:math:`\mathrm{Jy}`])
         data_im (2d numpy array): imaginary component of visibility data (units [:math:`\mathrm{Jy}`])
         CASA_convention (boolean): do the baseline conventions follow the `CASA convention <https://casa.nrao.edu/casadocs/casa-5.6.0/memo-series/casa-memos/casa_memo2_coordconvention_rau.pdf>`_ (``CASA_convention==True``; ) or the standard radio astronomy convention (``CASA_convention==False``, i.e., `Thompson, Moran, and Swenson <https://ui.adsabs.harvard.edu/abs/2017isra.book.....T/abstract>`_ Fig 3.2)?
+
+    Examples:
+        >>> #After initialization, you can access each of these attributes via their names
+        >>> myCube = visread.read("myMeasurementSet.ms")
+        >>> print(myCube.vv)
     """
 
     def __init__(
@@ -75,6 +80,11 @@ class Cube:
             CASA_convention (bool): If True, store the visibilities in the `CASA convention <https://casa.nrao.edu/casadocs/casa-5.6.0/memo-series/casa-memos/casa_memo2_coordconvention_rau.pdf>`_. If False, store them in the standard radio astronomy convention (``CASA_convention==False``, i.e., `Thompson, Moran, and Swenson <https://ui.adsabs.harvard.edu/abs/2017isra.book.....T/abstract>`_ Fig 3.2).
 
         Returns: None
+
+        Examples:
+            >>> myCube = visread.read("myMeasurementSet.ms")
+            >>> # swap to TMS convention
+            >>> myCube.swap_convention(CASA_convention=False)
         """
         if self.CASA_convention == CASA_convention:
             print(

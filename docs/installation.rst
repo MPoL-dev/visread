@@ -1,16 +1,18 @@
 Installation 
 ============
 
-Because this package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of January 2021, these are ``Python=3.6`` and ``libgfortran3``. This means that CASA6 and by extension this package **will not work on Python 3.7, 3.8, or 3.9**. More information on these requirements is `here <https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing>`_. Beyond this CASA dependency, the `visread` package itself is not tied to Python=3.6, so as the CASA requirements relax, so too will the requirements of this package.
+Because this package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of January 2021, these are ``Python=3.6`` and ``libgfortran3``. This means that CASA6 and by extension this package **will not work on Python 3.7, 3.8, or 3.9**. More information on these requirements is `here <https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing>`_. The `visread` package itself is not tied to Python=3.6, so as the CASA requirements relax, so too will the requirements of this package.
 
-Following standard practice, it's recommended that you first create and activate a `Python virtual environment <https://docs.python.org/3/tutorial/venv.html>`_ specific to your current project, whatever that may be. The CASA docs explicitly recommend using ``venv`` instead of a `conda environment <https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html>`_ (or a ``virtualenv``), though it's possible that the other environements might still work.
+First, if you don't already have it, install the ``libgfortran3`` library using ``sudo apt-get`` on Ubuntu or a similar package management tool for your system.
 
-In the following example of a virtual environment, the first line uses the ``venv`` tool to create a subdirectory named ``venv``, which hosts the virtual environment files. The second line activates this environment in your current shell session. Keep in mind that this is something you'll need to do for every shell session, since the point of virtual environments is to create an environment specific to your project.::
+Then, following standard practice, it's recommended that you first create and activate a `Python virtual environment <https://docs.python.org/3/tutorial/venv.html>`_ specific to your current project, whatever that may be. The CASA docs explicitly recommend using ``venv`` instead of a `conda environment <https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html>`_ (or a ``virtualenv``), though it's possible that the other environments might still work.
+
+In the following example of a virtual environment, the first line uses the ``venv`` tool to create a subdirectory named ``venv``, which hosts the virtual environment files. The second line activates this environment in your current shell session. Keep in mind that this is something you'll need to do for every shell session, since the point of virtual environments is to create an environment specific to your project ::
 
     $ python3 -m venv venv
     $ source venv/bin/activate
 
-Then you can install ``visread`` and the CASA dependencies with ::
+Then you can install *visread* and the CASA dependencies with ::
 
     $ pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple visread
 
