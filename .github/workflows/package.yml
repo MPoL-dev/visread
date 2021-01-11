@@ -1,0 +1,37 @@
+name: Build and Upload Python Package
+
+on: [release]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install setuptools wheel twine
+        sudo apt-get install libgfortran3      
+        pip install pep517 --user
+    - name: Install vanilla package 
+      run: |
+        pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .      
+    - name: Build a binary wheel and a source tarball
+      run: |
+        python -m
+        pep517.build
+        --source
+        --binary
+        --out-dir dist/
+        .
+    - name: Publish distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.pypi_password }}
