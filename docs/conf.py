@@ -13,17 +13,22 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-import visread
 
 # -- Project information -----------------------------------------------------
+# useful snippets from https://github.com/exoplanet-dev/exoplanet/blob/main/docs/conf.py
+from pkg_resources import DistributionNotFound, get_distribution
+
+try:
+    __version__ = get_distribution("visread").version
+except DistributionNotFound:
+    __version__ = "unknown version"
 
 project = "visread"
 copyright = "2021, Ian Czekala"
 author = "Ian Czekala"
 
 # The full version, including alpha/beta/rc tags
-version = visread.__version__
-release = version
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------
