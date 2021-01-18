@@ -62,13 +62,14 @@ html_theme = "sphinx_rtd_theme"
 # https://rtds-action.readthedocs.io/en/latest/index.html
 
 # RTDs-action
-# if "GITHUB_TOKEN" in os.environ:
-extensions.append("rtds_action")
+if "GITHUB_TOKEN" in os.environ:
+    print("RUNNING RTDS ACTION")
+    extensions.append("rtds_action")
 
-rtds_action_github_repo = "MPoL-dev/visread"
-# The path where the artifact should be extracted
-# Note: this is relative to the conf.py file!
-rtds_action_path = "tutorials"
-# The "prefix" used in the `upload-artifact` step of the action
-rtds_action_artifact_prefix = "notebooks-for-"
-rtds_action_github_token = os.environ["GITHUB_TOKEN"]
+    rtds_action_github_repo = "MPoL-dev/visread"
+    # The path where the artifact should be extracted
+    # Note: this is relative to the conf.py file!
+    rtds_action_path = "tutorials"
+    # The "prefix" used in the `upload-artifact` step of the action
+    rtds_action_artifact_prefix = "notebooks-for-"
+    rtds_action_github_token = os.environ["GITHUB_TOKEN"]
