@@ -15,9 +15,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    
     - name: Install dependencies
       run: |
         pip install --upgrade pip
+    
     - name: Lint with flake8
       run: |
         pip install flake8
@@ -25,16 +27,39 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
     - name: Install fortran libs for CASA
       run: |
         sudo apt-get install libgfortran3
+    
     - name: Install vanilla package 
       run: |
         pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .
+    
     - name: Install test deps 
       run: |
         pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[test]
+    
     - name: Test with pytest
       run: | 
           pytest
-  
+    
+    - name: Install doc deps 
+      run: |
+        pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[docs]
+    
+    - name: Build notebooks for the docs
+      run: |
+        jupytext --to ipynb --execute docs/tutorials/*.py
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: notebooks-for-${{ github.sha }}
+        path: docs/tutorials
+
+    - name: Trigger RTDs build
+      uses: dfm/rtds-action@v1
+      with:
+        webhook_url: ${{ secrets.RTDS_WEBHOOK_URL }}
+        webhook_token: ${{ secrets.RTDS_WEBHOOK_TOKEN }}
+        commit_ref: ${{ github.ref }}

@@ -10,7 +10,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
+
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -39,6 +40,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
+    "rtds_action",
 ]
 
 autodoc_mock_imports = ["numpy", "casatools"]
@@ -56,3 +58,17 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = "sphinx_rtd_theme"
+
+# -- Options for Read the Docs - Github Action
+# https://rtds-action.readthedocs.io/en/latest/index.html
+rtds_action_github_repo = "MPoL-dev/visread"
+
+# The path where the artifact should be extracted
+# Note: this is relative to the conf.py file!
+rtds_action_path = "tutorials"
+
+# The "prefix" used in the `upload-artifact` step of the action
+rtds_action_artifact_prefix = "notebooks-for-"
+
+# A GitHub personal access token is required
+rtds_action_github_token = os.getenv("GITHUB_TOKEN")
