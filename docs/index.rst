@@ -28,7 +28,6 @@ Usage::
    introduction.rst
    installation.rst
    api.rst
-   tutorials/plot_baselines
 
 Citation
 ========
