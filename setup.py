@@ -29,6 +29,7 @@ EXTRA_REQUIRES = {
         "numpy",
         "sphinx_rtd_theme",
         "jupytext",
+        "nbconvert",
         "astropy",
         "casatasks",
         "rtds-action",
