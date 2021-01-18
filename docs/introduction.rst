@@ -17,7 +17,7 @@ We envision *visread* as a wrapper script for simple operations to read calibrat
 
 * one spectral window 
 * one target
-* if the spectral window contains main channels, it has been truncated to include only those with data that you want to analyze. 
+* if the spectral window contains many channels, it has been truncated to include only those with data that you want to analyze. 
 * only XX or only XX and YY linear polarizations
 
 This means that before turning to *visread*, the user will want to spend some time with CASA familiarizing themselves with their data. If, as is usually the case, their measurement set does not meet the criteria above but contains multiple spectral windows or targets (such as calibrators), they will want to spend some time explicitly making the reduction choices themselves to get their visibilities into this minimal format. You'll want to use CASA commands like `split <https://casa.nrao.edu/casadocs/casa-5-1.2/uv-manipulation/splitting-out-calibrated-uv-data-split>`_, `mstransform <https://casa.nrao.edu/casadocs/casa-5.4.1/uv-manipulation/manipulating-visibilities-with-mstransform>`_, and `cvel2 <https://casa.nrao.edu/casadocs/casa-6.1.0/global-task-list/task_cvel2/about>`_ to first subselect those visibilities you want (possibly average them) and create a new measurement set containing only them.
