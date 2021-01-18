@@ -27,6 +27,9 @@ EXTRA_REQUIRES = {
     "docs": [
         "sphinx>=2.3.0",
         "numpy",
+        "nbsphinx",
+        "sphinx_material",
+        "sphinx_copybutton",
         "sphinx_rtd_theme",
         "jupyter",
         "jupytext",

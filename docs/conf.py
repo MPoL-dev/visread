@@ -63,7 +63,6 @@ html_theme = "sphinx_rtd_theme"
 
 # RTDs-action
 if "GITHUB_TOKEN" in os.environ:
-    print("RUNNING RTDS ACTION")
     extensions.append("rtds_action")
 
     rtds_action_github_repo = "MPoL-dev/visread"
