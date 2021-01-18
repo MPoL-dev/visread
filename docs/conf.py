@@ -40,7 +40,6 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
-    "rtds_action",
 ]
 
 autodoc_mock_imports = ["numpy", "casatools"]
@@ -59,16 +58,17 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # a list of builtin themes.
 html_theme = "sphinx_rtd_theme"
 
-# -- Options for Read the Docs - Github Action
+# -- Options for Read the Docs - Github Action-------------------
 # https://rtds-action.readthedocs.io/en/latest/index.html
-rtds_action_github_repo = "MPoL-dev/visread"
 
-# The path where the artifact should be extracted
-# Note: this is relative to the conf.py file!
-rtds_action_path = "tutorials"
+# RTDs-action
+if "GITHUB_TOKEN" in os.environ:
+    extensions.append("rtds_action")
 
-# The "prefix" used in the `upload-artifact` step of the action
-rtds_action_artifact_prefix = "notebooks-for-"
-
-# A GitHub personal access token is required
-rtds_action_github_token = os.getenv("GITHUB_TOKEN")
+    rtds_action_github_repo = "MPoL-dev/visread"
+    # The path where the artifact should be extracted
+    # Note: this is relative to the conf.py file!
+    rtds_action_path = "tutorials"
+    # The "prefix" used in the `upload-artifact` step of the action
+    rtds_action_artifact_prefix = "notebooks-for-"
+    rtds_action_github_token = os.environ["GITHUB_TOKEN"]
