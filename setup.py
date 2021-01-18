@@ -28,6 +28,7 @@ EXTRA_REQUIRES = {
         "sphinx>=2.3.0",
         "numpy",
         "sphinx_rtd_theme",
+        "jupyter",
         "jupytext",
         "nbconvert",
         "astropy",
