@@ -40,7 +40,8 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
-    "nbsphinx"
+    "nbsphinx",
+    "sphinx_copybutton",
 ]
 
 autodoc_mock_imports = ["numpy", "casatools"]
