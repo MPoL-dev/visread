@@ -5,28 +5,33 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.6.0
+#       jupytext_version: 1.9.1
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
 
+# + nbsphinx="hidden"
+# %matplotlib inline
+
+# + nbsphinx="hidden"
+# %run notebook_setup
+# -
+
 # # Quickstart
 #
-# This is a short example designed to show you how to use *visread* to extract the visibility measurements from a measurement set.
+# This is a short example designed to show you how to use *visread* to extract the visibility measurements from a measurement set. If you already have your measurement set read, jump right to the "Read Visibilities" section down below. Otherwise, we'll first we'll first create a mock dataset using CASA's *simobserve* task.
 
 # ## Generate a mock measurement set
 #
-# In reality, you'll just want to jump right in with your own measurement set containing your data. For this tutorial, though, we'll first create a mock dataset using CASA's *simobserve* task.
-#
-# As a starting point, we'll use a mock sky brightness distribution of the ALMA logo (included in the package). Just to orient ourselves, let's take a look at it first.
+# We'll use a mock sky brightness distribution of the ALMA logo (that we included in the package). Just to orient ourselves, let's take a look at a few channels of it first.
 
 from astropy.io import fits
-
 import matplotlib.pyplot as plt
 import numpy as np
 
+# ### Plot the image cube
 
 hdul = fits.open("../../tests/logo_cube.fits")
 header = hdul[0].header
@@ -53,7 +58,7 @@ ext = (
 freqs = header["CRVAL3"] + np.arange(header["NAXIS3"]) * header["CDELT3"]  # [Hz]
 nchan = len(data)
 
-fig, ax = plt.subplots(nrows=1, ncols=nchan)
+fig, ax = plt.subplots(nrows=1, ncols=nchan, figsize=(10,4))
 for i in range(nchan):
     ax[i].imshow(data[i], extent=ext, origin="lower")
     ax[i].set_title(r"{:.3f} GHz".format(freqs[i] * 1e-9))
@@ -63,3 +68,7 @@ for i in range(1, nchan):
     ax[i].set_xticklabels([])
     ax[i].set_yticklabels([])
 plt.show()
+
+# ### Use simobserve to create a mock measurement set
+
+
