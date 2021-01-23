@@ -26,6 +26,5 @@ plt.style.use("default")
 plt.rcParams["savefig.dpi"] = 120
 plt.rcParams["figure.dpi"] = 120
 plt.rcParams["font.size"] = 12
-plt.rcParams["text.usetex"] = True
 plt.rcParams["legend.framealpha"] = 1
 plt.rcParams["legend.frameon"] = False
