@@ -1,3 +1,4 @@
+# flake8: noqa
 """isort:skip_file"""
 
 # set some plotting styles, inspired by DFM
