@@ -19,22 +19,21 @@
 # %run notebook_setup
 # -
 
-# # Quickstart
+# # Creating a mock measurement set
 #
-# This is a short example designed to show you how to use *visread* to extract the visibility measurements from a measurement set. If you already have your measurement set read, jump right to the "Read Visibilities" section down below. Otherwise, we'll first we'll first create a mock dataset using CASA's *simobserve* task.
-
-# ## Generate a mock measurement set
+# If you already have your measurement set ready, jump right to the "Quickstart" tutorial. Otherwise, we'll walk through the steps of creating a mock dataset using CASA's *simobserve* task.
 #
-# We'll use a mock sky brightness distribution of the ALMA logo (that we included in the package). Just to orient ourselves, let's take a look at a few channels of it first.
+# ## Examine the sky brightness distribution
+#
+# We'll use a mock sky brightness distribution of the ALMA logo. The FITS cube is included in the package under the `tests` directory, as well as from [Zenodo](https://zenodo.org/record/4460128#.YA2OXGRKidY)). Just to orient ourselves, let's take a look at a few channels of it first.
 
 from astropy.io import fits
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
+import os
 from IPython.display import HTML
-
-# ### Plot the image cube
 
 hdul = fits.open("../../tests/logo_cube.fits")
 header = hdul[0].header
@@ -85,4 +84,46 @@ ani = animation.ArtistAnimation(fig, ims, interval=200, blit=False, repeat_delay
 HTML(ani.to_jshtml(default_mode="loop"))
 
 
-# ### Use simobserve to create a mock measurement set
+# ## Use simobserve to create a mock measurement set
+#
+# Now that we're comfortable with what we're looking at, let's use the `simobserve` task from CASA to actually produce a mock measurement set.
+
+import casatasks
+
+# +
+# For the purposes of this tutorial, we'll create a temporary directory to store the measurement set.
+# In real life, you could just simplify these lines to use your current output directory
+import tempfile
+
+temp_dir = tempfile.TemporaryDirectory()
+# -
+
+curdir = os.getcwd()
+os.chdir(temp_dir.name)
+
+# more information on the `simobserve` task is available in the [CASA docs](https://casa.nrao.edu/casadocs-devel/stable/simulation/introduction). Briefly, what we're doing here is using the ALMA logo cube as a sky model (inheriting the brightness, location, and frequency spacing from the FITS header) and then "observing" it with a fake interferometer for 1 hour. We're using the Cycle 7 43-7 array configuration, which are available for download from the [ALMA site](https://almascience.nrao.edu/tools/casa-simulator).
+
+casatasks.simobserve(
+    skymodel=curdir + "/" + "../../tests/logo_cube.fits",
+    hourangle="transit",
+    totaltime="3600s",
+    graphics="none",
+    overwrite=True,
+    obsmode="int",  # interferometer
+    antennalist=curdir + "/" + "../../tests/alma.cycle7.7.cfg",
+)
+
+os.chdir(curdir)
+ms_path = temp_dir.name + "/sim/sim.alma.cycle7.7.ms"
+print(ms_path)
+
+# # Reading visibilities with visread
+
+import visread
+
+cube = visread.read(ms_path)
+
+cube.uu
+
+# clean up the temporary directory we created
+temp_dir.cleanup()
