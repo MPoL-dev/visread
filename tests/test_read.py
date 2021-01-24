@@ -56,18 +56,12 @@ def ms_cube_path(tmp_path_factory):
     # clean up all of the files when we're done
     outdir = str(tmp_path_factory.mktemp("cube"))
 
-    inbright = 2e-5  # Jy/pixel
-    indirection = "J2000 04h55m10.98834s +030.21.58.879285"
-
     # change to outdir
     curdir = os.getcwd()
     os.chdir(outdir)
 
     casatasks.simobserve(
         skymodel=curdir + "/" + fits_path,
-        inbright="{:}Jy/pixel".format(inbright),
-        incenter="230GHz",
-        indirection=indirection,
         hourangle="transit",
         totaltime="3600s",
         graphics="none",
