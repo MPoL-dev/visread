@@ -28,14 +28,17 @@
 # We'll use a mock sky brightness distribution of the ALMA logo (that we included in the package). Just to orient ourselves, let's take a look at a few channels of it first.
 
 from astropy.io import fits
+import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import numpy as np
+from IPython.display import HTML
 
 # ### Plot the image cube
 
 hdul = fits.open("../../tests/logo_cube.fits")
 header = hdul[0].header
-data = hdul[0].data
+data = 1e3 * hdul[0].data  # mJy/pixel
 # get the coordinate labels
 nx = header["NAXIS1"]
 ny = header["NAXIS2"]
@@ -57,18 +60,29 @@ ext = (
 )  # [arcsec]
 freqs = header["CRVAL3"] + np.arange(header["NAXIS3"]) * header["CDELT3"]  # [Hz]
 nchan = len(data)
+norm = matplotlib.colors.Normalize(vmin=0, vmax=np.max(data))
 
-fig, ax = plt.subplots(nrows=1, ncols=nchan, figsize=(10,4))
+# +
+fig, ax = plt.subplots(nrows=1, figsize=(4.5, 3.5))
+fig.subplots_adjust(left=0.2, bottom=0.2)
+
+ims = []
+
 for i in range(nchan):
-    ax[i].imshow(data[i], extent=ext, origin="lower")
-    ax[i].set_title(r"{:.3f} GHz".format(freqs[i] * 1e-9))
-ax[0].set_xlabel(r"$\Delta \alpha \cos \delta$ [${}^{\prime\prime}$]")
-ax[0].set_ylabel(r"$\Delta \delta$ [${}^{\prime\prime}$]")
-for i in range(1, nchan):
-    ax[i].set_xticklabels([])
-    ax[i].set_yticklabels([])
-plt.show()
+    im = ax.imshow(data[i], extent=ext, origin="lower", animated=True, norm=norm)
+
+    if i == 0:
+        cb = plt.colorbar(im, label="mJy / pixel")
+        ax.set_xlabel(r"$\Delta \alpha \cos \delta$ [${}^{\prime\prime}$]")
+        ax.set_ylabel(r"$\Delta \delta$ [${}^{\prime\prime}$]")
+
+    ims.append([im])
+# -
+
+# And if you'd like to scroll through the channels (a few km/s total)
+
+ani = animation.ArtistAnimation(fig, ims, interval=200, blit=False, repeat_delay=1000)
+HTML(ani.to_jshtml(default_mode="loop"))
+
 
 # ### Use simobserve to create a mock measurement set
-
-
