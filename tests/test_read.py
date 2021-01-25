@@ -65,6 +65,7 @@ def ms_cube_path(tmp_path_factory):
         hourangle="transit",
         totaltime="3600s",
         graphics="none",
+        thermalnoise="tsys-atm",
         overwrite=True,
         obsmode="int",  # interferometer
         antennalist=curdir + "/" + "tests/alma.cycle7.7.cfg",
