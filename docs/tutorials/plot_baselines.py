@@ -22,7 +22,7 @@
 
 # # Quickstart
 #
-# If you already have your measurement set ready, jump right to the [Reading Visibilites](#reading) section of the tutorial (reading visibilities is quick)! 
+# If you already have your measurement set ready, jump right to the [Reading Visibilites](https://visread.readthedocs.io/en/latest/tutorials/plot_baselines.html#Reading-Visibilities) section of the tutorial (reading visibilities is quick)!
 #
 # If you don't have a measurment set, we'll walk through how you can create a mock one using CASA's *simobserve* task. Alternatively, you can download the mock measurement sets from [Zenodo](https://zenodo.org/record/4460716#.YA4Xt2RKidY), and skip right to the "Reading Visibilites" section, too.
 #
@@ -123,7 +123,6 @@ ms_path = temp_dir.name + "/sim/sim.alma.cycle7.7.ms"
 print(ms_path)
 
 # ## Reading Visibilities
-# <a id='reading'></a>
 # Now that we have a measurement set, lets demonstrate how we can use the `visread` package to interact with these visibilities. More information on these routines is available under the [API](https://visread.readthedocs.io/en/latest/api.html) section of the `visread` docs.
 
 import visread
@@ -161,4 +160,4 @@ ax.set_ylabel(r"Amplitude [Jy]")
 
 # If you need them, the visibility weights are accessible via `cube.weight`.
 
-temp_dir.cleanup() # cleanup
+temp_dir.cleanup()  # cleanup
