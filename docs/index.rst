@@ -17,8 +17,10 @@ Usage::
    vis.frequencies  # frequencies in GHz
    vis.uu  # East-West spatial frequencies in klambda
    vis.vv  # North-South spatial frequencies in klambda
+   vis.weight # weight in 1/Jy^2
    vis.data_re  # real components of visibilities in Jy
    vis.data_im  # imaginary components of visibilities in Jy
+   
 
 
 .. toctree::

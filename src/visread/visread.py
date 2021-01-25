@@ -15,7 +15,7 @@ class Cube:
         frequencies (1d numpy array): shape (nchan,) numpy vector of frequencies corresponding to each channel in units of [GHz]. Should be in *decreasing* order such that the visibilities are ordered blueshifted to redshifted with increasing channel index.
         uu (2d numpy array): shape (nchan, nvis) numpy array of east-west spatial frequencies (units of [:math:`\mathrm{k}\lambda`])
         vv (2d numpy array): shape (nchan, nvis) numpy array of north-south spatial frequencies (units of [:math:`\mathrm{k}\lambda`])
-        weights (2d numpy array): thermal weights of visibilities (units of [:math:`1/\mathrm{Jy}^2`])
+        weight (2d numpy array): thermal weights of visibilities (units of [:math:`1/\mathrm{Jy}^2`])
         data_re (2d numpy array): real component of visibility data (units [:math:`\mathrm{Jy}`])
         data_im (2d numpy array): imaginary component of visibility data (units [:math:`\mathrm{Jy}`])
         CASA_convention (boolean): do the baseline conventions follow the `CASA convention <https://casa.nrao.edu/casadocs/casa-5.6.0/memo-series/casa-memos/casa_memo2_coordconvention_rau.pdf>`_ (``CASA_convention==True``; ) or the standard radio astronomy convention (``CASA_convention==False``, i.e., `Thompson, Moran, and Swenson <https://ui.adsabs.harvard.edu/abs/2017isra.book.....T/abstract>`_ Fig 3.2)?
@@ -31,7 +31,7 @@ class Cube:
         frequencies,
         uu,
         vv,
-        weights,
+        weight,
         data_re,
         data_im,
         CASA_convention=True,
@@ -50,11 +50,11 @@ class Cube:
         assert uu.ndim == 2, "uu should be a 2D numpy array"
         shape = uu.shape
 
-        for a in [vv, weights, data_re, data_im]:
+        for a in [vv, weight, data_re, data_im]:
             assert a.shape == shape, "All dataset inputs must be the same 2D shape."
 
         assert np.all(
-            weights > 0.0
+            weight > 0.0
         ), "Not all thermal weights are positive, check inputs."
 
         assert data_re.dtype == np.float64, "data_re should be type np.float64"
@@ -64,7 +64,7 @@ class Cube:
         self.frequencies = frequencies
         self.uu = uu
         self.vv = vv
-        self.weights = weights
+        self.weight = weight
         self.data_re = data_re
         self.data_im = data_im
 
@@ -140,7 +140,7 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     ant1 = tb.getcol("ANTENNA1")  # array of int with shape [nvis]
     ant2 = tb.getcol("ANTENNA2")  # array of int with shape [nvis]
     uvw = tb.getcol("UVW")  # array of float64 with shape [3, nvis]
-    weights = tb.getcol("WEIGHT")  # array of float64 with shape [npol, nvis]
+    weight = tb.getcol("WEIGHT")  # array of float64 with shape [npol, nvis]
     flag = tb.getcol("FLAG")  # array of bool with shape [npol, nchan, nvis]
     if datacolumn == "CORRECTED_DATA" and datacolumn not in colnames:
         print("Couldn't find CORRECTED_DATA in column names, using DATA instead")
@@ -171,7 +171,7 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     ), "UVW baselines contains something other than two dimensions (3, nvis) and I don't know what to do with this."
 
     assert (
-        len(weights.shape) == 2
+        len(weight.shape) == 2
     ), "WEIGHT contains something other than two dimensions (npol, nvis), I don't know what to do with this. WEIGHTSPECTRUM functionality yet to be implemented."
 
     # get the channel information
@@ -202,22 +202,20 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     xc = np.where(ant1 != ant2)[0]
     data = data[:, :, xc]
     uvw = uvw[:, xc]
-    weights = weights[:, xc]
+    weight = weight[:, xc]
 
     assert np.all(
-        weights > 0
+        weight > 0
     ), "Some visibility weights are negative, check the reduction and calibration."
 
     # either average the polarizations or remove the pol dimension
     npol = data.shape[0]
     if npol == 2:
-        data = np.sum(data * weights[:, np.newaxis, :], axis=0) / np.sum(
-            weights, axis=0
-        )
-        weights = np.sum(weights, axis=0)
+        data = np.sum(data * weight[:, np.newaxis, :], axis=0) / np.sum(weight, axis=0)
+        weight = np.sum(weight, axis=0)
     elif npol == 1:
         data = np.squeeze(data)
-        weights = np.squeeze(weights)
+        weight = np.squeeze(weight)
     else:
         raise AssertionError("npol must be 1 or 2. Unknown value:", npol)
 
@@ -232,7 +230,7 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     broadcast = np.ones((nchan, 1))
     uu = uu * broadcast
     vv = vv * broadcast
-    weights = weights * broadcast
+    weight = weight * broadcast
 
     # calculate wavelengths in meters
     wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
@@ -247,7 +245,7 @@ def read(filename, datacolumn="CORRECTED_DATA"):
         frequencies,
         uu,
         vv,
-        weights,
+        weight,
         data.real,
         data.imag,
         CASA_convention=True,

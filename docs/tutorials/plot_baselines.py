@@ -145,8 +145,11 @@ ax.invert_xaxis()
 # -
 
 # We can also plot the visibility amplitude as a function of radial baseline
+
 qq = np.sqrt(cube.uu[0] ** 2 + cube.vv[0] ** 2)
-amp = np.sqrt(cube.data_re[0] ** 2 + cube.data_im[0] ** 2)  # amplitude of complex number
+amp = np.sqrt(
+    cube.data_re[0] ** 2 + cube.data_im[0] ** 2
+)  # amplitude of complex number
 
 fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
 ax.scatter(qq, amp, s=1.5, rasterized=True, linewidths=0.0, c="k")
