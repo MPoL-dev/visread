@@ -22,7 +22,9 @@
 
 # # Quickstart
 #
-# If you already have your measurement set ready, jump right to the "Reading Visibilites" section of the tutorial. Otherwise, we'll first walk through the steps of creating a mock measurement set using CASA's *simobserve* task. Alternatively, you can download the mock measurement sets from [Zenodo](https://zenodo.org/record/4460716#.YA4Xt2RKidY), and skip right to the "Reading Visibilites" section, too.
+# If you already have your measurement set ready, jump right to the [Reading Visibilites](#reading) section of the tutorial (reading visibilities is quick)! 
+#
+# If you don't have a measurment set, we'll walk through how you can create a mock one using CASA's *simobserve* task. Alternatively, you can download the mock measurement sets from [Zenodo](https://zenodo.org/record/4460716#.YA4Xt2RKidY), and skip right to the "Reading Visibilites" section, too.
 #
 # ## Creating a mock measurement set
 #
@@ -121,7 +123,8 @@ ms_path = temp_dir.name + "/sim/sim.alma.cycle7.7.ms"
 print(ms_path)
 
 # ## Reading Visibilities
-# Now that we have a measurement set, lets demonstrate how we can use the `visread` package to interact with these visibilities. More information on these routines is available under the [API](https://visread.readthedocs.io/en/latest/api.html) section.
+# <a id='reading'></a>
+# Now that we have a measurement set, lets demonstrate how we can use the `visread` package to interact with these visibilities. More information on these routines is available under the [API](https://visread.readthedocs.io/en/latest/api.html) section of the `visread` docs.
 
 import visread
 
@@ -133,7 +136,7 @@ print(cube.vv.shape)
 
 # We see that these are two dimensional arrays of shape (nchan, nvis).
 #
-# Let's plot up the baselines for the first channel of the cube (index `0`).
+# Let's plot up the baseline coverage for the first channel of the cube (index `0`).
 
 # +
 fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
@@ -156,7 +159,6 @@ ax.scatter(qq, amp, s=1.5, rasterized=True, linewidths=0.0, c="k")
 ax.set_xlabel(r"$q$ [k$\lambda$]")
 ax.set_ylabel(r"Amplitude [Jy]")
 
-# You can also access the visibility weights via `cube.weights`.
+# If you need them, the visibility weights are accessible via `cube.weight`.
 
-# clean up the temporary directory we created
-temp_dir.cleanup()
+temp_dir.cleanup() # cleanup
