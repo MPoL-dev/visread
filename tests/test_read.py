@@ -83,3 +83,11 @@ def test_read_ms_cont(ms_cont_path):
 
 def test_read_ms_cube(ms_cube_path):
     visread.read(ms_cube_path)
+
+
+def test_save_ms_cube(ms_cube_path, tmp_path_factory):
+    cube = visread.read(ms_cube_path)
+    cube.to_npz("logo_cube.npz")
+
+    outdir = str(tmp_path_factory.mktemp("npz"))
+    cube.to_npz(outdir + "/logo_cube.npz")

@@ -100,6 +100,27 @@ class Cube:
             )
             self.data_im = -1.0 * self.data_im
 
+    def to_npz(self, filename):
+        """
+        Save the cube visibilities to an NPZ archive.
+
+        Args:
+            filename (string): the file to save the npz archive to. Should end in ``*.npz``
+
+        Returns: True if successful
+        """
+
+        np.savez(
+            filename,
+            uu=self.uu,
+            vv=self.vv,
+            weight=self.weight,
+            data_re=self.data_re,
+            data_im=self.data_im,
+        )
+
+        return True
+
 
 def read(filename, datacolumn="CORRECTED_DATA"):
     """
