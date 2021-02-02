@@ -112,6 +112,7 @@ class Cube:
 
         np.savez(
             filename,
+            frequencies=self.frequencies,
             uu=self.uu,
             vv=self.vv,
             weight=self.weight,
