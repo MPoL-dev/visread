@@ -18,6 +18,7 @@ class Cube:
         weight (2d numpy array): thermal weights of visibilities (units of [:math:`1/\mathrm{Jy}^2`])
         data_re (2d numpy array): real component of visibility data (units [:math:`\mathrm{Jy}`])
         data_im (2d numpy array): imaginary component of visibility data (units [:math:`\mathrm{Jy}`])
+        mask (2d numpy array): a Boolean mask which indexes the valid visibility data.
         CASA_convention (boolean): do the baseline conventions follow the `CASA convention <https://casa.nrao.edu/casadocs/casa-5.6.0/memo-series/casa-memos/casa_memo2_coordconvention_rau.pdf>`_ (``CASA_convention==True``; ) or the standard radio astronomy convention (``CASA_convention==False``, i.e., `Thompson, Moran, and Swenson <https://ui.adsabs.harvard.edu/abs/2017isra.book.....T/abstract>`_ Fig 3.2)?
 
     Examples:
@@ -34,6 +35,7 @@ class Cube:
         weight,
         data_re,
         data_im,
+        mask=None,
         CASA_convention=True,
         **kwargs
     ):
@@ -67,6 +69,10 @@ class Cube:
         self.weight = weight
         self.data_re = data_re
         self.data_im = data_im
+        if mask is None:
+            self.mask = np.ones_like(data_re, dtype="bool")
+        else:
+            self.mask = mask
 
         self.CASA_convention = CASA_convention
 
@@ -118,6 +124,7 @@ class Cube:
             weight=self.weight,
             data_re=self.data_re,
             data_im=self.data_im,
+            mask=self.mask,
         )
 
         return True
@@ -170,19 +177,9 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     data = tb.getcol(datacolumn)  # array of complex128 with shape [npol, nchan, nvis]
     tb.close()
 
-    assert np.unique(spw_id) == np.array(
-        [0]
-    ), "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
-
-    # check targets are 1
-    assert np.unique(field_id) == np.array(
-        [0]
-    ), "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
-
-    # check there are no flagged visibilities
     assert (
-        np.sum(flag) == 0
-    ), "Measurement Set contains flagged visibilities. First export the unflagged visibilities to a new Measurement Set using CASA/split or mstransform."
+        len(np.unique(spw_id)) == 1
+    ), "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
 
     assert (
         len(data.shape) == 3
@@ -218,11 +215,13 @@ def read(filename, datacolumn="CORRECTED_DATA"):
         # reverse channels
         chan_freq = chan_freq[::-1]
         data = data[:, ::-1, :]
+        flag = flag[:, ::-1, :]
 
     # keep only the cross-correlation visibilities
     # and throw out the auto-correlation visibilities (i.e., where ant1 == ant2)
     xc = np.where(ant1 != ant2)[0]
     data = data[:, :, xc]
+    flag = flag[:, :, xc]
     uvw = uvw[:, xc]
     weight = weight[:, xc]
 
@@ -234,12 +233,17 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     npol = data.shape[0]
     if npol == 2:
         data = np.sum(data * weight[:, np.newaxis, :], axis=0) / np.sum(weight, axis=0)
+        flag = np.any(flag, axis=0)
         weight = np.sum(weight, axis=0)
     elif npol == 1:
         data = np.squeeze(data)
+        flag = np.squeeze(flag)
         weight = np.squeeze(weight)
     else:
         raise AssertionError("npol must be 1 or 2. Unknown value:", npol)
+
+    # when indexed with mask, returns valid visibilities
+    mask = ~flag
 
     # after this step,
     # data should be [3, nvis]
@@ -270,5 +274,6 @@ def read(filename, datacolumn="CORRECTED_DATA"):
         weight,
         data.real,
         data.imag,
+        mask,
         CASA_convention=True,
     )
