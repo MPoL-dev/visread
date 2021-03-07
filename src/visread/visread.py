@@ -151,9 +151,9 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     tb.open(filename + "/DATA_DESCRIPTION")
     SPECTRAL_WINDOW_ID = tb.getcol("SPECTRAL_WINDOW_ID")
     tb.close()
-    assert SPECTRAL_WINDOW_ID == [
-        0
-    ], "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
+    assert (
+        len(SPECTRAL_WINDOW_ID) == 1
+    ), "Measurement Set contains more than one spectral window, first average or export the one you'd like to a separate Measurement Set using CASA/split, mstransform, and/or cvel2. Inspect with listobs or browsetable."
 
     tb.open(filename)
     colnames = tb.colnames()
