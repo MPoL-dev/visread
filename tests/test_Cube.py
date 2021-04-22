@@ -14,7 +14,7 @@ def test_create_Cube():
     data_re = np.ones((nchan, nvis))
     data_im = np.ones((nchan, nvis))
 
-    vis = visread.Cube(freqs, uu, vv, weight, data_re, data_im)
+    visread.Cube(freqs, uu, vv, weight, data_re, data_im)
 
 
 def test_create_Cube_weight_asserts():
@@ -28,7 +28,7 @@ def test_create_Cube_weight_asserts():
     data_im = np.ones((nchan, nvis))
 
     with pytest.raises(AssertionError):
-        vis = visread.Cube(freqs, uu, vv, -weight, data_re, data_im)
+        visread.Cube(freqs, uu, vv, -weight, data_re, data_im)
 
 
 def test_create_Cube_shape_asserts():
@@ -42,10 +42,10 @@ def test_create_Cube_shape_asserts():
     data_im = np.ones((nchan, nvis))
 
     with pytest.raises(AssertionError):
-        vis = visread.Cube(freqs, uu, vv, weight, data_re, data_im)
+        visread.Cube(freqs, uu, vv, weight, data_re, data_im)
 
     with pytest.raises(AssertionError):
-        vis = visread.Cube(freqs[np.newaxis, :], uu, vv, weight, data_re, data_im)
+        visread.Cube(freqs[np.newaxis, :], uu, vv, weight, data_re, data_im)
 
 
 def test_Cube_freq_assert():
@@ -59,7 +59,7 @@ def test_Cube_freq_assert():
     data_im = np.ones((nchan, nvis))
 
     with pytest.raises(AssertionError):
-        vis = visread.Cube(freqs_inc, uu, vv, weight, data_re, data_im)
+        visread.Cube(freqs_inc, uu, vv, weight, data_re, data_im)
 
 
 def test_Cube_dtypes():
@@ -72,11 +72,11 @@ def test_Cube_dtypes():
     data_re = np.ones((nchan, nvis))
     data_im = np.ones((nchan, nvis))
 
-    data_re_bogus = np.ones((nchan, nvis), dtype=np.complex128)
-    data_im_bogus = np.ones((nchan, nvis), dtype=np.complex128)
+    data_re_bogus = np.ones((nchan, nvis), dtype="complex")
+    data_im_bogus = np.ones((nchan, nvis), dtype="complex")
 
     with pytest.raises(AssertionError):
-        vis = visread.Cube(freqs, uu, vv, weight, data_re_bogus, data_im)
+        visread.Cube(freqs, uu, vv, weight, data_re_bogus, data_im)
 
     with pytest.raises(AssertionError):
-        vis = visread.Cube(freqs, uu, vv, weight, data_re, data_im_bogus)
+        visread.Cube(freqs, uu, vv, weight, data_re, data_im_bogus)
