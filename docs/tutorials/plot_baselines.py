@@ -24,13 +24,13 @@
 #
 # If you already have your measurement set ready, jump right to the [Reading Visibilites](https://visread.readthedocs.io/en/latest/tutorials/plot_baselines.html#Reading-Visibilities) section of the tutorial (reading visibilities is quick)!
 #
-# If you don't have a measurment set, we'll walk through how you can create a mock one using CASA's *simobserve* task. Alternatively, you can download the mock measurement sets from [Zenodo](https://zenodo.org/record/4460716#.YA4Xt2RKidY), and skip right to the "Reading Visibilites" section, too.
+# If you don't have a measurment set, we'll walk through how you can create a mock one using CASA's *simobserve* task. Alternatively, you can download the mock measurement sets (``logo_cube.noise.ms.tar.gz``) from [Zenodo](https://zenodo.org/record/4711811), and skip right to the "Reading Visibilites" section, too.
 #
 # ## Creating a mock measurement set
 #
 # ### Examine the sky brightness distribution
 #
-# We'll use a mock sky brightness distribution of the ALMA logo. The FITS cube is included in the package under the `tests` directory, and available on [Zenodo](https://zenodo.org/record/4460128#.YA2OXGRKidY), too. Just to orient ourselves, let's take a look at a few channels of it first.
+# We'll use a mock sky brightness distribution of the ALMA logo. The FITS cube is available on [Zenodo](https://zenodo.org/record/4711811/files/logo_cube.fits). Just to orient ourselves, let's take a look at a few channels of it first.
 
 from astropy.io import fits
 import matplotlib
@@ -39,8 +39,15 @@ import matplotlib.animation as animation
 import numpy as np
 import os
 from IPython.display import HTML
+from astropy.utils.data import download_file
 
-hdul = fits.open("../../tests/logo_cube.fits")
+fits_path = download_file(
+    "https://zenodo.org/record/4711811/files/logo_cube.fits",
+    cache=True,
+    pkgname="visread",
+)
+
+hdul = fits.open(fits_path)
 header = hdul[0].header
 data = 1e3 * hdul[0].data  # mJy/pixel
 # get the coordinate labels
@@ -108,7 +115,7 @@ os.chdir(temp_dir.name)
 # More information on the `simobserve` task is available in the [CASA docs](https://casa.nrao.edu/casadocs-devel/stable/simulation/introduction). Briefly, what we're doing here is using the ALMA logo cube as a sky model (inheriting the brightness, location, and frequency spacing from the FITS header) and then "observing" it with a fake interferometer for 1 hour. We're using the Cycle 7 43-7 array configuration. Configuration files are available for download from the [ALMA site](https://almascience.nrao.edu/tools/casa-simulator).
 
 casatasks.simobserve(
-    skymodel=curdir + "/" + "../../tests/logo_cube.fits",
+    skymodel=fits_path,
     hourangle="transit",
     totaltime="3600s",
     thermalnoise="tsys-atm",
