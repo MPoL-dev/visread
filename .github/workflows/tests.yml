@@ -30,6 +30,7 @@ jobs:
     
     - name: Install fortran libs for CASA
       run: |
+        sudo apt-get update
         sudo apt-get install libgfortran3
     
     - name: Install vanilla package 
