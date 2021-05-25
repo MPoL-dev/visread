@@ -84,3 +84,6 @@ def ms_cube_path(tmp_path_factory):
     ms_path = outdir + "/sim/sim.alma.cycle7.7.ms"
 
     return ms_path
+
+
+# path to MS cube with MODEL_DATA column
