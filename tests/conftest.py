@@ -1,4 +1,3 @@
-import visread
 import pytest
 import casatasks
 import os
@@ -87,16 +86,4 @@ def ms_cube_path(tmp_path_factory):
     return ms_path
 
 
-def test_read_ms_cont(ms_cont_path):
-    visread.read(ms_cont_path)
-
-
-def test_read_ms_cube(ms_cube_path):
-    visread.read(ms_cube_path)
-
-
-def test_save_ms_cube(ms_cube_path, tmp_path_factory):
-    cube = visread.read(ms_cube_path)
-
-    outdir = str(tmp_path_factory.mktemp("npz"))
-    cube.to_npz(outdir + "/logo_cube.npz")
+# path to MS cube with MODEL_DATA column

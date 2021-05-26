@@ -6,22 +6,9 @@
 Visread documentation
 =====================
 
-*visread* provides a simple ``read("myFile.ms")`` function to load visibilities from a calibrated CASA Measurement Set file into memory in a Python program. You may wish to plot the baseline distributions, analyze the visibilities themselves, or synthesize images from them using software like `MPoL <https://github.com/MPoL-dev>`_.
+**What is this package**? This package is mostly a set of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory in a Python program using `casatools` like `table` and `ms`. You may wish to plot the baseline distributions, analyze the visibilities themselves, or synthesize images from them using software like `MPoL <https://github.com/MPoL-dev>`_.
 
-Usage::
-
-   import visread
-
-   vis = visread.read(filename="myMeasurementSet.ms")
-   # access your data with
-   vis.frequencies  # frequencies in GHz
-   vis.uu  # East-West spatial frequencies in klambda
-   vis.vv  # North-South spatial frequencies in klambda
-   vis.weight # weight in 1/Jy^2
-   vis.data_re  # real components of visibilities in Jy
-   vis.data_im  # imaginary components of visibilities in Jy
-   
-
+To get started, you don't even need to install the *visread* package itself, you can get some ideas directly from the *Introduction to casatools*. The *visread* package provides some lightweight routines for common visibility manipulations, and is built on top of the core `casatools` functionality. 
 
 .. toctree::
    :maxdepth: 2

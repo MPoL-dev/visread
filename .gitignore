@@ -130,3 +130,9 @@ dmypy.json
 
 # VSCode IDE
 .vscode/
+
+# test output 
+plotsdir/
+
+# built notebooks
+docs/tutorials/*.ipynb

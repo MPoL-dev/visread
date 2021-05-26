@@ -1,9 +1,13 @@
 Installation 
 ============
 
-Because this package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of January 2021, these are ``Python=3.6`` and ``libgfortran3``. This means that CASA6 and by extension this package **will not work on Python 3.7, 3.8, or 3.9**. More information on these requirements is `here <https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing>`_. The `visread` package itself is not tied to Python=3.6, so as the CASA requirements relax, so too will the requirements of this package.
+Because the *visread* package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of June 2021, these are ``Python=3.6``, ``libgfortran3``, and a linux operating system (most likely Red Hat or CentOS). This means that CASA6 and by extension this package **will not work on Python 3.7, 3.8, or 3.9**, **MacOS**, and may even give you trouble on modern **Ubuntu** distros because of the ``libfortran3`` dependency. More information on these requirements is `here <https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing>`_. The `visread` package itself is not tied to Python=3.6, so as the CASA requirements relax (anticipated by winter 2021-22), so too will the requirements of this package. 
 
-First, if you don't already have it, install the ``libgfortran3`` library using ``sudo apt-get`` on Ubuntu or a similar package management tool for your system.
+.. note::
+
+    If you are using an operating system that doesn't support the installation of the modular CASA 6.x distribution, you can still use the casatools directly (e.g., ``tb`` and ``ms``) via the interactive prompt of the 'monolithic' CASA 5.x series. You just won't be able to install the wrapper functionality of *visread* (though you are welcome to copy and paste relevant source code to the terminal).
+
+First, if you don't already have it, install the ``libgfortran3`` library using the package management tool for your system.
 
 Then, following standard practice, it's recommended that you first create and activate a `Python virtual environment <https://docs.python.org/3/tutorial/venv.html>`_ specific to your current project, whatever that may be. The CASA docs explicitly recommend using ``venv`` instead of a `conda environment <https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html>`_ (or a ``virtualenv``), though it's possible that the other environments might still work.
 
