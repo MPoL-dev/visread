@@ -1,10 +1,12 @@
 # visread
 
-![Python package](https://github.com/MPoL-dev/visread/workflows/Python%20package/badge.svg) [![Documentation Status](https://readthedocs.org/projects/visread/badge/?version=latest)](https://visread.readthedocs.io/en/latest/?badge=latest) [![DOI](https://zenodo.org/badge/327205529.svg)](https://zenodo.org/badge/latestdoi/327205529)
+[![package test and docs test](https://github.com/MPoL-dev/visread/actions/workflows/tests.yml/badge.svg)](https://github.com/MPoL-dev/visread/actions/workflows/tests.yml)
+[![gh-pages docs](https://github.com/MPoL-dev/visread/actions/workflows/gh_docs.yml/badge.svg)](https://github.com/MPoL-dev/visread/actions/workflows/gh_docs.yml)
+[![DOI](https://zenodo.org/badge/327205529.svg)](https://zenodo.org/badge/latestdoi/327205529)
 
 A minimal tool built on CASA6 to read visibilities directly from calibrated CASA Measurement Sets
 
-For more information, see the [DOCUMENTATION](https://visread.readthedocs.io/)
+For more information, see the [DOCUMENTATION](https://mpol-dev.github.io/visread/)
 
 If you find this piece of code useful, please cite
 
