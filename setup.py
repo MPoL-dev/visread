@@ -36,6 +36,7 @@ EXTRA_REQUIRES = {
         "nbconvert",
         "astropy",
         "casatasks",
+        "matplotlib",
     ],
 }
 
