@@ -3,13 +3,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "f0ee48bd",
+   "id": "2a70806e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-26T14:20:45.430257Z",
-     "iopub.status.busy": "2021-05-26T14:20:45.428626Z",
-     "iopub.status.idle": "2021-05-26T14:20:46.304443Z",
-     "shell.execute_reply": "2021-05-26T14:20:46.303330Z"
+     "iopub.execute_input": "2021-05-26T15:03:28.189008Z",
+     "iopub.status.busy": "2021-05-26T15:03:28.186736Z",
+     "iopub.status.idle": "2021-05-26T15:03:29.120254Z",
+     "shell.execute_reply": "2021-05-26T15:03:29.118530Z"
     },
     "nbsphinx": "hidden"
    },
@@ -21,13 +21,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "8c58e253",
+   "id": "3e1038fb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-26T14:20:46.316294Z",
-     "iopub.status.busy": "2021-05-26T14:20:46.308797Z",
-     "iopub.status.idle": "2021-05-26T14:20:46.324106Z",
-     "shell.execute_reply": "2021-05-26T14:20:46.323577Z"
+     "iopub.execute_input": "2021-05-26T15:03:29.139663Z",
+     "iopub.status.busy": "2021-05-26T15:03:29.125860Z",
+     "iopub.status.idle": "2021-05-26T15:03:29.144107Z",
+     "shell.execute_reply": "2021-05-26T15:03:29.143488Z"
     },
     "nbsphinx": "hidden"
    },
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3ac27d7b",
+   "id": "f8019385",
    "metadata": {},
    "source": [
     "# Introduction to Measurement Sets\n",
@@ -49,7 +49,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "96cb88c2",
+   "id": "0694b7ab",
    "metadata": {},
    "source": [
     "# Introduction to casatools\n",
@@ -58,7 +58,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1de57378",
+   "id": "9b28f3dc",
    "metadata": {},
    "source": [
     "download logo_cube_noise and extract from https://zenodo.org/record/4711811#.YKzhspNKidY\n",
@@ -67,7 +67,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aaedbc77",
+   "id": "755a0e14",
    "metadata": {},
    "source": [
     "Use the simobserve cube dataset"
@@ -75,7 +75,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b5a927bc",
+   "id": "6b41f45a",
    "metadata": {},
    "source": [
     "* inspect column names\n",

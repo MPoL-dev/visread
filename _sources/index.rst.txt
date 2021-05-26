@@ -6,9 +6,14 @@
 Visread documentation
 =====================
 
+|Tests badge|
+
+.. |Tests badge| image:: https://github.com/MPoL-dev/visread/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/MPoL-dev/visread/actions/workflows/tests.yml
+
 **What is this package**? This package is mostly a set of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory in a Python program using `casatools` like `table` and `ms`. You may wish to plot the baseline distributions, analyze the visibilities themselves, or synthesize images from them using software like `MPoL <https://github.com/MPoL-dev>`_.
 
-To get started, you don't even need to install the *visread* package itself, you can get some ideas directly from the *Introduction to casatools*. The *visread* package provides some lightweight routines for common visibility manipulations, and is built on top of the core `casatools` functionality. 
+**To get started**, you don't even need to install the *visread* package itself, you can get some ideas directly from the *Introduction to casatools*. The *visread* package provides some lightweight routines for common visibility manipulations, and is built on top of the core `casatools` functionality. 
 
 .. toctree::
    :maxdepth: 2
