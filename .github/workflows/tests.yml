@@ -1,9 +1,9 @@
-name: Run Tests
+name: package test and docs test
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-16.04
     strategy:
       max-parallel: 4
@@ -53,14 +53,24 @@ jobs:
       run: |
         jupytext --to ipynb --execute docs/tutorials/*.py
 
-    - uses: actions/upload-artifact@v2
+# if all tests succeed, then
+# make sure the docs build OK
+# (but don't deploy to gh-pages)
+docs:
+  needs: tests
+  runs-on: ubuntu-16.04
+  steps: 
+    - uses: actions/checkout@v2
+    - name: Set up Python 
+      uses: actions/setup-python@v2
       with:
-        name: notebooks-for-${{ github.sha }}
-        path: docs/tutorials
+        python-version: 3.6
+      - name: Install doc deps
+        run: |
+          pip install .[docs]
+      - name: Build the docs
+        run: |
+          make -C docs clean
+          make -C docs html 
 
-    - name: Trigger RTDs build
-      uses: dfm/rtds-action@v1
-      with:
-        webhook_url: ${{ secrets.RTDS_WEBHOOK_URL }}
-        webhook_token: ${{ secrets.RTDS_WEBHOOK_TOKEN }}
-        commit_ref: ${{ github.ref }}
+    
