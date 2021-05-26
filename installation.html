@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installation &mdash; visread 0.0.4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="Introduction and Measurement Set Preparation" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> visread
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction and Measurement Set Preparation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/plot_baselines.html">Quickstart</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">visread</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Because the <em>visread</em> package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of June 2021, these are <code class="docutils literal notranslate"><span class="pre">Python=3.6</span></code>, <code class="docutils literal notranslate"><span class="pre">libgfortran3</span></code>, and a linux operating system (most likely Red Hat or CentOS). This means that CASA6 and by extension this package <strong>will not work on Python 3.7, 3.8, or 3.9</strong>, <strong>MacOS</strong>, and may even give you trouble on modern <strong>Ubuntu</strong> distros because of the <code class="docutils literal notranslate"><span class="pre">libfortran3</span></code> dependency. More information on these requirements is <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing">here</a>. The <cite>visread</cite> package itself is not tied to Python=3.6, so as the CASA requirements relax (anticipated by winter 2021-22), so too will the requirements of this package.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using an operating system that doesn’t support the installation of the modular CASA 6.x distribution, you can still use the casatools directly (e.g., <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code>) via the interactive prompt of the ‘monolithic’ CASA 5.x series. You just won’t be able to install the wrapper functionality of <em>visread</em> (though you are welcome to copy and paste relevant source code to the terminal).</p>
+</div>
+<p>First, if you don’t already have it, install the <code class="docutils literal notranslate"><span class="pre">libgfortran3</span></code> library using the package management tool for your system.</p>
+<p>Then, following standard practice, it’s recommended that you first create and activate a <a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">Python virtual environment</a> specific to your current project, whatever that may be. The CASA docs explicitly recommend using <code class="docutils literal notranslate"><span class="pre">venv</span></code> instead of a <a class="reference external" href="https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html">conda environment</a> (or a <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code>), though it’s possible that the other environments might still work.</p>
+<p>In the following example of a virtual environment, the first line uses the <code class="docutils literal notranslate"><span class="pre">venv</span></code> tool to create a subdirectory named <code class="docutils literal notranslate"><span class="pre">venv</span></code>, which hosts the virtual environment files. The second line activates this environment in your current shell session. Keep in mind that this is something you’ll need to do for every shell session, since the point of virtual environments is to create an environment specific to your project</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m venv venv
+$ source venv/bin/activate
+</pre></div>
+</div>
+<p>Then you can install <em>visread</em> and the CASA dependencies with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple visread
+</pre></div>
+</div>
+<p>If you have any problems, please file a detailed <a class="reference external" href="https://github.com/MPoL-dev/visread/issues">Github issue</a>.</p>
+<div class="section" id="development">
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
+<p>If you’re interested in extending the package, you can install it locally for development:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple -e .[dev]
+</pre></div>
+</div>
+<p>If you make a useful change, please consider submitting a <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request">pull request</a> to the <a class="reference external" href="https://github.com/MPoL-dev/visread">github repo</a>!</p>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>You can run the tests on the package by first installing it with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple -e .[test]
+</pre></div>
+</div>
+<p>(which installs the casatasks and pytest packages, you could also just additionally install those yourself, too). Then run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pytest
+</pre></div>
+</div>
+<p>The tests work by creating a fake measurement set using <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_simobserve/about">simobserve</a> and then reading it with <em>visread</em>. If any tests fail on your machine, please file a detailed <a class="reference external" href="https://github.com/MPoL-dev/visread/issues">Github issue</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction and Measurement Set Preparation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ian Czekala.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
