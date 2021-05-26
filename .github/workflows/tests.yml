@@ -68,6 +68,9 @@ docs:
       - name: Install doc deps
         run: |
           pip install .[docs]
+      - name: Install Pandoc dependency for nbconvert 
+        run: |
+          sudo apt-get install pandoc
       - name: Build the docs
         run: |
           make -C docs clean

@@ -12,9 +12,18 @@ BUILDDIR      = _build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
+.PHONY: help Makefile html clean
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/plot_baselines.ipynb 
+
+clean:
+	rm -rf _build
+	rm -rf ${NOTEBOOKS}
+	rm -rf tutorials/.ipynb_checkpoints
+	rm -rf tutorials/runs
+
+tutorials/%.ipynb: tutorials/%.py 
+	jupytext --to ipynb --execute $<
+
+html: ${NOTEBOOKS}
+	python -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
