@@ -16,7 +16,7 @@ jobs:
           python-version: 3.6
       - name: Install doc deps
         run: |
-          pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .
+          pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[docs]
       - name: Install Pandoc dependency for nbconvert 
         run: |
           sudo apt-get install pandoc
