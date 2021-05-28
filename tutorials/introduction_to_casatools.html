@@ -47,8 +47,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Quickstart" href="plot_baselines.html" />
-    <link rel="prev" title="Installation" href="../installation.html" /> 
+    <link rel="next" title="Visread Installation" href="../installation.html" />
+    <link rel="prev" title="Visread documentation" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,7 +99,6 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to CASA tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Introduction-to-measurement-sets">Introduction to measurement sets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#CASA-tools">CASA tools</a></li>
@@ -117,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Putting-it-together-to-export-visibilities">Putting it together to export visibilities</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Visread Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_baselines.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a></li>
@@ -473,7 +473,8 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 <h2>CASA tools<a class="headerlink" href="#CASA-tools" title="Permalink to this headline">¶</a></h2>
 <p>CASA provides a set of lower-level “tools” for direct interaction with the measurement set contents. The full API list is available <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list">here</a>.</p>
 <p>To experiment with reading and plotting visibilities, we’ll use a measurement set that we prepared using simobserve. The full commands to generate the measurement set are available via the <code class="docutils literal notranslate"><span class="pre">mpoldatasets</span></code> package <a class="reference external" href="https://github.com/MPoL-dev/mpoldatasets/blob/main/products/ALMA-logo/simobserve_cube.py">here</a>.</p>
-<p>You can access the CASA tools from within your Python environment if you’ve successfully installed <code class="docutils literal notranslate"><span class="pre">casatools</span></code> package as part of the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing">modular CASA install</a>, as shown here. If you are unable to install the modular package, you can always use the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools">casatools directly inside of the monolithic CASA intepreter</a>.</p>
+<p>You can access the CASA tools from within your Python environment if you’ve successfully installed <code class="docutils literal notranslate"><span class="pre">casatools</span></code> package as part of the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing">modular CASA install</a>, as shown here. If you are unable to install the modular package, you can always use the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools">casatools directly inside of the monolithic CASA intepreter</a>. If you’re working
+directly within the CASA interpreter, you can skip this section and move directly to the example queries.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -525,8 +526,26 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<p>Now we’ve successfully downloaded and extracted the measurement set</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+logo_cube.noise.ms
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -534,9 +553,10 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 </pre></div>
 </div>
 </div>
+<p>If you’re working with your own measurement set, you can start directly from here.</p>
 <p>Let’s import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods">table</a> and <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -545,7 +565,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -562,7 +582,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 <h3>Unique spectral window IDs<a class="headerlink" href="#Unique-spectral-window-IDs" title="Permalink to this headline">¶</a></h3>
 <p>Get the indexes of the unique spectral windows, typically indexed by the <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -583,7 +603,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code> might not always be a perfect stand-in for <code class="docutils literal notranslate"><span class="pre">SPECTRAL_WINDOW_ID</span></code>, see the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/measurement-set">data description table</a> for more information. You could also try accessing the <code class="docutils literal notranslate"><span class="pre">DATA_DESCRIPTION</span></code> table directly by providing it as a subdirectory to the main table like so</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -607,7 +627,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 <h3>Column names of main table<a class="headerlink" href="#Column-names-of-main-table" title="Permalink to this headline">¶</a></h3>
 <p>Open the main table of the measurement set and inspect the column names</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -631,7 +651,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 <h3>How many channels in each spw<a class="headerlink" href="#How-many-channels-in-each-spw" title="Permalink to this headline">¶</a></h3>
 <p>Let’s figure out how many channels there are, and what their frequencies are (in Hz)</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -666,7 +686,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 <h3>Get the baselines<a class="headerlink" href="#Get-the-baselines" title="Permalink to this headline">¶</a></h3>
 <p>Read the baselines (in units of [m])</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -679,7 +699,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 </div>
 <p>We can plot these up easily</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -691,7 +711,7 @@ a set of binary ‘tables’ with your data and metadata. The contents within th
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -703,7 +723,7 @@ Text(0, 0.5, &#39;$v$ [m]&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_introduction_to_casatools_24_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_24_1.png" style="width: 455px; height: 406px;" />
+<img alt="../_images/tutorials_introduction_to_casatools_26_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_26_1.png" style="width: 455px; height: 406px;" />
 </div>
 </div>
 </div>
@@ -711,7 +731,7 @@ Text(0, 0.5, &#39;$v$ [m]&#39;)
 <h3>Convert baselines to units of kilolambda<a class="headerlink" href="#Convert-baselines-to-units-of-kilolambda" title="Permalink to this headline">¶</a></h3>
 <p>To convert the baselines to units of kilolambda, we need to know the observing frequency (or wavelength). For a spectral window with multiple channels (like this one), the baselines (if expressed in units of kilolambda) will be slightly different for each channel because the observing frequency is different for each channel. Here is one way to go about broadcasting the baselines to all channels and then converting them to units of kilolambda.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -722,7 +742,7 @@ Text(0, 0.5, &#39;$v$ [m]&#39;)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -731,7 +751,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -743,7 +763,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -752,7 +772,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -761,7 +781,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -775,7 +795,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -786,7 +806,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -798,7 +818,7 @@ True
 </div>
 <p>Let’s plot up the baseline coverage for the first channel of the cube (index <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -810,7 +830,7 @@ True
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -822,7 +842,7 @@ Text(0, 0.5, &#39;$v$ [k$\\lambda$]&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_introduction_to_casatools_33_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_33_1.png" style="width: 455px; height: 410px;" />
+<img alt="../_images/tutorials_introduction_to_casatools_35_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_35_1.png" style="width: 455px; height: 410px;" />
 </div>
 </div>
 </div>
@@ -830,7 +850,7 @@ Text(0, 0.5, &#39;$v$ [k$\\lambda$]&#39;)
 <h3>Read the visibility values and inspect flags<a class="headerlink" href="#Read-the-visibility-values-and-inspect-flags" title="Permalink to this headline">¶</a></h3>
 <p>Visibilities are stored in the main table of the measurement set. As long as all spectral windows have the same number of channels and polarizations, it should be possible to read visibilities using the table tool. If not, try the <code class="docutils literal notranslate"><span class="pre">ms</span></code> tool.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -846,7 +866,7 @@ Text(0, 0.5, &#39;$v$ [k$\\lambda$]&#39;)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -857,16 +877,20 @@ True
 <p>Depending on how you’ve calibrated and/or split out your data, your measurement set may or may not have a <code class="docutils literal notranslate"><span class="pre">CORRECTED_DATA</span></code> column. Usually, this is the one you want. If the column doesn’t exist in your measurement set, try the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> column instead.</p>
 <p>For each visibility <span class="math notranslate nohighlight">\(i\)</span> there is also an accompanying <code class="docutils literal notranslate"><span class="pre">WEIGHT</span></code> <span class="math notranslate nohighlight">\(w_i\)</span>, which should correspond to the statistical uncertainty on the real and imaginary component of each visibility. Formally, the weight is defined as</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}w_i = \frac{1}{\sigma_i^2}\\and we expect that the noise is independent for each of the real and imaginary components of a visibility measurement. This means that we expect\end{aligned}\end{align} \]</div>
+\[w_i = \frac{1}{\sigma_i^2}\]</div>
+<p>and we expect that the noise is independent for each of the real and imaginary components of a visibility measurement. This means that we expect</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\Re \{V_i\} = \Re\{\mathcal{V}\}_i + \epsilon_1\\and\end{aligned}\end{align} \]</div>
+\[\Re \{V_i\} = \Re\{\mathcal{V}\}_i + \epsilon_1\]</div>
+<p>and</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\Im \{V_i\} = \Im\{\mathcal{V}\}_i + \epsilon_2\\where for each real and each imaginary component :math:`\epsilon` is a new noise realization from a mean-zero Gaussian with standard deviation :math:`\sigma_i`, i.e.,\end{aligned}\end{align} \]</div>
+\[\Im \{V_i\} = \Im\{\mathcal{V}\}_i + \epsilon_2\]</div>
+<p>where for each real and each imaginary component <span class="math notranslate nohighlight">\(\epsilon\)</span> is a new noise realization from a mean-zero Gaussian with standard deviation <span class="math notranslate nohighlight">\(\sigma_i\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\epsilon \sim \mathcal{N}\left ( 0, \sigma_i \right )\\CASA has a `history &lt;https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights&gt;`__ of different weight definitions, so this is definitely an important column to pay attention to, especially if your data was not acquired and processed in very recent cycles.\end{aligned}\end{align} \]</div>
+\[\epsilon \sim \mathcal{N}\left ( 0, \sigma_i \right )\]</div>
+<p>CASA has a <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights">history</a> of different weight definitions, so this is definitely an important column to pay attention to, especially if your data was not acquired and processed in very recent cycles.</p>
 <p>A common ALMA observation mode is dual-polarization, XX and YY. If this is the case for your observations, the data array will contain an extra dimension for each polarization.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -884,7 +908,7 @@ True
 </div>
 <p>Since it has a complex type, the data array contains the real and imaginary values</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -956,7 +980,7 @@ True
 </div>
 <p>In the process of calibrating real-world data, some occasional visibilities need to be flagged or excluded from the analysis. The <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> column is a boolean flag that is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the visibility <em>should be excluded</em>. To check if any visibilities are flagged in this spectral window, we can just see if there are any <code class="docutils literal notranslate"><span class="pre">True</span></code> values in the <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> column</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -974,7 +998,7 @@ Are there any flagged visibilities? False
 </div>
 <p>Since this is a simulated measurement set, this is not surprising. When you are using real data, however, this is an important thing to check. If you <em>did</em> have flagged visibilities, to access only the valid visibilities you would do something like the following</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -984,7 +1008,7 @@ Are there any flagged visibilities? False
 </div>
 <p>where the <code class="docutils literal notranslate"><span class="pre">~</span></code> operator helps us index only the visibilities which <em>are not flagged</em>. Unfortunately, indexing en masse like this removes any polarization and channelization dimensionality, just giving you a flat list</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1006,7 +1030,7 @@ Are there any flagged visibilities? False
 <h3>Read visibility values and averaging polarizations<a class="headerlink" href="#Read-visibility-values-and-averaging-polarizations" title="Permalink to this headline">¶</a></h3>
 <p>If your dataset is dual-polarization but you are not interested in treating the polarizations separately, it might be worth it to average the polarization channels together.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1020,7 +1044,7 @@ Are there any flagged visibilities? False
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1029,7 +1053,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1040,7 +1064,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1050,7 +1074,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1060,7 +1084,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1071,7 +1095,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1082,7 +1106,7 @@ True
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1095,7 +1119,7 @@ True
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1107,7 +1131,7 @@ Text(0, 0.5, &#39;Amplitude [Jy]&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_introduction_to_casatools_55_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_55_1.png" style="width: 405px; height: 408px;" />
+<img alt="../_images/tutorials_introduction_to_casatools_57_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_57_1.png" style="width: 405px; height: 408px;" />
 </div>
 </div>
 </div>
@@ -1118,7 +1142,7 @@ Text(0, 0.5, &#39;Amplitude [Jy]&#39;)
 <p>The two most useful methods are <code class="docutils literal notranslate"><span class="pre">ms.selectinit</span></code> followed by <code class="docutils literal notranslate"><span class="pre">ms.getdata</span></code>. The first earmarks a subset of data based upon the given <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code>, the second returns the actual data. It is possible to retrieve the data from a single spectral window because all data within a given spectral window will have the same polarization and channelization setup. The downside is that if your dataset has multiple spectral windows, you will need to repeat the queries for each one. It isn’t obvious that
 there is a faster way to retrieve the data in such a situation, however.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1134,7 +1158,7 @@ there is a faster way to retrieve the data in such a situation, however.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1143,7 +1167,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1168,7 +1192,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1191,7 +1215,7 @@ True
 <h2>Putting it together to export visibilities<a class="headerlink" href="#Putting-it-together-to-export-visibilities" title="Permalink to this headline">¶</a></h2>
 <p>This slightly larger example shows how to combine some of the above queries to read channel frequencies, baselines, and visibilites, and export them from the CASA environment saved as an <code class="docutils literal notranslate"><span class="pre">*.npz</span></code> file.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1208,7 +1232,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1217,7 +1241,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1233,7 +1257,7 @@ True
 </div>
 <p>Check to make sure the channels are in blushifted to redshifted order, otherwise reverse channel order</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1247,7 +1271,7 @@ True
 </div>
 <p>Keep only the cross-correlation visibilities and throw out the auto-correlation visibilities (i.e., where <code class="docutils literal notranslate"><span class="pre">ant1</span> <span class="pre">==</span> <span class="pre">ant2</span></code>)</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1260,7 +1284,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1273,7 +1297,7 @@ True
 </div>
 <p>After this step, <code class="docutils literal notranslate"><span class="pre">data</span></code> should be shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">nvis)</span></code> and weights should be shape <code class="docutils literal notranslate"><span class="pre">(nvis,)</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1283,7 +1307,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1299,7 +1323,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1309,7 +1333,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1320,7 +1344,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1329,7 +1353,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1355,8 +1379,8 @@ True
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="plot_baselines.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../installation.html" class="btn btn-neutral float-right" title="Visread Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Visread documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -19,8 +19,8 @@ Visread documentation
    :maxdepth: 2
    :caption: Contents:
 
-   installation.rst
    tutorials/introduction_to_casatools
+   installation.rst
    tutorials/plot_baselines
    api.rst
    introduction_to_spectral_lines.rst
