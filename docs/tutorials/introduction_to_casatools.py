@@ -323,7 +323,10 @@ data = np.sum(data * weight[:, np.newaxis, :], axis=0) / np.sum(weight, axis=0)
 flag = np.any(flag, axis=0)
 weight = np.sum(weight, axis=0)
 
-# After this step, ``data`` should be shape ``(3, nvis)`` and weights should be shape ``(nvis,)``
+# After this step, ``data`` should be shape ``(nchan, nvis)`` and weights should be shape ``(nvis,)``
+print(data.shape)
+print(flag.shape)
+print(weight.shape)
 
 # when indexed with mask, returns valid visibilities
 mask = ~flag
@@ -348,7 +351,7 @@ frequencies = chan_freq * 1e-9  # [GHz]
 
 # Since we have a multi-channel dataset, we need to make a decision about how to treat flagged visibilities. If we wanted to export only unflagged visibilities, there is a chance that some channels will have different number of flagged visibilities, which means we can no longer represent the data as a nicely packed, contiguous, rectangular array.
 # 
-#  Here, we sidestep this issue by just exporting *all* of the data (including flagged, potentially erroneous, visibilities) but, we also include the ``mask`` used to identify the valid visibilities. This defers the final decision about how to store unflagged visibilities. But the user will need to make sure that they correctly apply the mask when they load the data in a new environment.
+#  Here, we sidestep this issue by just exporting *all* of the data (including flagged, potentially erroneous, visibilities), but, we also include the ``mask`` used to identify the valid visibilities. This punts on a final decision about how to store unflagged visibilities---the user will need to make sure that they correctly apply the mask when they load the data in a new environment.
 
 # save data to numpy file for later use
 np.savez(
