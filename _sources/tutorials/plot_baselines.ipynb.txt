@@ -3,13 +3,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "0cd5feaf",
+   "id": "bb853c0b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:19.881458Z",
-     "iopub.status.busy": "2021-05-28T13:15:19.879508Z",
-     "iopub.status.idle": "2021-05-28T13:15:20.269131Z",
-     "shell.execute_reply": "2021-05-28T13:15:20.268139Z"
+     "iopub.execute_input": "2021-05-28T14:10:53.588205Z",
+     "iopub.status.busy": "2021-05-28T14:10:53.586546Z",
+     "iopub.status.idle": "2021-05-28T14:10:53.912702Z",
+     "shell.execute_reply": "2021-05-28T14:10:53.911695Z"
     },
     "nbsphinx": "hidden"
    },
@@ -21,13 +21,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "541caf94",
+   "id": "3975acfd",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:20.279614Z",
-     "iopub.status.busy": "2021-05-28T13:15:20.273056Z",
-     "iopub.status.idle": "2021-05-28T13:15:20.288187Z",
-     "shell.execute_reply": "2021-05-28T13:15:20.288929Z"
+     "iopub.execute_input": "2021-05-28T14:10:53.917033Z",
+     "iopub.status.busy": "2021-05-28T14:10:53.916462Z",
+     "iopub.status.idle": "2021-05-28T14:10:53.930268Z",
+     "shell.execute_reply": "2021-05-28T14:10:53.929432Z"
     },
     "lines_to_next_cell": 2,
     "nbsphinx": "hidden"
@@ -39,7 +39,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2a795712",
+   "id": "a42cab2a",
    "metadata": {},
    "source": [
     "# Quickstart\n",
@@ -58,13 +58,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "dc338c10",
+   "id": "40d4129d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:20.295392Z",
-     "iopub.status.busy": "2021-05-28T13:15:20.294609Z",
-     "iopub.status.idle": "2021-05-28T13:15:20.445501Z",
-     "shell.execute_reply": "2021-05-28T13:15:20.444925Z"
+     "iopub.execute_input": "2021-05-28T14:10:53.935882Z",
+     "iopub.status.busy": "2021-05-28T14:10:53.934241Z",
+     "iopub.status.idle": "2021-05-28T14:10:54.062500Z",
+     "shell.execute_reply": "2021-05-28T14:10:54.061375Z"
     }
    },
    "outputs": [],
@@ -82,13 +82,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "3ffa64f4",
+   "id": "e8e9bd8b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:20.451695Z",
-     "iopub.status.busy": "2021-05-28T13:15:20.450990Z",
-     "iopub.status.idle": "2021-05-28T13:15:23.125372Z",
-     "shell.execute_reply": "2021-05-28T13:15:23.124183Z"
+     "iopub.execute_input": "2021-05-28T14:10:54.069612Z",
+     "iopub.status.busy": "2021-05-28T14:10:54.067047Z",
+     "iopub.status.idle": "2021-05-28T14:10:56.293499Z",
+     "shell.execute_reply": "2021-05-28T14:10:56.292380Z"
     }
    },
    "outputs": [],
@@ -103,13 +103,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "75bbcfc6",
+   "id": "2a56bc28",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:23.135681Z",
-     "iopub.status.busy": "2021-05-28T13:15:23.133351Z",
-     "iopub.status.idle": "2021-05-28T13:15:23.150441Z",
-     "shell.execute_reply": "2021-05-28T13:15:23.149527Z"
+     "iopub.execute_input": "2021-05-28T14:10:56.302114Z",
+     "iopub.status.busy": "2021-05-28T14:10:56.301377Z",
+     "iopub.status.idle": "2021-05-28T14:10:56.317019Z",
+     "shell.execute_reply": "2021-05-28T14:10:56.317456Z"
     }
    },
    "outputs": [],
@@ -144,13 +144,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "a3cc0aa9",
+   "id": "266b31f0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:23.170717Z",
-     "iopub.status.busy": "2021-05-28T13:15:23.157109Z",
-     "iopub.status.idle": "2021-05-28T13:15:24.541221Z",
-     "shell.execute_reply": "2021-05-28T13:15:24.540633Z"
+     "iopub.execute_input": "2021-05-28T14:10:56.344726Z",
+     "iopub.status.busy": "2021-05-28T14:10:56.343893Z",
+     "iopub.status.idle": "2021-05-28T14:10:57.554243Z",
+     "shell.execute_reply": "2021-05-28T14:10:57.554797Z"
     }
    },
    "outputs": [
@@ -189,7 +189,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "bf6dd93a",
+   "id": "6fe21610",
    "metadata": {},
    "source": [
     "And if you'd like to scroll through the channels (a few km/s total)"
@@ -198,13 +198,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "e0d79b6f",
+   "id": "982926c0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:24.552258Z",
-     "iopub.status.busy": "2021-05-28T13:15:24.551296Z",
-     "iopub.status.idle": "2021-05-28T13:15:25.777845Z",
-     "shell.execute_reply": "2021-05-28T13:15:25.778452Z"
+     "iopub.execute_input": "2021-05-28T14:10:57.564970Z",
+     "iopub.status.busy": "2021-05-28T14:10:57.564356Z",
+     "iopub.status.idle": "2021-05-28T14:10:58.559446Z",
+     "shell.execute_reply": "2021-05-28T14:10:58.559908Z"
     },
     "lines_to_next_cell": 2
    },
@@ -397,42 +397,42 @@
        "</style>\n",
        "\n",
        "<div class=\"animation\">\n",
-       "  <img id=\"_anim_img261fe55901ec4a91b167459e28ea4659\">\n",
+       "  <img id=\"_anim_img8cab3fc5ce6541ac8217617370138812\">\n",
        "  <div class=\"anim-controls\">\n",
-       "    <input id=\"_anim_slider261fe55901ec4a91b167459e28ea4659\" type=\"range\" class=\"anim-slider\"\n",
+       "    <input id=\"_anim_slider8cab3fc5ce6541ac8217617370138812\" type=\"range\" class=\"anim-slider\"\n",
        "           name=\"points\" min=\"0\" max=\"1\" step=\"1\" value=\"0\"\n",
-       "           oninput=\"anim261fe55901ec4a91b167459e28ea4659.set_frame(parseInt(this.value));\"></input>\n",
+       "           oninput=\"anim8cab3fc5ce6541ac8217617370138812.set_frame(parseInt(this.value));\"></input>\n",
        "    <div class=\"anim-buttons\">\n",
-       "      <button title=\"Decrease speed\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.slower()\">\n",
+       "      <button title=\"Decrease speed\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.slower()\">\n",
        "          <i class=\"fa fa-minus\"></i></button>\n",
-       "      <button title=\"First frame\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.first_frame()\">\n",
+       "      <button title=\"First frame\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.first_frame()\">\n",
        "        <i class=\"fa fa-fast-backward\"></i></button>\n",
-       "      <button title=\"Previous frame\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.previous_frame()\">\n",
+       "      <button title=\"Previous frame\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.previous_frame()\">\n",
        "          <i class=\"fa fa-step-backward\"></i></button>\n",
-       "      <button title=\"Play backwards\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.reverse_animation()\">\n",
+       "      <button title=\"Play backwards\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.reverse_animation()\">\n",
        "          <i class=\"fa fa-play fa-flip-horizontal\"></i></button>\n",
-       "      <button title=\"Pause\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.pause_animation()\">\n",
+       "      <button title=\"Pause\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.pause_animation()\">\n",
        "          <i class=\"fa fa-pause\"></i></button>\n",
-       "      <button title=\"Play\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.play_animation()\">\n",
+       "      <button title=\"Play\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.play_animation()\">\n",
        "          <i class=\"fa fa-play\"></i></button>\n",
-       "      <button title=\"Next frame\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.next_frame()\">\n",
+       "      <button title=\"Next frame\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.next_frame()\">\n",
        "          <i class=\"fa fa-step-forward\"></i></button>\n",
-       "      <button title=\"Last frame\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.last_frame()\">\n",
+       "      <button title=\"Last frame\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.last_frame()\">\n",
        "          <i class=\"fa fa-fast-forward\"></i></button>\n",
-       "      <button title=\"Increase speed\" onclick=\"anim261fe55901ec4a91b167459e28ea4659.faster()\">\n",
+       "      <button title=\"Increase speed\" onclick=\"anim8cab3fc5ce6541ac8217617370138812.faster()\">\n",
        "          <i class=\"fa fa-plus\"></i></button>\n",
        "    </div>\n",
-       "    <form title=\"Repetition mode\" action=\"#n\" name=\"_anim_loop_select261fe55901ec4a91b167459e28ea4659\"\n",
+       "    <form title=\"Repetition mode\" action=\"#n\" name=\"_anim_loop_select8cab3fc5ce6541ac8217617370138812\"\n",
        "          class=\"anim-state\">\n",
-       "      <input type=\"radio\" name=\"state\" value=\"once\" id=\"_anim_radio1_261fe55901ec4a91b167459e28ea4659\"\n",
+       "      <input type=\"radio\" name=\"state\" value=\"once\" id=\"_anim_radio1_8cab3fc5ce6541ac8217617370138812\"\n",
        "             >\n",
-       "      <label for=\"_anim_radio1_261fe55901ec4a91b167459e28ea4659\">Once</label>\n",
-       "      <input type=\"radio\" name=\"state\" value=\"loop\" id=\"_anim_radio2_261fe55901ec4a91b167459e28ea4659\"\n",
+       "      <label for=\"_anim_radio1_8cab3fc5ce6541ac8217617370138812\">Once</label>\n",
+       "      <input type=\"radio\" name=\"state\" value=\"loop\" id=\"_anim_radio2_8cab3fc5ce6541ac8217617370138812\"\n",
        "             checked>\n",
-       "      <label for=\"_anim_radio2_261fe55901ec4a91b167459e28ea4659\">Loop</label>\n",
-       "      <input type=\"radio\" name=\"state\" value=\"reflect\" id=\"_anim_radio3_261fe55901ec4a91b167459e28ea4659\"\n",
+       "      <label for=\"_anim_radio2_8cab3fc5ce6541ac8217617370138812\">Loop</label>\n",
+       "      <input type=\"radio\" name=\"state\" value=\"reflect\" id=\"_anim_radio3_8cab3fc5ce6541ac8217617370138812\"\n",
        "             >\n",
-       "      <label for=\"_anim_radio3_261fe55901ec4a91b167459e28ea4659\">Reflect</label>\n",
+       "      <label for=\"_anim_radio3_8cab3fc5ce6541ac8217617370138812\">Reflect</label>\n",
        "    </form>\n",
        "  </div>\n",
        "</div>\n",
@@ -442,9 +442,9 @@
        "  /* Instantiate the Animation class. */\n",
        "  /* The IDs given should match those used in the template above. */\n",
        "  (function() {\n",
-       "    var img_id = \"_anim_img261fe55901ec4a91b167459e28ea4659\";\n",
-       "    var slider_id = \"_anim_slider261fe55901ec4a91b167459e28ea4659\";\n",
-       "    var loop_select_id = \"_anim_loop_select261fe55901ec4a91b167459e28ea4659\";\n",
+       "    var img_id = \"_anim_img8cab3fc5ce6541ac8217617370138812\";\n",
+       "    var slider_id = \"_anim_slider8cab3fc5ce6541ac8217617370138812\";\n",
+       "    var loop_select_id = \"_anim_loop_select8cab3fc5ce6541ac8217617370138812\";\n",
        "    var frames = new Array(9);\n",
        "    \n",
        "  frames[0] = \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAGkCAYAAAB6j/z5AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\\\n",
@@ -7372,7 +7372,7 @@
        "    /* set a timeout to make sure all the above elements are created before\n",
        "       the object is initialized. */\n",
        "    setTimeout(function() {\n",
-       "        anim261fe55901ec4a91b167459e28ea4659 = new Animation(frames, img_id, slider_id, 200.0,\n",
+       "        anim8cab3fc5ce6541ac8217617370138812 = new Animation(frames, img_id, slider_id, 200.0,\n",
        "                                 loop_select_id);\n",
        "    }, 0);\n",
        "  })()\n",
@@ -7394,7 +7394,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a14f0da9",
+   "id": "f57a5daa",
    "metadata": {},
    "source": [
     "## Use simobserve to create a mock measurement set\n",
@@ -7405,13 +7405,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "54b3c6af",
+   "id": "fc87a5f1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:25.783653Z",
-     "iopub.status.busy": "2021-05-28T13:15:25.782710Z",
-     "iopub.status.idle": "2021-05-28T13:15:26.545697Z",
-     "shell.execute_reply": "2021-05-28T13:15:26.544561Z"
+     "iopub.execute_input": "2021-05-28T14:10:58.564173Z",
+     "iopub.status.busy": "2021-05-28T14:10:58.563620Z",
+     "iopub.status.idle": "2021-05-28T14:10:59.218398Z",
+     "shell.execute_reply": "2021-05-28T14:10:59.217820Z"
     }
    },
    "outputs": [],
@@ -7422,13 +7422,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "14274b91",
+   "id": "49b9d33e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:26.558204Z",
-     "iopub.status.busy": "2021-05-28T13:15:26.557534Z",
-     "iopub.status.idle": "2021-05-28T13:15:26.561483Z",
-     "shell.execute_reply": "2021-05-28T13:15:26.562457Z"
+     "iopub.execute_input": "2021-05-28T14:10:59.228713Z",
+     "iopub.status.busy": "2021-05-28T14:10:59.227754Z",
+     "iopub.status.idle": "2021-05-28T14:10:59.231785Z",
+     "shell.execute_reply": "2021-05-28T14:10:59.231305Z"
     }
    },
    "outputs": [],
@@ -7444,7 +7444,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "444bb32a",
+   "id": "4f1ea74c",
    "metadata": {},
    "source": [
     "More information on the `simobserve` task is available in the [CASA docs](https://casa.nrao.edu/casadocs-devel/stable/simulation/introduction). Briefly, what we're doing here is using the ALMA logo cube as a sky model (inheriting the brightness, location, and frequency spacing from the FITS header) and then \"observing\" it with a fake interferometer for 1 hour. We're using the Cycle 7 43-7 array configuration. Configuration files are available for download from the [ALMA site](https://almascience.nrao.edu/tools/casa-simulator)."
@@ -7453,13 +7453,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "f040ab1f",
+   "id": "e631aace",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:26.575786Z",
-     "iopub.status.busy": "2021-05-28T13:15:26.570524Z",
-     "iopub.status.idle": "2021-05-28T13:15:52.214363Z",
-     "shell.execute_reply": "2021-05-28T13:15:52.213786Z"
+     "iopub.execute_input": "2021-05-28T14:10:59.269859Z",
+     "iopub.status.busy": "2021-05-28T14:10:59.254471Z",
+     "iopub.status.idle": "2021-05-28T14:11:24.220048Z",
+     "shell.execute_reply": "2021-05-28T14:11:24.219037Z"
     }
    },
    "outputs": [],
@@ -7479,13 +7479,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "4192564a",
+   "id": "b1a1f0cc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:52.219681Z",
-     "iopub.status.busy": "2021-05-28T13:15:52.218997Z",
-     "iopub.status.idle": "2021-05-28T13:15:52.223656Z",
-     "shell.execute_reply": "2021-05-28T13:15:52.223066Z"
+     "iopub.execute_input": "2021-05-28T14:11:24.225072Z",
+     "iopub.status.busy": "2021-05-28T14:11:24.224488Z",
+     "iopub.status.idle": "2021-05-28T14:11:24.228853Z",
+     "shell.execute_reply": "2021-05-28T14:11:24.228017Z"
     }
    },
    "outputs": [
@@ -7493,7 +7493,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "/tmp/tmp3007dubd/sim/sim.alma.cycle7.7.ms\n"
+      "/tmp/tmpb5n7tm8q/sim/sim.alma.cycle7.7.ms\n"
      ]
     }
    ],
@@ -7505,7 +7505,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2a7b1f63",
+   "id": "61b8cd77",
    "metadata": {},
    "source": [
     "## Reading Visibilities\n",
@@ -7515,13 +7515,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "bc51d894",
+   "id": "fa6848b9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:52.228361Z",
-     "iopub.status.busy": "2021-05-28T13:15:52.227625Z",
-     "iopub.status.idle": "2021-05-28T13:15:52.232144Z",
-     "shell.execute_reply": "2021-05-28T13:15:52.232802Z"
+     "iopub.execute_input": "2021-05-28T14:11:24.232552Z",
+     "iopub.status.busy": "2021-05-28T14:11:24.231980Z",
+     "iopub.status.idle": "2021-05-28T14:11:24.236897Z",
+     "shell.execute_reply": "2021-05-28T14:11:24.237379Z"
     }
    },
    "outputs": [],
@@ -7532,13 +7532,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "6755462e",
+   "id": "3372fdaf",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:52.236986Z",
-     "iopub.status.busy": "2021-05-28T13:15:52.236322Z",
-     "iopub.status.idle": "2021-05-28T13:15:53.002573Z",
-     "shell.execute_reply": "2021-05-28T13:15:53.001869Z"
+     "iopub.execute_input": "2021-05-28T14:11:24.243230Z",
+     "iopub.status.busy": "2021-05-28T14:11:24.242667Z",
+     "iopub.status.idle": "2021-05-28T14:11:24.910504Z",
+     "shell.execute_reply": "2021-05-28T14:11:24.909959Z"
     }
    },
    "outputs": [],
@@ -7549,13 +7549,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "dfb6b346",
+   "id": "4f1a28d0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:53.009475Z",
-     "iopub.status.busy": "2021-05-28T13:15:53.007775Z",
-     "iopub.status.idle": "2021-05-28T13:15:53.012489Z",
-     "shell.execute_reply": "2021-05-28T13:15:53.011737Z"
+     "iopub.execute_input": "2021-05-28T14:11:24.915053Z",
+     "iopub.status.busy": "2021-05-28T14:11:24.914465Z",
+     "iopub.status.idle": "2021-05-28T14:11:24.919313Z",
+     "shell.execute_reply": "2021-05-28T14:11:24.919893Z"
     }
    },
    "outputs": [
@@ -7576,7 +7576,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cac84f93",
+   "id": "de61eb66",
    "metadata": {},
    "source": [
     "We see that these are two dimensional arrays of shape (nchan, nvis).\n",
@@ -7587,13 +7587,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "64a53395",
+   "id": "e094543e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:53.038437Z",
-     "iopub.status.busy": "2021-05-28T13:15:53.035740Z",
-     "iopub.status.idle": "2021-05-28T13:15:53.599958Z",
-     "shell.execute_reply": "2021-05-28T13:15:53.600489Z"
+     "iopub.execute_input": "2021-05-28T14:11:24.945320Z",
+     "iopub.status.busy": "2021-05-28T14:11:24.944722Z",
+     "iopub.status.idle": "2021-05-28T14:11:25.461975Z",
+     "shell.execute_reply": "2021-05-28T14:11:25.461365Z"
     }
    },
    "outputs": [
@@ -7624,7 +7624,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8e9eef1e",
+   "id": "d5b49164",
    "metadata": {},
    "source": [
     "We can also plot the visibility amplitude as a function of radial baseline"
@@ -7633,13 +7633,13 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "9868ab83",
+   "id": "b5493c45",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:53.605923Z",
-     "iopub.status.busy": "2021-05-28T13:15:53.605199Z",
-     "iopub.status.idle": "2021-05-28T13:15:53.621035Z",
-     "shell.execute_reply": "2021-05-28T13:15:53.620443Z"
+     "iopub.execute_input": "2021-05-28T14:11:25.466500Z",
+     "iopub.status.busy": "2021-05-28T14:11:25.465914Z",
+     "iopub.status.idle": "2021-05-28T14:11:25.476838Z",
+     "shell.execute_reply": "2021-05-28T14:11:25.476321Z"
     }
    },
    "outputs": [],
@@ -7653,13 +7653,13 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "615678de",
+   "id": "d695fb5f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:53.649060Z",
-     "iopub.status.busy": "2021-05-28T13:15:53.642440Z",
-     "iopub.status.idle": "2021-05-28T13:15:54.100226Z",
-     "shell.execute_reply": "2021-05-28T13:15:54.100762Z"
+     "iopub.execute_input": "2021-05-28T14:11:25.500807Z",
+     "iopub.status.busy": "2021-05-28T14:11:25.500290Z",
+     "iopub.status.idle": "2021-05-28T14:11:25.905275Z",
+     "shell.execute_reply": "2021-05-28T14:11:25.904750Z"
     }
    },
    "outputs": [
@@ -7698,7 +7698,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a46fa65d",
+   "id": "20ccf63d",
    "metadata": {},
    "source": [
     "If you need them, the visibility weights are accessible via `cube.weight`."
@@ -7707,13 +7707,13 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "b2d81640",
+   "id": "687723b9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-28T13:15:54.105528Z",
-     "iopub.status.busy": "2021-05-28T13:15:54.104876Z",
-     "iopub.status.idle": "2021-05-28T13:15:54.172244Z",
-     "shell.execute_reply": "2021-05-28T13:15:54.171657Z"
+     "iopub.execute_input": "2021-05-28T14:11:25.909343Z",
+     "iopub.status.busy": "2021-05-28T14:11:25.908762Z",
+     "iopub.status.idle": "2021-05-28T14:11:25.978373Z",
+     "shell.execute_reply": "2021-05-28T14:11:25.977751Z"
     }
    },
    "outputs": [],
