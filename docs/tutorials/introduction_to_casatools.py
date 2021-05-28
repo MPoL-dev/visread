@@ -35,7 +35,7 @@
 #
 # To experiment with reading and plotting visibilities, we'll use a measurement set that we prepared using simobserve. The full commands to generate the measurement set are available via the `mpoldatasets` package [here](https://github.com/MPoL-dev/mpoldatasets/blob/main/products/ALMA-logo/simobserve_cube.py).
 #
-# You can access the CASA tools from within your Python environment if you've successfully installed ``casatools`` package as part of the [modular CASA install](https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing), as shown here. If you are unable to install the modular package, you can always use the [casatools directly inside of the monolithic CASA intepreter](https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools).
+# You can access the CASA tools from within your Python environment if you've successfully installed ``casatools`` package as part of the [modular CASA install](https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing), as shown here. If you are unable to install the modular package, you can always use the [casatools directly inside of the monolithic CASA intepreter](https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools). If you're working directly within the CASA interpreter, you can skip this section and move directly to the example queries.
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -60,8 +60,14 @@ os.chdir(temp_dir.name)
 with tarfile.open(fname_tar) as tar:
     tar.extractall()
 
+# Now we've successfully downloaded and extracted the measurement set
+
+!ls 
+
 fname = "logo_cube.noise.ms"
 
+# If you're working with your own measurement set, you can start directly from here.
+# 
 # Let's import and then instantiate the relevant CASA tools, [table](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods) and [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods).
 
 import casatools
@@ -171,13 +177,29 @@ tb.close()
 # Depending on how you've calibrated and/or split out your data, your measurement set may or may not have a ``CORRECTED_DATA`` column. Usually, this is the one you want. If the column doesn't exist in your measurement set, try the ``DATA`` column instead.
 #
 # For each visibility $i$ there is also an accompanying ``WEIGHT`` $w_i$, which should correspond to the statistical uncertainty on the real and imaginary component of each visibility. Formally, the weight is defined as
-# $$w_i = \frac{1}{\sigma_i^2} $$
+#
+# $$
+# w_i = \frac{1}{\sigma_i^2}
+# $$
+#
 # and we expect that the noise is independent for each of the real and imaginary components of a visibility measurement. This means that we expect
-# $$\Re \{V_i\} = \Re\{\mathcal{V}\}_i + \epsilon_1$$
+#
+# $$
+# \Re \{V_i\} = \Re\{\mathcal{V}\}_i + \epsilon_1
+# $$
+#
 # and
-# $$\Im \{V_i\} = \Im\{\mathcal{V}\}_i + \epsilon_2$$
+#
+# $$
+# \Im \{V_i\} = \Im\{\mathcal{V}\}_i + \epsilon_2
+# $$
+#
 # where for each real and each imaginary component $\epsilon$ is a new noise realization from a mean-zero Gaussian with standard deviation $\sigma_i$, i.e.,
-# $$\epsilon \sim \mathcal{N}\left ( 0, \sigma_i \right )$$
+#
+# $$
+# \epsilon \sim \mathcal{N}\left ( 0, \sigma_i \right )
+# $$
+#
 # CASA has a [history](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights) of different weight definitions, so this is definitely an important column to pay attention to, especially if your data was not acquired and processed in very recent cycles.
 
 # A common ALMA observation mode is dual-polarization, XX and YY. If this is the case for your observations, the data array will contain an extra dimension for each polarization.
