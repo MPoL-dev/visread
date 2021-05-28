@@ -25,6 +25,10 @@ jobs:
     - name: Install vanilla package 
       run: |
         pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .      
+    # https://open-bitbucket.nrao.edu/projects/CASA/repos/casa6/browse/casatools/casadata.md
+    - name: Update CASA runtime data
+      run: | 
+        python -m casatools --update-user-data
     - name: Build a binary wheel and a source tarball
       run: |
         python -m pep517.build --source --binary --out-dir dist/ .

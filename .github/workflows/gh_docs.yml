@@ -17,6 +17,10 @@ jobs:
       - name: Install doc deps
         run: |
           pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[docs]
+      # https://open-bitbucket.nrao.edu/projects/CASA/repos/casa6/browse/casatools/casadata.md
+      - name: Update CASA runtime data
+        run: | 
+          python -m casatools --update-user-data
       - name: Install Pandoc dependency for nbconvert 
         run: |
           sudo apt-get install pandoc
