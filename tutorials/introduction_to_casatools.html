@@ -1295,9 +1295,30 @@ True
 </pre></div>
 </div>
 </div>
-<p>After this step, <code class="docutils literal notranslate"><span class="pre">data</span></code> should be shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">nvis)</span></code> and weights should be shape <code class="docutils literal notranslate"><span class="pre">(nvis,)</span></code></p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># After this step, ``data`` should be shape ``(nchan, nvis)`` and weights should be shape ``(nvis,)``</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(9, 325080)
+(9, 325080)
+(325080,)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1307,7 +1328,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1323,7 +1344,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1333,7 +1354,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1344,7 +1365,7 @@ True
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1353,9 +1374,9 @@ True
 </div>
 </div>
 <p>Since we have a multi-channel dataset, we need to make a decision about how to treat flagged visibilities. If we wanted to export only unflagged visibilities, there is a chance that some channels will have different number of flagged visibilities, which means we can no longer represent the data as a nicely packed, contiguous, rectangular array.</p>
-<p>Here, we sidestep this issue by just exporting <em>all</em> of the data (including flagged, potentially erroneous, visibilities) but, we also include the <code class="docutils literal notranslate"><span class="pre">mask</span></code> used to identify the valid visibilities. This defers the final decision about how to store unflagged visibilities. But the user will need to make sure that they correctly apply the mask when they load the data in a new environment.</p>
+<p>Here, we sidestep this issue by just exporting <em>all</em> of the data (including flagged, potentially erroneous, visibilities), but, we also include the <code class="docutils literal notranslate"><span class="pre">mask</span></code> used to identify the valid visibilities. This punts on a final decision about how to store unflagged visibilities—the user will need to make sure that they correctly apply the mask when they load the data in a new environment.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
