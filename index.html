@@ -45,7 +45,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Introduction and Measurement Set Preparation" href="introduction.html" /> 
+    <link rel="next" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,10 +96,11 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction and Measurement Set Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/plot_baselines.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a></li>
 </ul>
 
             
@@ -194,26 +195,34 @@
 <div class="section" id="visread-documentation">
 <h1>Visread documentation<a class="headerlink" href="#visread-documentation" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/MPoL-dev/visread/actions/workflows/tests.yml"><img alt="Tests badge" src="https://github.com/MPoL-dev/visread/actions/workflows/tests.yml/badge.svg" /></a></p>
-<p><strong>What is this package</strong>? This package is mostly a set of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory in a Python program using <cite>casatools</cite> like <cite>table</cite> and <cite>ms</cite>. You may wish to plot the baseline distributions, analyze the visibilities themselves, or synthesize images from them using software like <a class="reference external" href="https://github.com/MPoL-dev">MPoL</a>.</p>
-<p><strong>To get started</strong>, you don’t even need to install the <em>visread</em> package itself, you can get some ideas directly from the <em>Introduction to casatools</em>. The <em>visread</em> package provides some lightweight routines for common visibility manipulations, and is built on top of the core <cite>casatools</cite> functionality.</p>
+<p><strong>What is this package</strong>? This package is mostly a collection of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory in a Python program using the built in CASA tools like <cite>table</cite> and <cite>ms</cite>. Once in memory, you can analyze them using your existing Python software stack, or save them to a binary file format (like <code class="docutils literal notranslate"><span class="pre">*.npz</span></code> or <code class="docutils literal notranslate"><span class="pre">*.hdf5</span></code>) so that you can transport them to a computing environment free from a CASA dependency.</p>
+<p><strong>To get started</strong>, you can get some ideas for working with <cite>table</cite> and <cite>ms</cite> directly from the <em>Introduction to CASA tools</em>. For convenience, you can install the <em>visread</em> package to provide some lightweight routines for common visibility manipulations, which are built on top of the core <cite>casatools</cite> functionality.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction and Measurement Set Preparation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#why-does-this-package-exist">Why does this package exist?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#preparing-your-measurement-set">Preparing your measurement set</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#testing">Testing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Introduction-to-measurement-sets">Introduction to measurement sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#CASA-tools">CASA tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Example-Queries-with-table-tools">Example Queries with table tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Example-Queries-with-ms-tools">Example Queries with ms tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Putting-it-together-to-export-visibilities">Putting it together to export visibilities</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/plot_baselines.html">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/plot_baselines.html#Creating-a-mock-measurement-set">Creating a mock measurement set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/plot_baselines.html#Use-simobserve-to-create-a-mock-measurement-set">Use simobserve to create a mock measurement set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/plot_baselines.html#Reading-Visibilities">Reading Visibilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction_to_spectral_lines.html#why-does-this-package-exist">Why does this package exist?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction_to_spectral_lines.html#preparing-your-measurement-set">Preparing your measurement set</a></li>
 </ul>
 </li>
 </ul>
@@ -254,7 +263,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction and Measurement Set Preparation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

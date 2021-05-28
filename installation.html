@@ -45,8 +45,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API" href="api.html" />
-    <link rel="prev" title="Introduction and Measurement Set Preparation" href="introduction.html" /> 
+    <link rel="next" title="Introduction to CASA tools" href="tutorials/introduction_to_casatools.html" />
+    <link rel="prev" title="Visread documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,14 +97,15 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction and Measurement Set Preparation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#development">Development</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/plot_baselines.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a></li>
 </ul>
 
             
@@ -198,6 +199,10 @@
 </style>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page describes how to install the <em>visread</em> package, along with the CASA 6.x modular installation. Note that you <em>do not</em> need to install visread or any other packages to read visibilities from CASA. All of the routines in the <em>Introduction to CASA tools</em> will work directly with the tools <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools/casa-tools">built in to the monolithic CASA distributions</a>.</p>
+</div>
 <p>Because the <em>visread</em> package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of June 2021, these are <code class="docutils literal notranslate"><span class="pre">Python=3.6</span></code>, <code class="docutils literal notranslate"><span class="pre">libgfortran3</span></code>, and a linux operating system (most likely Red Hat or CentOS). This means that CASA6 and by extension this package <strong>will not work on Python 3.7, 3.8, or 3.9</strong>, <strong>MacOS</strong>, and may even give you trouble on modern <strong>Ubuntu</strong> distros because of the <code class="docutils literal notranslate"><span class="pre">libfortran3</span></code> dependency. More information on these requirements is <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing">here</a>. The <cite>visread</cite> package itself is not tied to Python=3.6, so as the CASA requirements relax (anticipated by winter 2021-22), so too will the requirements of this package.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -243,8 +248,8 @@ $ source venv/bin/activate
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction and Measurement Set Preparation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorials/introduction_to_casatools.html" class="btn btn-neutral float-right" title="Introduction to CASA tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Visread documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

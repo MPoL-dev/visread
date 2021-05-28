@@ -47,7 +47,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="API" href="../api.html" /> 
+    <link rel="next" title="API" href="../api.html" />
+    <link rel="prev" title="Introduction to CASA tools" href="introduction_to_casatools.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,9 +99,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction and Measurement Set Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Creating-a-mock-measurement-set">Creating a mock measurement set</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Examine-the-sky-brightness-distribution">Examine the sky brightness distribution</a></li>
@@ -110,6 +110,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#Reading-Visibilities">Reading Visibilities</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a></li>
 </ul>
 
             
@@ -747,42 +749,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img71185d3dba0d4bd7b21a91832f372464">
+  <img id="_anim_img3e5656c50c7343769cd678d45a730db5">
   <div class="anim-controls">
-    <input id="_anim_slider71185d3dba0d4bd7b21a91832f372464" type="range" class="anim-slider"
+    <input id="_anim_slider3e5656c50c7343769cd678d45a730db5" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim71185d3dba0d4bd7b21a91832f372464.set_frame(parseInt(this.value));"></input>
+           oninput="anim3e5656c50c7343769cd678d45a730db5.set_frame(parseInt(this.value));"></input>
     <div class="anim-buttons">
-      <button title="Decrease speed" onclick="anim71185d3dba0d4bd7b21a91832f372464.slower()">
+      <button title="Decrease speed" onclick="anim3e5656c50c7343769cd678d45a730db5.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" onclick="anim71185d3dba0d4bd7b21a91832f372464.first_frame()">
+      <button title="First frame" onclick="anim3e5656c50c7343769cd678d45a730db5.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" onclick="anim71185d3dba0d4bd7b21a91832f372464.previous_frame()">
+      <button title="Previous frame" onclick="anim3e5656c50c7343769cd678d45a730db5.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" onclick="anim71185d3dba0d4bd7b21a91832f372464.reverse_animation()">
+      <button title="Play backwards" onclick="anim3e5656c50c7343769cd678d45a730db5.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" onclick="anim71185d3dba0d4bd7b21a91832f372464.pause_animation()">
+      <button title="Pause" onclick="anim3e5656c50c7343769cd678d45a730db5.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" onclick="anim71185d3dba0d4bd7b21a91832f372464.play_animation()">
+      <button title="Play" onclick="anim3e5656c50c7343769cd678d45a730db5.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" onclick="anim71185d3dba0d4bd7b21a91832f372464.next_frame()">
+      <button title="Next frame" onclick="anim3e5656c50c7343769cd678d45a730db5.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" onclick="anim71185d3dba0d4bd7b21a91832f372464.last_frame()">
+      <button title="Last frame" onclick="anim3e5656c50c7343769cd678d45a730db5.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" onclick="anim71185d3dba0d4bd7b21a91832f372464.faster()">
+      <button title="Increase speed" onclick="anim3e5656c50c7343769cd678d45a730db5.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" action="#n" name="_anim_loop_select71185d3dba0d4bd7b21a91832f372464"
+    <form title="Repetition mode" action="#n" name="_anim_loop_select3e5656c50c7343769cd678d45a730db5"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_71185d3dba0d4bd7b21a91832f372464"
+      <input type="radio" name="state" value="once" id="_anim_radio1_3e5656c50c7343769cd678d45a730db5"
              >
-      <label for="_anim_radio1_71185d3dba0d4bd7b21a91832f372464">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_71185d3dba0d4bd7b21a91832f372464"
+      <label for="_anim_radio1_3e5656c50c7343769cd678d45a730db5">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_3e5656c50c7343769cd678d45a730db5"
              checked>
-      <label for="_anim_radio2_71185d3dba0d4bd7b21a91832f372464">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_71185d3dba0d4bd7b21a91832f372464"
+      <label for="_anim_radio2_3e5656c50c7343769cd678d45a730db5">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_3e5656c50c7343769cd678d45a730db5"
              >
-      <label for="_anim_radio3_71185d3dba0d4bd7b21a91832f372464">Reflect</label>
+      <label for="_anim_radio3_3e5656c50c7343769cd678d45a730db5">Reflect</label>
     </form>
   </div>
 </div>
@@ -792,9 +794,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img71185d3dba0d4bd7b21a91832f372464";
-    var slider_id = "_anim_slider71185d3dba0d4bd7b21a91832f372464";
-    var loop_select_id = "_anim_loop_select71185d3dba0d4bd7b21a91832f372464";
+    var img_id = "_anim_img3e5656c50c7343769cd678d45a730db5";
+    var slider_id = "_anim_slider3e5656c50c7343769cd678d45a730db5";
+    var loop_select_id = "_anim_loop_select3e5656c50c7343769cd678d45a730db5";
     var frames = new Array(9);
 
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAGkCAYAAAB6j/z5AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -7722,7 +7724,7 @@ Bg4iIiKSHAMHERERSY6Bg4iIiCTHwEFERESSY+AgIiIiyf0PagSXJUTQlcEAAAAASUVORK5CYII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim71185d3dba0d4bd7b21a91832f372464 = new Animation(frames, img_id, slider_id, 200.0,
+        anim3e5656c50c7343769cd678d45a730db5 = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -7759,7 +7761,7 @@ Bg4iIiKSHAMHERERSY6Bg4iIiCTHwEFERESSY+AgIiIiyf0PagSXJUTQlcEAAAAASUVORK5CYII=\
 </div>
 <p>More information on the <code class="docutils literal notranslate"><span class="pre">simobserve</span></code> task is available in the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/simulation/introduction">CASA docs</a>. Briefly, what we’re doing here is using the ALMA logo cube as a sky model (inheriting the brightness, location, and frequency spacing from the FITS header) and then “observing” it with a fake interferometer for 1 hour. We’re using the Cycle 7 43-7 array configuration. Configuration files are available for download from the <a class="reference external" href="https://almascience.nrao.edu/tools/casa-simulator">ALMA
 site</a>.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
@@ -7777,15 +7779,6 @@ site</a>.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-True
-</pre></div></div>
-</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -7802,7 +7795,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-/tmp/tmpep3h72f6/sim/sim.alma.cycle7.7.ms
+/tmp/tmp7kq6x9i0/sim/sim.alma.cycle7.7.ms
 </pre></div></div>
 </div>
 </div>
@@ -7930,7 +7923,8 @@ Text(0, 0.5, &#39;Amplitude [Jy]&#39;)
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../api.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction_to_casatools.html" class="btn btn-neutral float-left" title="Introduction to CASA tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

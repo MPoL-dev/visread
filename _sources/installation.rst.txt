@@ -1,6 +1,10 @@
 Installation 
 ============
 
+.. note::
+
+    This page describes how to install the *visread* package, along with the CASA 6.x modular installation. Note that you *do not* need to install visread or any other packages to read visibilities from CASA. All of the routines in the *Introduction to CASA tools* will work directly with the tools `built in to the monolithic CASA distributions <https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools/casa-tools>`__.
+
 Because the *visread* package relies on the CASA 6.x modular installation, it is unfortunately subject to the stringent package requirements currently imposed by that environment. As of June 2021, these are ``Python=3.6``, ``libgfortran3``, and a linux operating system (most likely Red Hat or CentOS). This means that CASA6 and by extension this package **will not work on Python 3.7, 3.8, or 3.9**, **MacOS**, and may even give you trouble on modern **Ubuntu** distros because of the ``libfortran3`` dependency. More information on these requirements is `here <https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing>`_. The `visread` package itself is not tied to Python=3.6, so as the CASA requirements relax (anticipated by winter 2021-22), so too will the requirements of this package. 
 
 .. note::
