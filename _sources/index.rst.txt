@@ -22,7 +22,7 @@ Visread documentation
    tutorials/introduction_to_casatools
    installation.rst
    api.rst
-   tutorials/AS209
+   tutorials/rescale_AS209_weights
    introduction_to_spectral_lines.rst
 
 Citation
