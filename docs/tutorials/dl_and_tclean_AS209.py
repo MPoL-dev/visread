@@ -1,17 +1,31 @@
-# run from inside the tutorials directory
+# meant to be run from inside /docs/tutorials directory as part
+# of the rescale_AS209_weights.py file
 
-import numpy as np
 import tarfile
 import os
 import requests
 import casatools
+import casatasks
+import shutil
+
 
 tb = casatools.table()
 ms = casatools.ms()
 
+homedir = os.getcwd()
+workdir = "AS209_MS"
+
+print("homedir is ", homedir)
+
+if not os.path.exists(workdir):
+    os.makedirs(workdir)
+
+os.chdir(workdir)
+
 fname_tar = "AS209_continuum.ms.tar.gz"
 
 if not os.path.exists(fname_tar):
+    print("downloading tarball")
     url = (
         "https://almascience.eso.org/almadata/lp/DSHARP/MSfiles/AS209_continuum.ms.tgz"
     )
@@ -23,10 +37,13 @@ if not os.path.exists(fname_tar):
 fname = "AS209_continuum.ms"
 
 if not os.path.exists(fname):
+    print("extracting tarball")
     with tarfile.open(fname_tar) as tar:
         tar.extractall()
 
-# Note that this process may take about 30 - 45 minutes, depending on your computing environment.
+# Check to see whether the MODEL_DATA column contains visibilities.
+# If not, run the DSHARP tclean scripts.
+
 ms.open(fname)
 # select the spectral window
 ms.selectinit(datadescid=0)
@@ -37,10 +54,14 @@ ms.selectinit(reset=True)
 ms.close()
 
 if len(query["model_data"]) == 0:
+    print("cleaning MS")
+    # Note that this process may take about 30 - 45 minutes, depending on your computing environment.
 
     # reproduce the DSHARP image using casa6
-    import casatasks
-    import shutil
+    # The full reduction scripts are available online at
+    # https://almascience.eso.org/almadata/lp/DSHARP/scripts/AS209_continuum.py
+    # Here we just reproduce the relevant ``tclean`` commands used to produce a FITS image
+    # from the final, calibrated measurement set.
 
     """ Define simple masks and clean scales for imaging """
     mask_pa = 86  # position angle of mask in degrees
@@ -102,3 +123,8 @@ if len(query["model_data"]) == 0:
     casatasks.exportfits(
         imagename + ".image", imagename + ".fits", dropdeg=True, dropstokes=True
     )
+
+else:
+    print("MS already cleaned")
+
+os.chdir(homedir)

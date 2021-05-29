@@ -14,7 +14,7 @@ help:
 
 .PHONY: help Makefile html clean
 
-NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/AS209.ipynb 
+NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/rescale_AS209_weights.ipynb 
 
 clean:
 	rm -rf _build

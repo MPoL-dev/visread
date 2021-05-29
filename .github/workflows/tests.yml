@@ -45,6 +45,10 @@ jobs:
     - name: Install doc deps 
       run: |
         pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[docs]
+
+    - name: Examine the cwd
+      run: | 
+        ls 
     
     - name: Build notebooks for the docs
       run: |
