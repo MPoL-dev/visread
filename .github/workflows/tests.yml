@@ -64,7 +64,10 @@ jobs:
       - name: Install Pandoc dependency for nbconvert 
         run: |
           sudo apt-get install pandoc
-      - name: Cache the AS 209 measurement set
+      - name: Clean docs build 
+        run: |
+          make -C docs clean
+      - name: Cache/Restore the AS 209 measurement set
         uses: actions/cache@v2
         env:
           cache-name: cache-AS209
@@ -79,7 +82,6 @@ jobs:
             ${{ runner.os }}-
       - name: Build the docs
         run: |
-          make -C docs clean
           make -C docs html 
 
       
