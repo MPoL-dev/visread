@@ -14,7 +14,7 @@ help:
 
 .PHONY: help Makefile html clean
 
-NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/plot_baselines.ipynb 
+NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/plot_baselines.ipynb tutorials/AS209.ipynb 
 
 clean:
 	rm -rf _build

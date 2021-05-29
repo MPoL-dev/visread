@@ -21,8 +21,9 @@ Visread documentation
 
    tutorials/introduction_to_casatools
    installation.rst
-   tutorials/plot_baselines
    api.rst
+   tutorials/AS209
+   tutorials/plot_baselines
    introduction_to_spectral_lines.rst
 
 Citation

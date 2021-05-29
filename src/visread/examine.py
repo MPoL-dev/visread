@@ -27,7 +27,12 @@ def weight_to_sigma(weight):
 
 def gaussian(x):
     r"""
-    A reference Gaussian defined as
+    Evaluate a reference Gaussian as a function of :math:`x`
+
+    Args:
+        x (float): location to evaluate Gaussian
+
+    The Gaussian is defined as
 
     .. math::
 
@@ -89,7 +94,7 @@ def query_datadescid(
         colnames (list of strings): list of column names to query
 
     Returns:
-        a dictionary with the column values, hashed by column name
+        a dictionary with the column values, hashed by lowercase column name
     """
     # https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods
     ms.open(filename)
@@ -103,18 +108,18 @@ def query_datadescid(
 
 
 def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=True):
-    """
+    r"""
     Calculate the residuals for each polarization (XX, YY) in units of :math:`\sigma`, where
 
     .. math::
 
-        \sigma = \mathrm{sigma_rescale} \sigma_0
+        \sigma = \mathrm{sigma\_rescale} \times \sigma_0
 
     and :math:`\sigma_0 = \sqrt{1/w}`. The scatter is defined as
 
     .. math::
 
-        \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL_DATA}}{\sigma}
+        \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}
 
     Args:
         filename (string): measurement set filename

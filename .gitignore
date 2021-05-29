@@ -136,3 +136,16 @@ plotsdir/
 
 # built notebooks
 docs/tutorials/*.ipynb
+
+# CASA files 
+docs/tutorials/AS209.fits
+docs/tutorials/AS209.image
+docs/tutorials/AS209.mask
+docs/tutorials/AS209.model
+docs/tutorials/AS209.pb
+docs/tutorials/AS209.psf
+docs/tutorials/AS209.py
+docs/tutorials/AS209.residual
+docs/tutorials/AS209.sumwt
+docs/tutorials/AS209_continuum.ms.tar.gz
+docs/tutorials/AS209_continuum.ms

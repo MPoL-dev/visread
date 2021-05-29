@@ -44,7 +44,7 @@ extensions = [
     "sphinx_copybutton",
 ]
 
-autodoc_mock_imports = ["numpy", "casatools"]
+autodoc_mock_imports = ["casatools"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
