@@ -3,13 +3,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "45414212",
+   "id": "538d8439",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:41.042998Z",
-     "iopub.status.busy": "2021-05-29T19:51:41.041365Z",
-     "iopub.status.idle": "2021-05-29T19:51:41.535889Z",
-     "shell.execute_reply": "2021-05-29T19:51:41.536436Z"
+     "iopub.execute_input": "2021-05-29T20:04:08.251224Z",
+     "iopub.status.busy": "2021-05-29T20:04:08.249521Z",
+     "iopub.status.idle": "2021-05-29T20:04:08.583655Z",
+     "shell.execute_reply": "2021-05-29T20:04:08.582221Z"
     },
     "nbsphinx": "hidden"
    },
@@ -21,13 +21,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "ce3d2295",
+   "id": "e8a7d212",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:41.542092Z",
-     "iopub.status.busy": "2021-05-29T19:51:41.540848Z",
-     "iopub.status.idle": "2021-05-29T19:51:41.559002Z",
-     "shell.execute_reply": "2021-05-29T19:51:41.558426Z"
+     "iopub.execute_input": "2021-05-29T20:04:08.588710Z",
+     "iopub.status.busy": "2021-05-29T20:04:08.588099Z",
+     "iopub.status.idle": "2021-05-29T20:04:08.603124Z",
+     "shell.execute_reply": "2021-05-29T20:04:08.602563Z"
     },
     "nbsphinx": "hidden"
    },
@@ -38,7 +38,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7104b43d",
+   "id": "1679162f",
    "metadata": {},
    "source": [
     "# Introduction to CASA tools\n",
@@ -55,7 +55,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8b71bab8",
+   "id": "41c9986e",
    "metadata": {},
    "source": [
     "## CASA tools\n",
@@ -69,13 +69,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "aab816d7",
+   "id": "565808fa",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:41.563927Z",
-     "iopub.status.busy": "2021-05-29T19:51:41.563281Z",
-     "iopub.status.idle": "2021-05-29T19:51:41.705407Z",
-     "shell.execute_reply": "2021-05-29T19:51:41.704815Z"
+     "iopub.execute_input": "2021-05-29T20:04:08.607647Z",
+     "iopub.status.busy": "2021-05-29T20:04:08.607062Z",
+     "iopub.status.idle": "2021-05-29T20:04:08.726925Z",
+     "shell.execute_reply": "2021-05-29T20:04:08.727418Z"
     }
    },
    "outputs": [],
@@ -91,13 +91,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "92373d8c",
+   "id": "f19e432f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:41.713243Z",
-     "iopub.status.busy": "2021-05-29T19:51:41.710371Z",
-     "iopub.status.idle": "2021-05-29T19:51:47.880890Z",
-     "shell.execute_reply": "2021-05-29T19:51:47.880364Z"
+     "iopub.execute_input": "2021-05-29T20:04:08.732699Z",
+     "iopub.status.busy": "2021-05-29T20:04:08.731980Z",
+     "iopub.status.idle": "2021-05-29T20:04:13.989522Z",
+     "shell.execute_reply": "2021-05-29T20:04:13.988817Z"
     }
    },
    "outputs": [],
@@ -114,13 +114,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "4af36951",
+   "id": "e2a8d92b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:47.886565Z",
-     "iopub.status.busy": "2021-05-29T19:51:47.885989Z",
-     "iopub.status.idle": "2021-05-29T19:51:47.890318Z",
-     "shell.execute_reply": "2021-05-29T19:51:47.890839Z"
+     "iopub.execute_input": "2021-05-29T20:04:13.994482Z",
+     "iopub.status.busy": "2021-05-29T20:04:13.993702Z",
+     "iopub.status.idle": "2021-05-29T20:04:13.997588Z",
+     "shell.execute_reply": "2021-05-29T20:04:13.998083Z"
     }
    },
    "outputs": [],
@@ -134,13 +134,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "4648e01c",
+   "id": "fd80314a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:47.897278Z",
-     "iopub.status.busy": "2021-05-29T19:51:47.895379Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.100995Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.100256Z"
+     "iopub.execute_input": "2021-05-29T20:04:14.002075Z",
+     "iopub.status.busy": "2021-05-29T20:04:14.001499Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.220223Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.219344Z"
     }
    },
    "outputs": [],
@@ -151,7 +151,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ff6f943e",
+   "id": "b6ae82bc",
    "metadata": {},
    "source": [
     "Now we've successfully downloaded and extracted the measurement set"
@@ -160,13 +160,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "ae9e7843",
+   "id": "7f014389",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.105777Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.105050Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.253869Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.253092Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.225993Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.224961Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.377071Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.376116Z"
     }
    },
    "outputs": [
@@ -185,13 +185,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "92fe967a",
+   "id": "f5a45d42",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.258345Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.257700Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.261648Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.262289Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.382397Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.381809Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.386047Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.386975Z"
     }
    },
    "outputs": [],
@@ -201,7 +201,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "724e6d6f",
+   "id": "b5795a6a",
    "metadata": {},
    "source": [
     "If you're working with your own measurement set, you can start directly from here.\n",
@@ -212,13 +212,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "9fdb5a45",
+   "id": "7644bbc6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.266547Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.265885Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.527070Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.526364Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.394477Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.393901Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.574006Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.573115Z"
     }
    },
    "outputs": [],
@@ -229,13 +229,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "21d7c3be",
+   "id": "13195653",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.531282Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.530618Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.534589Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.535656Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.577989Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.577407Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.581759Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.580823Z"
     }
    },
    "outputs": [],
@@ -246,7 +246,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9f5ffacb",
+   "id": "fc5d4c90",
    "metadata": {},
    "source": [
     "## Example Queries with table tools\n",
@@ -255,7 +255,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1799ea41",
+   "id": "de0561b3",
    "metadata": {},
    "source": [
     "### Unique spectral window IDs\n",
@@ -265,13 +265,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "36d99a2b",
+   "id": "8d396df0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.540525Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.539857Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.563817Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.563260Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.586096Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.585512Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.618838Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.620051Z"
     }
    },
    "outputs": [
@@ -292,7 +292,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c32db4f9",
+   "id": "d2bf1ec9",
    "metadata": {},
    "source": [
     "``DATA_DESC_ID`` might not always be a perfect stand-in for ``SPECTRAL_WINDOW_ID``, see the [data description table](https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/measurement-set) for more information. You could also try accessing the ``DATA_DESCRIPTION`` table directly by providing it as a subdirectory to the main table like so"
@@ -301,13 +301,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "a6064894",
+   "id": "b674a6c2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.569403Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.567667Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.571747Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.572290Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.624878Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.624296Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.630568Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.629805Z"
     }
    },
    "outputs": [
@@ -328,7 +328,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "11886e81",
+   "id": "5ebad6d8",
    "metadata": {},
    "source": [
     "### Column names of main table\n",
@@ -338,13 +338,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "cf814865",
+   "id": "b9f6588d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.576800Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.575901Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.580895Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.580355Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.634546Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.633964Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.638470Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.637964Z"
     }
    },
    "outputs": [
@@ -365,7 +365,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e110f9bf",
+   "id": "c8efcd2a",
    "metadata": {},
    "source": [
     "### How many channels in each spw\n",
@@ -375,13 +375,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "8eae3d5b",
+   "id": "05686286",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.585996Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.584792Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.590160Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.589535Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.642790Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.642162Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.647210Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.646708Z"
     }
    },
    "outputs": [
@@ -413,7 +413,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d89f1cd4",
+   "id": "66a80031",
    "metadata": {},
    "source": [
     "### Get the baselines\n",
@@ -423,13 +423,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "88e4622a",
+   "id": "d49bc083",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.594428Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.593729Z",
-     "iopub.status.idle": "2021-05-29T19:51:49.666206Z",
-     "shell.execute_reply": "2021-05-29T19:51:49.665469Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.651353Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.650775Z",
+     "iopub.status.idle": "2021-05-29T20:04:15.731966Z",
+     "shell.execute_reply": "2021-05-29T20:04:15.730964Z"
     }
    },
    "outputs": [],
@@ -442,7 +442,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5032217a",
+   "id": "fe9e07d0",
    "metadata": {},
    "source": [
     "We can plot these up easily"
@@ -451,13 +451,13 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "9c019d81",
+   "id": "fd5e8d1f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:49.689685Z",
-     "iopub.status.busy": "2021-05-29T19:51:49.689007Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.361809Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.361194Z"
+     "iopub.execute_input": "2021-05-29T20:04:15.754983Z",
+     "iopub.status.busy": "2021-05-29T20:04:15.754328Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.381545Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.382040Z"
     }
    },
    "outputs": [
@@ -496,7 +496,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "70fac782",
+   "id": "7ba25df8",
    "metadata": {},
    "source": [
     "### Convert baselines to units of kilolambda\n",
@@ -506,13 +506,13 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "dc2c6d9c",
+   "id": "f96a4517",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.367012Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.366068Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.432107Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.432724Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.386276Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.385695Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.462754Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.463614Z"
     }
    },
    "outputs": [
@@ -536,13 +536,13 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "853dcc98",
+   "id": "cbd7c3d1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.436960Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.436241Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.440929Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.441418Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.468396Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.467808Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.472365Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.471881Z"
     }
    },
    "outputs": [
@@ -567,13 +567,13 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "id": "5141eb6b",
+   "id": "6b743c1a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.447070Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.445654Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.447764Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.448309Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.476918Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.475706Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.477591Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.478061Z"
     }
    },
    "outputs": [],
@@ -584,13 +584,13 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "id": "1f5af172",
+   "id": "44cb088d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.452735Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.451984Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.473592Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.472844Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.482196Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.481608Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.505189Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.504345Z"
     }
    },
    "outputs": [],
@@ -606,13 +606,13 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "id": "586d1334",
+   "id": "4e9567ae",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.479081Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.477668Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.479783Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.480353Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.510635Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.509272Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.511236Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.511672Z"
     }
    },
    "outputs": [],
@@ -625,13 +625,13 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "id": "2d7faba1",
+   "id": "bc6d1e2b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.484389Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.483699Z",
-     "iopub.status.idle": "2021-05-29T19:51:50.731747Z",
-     "shell.execute_reply": "2021-05-29T19:51:50.731167Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.515392Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.514818Z",
+     "iopub.status.idle": "2021-05-29T20:04:16.671450Z",
+     "shell.execute_reply": "2021-05-29T20:04:16.670831Z"
     }
    },
    "outputs": [],
@@ -643,7 +643,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8aedf055",
+   "id": "51daab90",
    "metadata": {},
    "source": [
     "Let's plot up the baseline coverage for the first channel of the cube (index `0`)."
@@ -652,13 +652,13 @@
   {
    "cell_type": "code",
    "execution_count": 23,
-   "id": "8d1f3530",
+   "id": "cd5bdd6e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:50.798532Z",
-     "iopub.status.busy": "2021-05-29T19:51:50.792969Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.443639Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.442358Z"
+     "iopub.execute_input": "2021-05-29T20:04:16.741725Z",
+     "iopub.status.busy": "2021-05-29T20:04:16.733372Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.331451Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.330897Z"
     }
    },
    "outputs": [
@@ -697,7 +697,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ae5eb234",
+   "id": "f3c5aaa2",
    "metadata": {},
    "source": [
     "### Read the visibility values and inspect flags\n",
@@ -707,13 +707,13 @@
   {
    "cell_type": "code",
    "execution_count": 24,
-   "id": "3b05ea39",
+   "id": "86110511",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.448502Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.447868Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.809102Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.809622Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.336627Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.336035Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.700270Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.699724Z"
     }
    },
    "outputs": [
@@ -741,7 +741,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "410892d0",
+   "id": "173b254b",
    "metadata": {},
    "source": [
     "Depending on how you've calibrated and/or split out your data, your measurement set may or may not have a ``CORRECTED_DATA`` column. Usually, this is the one you want. If the column doesn't exist in your measurement set, try the ``DATA`` column instead.\n",
@@ -775,7 +775,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4a3169e1",
+   "id": "e8c9fda6",
    "metadata": {},
    "source": [
     "A common ALMA observation mode is dual-polarization, XX and YY. If this is the case for your observations, the data array will contain an extra dimension for each polarization."
@@ -784,13 +784,13 @@
   {
    "cell_type": "code",
    "execution_count": 25,
-   "id": "13f5a6f9",
+   "id": "89f1b918",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.815352Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.814005Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.817527Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.816984Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.705925Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.705342Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.709258Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.709750Z"
     }
    },
    "outputs": [
@@ -808,7 +808,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "927dedf2",
+   "id": "468cde7f",
    "metadata": {},
    "source": [
     "Since it has a complex type, the data array contains the real and imaginary values"
@@ -817,13 +817,13 @@
   {
    "cell_type": "code",
    "execution_count": 26,
-   "id": "3e9543ec",
+   "id": "dd4b3e68",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.825145Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.823784Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.827456Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.826895Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.717262Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.716024Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.719383Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.718878Z"
     }
    },
    "outputs": [
@@ -895,7 +895,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cf731ec8",
+   "id": "d78742ae",
    "metadata": {},
    "source": [
     "In the process of calibrating real-world data, some occasional visibilities need to be flagged or excluded from the analysis. The ``FLAG`` column is a boolean flag that is ``True`` if the visibility *should be excluded*. To check if any visibilities are flagged in this spectral window, we can just see if there are any ``True`` values in the ``FLAG`` column"
@@ -904,13 +904,13 @@
   {
    "cell_type": "code",
    "execution_count": 27,
-   "id": "312e02ad",
+   "id": "d2eb8c77",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.832183Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.831546Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.834370Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.834919Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.724144Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.722617Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.726195Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.726670Z"
     }
    },
    "outputs": [
@@ -928,7 +928,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "44465203",
+   "id": "3c66e92a",
    "metadata": {},
    "source": [
     "Since this is a simulated measurement set, this is not surprising. When you are using real data, however, this is an important thing to check. If you *did* have flagged visibilities, to access only the valid visibilities you would do something like the following"
@@ -937,13 +937,13 @@
   {
    "cell_type": "code",
    "execution_count": 28,
-   "id": "7ff8ff45",
+   "id": "2b9fe483",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.839331Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.838725Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.942878Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.942308Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.730375Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.729807Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.826842Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.826254Z"
     }
    },
    "outputs": [],
@@ -953,7 +953,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "62b8d4d5",
+   "id": "110c1656",
    "metadata": {},
    "source": [
     "where the ``~`` operator helps us index only the visibilities which *are not flagged*. Unfortunately, indexing en masse like this removes any polarization and channelization dimensionality, just giving you a flat list"
@@ -962,13 +962,13 @@
   {
    "cell_type": "code",
    "execution_count": 29,
-   "id": "d9b1a54f",
+   "id": "38adec63",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.948592Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.947102Z",
-     "iopub.status.idle": "2021-05-29T19:51:53.950627Z",
-     "shell.execute_reply": "2021-05-29T19:51:53.950078Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.832488Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.831201Z",
+     "iopub.status.idle": "2021-05-29T20:04:19.834422Z",
+     "shell.execute_reply": "2021-05-29T20:04:19.833940Z"
     }
    },
    "outputs": [
@@ -986,7 +986,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "62b79935",
+   "id": "aacd94c5",
    "metadata": {},
    "source": [
     "so you'll need to be more strategic about this if you'd like to preserve the channel dimensions, perhaps by using a masked array or a ragged list."
@@ -994,7 +994,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "71619d26",
+   "id": "02a996fe",
    "metadata": {},
    "source": [
     "### Read visibility values and averaging polarizations\n",
@@ -1004,13 +1004,13 @@
   {
    "cell_type": "code",
    "execution_count": 30,
-   "id": "2b291528",
+   "id": "9b8274c5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:53.955176Z",
-     "iopub.status.busy": "2021-05-29T19:51:53.954513Z",
-     "iopub.status.idle": "2021-05-29T19:51:54.223312Z",
-     "shell.execute_reply": "2021-05-29T19:51:54.223864Z"
+     "iopub.execute_input": "2021-05-29T20:04:19.838994Z",
+     "iopub.status.busy": "2021-05-29T20:04:19.838457Z",
+     "iopub.status.idle": "2021-05-29T20:04:20.118552Z",
+     "shell.execute_reply": "2021-05-29T20:04:20.119170Z"
     }
    },
    "outputs": [
@@ -1037,13 +1037,13 @@
   {
    "cell_type": "code",
    "execution_count": 31,
-   "id": "f1906b43",
+   "id": "9af34148",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:54.228501Z",
-     "iopub.status.busy": "2021-05-29T19:51:54.227849Z",
-     "iopub.status.idle": "2021-05-29T19:51:54.390582Z",
-     "shell.execute_reply": "2021-05-29T19:51:54.390009Z"
+     "iopub.execute_input": "2021-05-29T20:04:20.123447Z",
+     "iopub.status.busy": "2021-05-29T20:04:20.122874Z",
+     "iopub.status.idle": "2021-05-29T20:04:20.288264Z",
+     "shell.execute_reply": "2021-05-29T20:04:20.287563Z"
     }
    },
    "outputs": [],
@@ -1056,13 +1056,13 @@
   {
    "cell_type": "code",
    "execution_count": 32,
-   "id": "0fa0df22",
+   "id": "5e0ef5fa",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:54.395306Z",
-     "iopub.status.busy": "2021-05-29T19:51:54.394658Z",
-     "iopub.status.idle": "2021-05-29T19:51:54.450858Z",
-     "shell.execute_reply": "2021-05-29T19:51:54.450301Z"
+     "iopub.execute_input": "2021-05-29T20:04:20.293833Z",
+     "iopub.status.busy": "2021-05-29T20:04:20.292517Z",
+     "iopub.status.idle": "2021-05-29T20:04:20.351344Z",
+     "shell.execute_reply": "2021-05-29T20:04:20.350456Z"
     }
    },
    "outputs": [],
@@ -1074,13 +1074,13 @@
   {
    "cell_type": "code",
    "execution_count": 33,
-   "id": "b313541f",
+   "id": "a8ee3271",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:54.454757Z",
-     "iopub.status.busy": "2021-05-29T19:51:54.454131Z",
-     "iopub.status.idle": "2021-05-29T19:51:54.462925Z",
-     "shell.execute_reply": "2021-05-29T19:51:54.462401Z"
+     "iopub.execute_input": "2021-05-29T20:04:20.355384Z",
+     "iopub.status.busy": "2021-05-29T20:04:20.354813Z",
+     "iopub.status.idle": "2021-05-29T20:04:20.364139Z",
+     "shell.execute_reply": "2021-05-29T20:04:20.363635Z"
     }
    },
    "outputs": [],
@@ -1092,13 +1092,13 @@
   {
    "cell_type": "code",
    "execution_count": 34,
-   "id": "c7152857",
+   "id": "a5d8c3cb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:54.468169Z",
-     "iopub.status.busy": "2021-05-29T19:51:54.467513Z",
-     "iopub.status.idle": "2021-05-29T19:51:54.472749Z",
-     "shell.execute_reply": "2021-05-29T19:51:54.473414Z"
+     "iopub.execute_input": "2021-05-29T20:04:20.369340Z",
+     "iopub.status.busy": "2021-05-29T20:04:20.368585Z",
+     "iopub.status.idle": "2021-05-29T20:04:20.373645Z",
+     "shell.execute_reply": "2021-05-29T20:04:20.373096Z"
     }
    },
    "outputs": [],
@@ -1111,13 +1111,13 @@
   {
    "cell_type": "code",
    "execution_count": 35,
-   "id": "53aa8844",
+   "id": "b61928f6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:54.477593Z",
-     "iopub.status.busy": "2021-05-29T19:51:54.476668Z",
-     "iopub.status.idle": "2021-05-29T19:51:54.678533Z",
-     "shell.execute_reply": "2021-05-29T19:51:54.677977Z"
+     "iopub.execute_input": "2021-05-29T20:04:20.377512Z",
+     "iopub.status.busy": "2021-05-29T20:04:20.376615Z",
+     "iopub.status.idle": "2021-05-29T20:04:20.564523Z",
+     "shell.execute_reply": "2021-05-29T20:04:20.563551Z"
     }
    },
    "outputs": [],
@@ -1130,13 +1130,13 @@
   {
    "cell_type": "code",
    "execution_count": 36,
-   "id": "a72fcb2d",
+   "id": "d0790235",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:54.700379Z",
-     "iopub.status.busy": "2021-05-29T19:51:54.699715Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.132214Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.132711Z"
+     "iopub.execute_input": "2021-05-29T20:04:20.588177Z",
+     "iopub.status.busy": "2021-05-29T20:04:20.587591Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.023979Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.024463Z"
     }
    },
    "outputs": [
@@ -1176,7 +1176,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6a0dfbc0",
+   "id": "3f4c2739",
    "metadata": {},
    "source": [
     "## Example Queries with ms tools\n",
@@ -1188,13 +1188,13 @@
   {
    "cell_type": "code",
    "execution_count": 37,
-   "id": "3b49491a",
+   "id": "dffff2cc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.137876Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.137233Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.259612Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.260194Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.029502Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.028891Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.177713Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.178182Z"
     }
    },
    "outputs": [
@@ -1223,13 +1223,13 @@
   {
    "cell_type": "code",
    "execution_count": 38,
-   "id": "a3751d44",
+   "id": "0365926c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.266661Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.265225Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.268617Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.268078Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.182797Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.182232Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.187044Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.186531Z"
     }
    },
    "outputs": [
@@ -1256,13 +1256,13 @@
   {
    "cell_type": "code",
    "execution_count": 39,
-   "id": "bc2e95f5",
+   "id": "09d660f6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.274179Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.272805Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.276112Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.275573Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.190929Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.190357Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.195024Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.195444Z"
     }
    },
    "outputs": [
@@ -1282,7 +1282,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "da0905e8",
+   "id": "beac5180",
    "metadata": {},
    "source": [
     "## Putting it together to export visibilities\n",
@@ -1292,13 +1292,13 @@
   {
    "cell_type": "code",
    "execution_count": 40,
-   "id": "f201d4e2",
+   "id": "563bea0e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.280883Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.280263Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.542121Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.542653Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.200632Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.199738Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.480509Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.479971Z"
     }
    },
    "outputs": [
@@ -1328,13 +1328,13 @@
   {
    "cell_type": "code",
    "execution_count": 41,
-   "id": "d37a0ef5",
+   "id": "4666416a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.548312Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.547194Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.551022Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.550501Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.485341Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.484713Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.488736Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.487863Z"
     }
    },
    "outputs": [],
@@ -1350,7 +1350,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7cac3e6f",
+   "id": "f1e73ede",
    "metadata": {},
    "source": [
     "Check to make sure the channels are in blushifted to redshifted order, otherwise reverse channel order"
@@ -1359,13 +1359,13 @@
   {
    "cell_type": "code",
    "execution_count": 42,
-   "id": "1a11a4a9",
+   "id": "f50677ca",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.556975Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.555560Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.557656Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.558248Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.493669Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.493025Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.495983Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.495503Z"
     }
    },
    "outputs": [],
@@ -1379,7 +1379,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4769c5c6",
+   "id": "5fa2e4d6",
    "metadata": {},
    "source": [
     "Keep only the cross-correlation visibilities and throw out the auto-correlation visibilities (i.e., where ``ant1 == ant2``)"
@@ -1388,13 +1388,13 @@
   {
    "cell_type": "code",
    "execution_count": 43,
-   "id": "7bf8ec42",
+   "id": "8d7b216f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.562944Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.562295Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.664791Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.664161Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.500353Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.499785Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.609009Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.608253Z"
     }
    },
    "outputs": [],
@@ -1409,13 +1409,13 @@
   {
    "cell_type": "code",
    "execution_count": 44,
-   "id": "62eaae21",
+   "id": "0692f1af",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.669940Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.669219Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.900270Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.899702Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.614438Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.613636Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.840353Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.839513Z"
     }
    },
    "outputs": [],
@@ -1429,13 +1429,13 @@
   {
    "cell_type": "code",
    "execution_count": 45,
-   "id": "c68a27ce",
+   "id": "d2e488a4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.906610Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.905058Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.908775Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.908216Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.847631Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.846352Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.849579Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.848275Z"
     }
    },
    "outputs": [
@@ -1459,13 +1459,13 @@
   {
    "cell_type": "code",
    "execution_count": 46,
-   "id": "67300d5f",
+   "id": "6cd14f00",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.913265Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.912152Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.914365Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.914863Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.853147Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.852164Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.855516Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.854916Z"
     }
    },
    "outputs": [],
@@ -1477,13 +1477,13 @@
   {
    "cell_type": "code",
    "execution_count": 47,
-   "id": "dc2b664a",
+   "id": "762e5366",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.919447Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.918774Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.949063Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.948495Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.860736Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.859774Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.889644Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.889039Z"
     }
    },
    "outputs": [],
@@ -1501,13 +1501,13 @@
   {
    "cell_type": "code",
    "execution_count": 48,
-   "id": "0e856f35",
+   "id": "dc37b414",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.954312Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.952797Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.954974Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.955483Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.894536Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.893127Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.895387Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.895887Z"
     }
    },
    "outputs": [],
@@ -1519,13 +1519,13 @@
   {
    "cell_type": "code",
    "execution_count": 49,
-   "id": "1ad1673d",
+   "id": "5d116f89",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:55.959433Z",
-     "iopub.status.busy": "2021-05-29T19:51:55.958797Z",
-     "iopub.status.idle": "2021-05-29T19:51:55.995914Z",
-     "shell.execute_reply": "2021-05-29T19:51:55.996449Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.899403Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.898838Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.926147Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.926653Z"
     }
    },
    "outputs": [],
@@ -1538,13 +1538,13 @@
   {
    "cell_type": "code",
    "execution_count": 50,
-   "id": "4c0da051",
+   "id": "f99fe78a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:56.001926Z",
-     "iopub.status.busy": "2021-05-29T19:51:56.000466Z",
-     "iopub.status.idle": "2021-05-29T19:51:56.002587Z",
-     "shell.execute_reply": "2021-05-29T19:51:56.003093Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.931681Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.930362Z",
+     "iopub.status.idle": "2021-05-29T20:04:21.932329Z",
+     "shell.execute_reply": "2021-05-29T20:04:21.932766Z"
     }
    },
    "outputs": [],
@@ -1554,7 +1554,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9e01f7e9",
+   "id": "8d64eaa3",
    "metadata": {},
    "source": [
     "Since we have a multi-channel dataset, we need to make a decision about how to treat flagged visibilities. If we wanted to export only unflagged visibilities, there is a chance that some channels will have different number of flagged visibilities, which means we can no longer represent the data as a nicely packed, contiguous, rectangular array.\n",
@@ -1565,13 +1565,13 @@
   {
    "cell_type": "code",
    "execution_count": 51,
-   "id": "b038ffc6",
+   "id": "81eed6a0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2021-05-29T19:51:56.007660Z",
-     "iopub.status.busy": "2021-05-29T19:51:56.007037Z",
-     "iopub.status.idle": "2021-05-29T19:51:56.240218Z",
-     "shell.execute_reply": "2021-05-29T19:51:56.239599Z"
+     "iopub.execute_input": "2021-05-29T20:04:21.938020Z",
+     "iopub.status.busy": "2021-05-29T20:04:21.937177Z",
+     "iopub.status.idle": "2021-05-29T20:04:22.163980Z",
+     "shell.execute_reply": "2021-05-29T20:04:22.162822Z"
     }
    },
    "outputs": [],

@@ -108,13 +108,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#Visualizing-the-CLEANed-image">Visualizing the CLEANed image</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#Using-the-tclean-model-to-calculate-residual-scatter">Using the tclean model to calculate residual scatter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Examining-measurement-set-structure">Examining measurement set structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-the-tclean-model-to-calculate-residual-visibilities">Using the tclean model to calculate residual visibilities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Helper-functions-for-examining-weight-scatter">Helper functions for examining weight scatter</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Checking-scatter-for-each-spectral-window">Checking scatter for each spectral window</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Visibility-Outliers">Visibility Outliers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Incorrectly-scaled-weights">Incorrectly scaled weights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Spectral-Window-7:-A-correctly-scaled-SPW">Spectral Window 7: A correctly scaled SPW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Spectral-Window-22:-Visibility-outliers">Spectral Window 22: Visibility outliers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Spectral-Window-24:-Incorrectly-scaled-weights">Spectral Window 24: Incorrectly scaled weights</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Rescaling-weights-for-export.">Rescaling weights for export.</a></li>
@@ -487,7 +489,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># change to the subdirectory that contains the cleaned MS</span>
+<span></span><span class="c1"># change to the cached subdirectory that contains the cleaned MS</span>
 <span class="n">workdir</span> <span class="o">=</span> <span class="s2">&quot;AS209_MS&quot;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;AS209_continuum.ms&quot;</span>
@@ -572,8 +574,13 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 <img alt="../_images/tutorials_rescale_AS209_weights_8_1.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_8_1.png" style="width: 481px; height: 368px;" />
 </div>
 </div>
-<p>Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran <code class="docutils literal notranslate"><span class="pre">tclean</span></code> was to generate the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column in the measurement set.</p>
-<p>Let’s import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods">table</a> and <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a>.</p>
+<p>Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran <code class="docutils literal notranslate"><span class="pre">tclean</span></code> was to generate the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column in the measurement set. The actual CLEANed FITS image is just a nice byproduct.</p>
+</div>
+</div>
+<div class="section" id="Examining-measurement-set-structure">
+<h2>Examining measurement set structure<a class="headerlink" href="#Examining-measurement-set-structure" title="Permalink to this headline">¶</a></h2>
+<p>Before you dive into the full analysis with CASA tools, it’s a very good idea to inspect the measurement set using <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about">listobs</a>.</p>
+<p>After you’ve done that, let’s start exploring the visibility values. First we’ll need to import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods">table</a> and <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -593,8 +600,7 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 </pre></div>
 </div>
 </div>
-<p>Before you dive into the full analysis with CASA tools, it’s a very good idea to inspect the measurement set using <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about">listobs</a>.</p>
-<p>After you’ve done that, let’s start exploring the visibility values. We can get the indexes of the unique spectral windows, which are typically indexed by the <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code></p>
+<p>We can get the indexes of the unique spectral windows, which are typically indexed by the <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -684,14 +690,13 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 True
 </pre></div></div>
 </div>
+<p>The returned query is a dictionary whose keys are the lowercase column names</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># The returned query is a dictionary whose</span>
-<span class="c1"># keys are the lowercase column names</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -703,36 +708,35 @@ True
 dict_keys([&#39;data&#39;, &#39;uvw&#39;, &#39;weight&#39;])
 </pre></div></div>
 </div>
+<p>and whose values are the numerical arrays for the spectral window that we queried</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="c1"># select the spectral window</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># query the desired columnames as a list</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;MODEL_DATA&quot;</span><span class="p">])</span>
-<span class="c1"># always a good idea to reset the earmarked data</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-True
+[[[-0.09359986-0.07905877j  0.19716288+0.10789031j
+   -0.04736413-0.38649508j ...  0.4015328 +0.23623116j
+    0.20422684+0.29638007j  0.13025568-0.55658323j]]
+
+ [[ 0.43320566-0.16495545j -0.0630829 -0.10485866j
+   -0.36411372-0.40655291j ...  0.24039683-0.32688245j
+    0.46174076-0.27798796j  0.61960417+0.00973242j]]]
 </pre></div></div>
 </div>
 </div>
-</div>
-<div class="section" id="Using-the-tclean-model-to-calculate-residual-scatter">
-<h2>Using the tclean model to calculate residual scatter<a class="headerlink" href="#Using-the-tclean-model-to-calculate-residual-scatter" title="Permalink to this headline">¶</a></h2>
-<p>now try getting the MODEL_DATA</p>
+<div class="section" id="Using-the-tclean-model-to-calculate-residual-visibilities">
+<h2>Using the tclean model to calculate residual visibilities<a class="headerlink" href="#Using-the-tclean-model-to-calculate-residual-visibilities" title="Permalink to this headline">¶</a></h2>
+<p>In any data analysis where you’re computing a forward model, it’s a good consitency check to examine the data residuals from that model, and, in particular, whether their scatter matches the expectations from the noise properties.</p>
+<p>We can calculate data residuals using the model visibilities derived from the tclean model and stored in the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column of the measurement set.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
@@ -781,7 +785,7 @@ True
    0.1974636 -0.00059635j]]]
 </pre></div></div>
 </div>
-<p>Let’s calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
+<p>Using these model visibilities, let’s calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
 <div class="math notranslate nohighlight">
 \[\sigma = \mathrm{sigma\_rescale} \times \sigma_0\]</div>
 <p>and</p>
@@ -789,17 +793,30 @@ True
 \[\sigma_0 = \sqrt{1/w}\]</div>
 <p>The scatter is defined as</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}  \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}\\We can turn this into a routine\end{aligned}\end{align} \]</div>
+\[ \begin{align}\begin{aligned}  \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}\\For now, :math:`\mathrm{sigma\_rescale} = 1`, but we'll see why this parameter is needed in a moment.\end{aligned}\end{align} \]</div>
 <div class="section" id="Helper-functions-for-examining-weight-scatter">
 <h3>Helper functions for examining weight scatter<a class="headerlink" href="#Helper-functions-for-examining-weight-scatter" title="Permalink to this headline">¶</a></h3>
-<p>In this section, we’ll define several functions to help us examine and plot the residual scatter. The commands in this document are only dependent on the CASA tools <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code>. But, if you find yourself using these routines frequently, you might consider installing the <em>visread</em> package, since similar commands are provided in the API.</p>
+<p>Because we’d like to repeat this analysis for each spectral window in the measurement set, it makes things easier if we write these calculations as functions.</p>
+<p>The functions provided in this document are only dependent on the CASA tools <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code>. If you find yourself using these routines frequently, you might consider installing the <em>visread</em> package, since similar commands are provided in the API.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the scatter for each polarization.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        datadescid (int): the DATA_DESC_ID to be queried</span>
+<span class="sd">        sigma_rescale (int):  multiply the uncertainties by this factor</span>
+<span class="sd">        apply_flags (bool): calculate the scatter *after* the flags have been applied</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        scatter_XX, scatter_YY: a 2-tuple of numpy arrays containing the scatter in each polarization.</span>
+<span class="sd">        If ``apply_flags==True``, each array will be 1-dimensional. If ``apply_flags==False``, each array</span>
+<span class="sd">        will retain its original shape, including channelization (e.g., shape ``nchan,nvis``).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
     <span class="c1"># select the key</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">)</span>
@@ -843,7 +860,6 @@ True
 </pre></div>
 </div>
 </div>
-<p>Let’s also write a function to plot a histogram, with a Gaussian</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
@@ -876,6 +892,9 @@ True
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">scatter_hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot a normalized histogram of scatter for real and imaginary</span>
+<span class="sd">    components of XX and YY polarizations.</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        scatter_XX (1D numpy array)</span>
 <span class="sd">        scatter_YY (1D numpy array)</span>
@@ -924,6 +943,18 @@ True
 <span></span><span class="k">def</span> <span class="nf">plot_histogram_datadescid</span><span class="p">(</span>
     <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrap the scatter routine to plot a histogram of scatter for real and imaginary components of XX and YY polarizations, given a ``DATA_DESC_ID``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        datadescid (int): the DATA_DESC_ID to be queried</span>
+<span class="sd">        sigma_rescale (int):  multiply the uncertainties by this factor</span>
+<span class="sd">        log (bool): plot the histogram with a log stretch</span>
+<span class="sd">        apply_flags (bool): calculate the scatter *after* the flags have been applied</span>
+
+
+<span class="sd">    Returns:</span>
+<span class="sd">        matplotlib figure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">get_scatter_datadescid</span><span class="p">(</span>
         <span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">sigma_rescale</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="n">apply_flags</span>
@@ -941,33 +972,16 @@ True
 </div>
 <div class="section" id="Checking-scatter-for-each-spectral-window">
 <h2>Checking scatter for each spectral window<a class="headerlink" href="#Checking-scatter-for-each-spectral-window" title="Permalink to this headline">¶</a></h2>
+<p>Now lets use our helper functions to investigate the characteristics of each spectral window.</p>
+<div class="section" id="Spectral-Window-7:-A-correctly-scaled-SPW">
+<h3>Spectral Window 7: A correctly scaled SPW<a class="headerlink" href="#Spectral-Window-7:-A-correctly-scaled-SPW" title="Permalink to this headline">¶</a></h3>
+<p>Let’s see how the residual visibilities in spectral window 7 scatter relative to their expected Gaussian envelope</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># 7 no outliers, scaled fine</span>
-<span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_35_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_35_0.png" style="width: 625px; height: 712px;" />
-</div>
-</div>
-<div class="section" id="Visibility-Outliers">
-<h3>Visibility Outliers<a class="headerlink" href="#Visibility-Outliers" title="Permalink to this headline">¶</a></h3>
-<p>Note that we do need to apply the flags correctly. These outlier visibilities might adversely affect the image.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># 22 has outliers</span>
-<span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -978,7 +992,28 @@ True
 <img alt="../_images/tutorials_rescale_AS209_weights_37_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_37_0.png" style="width: 625px; height: 712px;" />
 </div>
 </div>
-<p>Something looks a little bit strange compared to the previous spectral window. Let’s try plotting things on a log scale to get a closer look.</p>
+<p>Great, it looks like things are pretty much as we would expect here.</p>
+</div>
+<div class="section" id="Spectral-Window-22:-Visibility-outliers">
+<h3>Spectral Window 22: Visibility outliers<a class="headerlink" href="#Spectral-Window-22:-Visibility-outliers" title="Permalink to this headline">¶</a></h3>
+<p>In the last example, we were a little bit cavalier and plotted the residuals for <em>all</em> visibilities, regardless of whether their <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> was true. If we do the same for the visibilities in spectral window 22,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_rescale_AS209_weights_40_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_40_0.png" style="width: 625px; height: 712px;" />
+</div>
+</div>
+<p>We find that something looks a little bit strange. Let’s try plotting things on a log scale to get a closer look.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
@@ -992,10 +1027,10 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_39_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_39_0.png" style="width: 640px; height: 712px;" />
+<img alt="../_images/tutorials_rescale_AS209_weights_42_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_42_0.png" style="width: 640px; height: 712px;" />
 </div>
 </div>
-<p>It appears as though there are several “outlier” visibilities included in this dataset. If the calibration and data preparation went correctly, most likely, these visibilities are actually flagged. Let’s try plotting only the valid, unflagged, visibilities</p>
+<p>It appears as though there are several “outlier” visibilities included in this spectral window. If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let’s try plotting only the valid, unflagged, visibilities</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
@@ -1009,13 +1044,13 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_41_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_41_0.png" style="width: 639px; height: 712px;" />
+<img alt="../_images/tutorials_rescale_AS209_weights_44_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_44_0.png" style="width: 639px; height: 712px;" />
 </div>
 </div>
-<p>Great, it looks like everything checks out.</p>
+<p>Great, it looks like the outlier visibilities were correctly flagged, and everything checks out.</p>
 </div>
-<div class="section" id="Incorrectly-scaled-weights">
-<h3>Incorrectly scaled weights<a class="headerlink" href="#Incorrectly-scaled-weights" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Spectral-Window-24:-Incorrectly-scaled-weights">
+<h3>Spectral Window 24: Incorrectly scaled weights<a class="headerlink" href="#Spectral-Window-24:-Incorrectly-scaled-weights" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
@@ -1030,7 +1065,7 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_44_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_44_0.png" style="width: 625px; height: 712px;" />
+<img alt="../_images/tutorials_rescale_AS209_weights_47_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_47_0.png" style="width: 625px; height: 712px;" />
 </div>
 </div>
 <p>That’s strange, the scatter of these visibilities looks reasonably Gaussian, but the scatter is too large relative to what should be expected given the weight values.</p>
@@ -1048,7 +1083,7 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_46_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_46_0.png" style="width: 630px; height: 712px;" />
+<img alt="../_images/tutorials_rescale_AS209_weights_49_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_49_0.png" style="width: 630px; height: 712px;" />
 </div>
 </div>
 </div>
