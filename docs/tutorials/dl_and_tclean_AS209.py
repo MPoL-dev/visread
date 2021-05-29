@@ -1,5 +1,5 @@
-# meant to be run from inside /docs/tutorials directory as part
-# of the rescale_AS209_weights.py file
+# meant to be run from inside docs/ directory as part
+# of the Makefile process
 
 import tarfile
 import os
@@ -13,7 +13,7 @@ tb = casatools.table()
 ms = casatools.ms()
 
 homedir = os.getcwd()
-workdir = "AS209_MS"
+workdir = "tutorials/AS209_MS"
 
 print("homedir is ", homedir)
 

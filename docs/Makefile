@@ -16,13 +16,17 @@ help:
 
 NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/rescale_AS209_weights.ipynb 
 
+tutorials/AS209_MS/AS209.fits: tutorials/dl_and_tclean_AS209.py
+	python tutorials/dl_and_tclean_AS209.py
+
 clean:
 	rm -rf _build
 	rm -rf ${NOTEBOOKS}
 	rm -rf tutorials/.ipynb_checkpoints
 	rm -rf tutorials/runs
 
-tutorials/%.ipynb: tutorials/%.py 
+
+tutorials/%.ipynb: tutorials/%.py tutorials/AS209_MS/AS209.fits
 	jupytext --to ipynb --execute $<
 
 html: ${NOTEBOOKS}

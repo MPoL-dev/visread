@@ -21,43 +21,34 @@
 
 # # Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities
 #
-# In this walkthrough tutorial, we'll use CASA tools to examine the visibilities and weights of a real multi-configuration dataset from the DSHARP survey.
+# In this walkthrough tutorial, we'll use CASA tools to examine the visibilities, visibility residuals, and weights of a real multi-configuration dataset from the DSHARP survey.
 #
-# # ## Using CASA tclean to produce MODEL_DATA
+# ## Obtaining and CLEANing the AS 209 measurement set
 #
-
-# The full datasets from the DSHARP data release are available [online](https://almascience.eso.org/almadata/lp/DSHARP/), and the full description of the survey is provided in [Andrews et al. 2018](https://ui.adsabs.harvard.edu/abs/2018ApJ...869L..41A/abstract).
-
-# The full reduction scripts are [available online](https://almascience.eso.org/almadata/lp/DSHARP/scripts/AS209_continuum.py). Here we just reproduce the relevant ``tclean`` commands used to produce a FITS image from the final, calibrated measurement set.
-
+# The calibrated measurement sets from the DSHARP data release are available [online](https://almascience.eso.org/almadata/lp/DSHARP/), and the full description of the survey is provided in [Andrews et al. 2018](https://ui.adsabs.harvard.edu/abs/2018ApJ...869L..41A/abstract).
 #
-# ## Downloading the calibrated measurement set.
+# ### Model Visibilities and MODEL_DATA
+# In its simplest form, the measurement set just contains the visibility data in a ``DATA`` or ``CORRECTED_DATA`` column. In the process of using ``tclean`` to synthesize an image, however, CASA also calculates a set of model visibilities that correspond to the Fourier transform of the CLEAN model. It's possible to store these model visibilities to the measurement set if the ``tclean`` process was invoked with the ``savemodel="modelcolumn"`` parameter. The model visibilities will be stored in a ``MODEL_DATA`` column with the same shape as the ``DATA`` column.
+#
+# The calibrated DSHARP measurement sets available from the archive do not contain this ``MODEL_DATA`` column (most likely for space reasons), so we will need to recreate them by running the ``tclean`` algorithm with the relevant settings. The full reduction scripts are [available online](https://almascience.eso.org/almadata/lp/DSHARP/scripts/AS209_continuum.py), but we just need reproduce the relevant ``tclean`` commands used to produce a FITS image from the final, calibrated measurement set.
+#
+# Because the measurement set is large (0.9 Gb) and the ``tclean`` process is computationally expensive (taking about 1 hr on a single core), we have pre-executed those commands and cached the measurement set and ``tclean`` products into the ``AS209_MS`` local directory. If you're interested in the exact ``tclean`` commands used, please check out the [dl_and_tclean_AS209.py](dl_and_tclean_AS209.py) script directly.
 
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import os
 
-# check to see whether the CLEANed Measurement Set already exists on file.
-homedir = os.getcwd()
+# change to the subdirectory that contains the cleaned MS
 workdir = "AS209_MS"
-fitsname = "AS209.fits"
-
-print("homedir is ", homedir)
-
-if not os.path.exists(workdir + "/" + fitsname):
-    print("Couldn't find tcleaned measurement set, running download and tclean script")
-    %run dl_and_tclean_AS209.py
-else:
-    print("found tcleaned measurement set")
-
 os.chdir(workdir)
 fname = "AS209_continuum.ms"
+fitsname = "AS209.fits"
 
 # ### Visualizing the CLEANed image
+# Just to make sure the ``tclean`` process ran OK, let's check the synthesized image that was produced
 
 from astropy.io import fits
-
 
 hdul = fits.open(fitsname)
 header = hdul[0].header
@@ -92,6 +83,8 @@ ax.set_xlim(r, -r)
 ax.set_ylim(-r, r)
 ax.set_xlabel(r"$\Delta \alpha \cos \delta$ [${}^{\prime\prime}$]")
 ax.set_ylabel(r"$\Delta \delta$ [${}^{\prime\prime}$]")
+
+# Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran ``tclean`` was to generate the ``MODEL_DATA`` column in the measurement set.
 
 
 # Let's import and then instantiate the relevant CASA tools, [table](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods) and [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods).
