@@ -97,8 +97,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Visread Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/plot_baselines.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Visread API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/AS209.html">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a></li>
 </ul>
 
@@ -169,18 +169,25 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#C"><strong>C</strong></a>
+ <a href="#G"><strong>G</strong></a>
  | <a href="#M"><strong>M</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
-<h2 id="C">C</h2>
+<h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.visread.Cube">Cube (class in visread.visread)</a>
+      <li><a href="api.html#visread.examine.gaussian">gaussian() (in module visread.examine)</a>
+</li>
+      <li><a href="api.html#visread.examine.get_colnames">get_colnames() (in module visread.examine)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#visread.examine.get_scatter_datadescid">get_scatter_datadescid() (in module visread.examine)</a>
+</li>
+      <li><a href="api.html#visread.examine.get_unique_datadescid">get_unique_datadescid() (in module visread.examine)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -192,32 +199,16 @@
     module
 
       <ul>
-        <li><a href="api.html#module-visread.visread">visread.visread</a>
+        <li><a href="api.html#module-visread.examine">visread.examine</a>
 </li>
       </ul></li>
   </ul></td>
 </tr></table>
 
-<h2 id="R">R</h2>
+<h2 id="Q">Q</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.visread.read">read() (in module visread.visread)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.visread.Cube.swap_convention">swap_convention() (visread.visread.Cube method)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.visread.Cube.to_npz">to_npz() (visread.visread.Cube method)</a>
+      <li><a href="api.html#visread.examine.query_datadescid">query_datadescid() (in module visread.examine)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -226,12 +217,20 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    visread.visread
+    visread.examine
 
       <ul>
-        <li><a href="api.html#module-visread.visread">module</a>
+        <li><a href="api.html#module-visread.examine">module</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#visread.examine.weight_to_sigma">weight_to_sigma() (in module visread.examine)</a>
+</li>
   </ul></td>
 </tr></table>
 

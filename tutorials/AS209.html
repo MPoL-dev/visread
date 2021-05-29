@@ -1,0 +1,1262 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &mdash; visread 0.0.4 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction and Measurement Set Preparation" href="../introduction_to_spectral_lines.html" />
+    <link rel="prev" title="Visread API" href="../api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> visread
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction_to_casatools.html">Introduction to CASA tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Visread Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Visread API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Downloading-the-calibrated-measurement-set.">Downloading the calibrated measurement set.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-CASA-tclean-to-produce-MODEL_DATA">Using CASA tclean to produce MODEL_DATA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Visualizing-the-CLEANed-image">Visualizing the CLEANed image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-the-tclean-model-to-calculate-residual-scatter">Using the tclean model to calculate residual scatter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Helper-functions-for-examining-weight-scatter">Helper functions for examining weight scatter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Checking-scatter-for-each-spectral-window">Checking scatter for each spectral window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Visibility-Outliers">Visibility Outliers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Incorrectly-scaled-weights">Incorrectly scaled weights</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Rescaling-weights-for-export.">Rescaling weights for export.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction_to_spectral_lines.html">Introduction and Measurement Set Preparation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">visread</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/AS209.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Walkthrough:-Examining-DSHARP-AS-209-Weights-and-Exporting-Visibilities">
+<h1>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities<a class="headerlink" href="#Walkthrough:-Examining-DSHARP-AS-209-Weights-and-Exporting-Visibilities" title="Permalink to this headline">¶</a></h1>
+<p>In this walkthrough tutorial, we’ll use CASA tools to examine the visibilities and weights of a real multi-configuration dataset from the DSHARP survey.</p>
+<div class="section" id="Downloading-the-calibrated-measurement-set.">
+<h2>Downloading the calibrated measurement set.<a class="headerlink" href="#Downloading-the-calibrated-measurement-set." title="Permalink to this headline">¶</a></h2>
+<p>The full datasets from the DSHARP data release are available <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/">online</a>, and the full description of the survey is provided in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2018ApJ...869L..41A/abstract">Andrews et al. 2018</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">astropy.utils.data</span> <span class="kn">import</span> <span class="n">download_file</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">tarfile</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+<p>START uncomment to use pre-cleaned ms locally</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># load the mock dataset of the ALMA logo</span>
+<span class="n">fname_tar</span> <span class="o">=</span> <span class="n">download_file</span><span class="p">(</span>
+    <span class="s2">&quot;https://almascience.eso.org/almadata/lp/DSHARP/MSfiles/AS209_continuum.ms.tgz&quot;</span><span class="p">,</span>
+    <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pkgname</span><span class="o">=</span><span class="s2">&quot;mpol&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># extract the measurement set to a local directory</span>
+<span class="n">temp_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
+<span class="n">curdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">temp_dir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname_tar</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AS209_continuum.ms
+</pre></div></div>
+</div>
+<p>END uncomment</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;AS209_continuum.ms&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods">table</a> and <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">casatools</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Before you dive into the full analysis with CASA tools, it’s a very good idea to inspect the measurement set using <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about">listobs</a>.</p>
+<p>After you’ve done that, let’s start exploring the visibility values. We can get the indexes of the unique spectral windows, which are typically indexed by the <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/DATA_DESCRIPTION&quot;</span><span class="p">)</span>
+<span class="n">SPECTRAL_WINDOW_ID</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;SPECTRAL_WINDOW_ID&quot;</span><span class="p">)</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">SPECTRAL_WINDOW_ID</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 24]
+</pre></div></div>
+</div>
+<p>We see that there are 25 separate spectral windows! This is because the DSHARP images were produced using all available Band 6 continuum data on each source—not just the long baseline observations acquired in ALMA cycle 4. The merging of all of these individual observations is what creates this structure with so many spectral windows.</p>
+<p>Next, let’s open the main table of the measurement set and inspect the column names</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">colnames</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">colnames</span><span class="p">()</span>
+<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">colnames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;UVW&#39;, &#39;FLAG&#39;, &#39;FLAG_CATEGORY&#39;, &#39;WEIGHT&#39;, &#39;SIGMA&#39;, &#39;ANTENNA1&#39;, &#39;ANTENNA2&#39;, &#39;ARRAY_ID&#39;, &#39;DATA_DESC_ID&#39;, &#39;EXPOSURE&#39;, &#39;FEED1&#39;, &#39;FEED2&#39;, &#39;FIELD_ID&#39;, &#39;FLAG_ROW&#39;, &#39;INTERVAL&#39;, &#39;OBSERVATION_ID&#39;, &#39;PROCESSOR_ID&#39;, &#39;SCAN_NUMBER&#39;, &#39;STATE_ID&#39;, &#39;TIME&#39;, &#39;TIME_CENTROID&#39;, &#39;DATA&#39;, &#39;WEIGHT_SPECTRUM&#39;, &#39;SIGMA_SPECTRUM&#39;]
+</pre></div></div>
+</div>
+<p>Because there are multiple spectral windows which do not share the same dimensions, we cannot use the <code class="docutils literal notranslate"><span class="pre">tb</span></code> tool to read the data directly. If we try, we’ll get an error.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;DATA&quot;</span><span class="p">)</span>  <span class="c1"># array of complex128 with shape [npol, nchan, nvis]</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;We can&#39;t use table tools here... the spws have different numbers of channels&quot;</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>So, we’ll need to use the <code class="docutils literal notranslate"><span class="pre">ms</span></code> tool to read the visibilities for each spectral window, like so</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="c1"># select the spectral window</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># query the desired columnames as a list</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">,</span> <span class="s2">&quot;UVW&quot;</span><span class="p">,</span> <span class="s2">&quot;DATA&quot;</span><span class="p">])</span>
+<span class="c1"># always a good idea to reset the earmarked data</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># The returned query is a dictionary whose</span>
+<span class="c1"># keys are the lowercase column names</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+dict_keys([&#39;data&#39;, &#39;uvw&#39;, &#39;weight&#39;])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="c1"># select the spectral window</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># query the desired columnames as a list</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;MODEL_DATA&quot;</span><span class="p">])</span>
+<span class="c1"># always a good idea to reset the earmarked data</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Using-CASA-tclean-to-produce-MODEL_DATA">
+<h2>Using CASA tclean to produce MODEL_DATA<a class="headerlink" href="#Using-CASA-tclean-to-produce-MODEL_DATA" title="Permalink to this headline">¶</a></h2>
+<p>The full reduction scripts are <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/scripts/AS209_continuum.py">available online</a>. Here we just reproduce the relevant <code class="docutils literal notranslate"><span class="pre">tclean</span></code> commands used to produce a FITS image from the final, calibrated measurement set.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># We noticed that this dataset does not contain a MODEL_DATA column. To inspect the data, we&#39;d like to make this.</span>
+    <span class="c1"># Note that this process may take about 30 - 45 minutes, depending on your computing environment.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;empty model_data, CLEANing&quot;</span><span class="p">)</span>
+    <span class="c1"># reproduce the DSHARP image using casa6</span>
+    <span class="kn">import</span> <span class="nn">casatasks</span>
+    <span class="kn">import</span> <span class="nn">shutil</span>
+
+    <span class="sd">&quot;&quot;&quot; Define simple masks and clean scales for imaging &quot;&quot;&quot;</span>
+    <span class="n">mask_pa</span>  <span class="o">=</span> <span class="mi">86</span>   <span class="c1"># position angle of mask in degrees</span>
+    <span class="n">mask_maj</span> <span class="o">=</span> <span class="mf">1.3</span>  <span class="c1"># semimajor axis of mask in arcsec</span>
+    <span class="n">mask_min</span> <span class="o">=</span> <span class="mf">1.1</span>  <span class="c1"># semiminor axis of mask in arcsec</span>
+    <span class="n">mask_ra</span>  <span class="o">=</span> <span class="s1">&#39;16h49m15.29s&#39;</span>
+    <span class="n">mask_dec</span> <span class="o">=</span> <span class="s1">&#39;-14.22.09.04&#39;</span>
+
+    <span class="n">common_mask</span> <span class="o">=</span> <span class="s1">&#39;ellipse[[</span><span class="si">%s</span><span class="s1">, </span><span class="si">%s</span><span class="s1">], [</span><span class="si">%.1f</span><span class="s1">arcsec, </span><span class="si">%.1f</span><span class="s1">arcsec], </span><span class="si">%.1f</span><span class="s1">deg]&#39;</span> <span class="o">%</span> \
+            <span class="p">(</span><span class="n">mask_ra</span><span class="p">,</span> <span class="n">mask_dec</span><span class="p">,</span> <span class="n">mask_maj</span><span class="p">,</span> <span class="n">mask_min</span><span class="p">,</span> <span class="n">mask_pa</span><span class="p">)</span>
+
+    <span class="n">imagename</span> <span class="o">=</span> <span class="s2">&quot;AS209&quot;</span>
+
+    <span class="c1"># clear any existing image products</span>
+    <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;.image&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.mask&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.model&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.pb&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.psf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.residual&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.sumwt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;.image.pbcor&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">imagename</span> <span class="o">+</span> <span class="n">ext</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+
+    <span class="n">casatasks</span><span class="o">.</span><span class="n">delmod</span><span class="p">(</span><span class="n">vis</span><span class="o">=</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="n">casatasks</span><span class="o">.</span><span class="n">tclean</span><span class="p">(</span><span class="n">vis</span><span class="o">=</span><span class="n">fname</span><span class="p">,</span>
+        <span class="n">imagename</span> <span class="o">=</span> <span class="n">imagename</span><span class="p">,</span>
+        <span class="n">specmode</span> <span class="o">=</span> <span class="s1">&#39;mfs&#39;</span><span class="p">,</span>
+        <span class="n">deconvolver</span> <span class="o">=</span> <span class="s1">&#39;multiscale&#39;</span><span class="p">,</span>
+        <span class="n">scales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+        <span class="n">weighting</span><span class="o">=</span><span class="s1">&#39;briggs&#39;</span><span class="p">,</span>
+        <span class="n">robust</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">gain</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">imsize</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="s1">&#39;.003arcsec&#39;</span><span class="p">,</span>
+        <span class="n">niter</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">,</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="s2">&quot;0.08mJy&quot;</span><span class="p">,</span>
+        <span class="n">cycleniter</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span>
+        <span class="n">cyclefactor</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">uvtaper</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.037arcsec&#39;</span><span class="p">,</span><span class="s1">&#39;.01arcsec&#39;</span><span class="p">,</span><span class="s1">&#39;162deg&#39;</span><span class="p">],</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">common_mask</span><span class="p">,</span>
+        <span class="n">nterms</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">savemodel</span><span class="o">=</span><span class="s2">&quot;modelcolumn&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">imagename</span> <span class="o">+</span> <span class="s1">&#39;.fits&#39;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">imagename</span> <span class="o">+</span> <span class="s1">&#39;.fits&#39;</span><span class="p">)</span>
+    <span class="n">casatasks</span><span class="o">.</span><span class="n">exportfits</span><span class="p">(</span><span class="n">imagename</span> <span class="o">+</span> <span class="s1">&#39;.image&#39;</span><span class="p">,</span> <span class="n">imagename</span> <span class="o">+</span> <span class="s1">&#39;.fits&#39;</span><span class="p">,</span> <span class="n">dropdeg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dropstokes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="o">!</span>ls
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+empty model_data, CLEANing
+AS209_continuum.ms  AS209.mask   AS209.psf       casa-20210529-010956.log
+AS209.fits          AS209.model  AS209.residual
+AS209.image         AS209.pb     AS209.sumwt
+</pre></div></div>
+</div>
+<div class="section" id="Visualizing-the-CLEANed-image">
+<h3>Visualizing the CLEANed image<a class="headerlink" href="#Visualizing-the-CLEANed-image" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;AS209.fits&quot;</span><span class="p">)</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mf">1e3</span> <span class="o">*</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># mJy/pixel</span>
+<span class="c1"># get the coordinate labels</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;NAXIS1&quot;</span><span class="p">]</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;NAXIS2&quot;</span><span class="p">]</span>
+<span class="c1"># RA coordinates</span>
+<span class="n">CDELT1</span> <span class="o">=</span> <span class="mi">3600</span> <span class="o">*</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;CDELT1&quot;</span><span class="p">]</span>  <span class="c1"># arcsec (converted from decimal deg)</span>
+<span class="n">CRPIX1</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;CRPIX1&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span>  <span class="c1"># Now indexed from 0</span>
+<span class="c1"># DEC coordinates</span>
+<span class="n">CDELT2</span> <span class="o">=</span> <span class="mi">3600</span> <span class="o">*</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;CDELT2&quot;</span><span class="p">]</span>  <span class="c1"># arcsec</span>
+<span class="n">CRPIX2</span> <span class="o">=</span> <span class="n">header</span><span class="p">[</span><span class="s2">&quot;CRPIX2&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span>  <span class="c1"># Now indexed from 0</span>
+<span class="n">RA</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="o">-</span> <span class="n">nx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">CDELT1</span>  <span class="c1"># [arcsec]</span>
+<span class="n">DEC</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span> <span class="o">-</span> <span class="n">ny</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">CDELT2</span>  <span class="c1"># [arcsec]</span>
+<span class="c1"># extent needs to include extra half-pixels.</span>
+<span class="c1"># RA, DEC are pixel centers</span>
+<span class="n">ext</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">RA</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">CDELT1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">RA</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">CDELT1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">DEC</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">CDELT2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">DEC</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">CDELT2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># [arcsec]</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">ext</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mJy / pixel&quot;</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">2.2</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta \alpha \cos \delta$ [$</span><span class="si">{}</span><span class="s2">^{\prime\prime}$]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Delta \delta$ [$</span><span class="si">{}</span><span class="s2">^{\prime\prime}$]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_30_1.png" class="no-scaled-link" src="../_images/tutorials_AS209_30_1.png" style="width: 481px; height: 368px;" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-the-tclean-model-to-calculate-residual-scatter">
+<h2>Using the tclean model to calculate residual scatter<a class="headerlink" href="#Using-the-tclean-model-to-calculate-residual-scatter" title="Permalink to this headline">¶</a></h2>
+<p>now try getting the MODEL_DATA</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="c1"># select the spectral window</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># query the desired columnames as a list</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;MODEL_DATA&quot;</span><span class="p">])</span>
+<span class="c1"># always a good idea to reset the earmarked data</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[[0.05779036-0.00038263j 0.06051357-0.00047972j 0.03197915-0.00052703j
+   ... 0.05890298-0.00046937j 0.06827322-0.00047958j
+   0.1974636 -0.00059635j]]
+
+ [[0.05779036-0.00038263j 0.06051357-0.00047972j 0.03197915-0.00052703j
+   ... 0.05890298-0.00046937j 0.06827322-0.00047958j
+   0.1974636 -0.00059635j]]]
+</pre></div></div>
+</div>
+<p>Let’s calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \mathrm{sigma\_rescale} \times \sigma_0\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\sigma_0 = \sqrt{1/w}\]</div>
+<p>The scatter is defined as</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}  \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}\\We can turn this into a routine\end{aligned}\end{align} \]</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Helper-functions-for-examining-weight-scatter">
+<h3>Helper functions for examining weight scatter<a class="headerlink" href="#Helper-functions-for-examining-weight-scatter" title="Permalink to this headline">¶</a></h3>
+<p>In this section, we’ll define several functions to help us examine and plot the residual scatter. The commands in this document are only dependent on the CASA tools <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code>. But, if you find yourself using these routines frequently, you might consider installing the <em>visread</em> package, since similar commands are provided in the API.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="c1"># select the key</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;DATA&quot;</span><span class="p">,</span> <span class="s2">&quot;MODEL_DATA&quot;</span><span class="p">,</span> <span class="s2">&quot;WEIGHT&quot;</span><span class="p">,</span> <span class="s2">&quot;UVW&quot;</span><span class="p">,</span> <span class="s2">&quot;ANTENNA1&quot;</span><span class="p">,</span> <span class="s2">&quot;ANTENNA2&quot;</span><span class="p">,</span> <span class="s2">&quot;FLAG&quot;</span><span class="p">])</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">data</span><span class="p">,</span> <span class="n">model_data</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">query</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span>
+        <span class="n">query</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">],</span>
+        <span class="n">query</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">],</span>
+        <span class="n">query</span><span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">assert</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">model_data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="p">),</span> <span class="s2">&quot;MODEL_DATA column empty, retry tclean with savemodel=&#39;modelcolumn&#39;&quot;</span>
+
+    <span class="c1"># subtract model from data</span>
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">data</span> <span class="o">-</span> <span class="n">model_data</span>
+
+    <span class="c1"># calculate sigma from weight</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">*=</span> <span class="n">sigma_rescale</span>
+
+    <span class="c1"># divide by weight, augmented for channel dim</span>
+    <span class="n">scatter</span> <span class="o">=</span> <span class="n">residuals</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="c1"># separate polarizations</span>
+    <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter</span>
+    <span class="n">flag_XX</span><span class="p">,</span> <span class="n">flag_YY</span> <span class="o">=</span> <span class="n">flag</span>
+
+    <span class="k">if</span> <span class="n">apply_flags</span><span class="p">:</span>
+        <span class="c1"># flatten across channels</span>
+        <span class="n">scatter_XX</span> <span class="o">=</span> <span class="n">scatter_XX</span><span class="p">[</span><span class="o">~</span><span class="n">flag_XX</span><span class="p">]</span>
+        <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_YY</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s also write a function to plot a histogram, with a Gaussian</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate a reference Gaussian as a function of :math:`x`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (float): location to evaluate Gaussian</span>
+
+<span class="sd">    The Gaussian is defined as</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        f(x) = \frac{1}{\sqrt{2 \pi}} \exp \left ( -\frac{x^2}{2}\right )</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Gaussian function evaluated at :math:`x`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">scatter_hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        scatter_XX (1D numpy array)</span>
+<span class="sd">        scatter_YY (1D numpy array)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        matplotlib figure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">figsize</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;figsize&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bins&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;$\Re \{ V_\mathrm</span><span class="si">{XX}</span><span class="s2"> - \bar</span><span class="si">{V}</span><span class="s2">_\mathrm</span><span class="si">{XX}</span><span class="s2"> \} / \sigma_\mathrm</span><span class="si">{XX}</span><span class="s2">$&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;$\Im \{ V_\mathrm</span><span class="si">{XX}</span><span class="s2"> - \bar</span><span class="si">{V}</span><span class="s2">_\mathrm</span><span class="si">{XX}</span><span class="s2"> \} / \sigma_\mathrm</span><span class="si">{XX}</span><span class="s2">$&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">scatter_YY</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;$\Re \{ V_\mathrm</span><span class="si">{YY}</span><span class="s2"> - \bar</span><span class="si">{V}</span><span class="s2">_\mathrm</span><span class="si">{YY}</span><span class="s2"> \} / \sigma_\mathrm</span><span class="si">{YY}</span><span class="s2">$&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">scatter_YY</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;$\Im \{ V_\mathrm</span><span class="si">{YY}</span><span class="s2"> - \bar</span><span class="si">{V}</span><span class="s2">_\mathrm</span><span class="si">{YY}</span><span class="s2"> \} / \sigma_\mathrm</span><span class="si">{YY}</span><span class="s2">$&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">plot_histogram_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">get_scatter_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">sigma_rescale</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="n">apply_flags</span><span class="p">)</span>
+
+    <span class="n">scatter_XX</span> <span class="o">=</span> <span class="n">scatter_XX</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_YY</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">scatter_hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="n">log</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;DATA_DESC_ID: </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datadescid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Checking-scatter-for-each-spectral-window">
+<h2>Checking scatter for each spectral window<a class="headerlink" href="#Checking-scatter-for-each-spectral-window" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># 7 no outliers, scaled fine</span>
+<span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_43_0.png" class="no-scaled-link" src="../_images/tutorials_AS209_43_0.png" style="width: 625px; height: 712px;" />
+</div>
+</div>
+<div class="section" id="Visibility-Outliers">
+<h3>Visibility Outliers<a class="headerlink" href="#Visibility-Outliers" title="Permalink to this headline">¶</a></h3>
+<p>Note that we do need to apply the flags correctly. These outlier visibilities might adversely affect the image.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># 22 has outliers</span>
+<span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_45_0.png" class="no-scaled-link" src="../_images/tutorials_AS209_45_0.png" style="width: 625px; height: 712px;" />
+</div>
+</div>
+<p>Something looks a little bit strange compared to the previous spectral window. Let’s try plotting things on a log scale to get a closer look.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_47_0.png" class="no-scaled-link" src="../_images/tutorials_AS209_47_0.png" style="width: 640px; height: 712px;" />
+</div>
+</div>
+<p>It appears as though there are several “outlier” visibilities included in this dataset. If the calibration and data preparation went correctly, most likely, these visibilities are actually flagged. Let’s try plotting only the valid, unflagged, visibilities</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_49_0.png" class="no-scaled-link" src="../_images/tutorials_AS209_49_0.png" style="width: 639px; height: 712px;" />
+</div>
+</div>
+<p>Great, it looks like everything checks out.</p>
+</div>
+<div class="section" id="Incorrectly-scaled-weights">
+<h3>Incorrectly scaled weights<a class="headerlink" href="#Incorrectly-scaled-weights" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># 24 no outliers, but scaled incorrectly</span>
+<span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_52_0.png" class="no-scaled-link" src="../_images/tutorials_AS209_52_0.png" style="width: 625px; height: 712px;" />
+</div>
+</div>
+<p>That’s strange, the scatter of these visibilities looks reasonably Gaussian, but the scatter is too large relative to what should be expected given the weight values.</p>
+<p>If we rescale the <span class="math notranslate nohighlight">\(\sigma\)</span> values to make them a factor of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> larger (decrease the weight values by a factor of 2), it looks like everything checks out</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_AS209_54_0.png" class="no-scaled-link" src="../_images/tutorials_AS209_54_0.png" style="width: 630px; height: 712px;" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Rescaling-weights-for-export.">
+<h2>Rescaling weights for export.<a class="headerlink" href="#Rescaling-weights-for-export." title="Permalink to this headline">¶</a></h2>
+<p>We can use the previous routines to iterate through plots of each spectral window. We see that the visibilities in the following spectral windows need to be rescaled by a factor of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">SPWS_RESCALE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>for ID in SPECTRAL_WINDOW_ID: plot_histogram_datadescid(ID)</p>
+<p>We’ll draw upon the “Introduction to CASA tools” tutorial to read all of the visibilities, average polarizations, convert baselines to kilolambda, etc. The difference is that in this application we will need to treat the visibilities on a per-spectral window basis <em>and</em> we will need to rescale the weights when they are incorrect relative to the actual scatter.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../introduction_to_spectral_lines.html" class="btn btn-neutral float-right" title="Introduction and Measurement Set Preparation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../api.html" class="btn btn-neutral float-left" title="Visread API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ian Czekala.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-API
-===
+Visread API
+===========
 
-.. automodule:: visread.visread
+.. automodule:: visread.examine 
     :members:
