@@ -39,7 +39,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import os
 
-# change to the subdirectory that contains the cleaned MS
+# change to the cached subdirectory that contains the cleaned MS
 workdir = "AS209_MS"
 os.chdir(workdir)
 fname = "AS209_continuum.ms"
@@ -84,19 +84,20 @@ ax.set_ylim(-r, r)
 ax.set_xlabel(r"$\Delta \alpha \cos \delta$ [${}^{\prime\prime}$]")
 ax.set_ylabel(r"$\Delta \delta$ [${}^{\prime\prime}$]")
 
-# Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran ``tclean`` was to generate the ``MODEL_DATA`` column in the measurement set.
+# Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran ``tclean`` was to generate the ``MODEL_DATA`` column in the measurement set. The actual CLEANed FITS image is just a nice byproduct.
 
-
-# Let's import and then instantiate the relevant CASA tools, [table](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods) and [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods).
+# ## Examining measurement set structure
+#
+# Before you dive into the full analysis with CASA tools, it's a very good idea to inspect the measurement set using [listobs](https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about).
+#
+# After you've done that, let's start exploring the visibility values. First we'll need to import and then instantiate the relevant CASA tools, [table](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods) and [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods).
 
 import casatools
 
 tb = casatools.table()
 ms = casatools.ms()
 
-# Before you dive into the full analysis with CASA tools, it's a very good idea to inspect the measurement set using [listobs](https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about).
-#
-# After you've done that, let's start exploring the visibility values. We can get the indexes of the unique spectral windows, which are typically indexed by the ``DATA_DESC_ID``
+# We can get the indexes of the unique spectral windows, which are typically indexed by the ``DATA_DESC_ID``.
 
 tb.open(fname + "/DATA_DESCRIPTION")
 SPECTRAL_WINDOW_ID = tb.getcol("SPECTRAL_WINDOW_ID")
@@ -137,23 +138,20 @@ query = ms.getdata(["WEIGHT", "UVW", "DATA"])
 ms.selectinit(reset=True)
 ms.close()
 
-# The returned query is a dictionary whose
-# keys are the lowercase column names
+# The returned query is a dictionary whose keys are the lowercase column names
+
 print(query.keys())
 
+# and whose values are the numerical arrays for the spectral window that we queried
 
-ms.open(fname)
-# select the spectral window
-ms.selectinit(datadescid=0)
-# query the desired columnames as a list
-query = ms.getdata(["MODEL_DATA"])
-# always a good idea to reset the earmarked data
-ms.selectinit(reset=True)
-ms.close()
+print(query["data"])
 
 
-# ## Using the tclean model to calculate residual scatter
-# now try getting the MODEL_DATA
+# ## Using the tclean model to calculate residual visibilities
+#
+# In any data analysis where you're computing a forward model, it's a good consitency check to examine the data residuals from that model, and, in particular, whether their scatter matches the expectations from the noise properties.
+#
+# We can calculate data residuals using the model visibilities derived from the tclean model and stored in the ``MODEL_DATA`` column of the measurement set.
 
 ms.open(fname)
 # select the spectral window
@@ -166,7 +164,7 @@ ms.close()
 
 print(query["model_data"])
 
-# Let's calculate the residuals for each polarization (XX, YY) in units of $\sigma$, where
+# Using these model visibilities, let's calculate the residuals for each polarization (XX, YY) in units of $\sigma$, where
 #
 # $$
 # \sigma = \mathrm{sigma\_rescale} \times \sigma_0
@@ -183,15 +181,28 @@ print(query["model_data"])
 # $$
 # \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}
 # $$
-# We can turn this into a routine
-
+# For now, $\mathrm{sigma\_rescale} = 1$, but we'll see why this parameter is needed in a moment.
 
 # ### Helper functions for examining weight scatter
-# In this section, we'll define several functions to help us examine and plot the residual scatter. The commands in this document are only dependent on the CASA tools ``tb`` and ``ms``. But, if you find yourself using these routines frequently, you might consider installing the *visread* package, since similar commands are provided in the API.
+# Because we'd like to repeat this analysis for each spectral window in the measurement set, it makes things easier if we write these calculations as functions.
+#
+# The functions provided in this document are only dependent on the CASA tools ``tb`` and ``ms``. If you find yourself using these routines frequently, you might consider installing the *visread* package, since similar commands are provided in the API.
 
 
 def get_scatter_datadescid(datadescid, sigma_rescale=1.0, apply_flags=True):
+    """
+    Calculate the scatter for each polarization.
 
+    Args:
+        datadescid (int): the DATA_DESC_ID to be queried
+        sigma_rescale (int):  multiply the uncertainties by this factor
+        apply_flags (bool): calculate the scatter *after* the flags have been applied
+
+    Returns:
+        scatter_XX, scatter_YY: a 2-tuple of numpy arrays containing the scatter in each polarization.
+        If ``apply_flags==True``, each array will be 1-dimensional. If ``apply_flags==False``, each array
+        will retain its original shape, including channelization (e.g., shape ``nchan,nvis``).
+    """
     ms.open(fname)
     # select the key
     ms.selectinit(datadescid=datadescid)
@@ -234,9 +245,6 @@ def get_scatter_datadescid(datadescid, sigma_rescale=1.0, apply_flags=True):
     return scatter_XX, scatter_YY
 
 
-# Let's also write a function to plot a histogram, with a Gaussian
-
-
 def gaussian(x):
     r"""
     Evaluate a reference Gaussian as a function of :math:`x`
@@ -258,6 +266,9 @@ def gaussian(x):
 
 def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     """
+    Plot a normalized histogram of scatter for real and imaginary
+    components of XX and YY polarizations.
+
     Args:
         scatter_XX (1D numpy array)
         scatter_YY (1D numpy array)
@@ -300,6 +311,18 @@ def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
 def plot_histogram_datadescid(
     datadescid, sigma_rescale=1.0, log=False, apply_flags=True
 ):
+    """Wrap the scatter routine to plot a histogram of scatter for real and imaginary components of XX and YY polarizations, given a ``DATA_DESC_ID``.
+
+    Args:
+        datadescid (int): the DATA_DESC_ID to be queried
+        sigma_rescale (int):  multiply the uncertainties by this factor
+        log (bool): plot the histogram with a log stretch
+        apply_flags (bool): calculate the scatter *after* the flags have been applied
+
+
+    Returns:
+        matplotlib figure
+    """
 
     scatter_XX, scatter_YY = get_scatter_datadescid(
         datadescid=datadescid, sigma_rescale=sigma_rescale, apply_flags=apply_flags
@@ -313,27 +336,31 @@ def plot_histogram_datadescid(
 
 
 # ## Checking scatter for each spectral window
+# Now lets use our helper functions to investigate the characteristics of each spectral window.
 
-# 7 no outliers, scaled fine
+# ### Spectral Window 7: A correctly scaled SPW
+# Let's see how the residual visibilities in spectral window 7 scatter relative to their expected Gaussian envelope
+
 plot_histogram_datadescid(7, apply_flags=False)
 
-# ### Visibility Outliers
-# Note that we do need to apply the flags correctly. These outlier visibilities might adversely affect the image.
+# Great, it looks like things are pretty much as we would expect here.
 
-# 22 has outliers
+# ### Spectral Window 22: Visibility outliers
+# In the last example, we were a little bit cavalier and plotted the residuals for *all* visibilities, regardless of whether their ``FLAG`` was true. If we do the same for the visibilities in spectral window 22,
+
 plot_histogram_datadescid(22, apply_flags=False)
 
-# Something looks a little bit strange compared to the previous spectral window. Let's try plotting things on a log scale to get a closer look.
+# We find that something looks a little bit strange. Let's try plotting things on a log scale to get a closer look.
 
 plot_histogram_datadescid(22, apply_flags=False, log=True)
 
-# It appears as though there are several "outlier" visibilities included in this dataset. If the calibration and data preparation went correctly, most likely, these visibilities are actually flagged. Let's try plotting only the valid, unflagged, visibilities
+# It appears as though there are several "outlier" visibilities included in this spectral window. If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let's try plotting only the valid, unflagged, visibilities
 
 plot_histogram_datadescid(22, apply_flags=True, log=True)
 
-# Great, it looks like everything checks out.
+# Great, it looks like the outlier visibilities were correctly flagged, and everything checks out.
 
-# ### Incorrectly scaled weights
+# ### Spectral Window 24: Incorrectly scaled weights
 
 # 24 no outliers, but scaled incorrectly
 plot_histogram_datadescid(24)

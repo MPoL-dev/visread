@@ -25,7 +25,6 @@ clean:
 	rm -rf tutorials/.ipynb_checkpoints
 	rm -rf tutorials/runs
 
-
 tutorials/%.ipynb: tutorials/%.py tutorials/AS209_MS/AS209.fits
 	jupytext --to ipynb --execute $<
 

@@ -24,9 +24,24 @@ jobs:
       - name: Install Pandoc dependency for nbconvert 
         run: |
           sudo apt-get install pandoc 
-      - name: Build the docs
+      - name: Clean docs build 
         run: |
           make -C docs clean
+      - name: Cache/Restore the AS 209 measurement set
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-AS209
+        with:
+          # files are stored in docs/tutorials/AS209_MS
+          path: docs/tutorials/AS209_MS
+          # we want to hash off of the build script
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('docs/tutorials/dl_and_tclean_AS209.py') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Build the docs
+        run: |
           make -C docs html 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
