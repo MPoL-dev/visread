@@ -28,7 +28,7 @@ Visread documentation
 Citation
 ========
 
-If you find this piece of code useful, please cite::
+If you find these tutorials or code useful, please cite::
 
     @software{visread,
     author       = {Ian Czekala and

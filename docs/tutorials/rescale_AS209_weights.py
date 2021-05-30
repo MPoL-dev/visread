@@ -34,10 +34,13 @@
 #
 # Because the measurement set is large (0.9 Gb) and the ``tclean`` process is computationally expensive (taking about 1 hr on a single core), we have pre-executed those commands and cached the measurement set and ``tclean`` products into the ``AS209_MS`` local directory. If you're interested in the exact ``tclean`` commands used, please check out the [dl_and_tclean_AS209.py](dl_and_tclean_AS209.py) script directly.
 
+import re
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import os
+
+from traitlets.traitlets import validate
 
 # change to the cached subdirectory that contains the cleaned MS
 workdir = "AS209_MS"
@@ -181,6 +184,7 @@ print(query["model_data"])
 # $$
 # \mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}
 # $$
+#
 # For now, $\mathrm{sigma\_rescale} = 1$, but we'll see why this parameter is needed in a moment.
 
 # ### Helper functions for examining weight scatter
@@ -245,7 +249,7 @@ def get_scatter_datadescid(datadescid, sigma_rescale=1.0, apply_flags=True):
     return scatter_XX, scatter_YY
 
 
-def gaussian(x):
+def gaussian(x, sigma=1):
     r"""
     Evaluate a reference Gaussian as a function of :math:`x`
 
@@ -261,7 +265,7 @@ def gaussian(x):
     Returns:
         Gaussian function evaluated at :math:`x`
     """
-    return 1 / np.sqrt(2 * np.pi) * np.exp(-0.5 * x ** 2)
+    return 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * (x / sigma) ** 2)
 
 
 def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
@@ -362,11 +366,58 @@ plot_histogram_datadescid(22, apply_flags=True, log=True)
 
 plot_histogram_datadescid(22, apply_flags=True, log=False)
 
-# If we rescale the $\sigma$ values to make them a factor of $\sqrt{2}$ larger (decrease the weight values by a factor of 2), it looks like we are able to make the distributions match up a little bit better.
+# Lets write a routine to estimate by how much the $\sigma_0$ values need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.
 
-plot_histogram_datadescid(22, sigma_rescale=np.sqrt(2), apply_flags=True, log=False)
+from scipy.optimize import minimize
 
-# We tried a factor of $\sqrt{2}$ because this is a common factor that is part of the CASA weight calculations ([which have changed across recent CASA versions](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights)). The distributions aren't in perfect agreement, so lets plot up the visibilities in the $u,v$ plane, colorized by their residual values to see if we can discern any patterns that may be the result of an idadequate calibration or CLEAN model.
+
+def calculate_rescale_factor(scatter, **kwargs):
+    bins = kwargs.get("bins", 40)
+    bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
+    bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
+
+    # find the sigma_rescale which minimizes the mean squared error
+    # between the bin_heights and the expectations from the
+    # reference Gaussian
+
+    loss = lambda x: np.sum((bin_heights - gaussian(bin_centers, sigma=x)) ** 2)
+
+    res = minimize(loss, 1.0)
+
+    if res.success:
+        return res.x[0]
+    else:
+        print(res)
+        return False
+
+
+def get_sigma_rescale_datadescid(datadescid, **kwargs):
+    scatter_XX, scatter_YY = get_scatter_datadescid(
+        datadescid, apply_flags=True, **kwargs
+    )
+    vals = np.array(
+        [
+            calculate_rescale_factor(scatter)
+            for scatter in [
+                scatter_XX.real,
+                scatter_XX.imag,
+                scatter_YY.real,
+                scatter_YY.imag,
+            ]
+        ]
+    )
+
+    return np.average(vals)
+
+
+factor = get_sigma_rescale_datadescid(22)
+print(factor)
+
+# If we rescale the $\sigma$ values to make them a factor of $\sim 1.85$ larger it looks like we are able to make the distributions match up a little bit better.
+
+plot_histogram_datadescid(22, sigma_rescale=factor, apply_flags=True, log=False)
+
+# It's not really clear why this factor works, but factors of $\sqrt{2}$ and 2 appear in changes to the CASA weight calculations ([which have changed across recent CASA versions](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights)). Just to check things out, lets plot up the visibilities in the $u,v$ plane, colorized by their residual values to see if we can discern any patterns that may be the result of an inadequate calibration or CLEAN model.
 
 # get the baselines and flags for spectral window 22
 ms.open(fname)
@@ -381,7 +432,7 @@ u, v, w = query["uvw"] * 1e-3  # [km]
 
 # calculate the scatter of the residual visibilities
 scatter_XX, scatter_YY = get_scatter_datadescid(
-    22, sigma_rescale=np.sqrt(2), apply_flags=False
+    22, sigma_rescale=factor, apply_flags=False
 )
 
 # Let's check the array shapes of each of these.
@@ -422,13 +473,15 @@ ax.set_ylabel(r"$v$ [km]")
 # We don't appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we'll just accept these rescaled weights as is.
 
 # ## Rescaling weights for export.
-# We can use the previous routines to iterate through plots of each spectral window. We see that the visibilities in the following spectral windows need to be rescaled by a factor of $\sqrt{2}$:
+# We can use the previous routines to iterate through plots of each spectral window. For reference, here are the rescale factors we derived for each spectral window
 
-SPWS_RESCALE = [9, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+sigma_rescale_factors = {
+    ID: get_sigma_rescale_datadescid(ID) for ID in SPECTRAL_WINDOW_ID
+}
+for ID in SPECTRAL_WINDOW_ID:
+    print(ID, "{:.2f}".format(sigma_rescale_factors[ID]))
 
-# for ID in SPECTRAL_WINDOW_ID:
-#     plot_histogram_datadescid(ID)
-
-#
-#
 # We'll draw upon the "Introduction to CASA tools" tutorial to read all of the visibilities, average polarizations, convert baselines to kilolambda, etc. The difference is that in this application we will need to treat the visibilities on a per-spectral window basis *and* we will need to rescale the weights when they are incorrect relative to the actual scatter.
+#
+# Technically, this continuum dataset
+# We'll also export the baselines in units of [kilolambda], rather than meters.
