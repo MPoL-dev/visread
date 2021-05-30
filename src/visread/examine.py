@@ -284,3 +284,8 @@ def plot_weight_hist(filename, datadescid, log=False, **kwargs):
     fig.suptitle("DATA_DESC_ID: {:}".format(datadescid))
 
     return fig
+
+
+# * calculate rescale factor
+# * broadcast baselines (to klambda)
+# * average polarizations

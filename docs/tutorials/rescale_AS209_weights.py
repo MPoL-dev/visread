@@ -358,15 +358,15 @@ plot_histogram_datadescid(22, apply_flags=False)
 
 plot_histogram_datadescid(22, apply_flags=False, log=True)
 
-# It appears as though there are several "outlier" visibilities included in this spectral window. If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let's try plotting only the valid, unflagged, visibilities
+# It appears as though there are a bunch of "outlier" visibilities included in this spectral window (the histogram y-axis is the relative frequency or probability density, so in actually there are a relatively small number of outlier visibilities). If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let's try plotting only the valid, unflagged, visibilities
 
 plot_histogram_datadescid(22, apply_flags=True, log=True)
 
-# This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale will make the discrepancy more apparent
+# This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale might make the discrepancy more visible
 
 plot_histogram_datadescid(22, apply_flags=True, log=False)
 
-# Lets write a routine to estimate by how much the $\sigma_0$ values need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.
+# Lets write a routine to estimate by how much the $\sigma_0$ values would need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.
 
 from scipy.optimize import minimize
 
@@ -417,7 +417,9 @@ print(factor)
 
 plot_histogram_datadescid(22, sigma_rescale=factor, apply_flags=True, log=False)
 
-# It's not really clear why this factor works, but factors of $\sqrt{2}$ and 2 appear in changes to the CASA weight calculations ([which have changed across recent CASA versions](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights)). Just to check things out, lets plot up the visibilities in the $u,v$ plane, colorized by their residual values to see if we can discern any patterns that may be the result of an inadequate calibration or CLEAN model.
+# It's not really clear why this factor works, but factors of $\sqrt{2}$ and 2 appear in changes to the CASA weight calculations ([which have changed across recent CASA versions](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights)). Since this DSHARP measurement set contains visibilities acquired in previous ALMA cycles (and potentially calibrated with earlier versions of CASA), these changes in weight definitions may be responsible for the varying weight scatter across spectral window.
+#
+# To investigate the overdispersion in spectral window 22, lets plot up the rescaled visibilities in the $u,v$ plane, colorized by their residual values to see if we can discern any patterns that may be the result of an inadequate calibration or CLEAN model.
 
 # get the baselines and flags for spectral window 22
 ms.open(fname)
@@ -462,8 +464,8 @@ vvmax = 5
 norm = matplotlib.colors.Normalize(vmin=-vvmax, vmax=vvmax)
 
 fig, ax = plt.subplots(nrows=1, figsize=(4, 4))
-ax.scatter(uu_XX, vv_XX, s=0.1, c=scatter_XX, cmap="bwr", norm=norm)
-im = ax.scatter(uu_YY, vv_YY, s=0.1, c=scatter_YY, cmap="bwr", norm=norm)
+ax.scatter(uu_XX, vv_XX, s=0.1, c=scatter_XX.real, cmap="bwr", norm=norm)
+im = ax.scatter(uu_YY, vv_YY, s=0.1, c=scatter_YY.real, cmap="bwr", norm=norm)
 plt.colorbar(im, ax=ax)
 ax.set_title("SPW: {:}".format(22))
 ax.set_aspect("equal")
@@ -481,7 +483,4 @@ sigma_rescale_factors = {
 for ID in SPECTRAL_WINDOW_ID:
     print(ID, "{:.2f}".format(sigma_rescale_factors[ID]))
 
-# We'll draw upon the "Introduction to CASA tools" tutorial to read all of the visibilities, average polarizations, convert baselines to kilolambda, etc. The difference is that in this application we will need to treat the visibilities on a per-spectral window basis *and* we will need to rescale the weights when they are incorrect relative to the actual scatter.
-#
-# Technically, this continuum dataset
-# We'll also export the baselines in units of [kilolambda], rather than meters.
+# If you wanted to use these visibilities for forward modeling or [Regularized Maximum Likelihood (RML) imaging](https://mpol-dev.github.io/MPoL/), you will want to read and export the correctly flagged and rescaled visibilities and convert baselines to kilolambda.
