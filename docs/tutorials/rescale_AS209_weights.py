@@ -303,7 +303,7 @@ def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     for a in ax.flatten():
         a.plot(xs, gaussian(xs))
 
-    fig.subplots_adjust(hspace=0.25, top=0.95)
+    fig.subplots_adjust(hspace=0.25, top=0.92)
 
     return fig
 
@@ -358,19 +358,68 @@ plot_histogram_datadescid(22, apply_flags=False, log=True)
 
 plot_histogram_datadescid(22, apply_flags=True, log=True)
 
-# Great, it looks like the outlier visibilities were correctly flagged, and everything checks out.
+# This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale will make the discrepancy more apparent
 
-# ### Spectral Window 24: Incorrectly scaled weights
+plot_histogram_datadescid(22, apply_flags=True, log=False)
 
-# 24 no outliers, but scaled incorrectly
-plot_histogram_datadescid(24)
+# If we rescale the $\sigma$ values to make them a factor of $\sqrt{2}$ larger (decrease the weight values by a factor of 2), it looks like we are able to make the distributions match up a little bit better.
 
-# That's strange, the scatter of these visibilities looks reasonably Gaussian, but the scatter is too large relative to what should be expected given the weight values.
-#
-# If we rescale the $\sigma$ values to make them a factor of $\sqrt{2}$ larger (decrease the weight values by a factor of 2), it looks like everything checks out
+plot_histogram_datadescid(22, sigma_rescale=np.sqrt(2), apply_flags=True, log=False)
 
-plot_histogram_datadescid(24, sigma_rescale=np.sqrt(2))
+# We tried a factor of $\sqrt{2}$ because this is a common factor that is part of the CASA weight calculations ([which have changed across recent CASA versions](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights)). The distributions aren't in perfect agreement, so lets plot up the visibilities in the $u,v$ plane, colorized by their residual values to see if we can discern any patterns that may be the result of an idadequate calibration or CLEAN model.
 
+# get the baselines and flags for spectral window 22
+ms.open(fname)
+# select the key
+ms.selectinit(datadescid=22)
+query = ms.getdata(["UVW", "FLAG"])
+ms.selectinit(reset=True)
+ms.close()
+
+flag_XX, flag_YY = query["flag"]
+u, v, w = query["uvw"] * 1e-3  # [km]
+
+# calculate the scatter of the residual visibilities
+scatter_XX, scatter_YY = get_scatter_datadescid(
+    22, sigma_rescale=np.sqrt(2), apply_flags=False
+)
+
+# Let's check the array shapes of each of these.
+
+print(flag_XX.shape)
+print(scatter_XX.shape)
+print(u.shape)
+
+# If we want to correctly apply the flags, we'll need to broadcast the baseline arrays to the full set of channels. (Even though this is a continuum dataset, it does have more than one channel to prevent bandwidth smearing).
+
+nchan = flag_XX.shape[0]
+broadcast = np.ones((nchan, 1))
+uu = u * broadcast
+vv = v * broadcast
+
+# Now we index the "good" visibilities
+
+uu_XX = uu[~flag_XX]
+vv_XX = vv[~flag_YY]
+scatter_XX = scatter_XX[~flag_XX]
+
+uu_YY = uu[~flag_YY]
+vv_YY = vv[~flag_YY]
+scatter_YY = scatter_YY[~flag_YY]
+
+vvmax = 5
+norm = matplotlib.colors.Normalize(vmin=-vvmax, vmax=vvmax)
+
+fig, ax = plt.subplots(nrows=1, figsize=(4, 4))
+ax.scatter(uu_XX, vv_XX, s=0.1, c=scatter_XX, cmap="bwr", norm=norm)
+im = ax.scatter(uu_YY, vv_YY, s=0.1, c=scatter_YY, cmap="bwr", norm=norm)
+plt.colorbar(im, ax=ax)
+ax.set_title("SPW: {:}".format(22))
+ax.set_aspect("equal")
+ax.set_xlabel(r"$u$ [km]")
+ax.set_ylabel(r"$v$ [km]")
+
+# We don't appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we'll just accept these rescaled weights as is.
 
 # ## Rescaling weights for export.
 # We can use the previous routines to iterate through plots of each spectral window. We see that the visibilities in the following spectral windows need to be rescaled by a factor of $\sqrt{2}$:
