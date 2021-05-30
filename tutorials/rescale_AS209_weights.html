@@ -116,7 +116,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#Checking-scatter-for-each-spectral-window">Checking scatter for each spectral window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Spectral-Window-7:-A-correctly-scaled-SPW">Spectral Window 7: A correctly scaled SPW</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Spectral-Window-22:-Visibility-outliers">Spectral Window 22: Visibility outliers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Spectral-Window-24:-Incorrectly-scaled-weights">Spectral Window 24: Incorrectly scaled weights</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Rescaling-weights-for-export.">Rescaling weights for export.</a></li>
@@ -929,7 +928,7 @@ True
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
         <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
 
-    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.92</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">fig</span>
 </pre></div>
@@ -1047,17 +1046,13 @@ True
 <img alt="../_images/tutorials_rescale_AS209_weights_44_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_44_0.png" style="width: 639px; height: 712px;" />
 </div>
 </div>
-<p>Great, it looks like the outlier visibilities were correctly flagged, and everything checks out.</p>
-</div>
-<div class="section" id="Spectral-Window-24:-Incorrectly-scaled-weights">
-<h3>Spectral Window 24: Incorrectly scaled weights<a class="headerlink" href="#Spectral-Window-24:-Incorrectly-scaled-weights" title="Permalink to this headline">¶</a></h3>
+<p>This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale will make the discrepancy more apparent</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># 24 no outliers, but scaled incorrectly</span>
-<span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1065,17 +1060,16 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_47_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_47_0.png" style="width: 625px; height: 712px;" />
+<img alt="../_images/tutorials_rescale_AS209_weights_46_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_46_0.png" style="width: 625px; height: 712px;" />
 </div>
 </div>
-<p>That’s strange, the scatter of these visibilities looks reasonably Gaussian, but the scatter is too large relative to what should be expected given the weight values.</p>
-<p>If we rescale the <span class="math notranslate nohighlight">\(\sigma\)</span> values to make them a factor of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> larger (decrease the weight values by a factor of 2), it looks like everything checks out</p>
+<p>If we rescale the <span class="math notranslate nohighlight">\(\sigma\)</span> values to make them a factor of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> larger (decrease the weight values by a factor of 2), it looks like we are able to make the distributions match up a little bit better.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1083,16 +1077,174 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_rescale_AS209_weights_49_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_49_0.png" style="width: 630px; height: 712px;" />
+<img alt="../_images/tutorials_rescale_AS209_weights_48_0.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_48_0.png" style="width: 625px; height: 712px;" />
 </div>
 </div>
+<p>We tried a factor of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> because this is a common factor that is part of the CASA weight calculations (<a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights">which have changed across recent CASA versions</a>). The distributions aren’t in perfect agreement, so lets plot up the visibilities in the <span class="math notranslate nohighlight">\(u,v\)</span> plane, colorized by their residual values to see if we can discern any patterns that may be the result of an idadequate calibration or CLEAN
+model.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># get the baselines and flags for spectral window 22</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="c1"># select the key</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;UVW&quot;</span><span class="p">,</span> <span class="s2">&quot;FLAG&quot;</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">flag_XX</span><span class="p">,</span> <span class="n">flag_YY</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">]</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;uvw&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e-3</span>  <span class="c1"># [km]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># calculate the scatter of the residual visibilities</span>
+<span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">get_scatter_datadescid</span><span class="p">(</span>
+    <span class="mi">22</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s check the array shapes of each of these.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">flag_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scatter_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(16, 297935)
+(16, 297935)
+(297935,)
+</pre></div></div>
+</div>
+<p>If we want to correctly apply the flags, we’ll need to broadcast the baseline arrays to the full set of channels. (Even though this is a continuum dataset, it does have more than one channel to prevent bandwidth smearing).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">nchan</span> <span class="o">=</span> <span class="n">flag_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">uu</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">broadcast</span>
+<span class="n">vv</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">broadcast</span>
+</pre></div>
+</div>
+</div>
+<p>Now we index the “good” visibilities</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">uu_XX</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="o">~</span><span class="n">flag_XX</span><span class="p">]</span>
+<span class="n">vv_XX</span> <span class="o">=</span> <span class="n">vv</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
+<span class="n">scatter_XX</span> <span class="o">=</span> <span class="n">scatter_XX</span><span class="p">[</span><span class="o">~</span><span class="n">flag_XX</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">uu_YY</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
+<span class="n">vv_YY</span> <span class="o">=</span> <span class="n">vv</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
+<span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_YY</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">vvmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="n">vvmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vvmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu_XX</span><span class="p">,</span> <span class="n">vv_XX</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu_YY</span><span class="p">,</span> <span class="n">vv_YY</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">scatter_YY</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;SPW: </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">22</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u$ [km]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$v$ [km]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/hostedtoolcache/Python/3.6.13/x64/lib/python3.6/site-packages/numpy/core/_asarray.py:136: ComplexWarning: Casting complex values to real discards the imaginary part
+  return array(a, dtype, copy=False, order=order, subok=True)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0, 0.5, &#39;$v$ [km]&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_rescale_AS209_weights_61_2.png" class="no-scaled-link" src="../_images/tutorials_rescale_AS209_weights_61_2.png" style="width: 480px; height: 450px;" />
+</div>
+</div>
+<p>We don’t appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we’ll just accept these rescaled weights as is.</p>
 </div>
 </div>
 <div class="section" id="Rescaling-weights-for-export.">
 <h2>Rescaling weights for export.<a class="headerlink" href="#Rescaling-weights-for-export." title="Permalink to this headline">¶</a></h2>
 <p>We can use the previous routines to iterate through plots of each spectral window. We see that the visibilities in the following spectral windows need to be rescaled by a factor of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
