@@ -23,7 +23,6 @@ Visread documentation
    tutorials/rescale_AS209_weights
    installation.rst
    api.rst
-   introduction_to_spectral_lines.rst
 
 Citation
 ========
