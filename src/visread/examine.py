@@ -1,10 +1,14 @@
 import numpy as np
 import casatools
 import matplotlib.pyplot as plt
+from scipy.optimize import minimize
 
 # initialize the relevant CASA tools
 tb = casatools.table()
 ms = casatools.ms()
+msmd = casatools.msmetadata()
+
+c_ms = 2.99792458e8  # [m s^-1]
 
 
 def weight_to_sigma(weight):
@@ -25,12 +29,13 @@ def weight_to_sigma(weight):
     return np.sqrt(1 / weight)
 
 
-def gaussian(x):
+def gaussian(x, sigma=1):
     r"""
     Evaluate a reference Gaussian as a function of :math:`x`
 
     Args:
         x (float): location to evaluate Gaussian
+        sigma (float): standard deviation of Gaussion (default 1)
 
     The Gaussian is defined as
 
@@ -41,7 +46,7 @@ def gaussian(x):
     Returns:
         Gaussian function evaluated at :math:`x`
     """
-    return 1 / np.sqrt(2 * np.pi) * np.exp(-0.5 * x ** 2)
+    return 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * (x / sigma) ** 2)
 
 
 def get_colnames(filename):
@@ -105,6 +110,171 @@ def query_datadescid(
     ms.close()
 
     return query
+
+
+def get_channels(filename, datadescid):
+    # https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_msmetadata/methods
+    msmd.open(filename)
+    chan_freq = msmd.chanfreqs(datadescid)
+    msmd.done()
+
+    return chan_freq
+
+
+def get_channel_sorted_data(filename, datadescid):
+    # get the channels
+    chan_freq = get_channels(filename, datadescid)
+    nchan = len(chan_freq)
+
+    # get the data and flags
+    query = query_datadescid(filename, datadescid)
+    data = query["data"]
+    model_data = query["model_data"]
+    flag = query["flag"]
+
+    # check to make sure we're in blushifted - redshifted order, otherwise reverse channel order
+    if (nchan > 1) and (chan_freq[1] > chan_freq[0]):
+        # reverse channels
+        chan_freq = chan_freq[::-1]
+        data = data[:, ::-1, :]
+        model_data = model_data[:, ::-1, :]
+        flag = flag[:, ::-1, :]
+
+    return chan_freq, data, model_data, flag
+
+
+def broadcast_baselines(u, v, chan_freq):
+    r"""
+    Convert baselines to kilolambda
+
+    Args:
+        u (1D array nvis): baseline [m]
+        v (1D array nvis): baseline [m]
+        chan_freq (1D array nchan): frequencies [Hz]
+
+    Returns:
+        (u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]
+    """
+
+    nchan = len(chan_freq)
+
+    # broadcast to the same shape as the data
+    # stub to broadcast u, v to all channels
+    broadcast = np.ones((nchan, 1))
+    uu = u * broadcast
+    vv = v * broadcast
+
+    # calculate wavelengths in meters
+    wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
+
+    # calculate baselines in klambda
+    uu = 1e-3 * uu / wavelengths  # [klambda]
+    vv = 1e-3 * vv / wavelengths  # [klambda]
+
+    return (uu, vv)
+
+
+def broadcast_weights(weight, nchan):
+
+    # weight is shape (npol, nvis)
+
+    # we want to make it shape (npol, nchan, nvis)
+
+    broadcast = np.ones((2, nchan, 1))
+    return weight[:, np.newaxis, :] * broadcast
+
+
+def average_polarizations(data, model_data, flag, weight):
+    """
+    Average over the polarization axis.
+
+    Args:
+        data (2, nchan, nvis): complex data array
+        flag (2, nchan, nvis): bool flag array
+        weight (2, nchan, nvis): assume it's already been broadcasted
+
+    Returns:
+        data, flag, weight averaged over the polarization axis each (nchan, nvis)
+    """
+    assert data.shape[0] == 2, "Not recognized as a dual-polarization dataset"
+
+    data = np.sum(data * weight, axis=0) / np.sum(weight, axis=0)
+    model_data = np.sum(model_data * weight, axis=0) / np.sum(weight, axis=0)
+    flag = np.any(flag, axis=0)
+    weight = np.sum(weight, axis=0)
+
+    return data, model_data, flag, weight
+
+
+def get_crosscorrelation_mask(ant1, ant2):
+
+    # index to cross-correlations
+    xc = np.where(ant1 != ant2)[0]
+
+    return xc
+
+
+def rescale_weights(weight, sigma_rescale):
+    return weight / (sigma_rescale ** 2)
+
+
+def get_processed_visibilities(filename, datadescid, sigma_rescale=1.0):
+    r"""
+    Get all of the visibilities from a specific datadescid. Average polarizations.
+
+    Returns:
+        dictionary with keys "frequencies", "uu", "data", "flag", "weight"
+
+
+    """
+    # get sorted channels, data, and flags
+    chan_freq, data, model_data, flag = get_channel_sorted_data(filename, datadescid)
+    nchan = len(chan_freq)
+
+    # get baselines, weights, and antennas
+    query = query_datadescid(filename, datadescid)
+
+    # broadcast baselines
+    uu, vv, ww = query["uvw"]  # [m]
+    uu, vv = broadcast_baselines(uu, vv, chan_freq)
+
+    # broadcast and rescale weights
+    weight = query["weight"]
+    weight = broadcast_weights(weight, nchan)
+    weight = rescale_weights(weight, sigma_rescale)
+
+    # average polarizations
+    data, model_data, flag, weight = average_polarizations(
+        data, model_data, flag, weight
+    )
+
+    # calculate the cross correlation mask
+    ant1 = query["antenna1"]
+    ant2 = query["antenna2"]
+    xc = get_crosscorrelation_mask(ant1, ant2)
+
+    # apply the xc mask across channels
+    # drop autocorrelation channels
+    uu = uu[:, xc]
+    vv = vv[:, xc]
+    data = data[:, xc]
+    model_data = model_data[:, xc]
+    flag = flag[:, xc]
+    weight = weight[:, xc]
+
+    # take the complex conjugate
+    data = np.conj(data)
+    model_data = np.conj(model_data)
+
+    return {
+        "frequencies": chan_freq,
+        "uu": uu,
+        "vv": vv,
+        "data": data,
+        "model_data": model_data,
+        "flag": flag,
+        "weight": weight,
+    }
 
 
 def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=True):
@@ -218,6 +388,21 @@ def plot_scatter_datadescid(
     chan_slice=None,
     apply_flags=True,
 ):
+    r"""
+    Plot a set of histograms of the scatter of the residual visibilities for the real and
+    imaginary components of the XX and YY polarizations.
+
+    Args:
+        filename (string): measurement set filename
+        datadescid (int): the DATA_DESC_ID to be queried
+        log (bool): should the histogram values be log scaled?
+        sigma_rescale (int):  multiply the uncertainties by this factor
+        chan_slice (slice): if not None, a slice object specifying the channels to subselect
+        apply_flags (bool): calculate the scatter *after* the flags have been applied
+
+    Returns:
+        matplotlib figure with scatter histograms
+    """
 
     if chan_slice is not None:
         print("apply_flags setting is ignored when chan_slice is not None")
@@ -239,6 +424,44 @@ def plot_scatter_datadescid(
 
     fig = _scatter_hist(scatter_XX, scatter_YY, log=log)
     fig.suptitle("DATA_DESC_ID: {:}".format(datadescid))
+
+    return fig
+
+
+def get_averaged_scatter(d):
+    """
+    Args:
+        d : dictionary with keys
+    """
+
+    residuals = d["data"] - d["model_data"]
+    sigma = weight_to_sigma(d["weight"])
+
+    scatter = residuals / sigma
+
+    # apply flags
+    flag = d["flag"]
+
+    return scatter[~flag]
+
+
+def plot_averaged_scatter(scatter, log=False, **kwargs):
+
+    xs = np.linspace(-5, 5)
+
+    figsize = kwargs.get("figsize", (9, 4))
+    bins = kwargs.get("bins", 40)
+
+    fig, ax = plt.subplots(ncols=2, figsize=figsize)
+    ax[0].hist(scatter.real, bins=bins, density=True, log=log)
+    ax[0].set_xlabel(r"$\Re \{ V - \bar{V} \} / \sigma$")
+    ax[1].hist(scatter.imag, bins=bins, density=True, log=log)
+    ax[1].set_xlabel(r"$\Im \{ V - \bar{V} \} / \sigma$")
+
+    for a in ax.flatten():
+        a.plot(xs, gaussian(xs))
+
+    fig.subplots_adjust(hspace=0.25, top=0.95)
 
     return fig
 
@@ -286,6 +509,45 @@ def plot_weight_hist(filename, datadescid, log=False, **kwargs):
     return fig
 
 
-# * calculate rescale factor
+def calculate_rescale_factor(scatter, **kwargs):
+    bins = kwargs.get("bins", 40)
+    bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
+    bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
+
+    # find the sigma_rescale which minimizes the mean squared error
+    # between the bin_heights and the expectations from the
+    # reference Gaussian
+
+    loss = lambda x: np.sum((bin_heights - gaussian(bin_centers, sigma=x)) ** 2)
+
+    res = minimize(loss, 1.0)
+
+    if res.success:
+        return res.x[0]
+    else:
+        print(res)
+        return False
+
+
+def get_sigma_rescale_datadescid(filename, datadescid, **kwargs):
+    scatter_XX, scatter_YY = get_scatter_datadescid(
+        filename, datadescid, apply_flags=True, **kwargs
+    )
+
+    vals = np.array(
+        [
+            calculate_rescale_factor(scatter)
+            for scatter in [
+                scatter_XX.real,
+                scatter_XX.imag,
+                scatter_YY.real,
+                scatter_YY.imag,
+            ]
+        ]
+    )
+
+    return np.average(vals)
+
+
 # * broadcast baselines (to klambda)
 # * average polarizations
