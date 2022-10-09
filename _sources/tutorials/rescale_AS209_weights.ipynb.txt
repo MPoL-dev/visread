@@ -3,13 +3,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "2f47f06a",
+   "id": "6d976d52",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:41.891833Z",
-     "iopub.status.busy": "2022-10-09T15:20:41.891510Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.321274Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.320458Z"
+     "iopub.execute_input": "2022-10-09T15:20:15.570399Z",
+     "iopub.status.busy": "2022-10-09T15:20:15.570025Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.043659Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.042688Z"
     },
     "nbsphinx": "hidden"
    },
@@ -21,13 +21,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "6a904f68",
+   "id": "8eb373e2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.325768Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.325430Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.339511Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.338940Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.047809Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.047485Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.061726Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.060947Z"
     },
     "nbsphinx": "hidden"
    },
@@ -47,7 +47,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cb4bd740",
+   "id": "57fcda77",
    "metadata": {},
    "source": [
     "# Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities\n",
@@ -69,13 +69,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "bb99e79d",
+   "id": "396814aa",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.343026Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.342548Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.346206Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.345499Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.065231Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.064739Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.069051Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.068188Z"
     }
    },
    "outputs": [],
@@ -90,13 +90,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "366dea47",
+   "id": "d8e54d9f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.349578Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.349178Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.352842Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.352129Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.072508Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.072091Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.076206Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.075229Z"
     }
    },
    "outputs": [],
@@ -107,13 +107,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "451cbc54",
+   "id": "f1c6f48b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.355972Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.355532Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.359284Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.358489Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.080068Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.079777Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.083959Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.082999Z"
     }
    },
    "outputs": [],
@@ -127,7 +127,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "853fc792",
+   "id": "3a388ada",
    "metadata": {},
    "source": [
     "### Visualizing the CLEANed image\n",
@@ -137,13 +137,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "36d75d4c",
+   "id": "a6edbc82",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.363165Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.362706Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.502221Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.501455Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.088132Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.087868Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.248971Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.247760Z"
     }
    },
    "outputs": [],
@@ -154,13 +154,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "ad96ba9e",
+   "id": "668e1b2f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.506345Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.505856Z",
-     "iopub.status.idle": "2022-10-09T15:20:42.541035Z",
-     "shell.execute_reply": "2022-10-09T15:20:42.540234Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.253303Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.252956Z",
+     "iopub.status.idle": "2022-10-09T15:20:16.287281Z",
+     "shell.execute_reply": "2022-10-09T15:20:16.286149Z"
     }
    },
    "outputs": [],
@@ -193,13 +193,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "2752d987",
+   "id": "5149f13b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:42.545358Z",
-     "iopub.status.busy": "2022-10-09T15:20:42.544804Z",
-     "iopub.status.idle": "2022-10-09T15:20:43.266564Z",
-     "shell.execute_reply": "2022-10-09T15:20:43.265814Z"
+     "iopub.execute_input": "2022-10-09T15:20:16.291342Z",
+     "iopub.status.busy": "2022-10-09T15:20:16.291084Z",
+     "iopub.status.idle": "2022-10-09T15:20:17.076350Z",
+     "shell.execute_reply": "2022-10-09T15:20:17.075508Z"
     }
    },
    "outputs": [
@@ -243,7 +243,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0ab259d5",
+   "id": "76be67c1",
    "metadata": {},
    "source": [
     "Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran ``tclean`` was to generate the ``MODEL_DATA`` column in the measurement set. The actual CLEANed FITS image is just a nice byproduct."
@@ -251,7 +251,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3dbf36aa",
+   "id": "a90a7475",
    "metadata": {},
    "source": [
     "## Examining measurement set structure\n",
@@ -264,13 +264,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "679f2a3d",
+   "id": "bf891688",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:43.274066Z",
-     "iopub.status.busy": "2022-10-09T15:20:43.273247Z",
-     "iopub.status.idle": "2022-10-09T15:20:43.426724Z",
-     "shell.execute_reply": "2022-10-09T15:20:43.425879Z"
+     "iopub.execute_input": "2022-10-09T15:20:17.082338Z",
+     "iopub.status.busy": "2022-10-09T15:20:17.082052Z",
+     "iopub.status.idle": "2022-10-09T15:20:17.240816Z",
+     "shell.execute_reply": "2022-10-09T15:20:17.239657Z"
     }
    },
    "outputs": [],
@@ -281,13 +281,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "1e76203a",
+   "id": "139f3312",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:43.430500Z",
-     "iopub.status.busy": "2022-10-09T15:20:43.430244Z",
-     "iopub.status.idle": "2022-10-09T15:20:43.436229Z",
-     "shell.execute_reply": "2022-10-09T15:20:43.435620Z"
+     "iopub.execute_input": "2022-10-09T15:20:17.244849Z",
+     "iopub.status.busy": "2022-10-09T15:20:17.244592Z",
+     "iopub.status.idle": "2022-10-09T15:20:17.249805Z",
+     "shell.execute_reply": "2022-10-09T15:20:17.248964Z"
     }
    },
    "outputs": [],
@@ -298,7 +298,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ccf0d8cf",
+   "id": "d5c3e8c5",
    "metadata": {},
    "source": [
     "We can get the indexes of the unique spectral windows, which are typically indexed by the ``DATA_DESC_ID``."
@@ -307,13 +307,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "512db18c",
+   "id": "7bad8e14",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:43.440084Z",
-     "iopub.status.busy": "2022-10-09T15:20:43.439623Z",
-     "iopub.status.idle": "2022-10-09T15:20:43.447576Z",
-     "shell.execute_reply": "2022-10-09T15:20:43.446801Z"
+     "iopub.execute_input": "2022-10-09T15:20:17.253348Z",
+     "iopub.status.busy": "2022-10-09T15:20:17.253099Z",
+     "iopub.status.idle": "2022-10-09T15:20:17.258855Z",
+     "shell.execute_reply": "2022-10-09T15:20:17.257845Z"
     }
    },
    "outputs": [
@@ -335,7 +335,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c9653617",
+   "id": "4cb5ad24",
    "metadata": {},
    "source": [
     "We see that there are 25 separate spectral windows! This is because the DSHARP images were produced using all available Band 6 continuum data on each source---not just the long baseline observations acquired in ALMA cycle 4. The merging of all of these individual observations is what creates this structure with so many spectral windows."
@@ -343,7 +343,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9fdab6ae",
+   "id": "b4cffaba",
    "metadata": {},
    "source": [
     "Next, let's open the main table of the measurement set and inspect the column names"
@@ -352,13 +352,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "a2522b05",
+   "id": "fde79eb0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:43.451002Z",
-     "iopub.status.busy": "2022-10-09T15:20:43.450323Z",
-     "iopub.status.idle": "2022-10-09T15:20:43.457681Z",
-     "shell.execute_reply": "2022-10-09T15:20:43.456904Z"
+     "iopub.execute_input": "2022-10-09T15:20:17.262529Z",
+     "iopub.status.busy": "2022-10-09T15:20:17.262279Z",
+     "iopub.status.idle": "2022-10-09T15:20:17.269122Z",
+     "shell.execute_reply": "2022-10-09T15:20:17.268195Z"
     }
    },
    "outputs": [
@@ -379,7 +379,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f9ebc47e",
+   "id": "156f452b",
    "metadata": {},
    "source": [
     "Because there are multiple spectral windows which do not share the same dimensions, we cannot use the ``tb`` tool to read the data directly. If we try, we'll get an error."
@@ -388,13 +388,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "a4bff921",
+   "id": "fae41b89",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:43.460772Z",
-     "iopub.status.busy": "2022-10-09T15:20:43.460328Z",
-     "iopub.status.idle": "2022-10-09T15:20:46.686072Z",
-     "shell.execute_reply": "2022-10-09T15:20:46.685284Z"
+     "iopub.execute_input": "2022-10-09T15:20:17.272431Z",
+     "iopub.status.busy": "2022-10-09T15:20:17.272181Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.545390Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.544280Z"
     }
    },
    "outputs": [],
@@ -414,7 +414,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "de14fd40",
+   "id": "7b4719cc",
    "metadata": {},
    "source": [
     "So, we'll need to use the ``ms`` tool to read the visibilities for each spectral window, like so"
@@ -423,13 +423,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "4678ea0e",
+   "id": "9d6267f9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:46.689993Z",
-     "iopub.status.busy": "2022-10-09T15:20:46.689576Z",
-     "iopub.status.idle": "2022-10-09T15:20:46.840736Z",
-     "shell.execute_reply": "2022-10-09T15:20:46.839928Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.550009Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.549436Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.724273Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.723385Z"
     }
    },
    "outputs": [
@@ -457,7 +457,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2b762698",
+   "id": "460e8f92",
    "metadata": {},
    "source": [
     "The returned query is a dictionary whose keys are the lowercase column names"
@@ -466,13 +466,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "661b309b",
+   "id": "8b9f23e0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:46.844492Z",
-     "iopub.status.busy": "2022-10-09T15:20:46.844102Z",
-     "iopub.status.idle": "2022-10-09T15:20:46.848144Z",
-     "shell.execute_reply": "2022-10-09T15:20:46.847446Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.728218Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.727905Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.733017Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.732133Z"
     }
    },
    "outputs": [
@@ -490,7 +490,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5cfbee9d",
+   "id": "dd4ea845",
    "metadata": {},
    "source": [
     "and whose values are the numerical arrays for the spectral window that we queried"
@@ -499,13 +499,13 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "bde2946d",
+   "id": "b0759f57",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:46.851879Z",
-     "iopub.status.busy": "2022-10-09T15:20:46.851645Z",
-     "iopub.status.idle": "2022-10-09T15:20:46.855714Z",
-     "shell.execute_reply": "2022-10-09T15:20:46.855015Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.738127Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.737807Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.744802Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.744056Z"
     },
     "lines_to_next_cell": 2
    },
@@ -530,7 +530,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1f9f4d33",
+   "id": "990ee501",
    "metadata": {},
    "source": [
     "## Using the tclean model to calculate residual visibilities\n",
@@ -543,13 +543,13 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "31c2d982",
+   "id": "ac9337cd",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:46.859654Z",
-     "iopub.status.busy": "2022-10-09T15:20:46.859428Z",
-     "iopub.status.idle": "2022-10-09T15:20:46.987300Z",
-     "shell.execute_reply": "2022-10-09T15:20:46.986487Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.748456Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.748046Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.888455Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.887336Z"
     }
    },
    "outputs": [
@@ -578,13 +578,13 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "4885f272",
+   "id": "8c745a0a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:46.990703Z",
-     "iopub.status.busy": "2022-10-09T15:20:46.990448Z",
-     "iopub.status.idle": "2022-10-09T15:20:46.994537Z",
-     "shell.execute_reply": "2022-10-09T15:20:46.993835Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.892497Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.891894Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.898431Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.897580Z"
     }
    },
    "outputs": [
@@ -608,7 +608,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9bd6823b",
+   "id": "f39c07ab",
    "metadata": {},
    "source": [
     "Using these model visibilities, let's calculate the residuals for each polarization (XX, YY) in units of $\\sigma$, where\n",
@@ -634,7 +634,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f3c1e83f",
+   "id": "bf68b9ce",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -648,13 +648,13 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "id": "9c6badcd",
+   "id": "e35ec7e2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:46.998605Z",
-     "iopub.status.busy": "2022-10-09T15:20:46.998377Z",
-     "iopub.status.idle": "2022-10-09T15:20:47.005320Z",
-     "shell.execute_reply": "2022-10-09T15:20:47.004628Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.901967Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.901710Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.909478Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.908605Z"
     }
    },
    "outputs": [],
@@ -718,13 +718,13 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "id": "be2fc915",
+   "id": "6ad77051",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:47.008401Z",
-     "iopub.status.busy": "2022-10-09T15:20:47.008173Z",
-     "iopub.status.idle": "2022-10-09T15:20:47.011973Z",
-     "shell.execute_reply": "2022-10-09T15:20:47.011289Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.913017Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.912610Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.917359Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.916518Z"
     }
    },
    "outputs": [],
@@ -751,13 +751,13 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "id": "deb69cc1",
+   "id": "588fe996",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:47.014991Z",
-     "iopub.status.busy": "2022-10-09T15:20:47.014744Z",
-     "iopub.status.idle": "2022-10-09T15:20:47.022766Z",
-     "shell.execute_reply": "2022-10-09T15:20:47.022077Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.920888Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.920398Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.930765Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.929852Z"
     }
    },
    "outputs": [],
@@ -809,13 +809,13 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "id": "4e0d8021",
+   "id": "9d385870",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:47.025868Z",
-     "iopub.status.busy": "2022-10-09T15:20:47.025641Z",
-     "iopub.status.idle": "2022-10-09T15:20:47.030199Z",
-     "shell.execute_reply": "2022-10-09T15:20:47.029491Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.934609Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.934317Z",
+     "iopub.status.idle": "2022-10-09T15:20:20.940694Z",
+     "shell.execute_reply": "2022-10-09T15:20:20.939813Z"
     }
    },
    "outputs": [],
@@ -849,7 +849,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c5743584",
+   "id": "2d63cdb6",
    "metadata": {},
    "source": [
     "## Checking scatter for each spectral window\n",
@@ -858,7 +858,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "70d30d05",
+   "id": "b43fdcff",
    "metadata": {},
    "source": [
     "### Spectral Window 7: A correctly scaled SPW\n",
@@ -868,13 +868,13 @@
   {
    "cell_type": "code",
    "execution_count": 23,
-   "id": "11ce50c5",
+   "id": "e5492953",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:47.033471Z",
-     "iopub.status.busy": "2022-10-09T15:20:47.033245Z",
-     "iopub.status.idle": "2022-10-09T15:20:47.992528Z",
-     "shell.execute_reply": "2022-10-09T15:20:47.991708Z"
+     "iopub.execute_input": "2022-10-09T15:20:20.944173Z",
+     "iopub.status.busy": "2022-10-09T15:20:20.943843Z",
+     "iopub.status.idle": "2022-10-09T15:20:22.104442Z",
+     "shell.execute_reply": "2022-10-09T15:20:22.103550Z"
     }
    },
    "outputs": [
@@ -900,7 +900,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6574c8d0",
+   "id": "af457cde",
    "metadata": {},
    "source": [
     "Great, it looks like things are pretty much as we would expect here."
@@ -908,7 +908,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7f0dffc2",
+   "id": "e7deb888",
    "metadata": {},
    "source": [
     "### Spectral Window 22: Visibility outliers\n",
@@ -918,13 +918,13 @@
   {
    "cell_type": "code",
    "execution_count": 24,
-   "id": "bb28b810",
+   "id": "19b51cc8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:47.996287Z",
-     "iopub.status.busy": "2022-10-09T15:20:47.996032Z",
-     "iopub.status.idle": "2022-10-09T15:20:50.632181Z",
-     "shell.execute_reply": "2022-10-09T15:20:50.631294Z"
+     "iopub.execute_input": "2022-10-09T15:20:22.108169Z",
+     "iopub.status.busy": "2022-10-09T15:20:22.107904Z",
+     "iopub.status.idle": "2022-10-09T15:20:25.096449Z",
+     "shell.execute_reply": "2022-10-09T15:20:25.095630Z"
     }
    },
    "outputs": [
@@ -950,7 +950,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0b6c102c",
+   "id": "aa603790",
    "metadata": {},
    "source": [
     "We find that something looks a little bit strange. Let's try plotting things on a log scale to get a closer look."
@@ -959,13 +959,13 @@
   {
    "cell_type": "code",
    "execution_count": 25,
-   "id": "963d7ce4",
+   "id": "81ffeed2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:50.636199Z",
-     "iopub.status.busy": "2022-10-09T15:20:50.635674Z",
-     "iopub.status.idle": "2022-10-09T15:20:53.332525Z",
-     "shell.execute_reply": "2022-10-09T15:20:53.331748Z"
+     "iopub.execute_input": "2022-10-09T15:20:25.100603Z",
+     "iopub.status.busy": "2022-10-09T15:20:25.099960Z",
+     "iopub.status.idle": "2022-10-09T15:20:28.108590Z",
+     "shell.execute_reply": "2022-10-09T15:20:28.107677Z"
     }
    },
    "outputs": [
@@ -991,7 +991,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f5a967c6",
+   "id": "4d6fd6a1",
    "metadata": {},
    "source": [
     "It appears as though there are a bunch of \"outlier\" visibilities included in this spectral window (the histogram y-axis is the relative frequency or probability density, so in actually there are a relatively small number of outlier visibilities). If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let's try plotting only the valid, unflagged, visibilities"
@@ -1000,13 +1000,13 @@
   {
    "cell_type": "code",
    "execution_count": 26,
-   "id": "fd11a99a",
+   "id": "d7551eba",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:53.336684Z",
-     "iopub.status.busy": "2022-10-09T15:20:53.335980Z",
-     "iopub.status.idle": "2022-10-09T15:20:56.095547Z",
-     "shell.execute_reply": "2022-10-09T15:20:56.094826Z"
+     "iopub.execute_input": "2022-10-09T15:20:28.112479Z",
+     "iopub.status.busy": "2022-10-09T15:20:28.111950Z",
+     "iopub.status.idle": "2022-10-09T15:20:31.180407Z",
+     "shell.execute_reply": "2022-10-09T15:20:31.179614Z"
     }
    },
    "outputs": [
@@ -1032,7 +1032,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6f7d43ed",
+   "id": "355e1fd4",
    "metadata": {},
    "source": [
     "This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale might make the discrepancy more visible"
@@ -1041,13 +1041,13 @@
   {
    "cell_type": "code",
    "execution_count": 27,
-   "id": "73f17dad",
+   "id": "202db49b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:56.099126Z",
-     "iopub.status.busy": "2022-10-09T15:20:56.098848Z",
-     "iopub.status.idle": "2022-10-09T15:20:58.655314Z",
-     "shell.execute_reply": "2022-10-09T15:20:58.654554Z"
+     "iopub.execute_input": "2022-10-09T15:20:31.184244Z",
+     "iopub.status.busy": "2022-10-09T15:20:31.183956Z",
+     "iopub.status.idle": "2022-10-09T15:20:34.048328Z",
+     "shell.execute_reply": "2022-10-09T15:20:34.047386Z"
     }
    },
    "outputs": [
@@ -1073,7 +1073,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "94f7b99b",
+   "id": "c9930edc",
    "metadata": {},
    "source": [
     "Lets write a routine to estimate by how much the $\\sigma_0$ values would need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian."
@@ -1082,13 +1082,13 @@
   {
    "cell_type": "code",
    "execution_count": 28,
-   "id": "1fcfa7d2",
+   "id": "7087cc21",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:58.658963Z",
-     "iopub.status.busy": "2022-10-09T15:20:58.658693Z",
-     "iopub.status.idle": "2022-10-09T15:20:58.971804Z",
-     "shell.execute_reply": "2022-10-09T15:20:58.971031Z"
+     "iopub.execute_input": "2022-10-09T15:20:34.056034Z",
+     "iopub.status.busy": "2022-10-09T15:20:34.055587Z",
+     "iopub.status.idle": "2022-10-09T15:20:34.432306Z",
+     "shell.execute_reply": "2022-10-09T15:20:34.431150Z"
     }
    },
    "outputs": [],
@@ -1099,13 +1099,13 @@
   {
    "cell_type": "code",
    "execution_count": 29,
-   "id": "7c25d8d0",
+   "id": "11681a2a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:58.975510Z",
-     "iopub.status.busy": "2022-10-09T15:20:58.975255Z",
-     "iopub.status.idle": "2022-10-09T15:20:58.982534Z",
-     "shell.execute_reply": "2022-10-09T15:20:58.981757Z"
+     "iopub.execute_input": "2022-10-09T15:20:34.436889Z",
+     "iopub.status.busy": "2022-10-09T15:20:34.436618Z",
+     "iopub.status.idle": "2022-10-09T15:20:34.442576Z",
+     "shell.execute_reply": "2022-10-09T15:20:34.441768Z"
     }
    },
    "outputs": [],
@@ -1133,13 +1133,13 @@
   {
    "cell_type": "code",
    "execution_count": 30,
-   "id": "e8d6f89a",
+   "id": "2ce7a0ee",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:58.985543Z",
-     "iopub.status.busy": "2022-10-09T15:20:58.985322Z",
-     "iopub.status.idle": "2022-10-09T15:20:58.990996Z",
-     "shell.execute_reply": "2022-10-09T15:20:58.990331Z"
+     "iopub.execute_input": "2022-10-09T15:20:34.445962Z",
+     "iopub.status.busy": "2022-10-09T15:20:34.445701Z",
+     "iopub.status.idle": "2022-10-09T15:20:34.450590Z",
+     "shell.execute_reply": "2022-10-09T15:20:34.449736Z"
     }
    },
    "outputs": [],
@@ -1166,13 +1166,13 @@
   {
    "cell_type": "code",
    "execution_count": 31,
-   "id": "f67d7d5e",
+   "id": "709c64c4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:20:58.993968Z",
-     "iopub.status.busy": "2022-10-09T15:20:58.993742Z",
-     "iopub.status.idle": "2022-10-09T15:21:00.657680Z",
-     "shell.execute_reply": "2022-10-09T15:21:00.656777Z"
+     "iopub.execute_input": "2022-10-09T15:20:34.453702Z",
+     "iopub.status.busy": "2022-10-09T15:20:34.453434Z",
+     "iopub.status.idle": "2022-10-09T15:20:36.188917Z",
+     "shell.execute_reply": "2022-10-09T15:20:36.188078Z"
     }
    },
    "outputs": [
@@ -1180,7 +1180,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "1.8596319521755138\n"
+      "1.8596319521619544\n"
      ]
     }
    ],
@@ -1191,7 +1191,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "00b4630a",
+   "id": "63ea27e7",
    "metadata": {},
    "source": [
     "If we rescale the $\\sigma$ values to make them a factor of $\\sim 1.85$ larger it looks like we are able to make the distributions match up a little bit better."
@@ -1200,13 +1200,13 @@
   {
    "cell_type": "code",
    "execution_count": 32,
-   "id": "64e5f4a5",
+   "id": "039b9d53",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:00.661191Z",
-     "iopub.status.busy": "2022-10-09T15:21:00.660795Z",
-     "iopub.status.idle": "2022-10-09T15:21:03.247194Z",
-     "shell.execute_reply": "2022-10-09T15:21:03.246308Z"
+     "iopub.execute_input": "2022-10-09T15:20:36.193051Z",
+     "iopub.status.busy": "2022-10-09T15:20:36.192739Z",
+     "iopub.status.idle": "2022-10-09T15:20:39.020340Z",
+     "shell.execute_reply": "2022-10-09T15:20:39.019499Z"
     }
    },
    "outputs": [
@@ -1232,7 +1232,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a4a2e59e",
+   "id": "dfa93625",
    "metadata": {},
    "source": [
     "It's not really clear why this factor works, but factors of $\\sqrt{2}$ and 2 appear in changes to the CASA weight calculations ([which have changed across recent CASA versions](https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights)). Since this DSHARP measurement set contains visibilities acquired in previous ALMA cycles (and potentially calibrated with earlier versions of CASA), these changes in weight definitions may be responsible for the varying weight scatter across spectral window.\n",
@@ -1243,13 +1243,13 @@
   {
    "cell_type": "code",
    "execution_count": 33,
-   "id": "4fd229ab",
+   "id": "c24bd71d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:03.251242Z",
-     "iopub.status.busy": "2022-10-09T15:21:03.250747Z",
-     "iopub.status.idle": "2022-10-09T15:21:03.459204Z",
-     "shell.execute_reply": "2022-10-09T15:21:03.458037Z"
+     "iopub.execute_input": "2022-10-09T15:20:39.024252Z",
+     "iopub.status.busy": "2022-10-09T15:20:39.023698Z",
+     "iopub.status.idle": "2022-10-09T15:20:39.244505Z",
+     "shell.execute_reply": "2022-10-09T15:20:39.243693Z"
     }
    },
    "outputs": [
@@ -1277,13 +1277,13 @@
   {
    "cell_type": "code",
    "execution_count": 34,
-   "id": "79dbe0da",
+   "id": "b8601037",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:03.463852Z",
-     "iopub.status.busy": "2022-10-09T15:21:03.463450Z",
-     "iopub.status.idle": "2022-10-09T15:21:03.469372Z",
-     "shell.execute_reply": "2022-10-09T15:21:03.468767Z"
+     "iopub.execute_input": "2022-10-09T15:20:39.248226Z",
+     "iopub.status.busy": "2022-10-09T15:20:39.247555Z",
+     "iopub.status.idle": "2022-10-09T15:20:39.253307Z",
+     "shell.execute_reply": "2022-10-09T15:20:39.252068Z"
     }
    },
    "outputs": [],
@@ -1295,13 +1295,13 @@
   {
    "cell_type": "code",
    "execution_count": 35,
-   "id": "130009ed",
+   "id": "2b6aa039",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:03.472748Z",
-     "iopub.status.busy": "2022-10-09T15:21:03.472312Z",
-     "iopub.status.idle": "2022-10-09T15:21:04.746045Z",
-     "shell.execute_reply": "2022-10-09T15:21:04.745256Z"
+     "iopub.execute_input": "2022-10-09T15:20:39.256416Z",
+     "iopub.status.busy": "2022-10-09T15:20:39.256163Z",
+     "iopub.status.idle": "2022-10-09T15:20:40.581577Z",
+     "shell.execute_reply": "2022-10-09T15:20:40.580494Z"
     }
    },
    "outputs": [],
@@ -1314,7 +1314,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8662c295",
+   "id": "25eb088d",
    "metadata": {},
    "source": [
     "Let's check the array shapes of each of these."
@@ -1323,13 +1323,13 @@
   {
    "cell_type": "code",
    "execution_count": 36,
-   "id": "c8f7ac69",
+   "id": "615148e3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:04.749914Z",
-     "iopub.status.busy": "2022-10-09T15:21:04.749648Z",
-     "iopub.status.idle": "2022-10-09T15:21:04.755082Z",
-     "shell.execute_reply": "2022-10-09T15:21:04.754306Z"
+     "iopub.execute_input": "2022-10-09T15:20:40.585601Z",
+     "iopub.status.busy": "2022-10-09T15:20:40.585339Z",
+     "iopub.status.idle": "2022-10-09T15:20:40.591985Z",
+     "shell.execute_reply": "2022-10-09T15:20:40.591107Z"
     }
    },
    "outputs": [
@@ -1351,7 +1351,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "17301f39",
+   "id": "283fb426",
    "metadata": {},
    "source": [
     "If we want to correctly apply the flags, we'll need to broadcast the baseline arrays to the full set of channels. (Even though this is a continuum dataset, it does have more than one channel to prevent bandwidth smearing)."
@@ -1360,13 +1360,13 @@
   {
    "cell_type": "code",
    "execution_count": 37,
-   "id": "57030472",
+   "id": "c1073f53",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:04.758172Z",
-     "iopub.status.busy": "2022-10-09T15:21:04.757944Z",
-     "iopub.status.idle": "2022-10-09T15:21:04.786231Z",
-     "shell.execute_reply": "2022-10-09T15:21:04.785309Z"
+     "iopub.execute_input": "2022-10-09T15:20:40.595433Z",
+     "iopub.status.busy": "2022-10-09T15:20:40.595154Z",
+     "iopub.status.idle": "2022-10-09T15:20:40.622719Z",
+     "shell.execute_reply": "2022-10-09T15:20:40.621704Z"
     }
    },
    "outputs": [],
@@ -1379,7 +1379,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ffe4fa71",
+   "id": "4555ab09",
    "metadata": {},
    "source": [
     "Now we index the \"good\" visibilities"
@@ -1388,13 +1388,13 @@
   {
    "cell_type": "code",
    "execution_count": 38,
-   "id": "fdb4f9ea",
+   "id": "ee050864",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:04.790164Z",
-     "iopub.status.busy": "2022-10-09T15:21:04.789897Z",
-     "iopub.status.idle": "2022-10-09T15:21:04.904950Z",
-     "shell.execute_reply": "2022-10-09T15:21:04.904075Z"
+     "iopub.execute_input": "2022-10-09T15:20:40.626868Z",
+     "iopub.status.busy": "2022-10-09T15:20:40.626481Z",
+     "iopub.status.idle": "2022-10-09T15:20:40.739320Z",
+     "shell.execute_reply": "2022-10-09T15:20:40.738151Z"
     }
    },
    "outputs": [],
@@ -1407,13 +1407,13 @@
   {
    "cell_type": "code",
    "execution_count": 39,
-   "id": "ea4f8d52",
+   "id": "7d8bf63a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:04.908817Z",
-     "iopub.status.busy": "2022-10-09T15:21:04.908555Z",
-     "iopub.status.idle": "2022-10-09T15:21:05.027328Z",
-     "shell.execute_reply": "2022-10-09T15:21:05.026532Z"
+     "iopub.execute_input": "2022-10-09T15:20:40.743104Z",
+     "iopub.status.busy": "2022-10-09T15:20:40.742823Z",
+     "iopub.status.idle": "2022-10-09T15:20:40.859056Z",
+     "shell.execute_reply": "2022-10-09T15:20:40.857743Z"
     }
    },
    "outputs": [],
@@ -1426,13 +1426,13 @@
   {
    "cell_type": "code",
    "execution_count": 40,
-   "id": "38117c4b",
+   "id": "77051366",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:05.031117Z",
-     "iopub.status.busy": "2022-10-09T15:21:05.030846Z",
-     "iopub.status.idle": "2022-10-09T15:21:05.034270Z",
-     "shell.execute_reply": "2022-10-09T15:21:05.033583Z"
+     "iopub.execute_input": "2022-10-09T15:20:40.862877Z",
+     "iopub.status.busy": "2022-10-09T15:20:40.862596Z",
+     "iopub.status.idle": "2022-10-09T15:20:40.866453Z",
+     "shell.execute_reply": "2022-10-09T15:20:40.865625Z"
     }
    },
    "outputs": [],
@@ -1444,13 +1444,13 @@
   {
    "cell_type": "code",
    "execution_count": 41,
-   "id": "f71b9ee9",
+   "id": "2d49a6d1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:21:05.037544Z",
-     "iopub.status.busy": "2022-10-09T15:21:05.037313Z",
-     "iopub.status.idle": "2022-10-09T15:23:56.368490Z",
-     "shell.execute_reply": "2022-10-09T15:23:56.367637Z"
+     "iopub.execute_input": "2022-10-09T15:20:40.870206Z",
+     "iopub.status.busy": "2022-10-09T15:20:40.869927Z",
+     "iopub.status.idle": "2022-10-09T15:24:04.708546Z",
+     "shell.execute_reply": "2022-10-09T15:24:04.707669Z"
     }
    },
    "outputs": [
@@ -1493,7 +1493,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "07f080c0",
+   "id": "2fbd28fd",
    "metadata": {},
    "source": [
     "We don't appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we'll just accept these rescaled weights as is."
@@ -1501,7 +1501,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c25571d3",
+   "id": "d91af2e0",
    "metadata": {},
    "source": [
     "## Rescaling weights for export.\n",
@@ -1511,13 +1511,13 @@
   {
    "cell_type": "code",
    "execution_count": 42,
-   "id": "0e7b9c2b",
+   "id": "19e8edaf",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2022-10-09T15:23:56.372712Z",
-     "iopub.status.busy": "2022-10-09T15:23:56.371999Z",
-     "iopub.status.idle": "2022-10-09T15:24:15.713226Z",
-     "shell.execute_reply": "2022-10-09T15:24:15.712523Z"
+     "iopub.execute_input": "2022-10-09T15:24:04.714246Z",
+     "iopub.status.busy": "2022-10-09T15:24:04.713963Z",
+     "iopub.status.idle": "2022-10-09T15:24:25.078031Z",
+     "shell.execute_reply": "2022-10-09T15:24:25.077029Z"
     }
    },
    "outputs": [
@@ -1563,7 +1563,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b8dc00d4",
+   "id": "b65f3188",
    "metadata": {},
    "source": [
     "If you wanted to use these visibilities for forward modeling or [Regularized Maximum Likelihood (RML) imaging](https://mpol-dev.github.io/MPoL/), you will want to read and export the correctly flagged and rescaled visibilities and convert baselines to kilolambda."
