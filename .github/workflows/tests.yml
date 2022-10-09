@@ -22,7 +22,7 @@ jobs:
         pip install casatools
         pip install casatasks
 
-    - name Install vanilla package
+    - name: Install vanilla package
       run: |
         pip install .
     
