@@ -7,13 +7,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.8
       - name: Install doc deps
         run: |
           pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[docs]
