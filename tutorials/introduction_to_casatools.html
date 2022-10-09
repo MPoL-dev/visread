@@ -1,83 +1,45 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Introduction to CASA tools &mdash; visread 0.0.4 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities" href="rescale_AS209_weights.html" />
     <link rel="prev" title="Visread documentation" href="../index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> visread
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.0.4
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -85,19 +47,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to CASA tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Introduction-to-measurement-sets">Introduction to measurement sets</a></li>
@@ -121,71 +72,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Visread API</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">visread</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Introduction to CASA tools</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/tutorials/introduction_to_casatools.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -396,11 +306,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -409,10 +320,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -424,12 +339,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -456,20 +374,20 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Introduction-to-CASA-tools">
-<h1>Introduction to CASA tools<a class="headerlink" href="#Introduction-to-CASA-tools" title="Permalink to this headline">¶</a></h1>
+<section id="Introduction-to-CASA-tools">
+<h1>Introduction to CASA tools<a class="headerlink" href="#Introduction-to-CASA-tools" title="Permalink to this heading"></a></h1>
 <p>This tutorial is meant to provide an introduction to working with the <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code> tools of CASA.</p>
-<div class="section" id="Introduction-to-measurement-sets">
-<h2>Introduction to measurement sets<a class="headerlink" href="#Introduction-to-measurement-sets" title="Permalink to this headline">¶</a></h2>
+<section id="Introduction-to-measurement-sets">
+<h2>Introduction to measurement sets<a class="headerlink" href="#Introduction-to-measurement-sets" title="Permalink to this heading"></a></h2>
 <p>Before you begin, it’s worthwhile reviewing the CASA documentation on the measurement set, which is the default storage format for radio interferometric observations. The basics are <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/the-measurementset">here</a> and the description of the v2 format is <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/measurement-set">here</a>. To make a long story short, a measurement set (e.g., <code class="docutils literal notranslate"><span class="pre">my_ALMA_data.ms</span></code>) is a folder containing
 a set of binary ‘tables’ with your data and metadata. The contents within this measurement set folder serve as a <a class="reference external" href="https://en.wikipedia.org/wiki/Relational_database">relational database</a>. It helps to keep this structure in mind as we navigate its contents.</p>
 <p>A good first task is to load up an interactive prompt of CASA and run <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about">listobs</a> to familiarize yourself with the basic structure of your measurement set. It will be very helpful to know things like how many spectral windows there are, how many execution blocks there are, and what targets were observed. Hopefully you’ve already
 <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/uv-manipulation/splitting-out-calibrated-uv-data-split">split</a> out your data such that it only contains the target under consideration and does not include any extra calibrator targets. It’s also a good idea to inspect and plot the visibilities of your measurement set using CASA’s
 <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-examination-and-editing/using-plotms-to-plot-and-edit-visibilities-and-calibration-tables">plotms</a> tool.</p>
 <p>CASA provides the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-examination-and-editing/browse-a-table">casabrowser/browsetable</a> tool, which is very handy for graphically exploring the structure and contents of this relational database. If something about the structure of the measurement set doesn’t make sense, it’s usually a good idea to open up <em>browsetable</em> and dig into the structure of the individual tables.</p>
-</div>
-<div class="section" id="CASA-tools">
-<h2>CASA tools<a class="headerlink" href="#CASA-tools" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="CASA-tools">
+<h2>CASA tools<a class="headerlink" href="#CASA-tools" title="Permalink to this heading"></a></h2>
 <p>CASA provides a set of lower-level “tools” for direct interaction with the measurement set contents. The full API list is available <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list">here</a>.</p>
 <p>To experiment with reading and plotting visibilities, we’ll use a measurement set that we prepared using simobserve. The full commands to generate the measurement set are available via the <code class="docutils literal notranslate"><span class="pre">mpoldatasets</span></code> package <a class="reference external" href="https://github.com/MPoL-dev/mpoldatasets/blob/main/products/ALMA-logo/simobserve_cube.py">here</a>.</p>
 <p>You can access the CASA tools from within your Python environment if you’ve successfully installed <code class="docutils literal notranslate"><span class="pre">casatools</span></code> package as part of the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/usingcasa/obtaining-and-installing">modular CASA install</a>, as shown here. If you are unable to install the modular package, you can always use the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/tasks-and-tools">casatools directly inside of the monolithic CASA intepreter</a>. If you’re working
@@ -478,8 +396,7 @@ directly within the CASA interpreter, you can skip this section and move directl
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">astropy.utils.data</span> <span class="kn">import</span> <span class="n">download_file</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
@@ -492,8 +409,7 @@ directly within the CASA interpreter, you can skip this section and move directl
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># load the mock dataset of the ALMA logo</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the mock dataset of the ALMA logo</span>
 <span class="n">fname_tar</span> <span class="o">=</span> <span class="n">download_file</span><span class="p">(</span>
     <span class="s2">&quot;https://zenodo.org/record/4711811/files/logo_cube.noise.ms.tar.gz&quot;</span><span class="p">,</span>
     <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -507,8 +423,7 @@ directly within the CASA interpreter, you can skip this section and move directl
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># extract the measurement set to a local directory</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the measurement set to a local directory</span>
 <span class="n">temp_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
 <span class="n">curdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">temp_dir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -519,8 +434,7 @@ directly within the CASA interpreter, you can skip this section and move directl
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname_tar</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname_tar</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
     <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -530,8 +444,7 @@ directly within the CASA interpreter, you can skip this section and move directl
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>ls
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
 </pre></div>
 </div>
 </div>
@@ -547,8 +460,7 @@ logo_cube.noise.ms
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;logo_cube.noise.ms&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;logo_cube.noise.ms&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -558,8 +470,7 @@ logo_cube.noise.ms
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">casatools</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">casatools</span>
 </pre></div>
 </div>
 </div>
@@ -567,25 +478,23 @@ logo_cube.noise.ms
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Example-Queries-with-table-tools">
-<h2>Example Queries with table tools<a class="headerlink" href="#Example-Queries-with-table-tools" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Example-Queries-with-table-tools">
+<h2>Example Queries with table tools<a class="headerlink" href="#Example-Queries-with-table-tools" title="Permalink to this heading"></a></h2>
 <p>The following are some examples of simple queries you might like to do for a simply structured measurement set using the <code class="docutils literal notranslate"><span class="pre">tb</span></code> tool. If they don’t work, you might look using the <code class="docutils literal notranslate"><span class="pre">ms</span></code> tool, described at the bottom of the page.</p>
-<div class="section" id="Unique-spectral-window-IDs">
-<h3>Unique spectral window IDs<a class="headerlink" href="#Unique-spectral-window-IDs" title="Permalink to this headline">¶</a></h3>
+<section id="Unique-spectral-window-IDs">
+<h3>Unique spectral window IDs<a class="headerlink" href="#Unique-spectral-window-IDs" title="Permalink to this heading"></a></h3>
 <p>Get the indexes of the unique spectral windows, typically indexed by the <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">spw_id</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;DATA_DESC_ID&quot;</span><span class="p">)</span>  <span class="c1"># array of int with shape [npol, nchan, nvis]</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">spw_id</span><span class="p">))</span>
@@ -605,8 +514,7 @@ logo_cube.noise.ms
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/DATA_DESCRIPTION&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/DATA_DESCRIPTION&quot;</span><span class="p">)</span>
 <span class="n">SPECTRAL_WINDOW_ID</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;SPECTRAL_WINDOW_ID&quot;</span><span class="p">)</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">SPECTRAL_WINDOW_ID</span><span class="p">)</span>
@@ -621,16 +529,15 @@ logo_cube.noise.ms
 [0]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Column-names-of-main-table">
-<h3>Column names of main table<a class="headerlink" href="#Column-names-of-main-table" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Column-names-of-main-table">
+<h3>Column names of main table<a class="headerlink" href="#Column-names-of-main-table" title="Permalink to this heading"></a></h3>
 <p>Open the main table of the measurement set and inspect the column names</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">colnames</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">colnames</span><span class="p">()</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">colnames</span><span class="p">)</span>
@@ -645,16 +552,15 @@ logo_cube.noise.ms
 [&#39;UVW&#39;, &#39;FLAG&#39;, &#39;FLAG_CATEGORY&#39;, &#39;WEIGHT&#39;, &#39;SIGMA&#39;, &#39;ANTENNA1&#39;, &#39;ANTENNA2&#39;, &#39;ARRAY_ID&#39;, &#39;DATA_DESC_ID&#39;, &#39;EXPOSURE&#39;, &#39;FEED1&#39;, &#39;FEED2&#39;, &#39;FIELD_ID&#39;, &#39;FLAG_ROW&#39;, &#39;INTERVAL&#39;, &#39;OBSERVATION_ID&#39;, &#39;PROCESSOR_ID&#39;, &#39;SCAN_NUMBER&#39;, &#39;STATE_ID&#39;, &#39;TIME&#39;, &#39;TIME_CENTROID&#39;, &#39;DATA&#39;, &#39;MODEL_DATA&#39;, &#39;CORRECTED_DATA&#39;]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="How-many-channels-in-each-spw">
-<h3>How many channels in each spw<a class="headerlink" href="#How-many-channels-in-each-spw" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="How-many-channels-in-each-spw">
+<h3>How many channels in each spw<a class="headerlink" href="#How-many-channels-in-each-spw" title="Permalink to this heading"></a></h3>
 <p>Let’s figure out how many channels there are, and what their frequencies are (in Hz)</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/SPECTRAL_WINDOW&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/SPECTRAL_WINDOW&quot;</span><span class="p">)</span>
 <span class="n">num_chan</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;NUM_CHAN&quot;</span><span class="p">)</span>
 <span class="n">chan_freq</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;CHAN_FREQ&quot;</span><span class="p">)</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -680,16 +586,15 @@ logo_cube.noise.ms
  [2.30525189e+11]]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Get-the-baselines">
-<h3>Get the baselines<a class="headerlink" href="#Get-the-baselines" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Get-the-baselines">
+<h3>Get the baselines<a class="headerlink" href="#Get-the-baselines" title="Permalink to this heading"></a></h3>
 <p>Read the baselines (in units of [m])</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">uvw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;UVW&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [3, nvis]</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>  <span class="c1"># unpack into len nvis vectors</span>
@@ -701,8 +606,7 @@ logo_cube.noise.ms
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u$ [m]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$v$ [m]&quot;</span><span class="p">)</span>
@@ -725,16 +629,15 @@ Text(0, 0.5, &#39;$v$ [m]&#39;)
 <img alt="../_images/tutorials_introduction_to_casatools_26_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_26_1.png" style="width: 455px; height: 406px;" />
 </div>
 </div>
-</div>
-<div class="section" id="Convert-baselines-to-units-of-kilolambda">
-<h3>Convert baselines to units of kilolambda<a class="headerlink" href="#Convert-baselines-to-units-of-kilolambda" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Convert-baselines-to-units-of-kilolambda">
+<h3>Convert baselines to units of kilolambda<a class="headerlink" href="#Convert-baselines-to-units-of-kilolambda" title="Permalink to this heading"></a></h3>
 <p>To convert the baselines to units of kilolambda, we need to know the observing frequency (or wavelength). For a spectral window with multiple channels (like this one), the baselines (if expressed in units of kilolambda) will be slightly different for each channel because the observing frequency is different for each channel. Here is one way to go about broadcasting the baselines to all channels and then converting them to units of kilolambda.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">uvw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;UVW&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [3, nvis]</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -753,8 +656,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/SPECTRAL_WINDOW&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/SPECTRAL_WINDOW&quot;</span><span class="p">)</span>
 <span class="n">num_chan</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;NUM_CHAN&quot;</span><span class="p">)</span>
 <span class="n">chan_freq</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;CHAN_FREQ&quot;</span><span class="p">)</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -774,8 +676,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>  <span class="c1"># unpack into len nvis vectors</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>  <span class="c1"># unpack into len nvis vectors</span>
 </pre></div>
 </div>
 </div>
@@ -783,8 +684,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># broadcast to the same shape as the data</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># broadcast to the same shape as the data</span>
 <span class="c1"># stub to broadcast uu,vv, and weights to all channels</span>
 <span class="n">nchan</span> <span class="o">=</span> <span class="n">num_chan</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># grab the number of channels for the first spectral window</span>
 <span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -797,8 +697,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># calculate wavelengths in meters</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate wavelengths in meters</span>
 <span class="n">c_ms</span> <span class="o">=</span> <span class="mf">2.99792458e8</span>  <span class="c1"># [m s^-1]</span>
 <span class="n">wavelengths</span> <span class="o">=</span> <span class="n">c_ms</span> <span class="o">/</span> <span class="n">chan_freq</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># m</span>
 </pre></div>
@@ -808,8 +707,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># convert baselines to klambda</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert baselines to klambda</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">uu</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
 <span class="n">vv</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">vv</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
 </pre></div>
@@ -820,8 +718,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u$ [k$\lambda$]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$v$ [k$\lambda$]&quot;</span><span class="p">)</span>
@@ -844,16 +741,15 @@ Text(0, 0.5, &#39;$v$ [k$\\lambda$]&#39;)
 <img alt="../_images/tutorials_introduction_to_casatools_35_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_35_1.png" style="width: 455px; height: 410px;" />
 </div>
 </div>
-</div>
-<div class="section" id="Read-the-visibility-values-and-inspect-flags">
-<h3>Read the visibility values and inspect flags<a class="headerlink" href="#Read-the-visibility-values-and-inspect-flags" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Read-the-visibility-values-and-inspect-flags">
+<h3>Read the visibility values and inspect flags<a class="headerlink" href="#Read-the-visibility-values-and-inspect-flags" title="Permalink to this heading"></a></h3>
 <p>Visibilities are stored in the main table of the measurement set. As long as all spectral windows have the same number of channels and polarizations, it should be possible to read visibilities using the table tool. If not, try the <code class="docutils literal notranslate"><span class="pre">ms</span></code> tool.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
 <span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
 <span class="n">data_raw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;DATA&quot;</span><span class="p">)</span>  <span class="c1"># array of complex128 with shape [npol, nchan, nvis]</span>
@@ -892,8 +788,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -910,8 +805,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -982,8 +876,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Are there any flagged visibilities?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Are there any flagged visibilities?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1000,8 +893,7 @@ Are there any flagged visibilities? False
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data_good</span> <span class="o">=</span> <span class="n">data_corrected</span><span class="p">[</span><span class="o">~</span><span class="n">flag</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_good</span> <span class="o">=</span> <span class="n">data_corrected</span><span class="p">[</span><span class="o">~</span><span class="n">flag</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1010,8 +902,7 @@ Are there any flagged visibilities? False
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_good</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_good</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1024,16 +915,15 @@ Are there any flagged visibilities? False
 </pre></div></div>
 </div>
 <p>so you’ll need to be more strategic about this if you’d like to preserve the channel dimensions, perhaps by using a masked array or a ragged list.</p>
-</div>
-<div class="section" id="Read-visibility-values-and-averaging-polarizations">
-<h3>Read visibility values and averaging polarizations<a class="headerlink" href="#Read-visibility-values-and-averaging-polarizations" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Read-visibility-values-and-averaging-polarizations">
+<h3>Read visibility values and averaging polarizations<a class="headerlink" href="#Read-visibility-values-and-averaging-polarizations" title="Permalink to this heading"></a></h3>
 <p>If your dataset is dual-polarization but you are not interested in treating the polarizations separately, it might be worth it to average the polarization channels together.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">uvw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;UVW&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [3, nvis]</span>
 <span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
 <span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
@@ -1055,8 +945,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># average the polarizations</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># average the polarizations</span>
 <span class="c1"># https://en.wikipedia.org/wiki/Weighted_arithmetic_mean</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -1066,8 +955,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># flag the data if either polarization was flagged</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># flag the data if either polarization was flagged</span>
 <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1076,8 +964,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># combine the weights across polarizations</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># combine the weights across polarizations</span>
 <span class="n">weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1086,8 +973,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Calculate the &quot;radial&quot; baseline</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the &quot;radial&quot; baseline</span>
 <span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>
 <span class="n">qq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">vv</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
@@ -1097,8 +983,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># calculate visibility amplitude and phase</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate visibility amplitude and phase</span>
 <span class="n">amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
@@ -1108,8 +993,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Let&#39;s plot up the visibilities for the first channel</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot up the visibilities for the first channel</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">qq</span><span class="p">,</span> <span class="n">amp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$q$ [m]&quot;</span><span class="p">)</span>
@@ -1133,10 +1017,10 @@ Text(0, 0.5, &#39;Amplitude [Jy]&#39;)
 <img alt="../_images/tutorials_introduction_to_casatools_57_1.png" class="no-scaled-link" src="../_images/tutorials_introduction_to_casatools_57_1.png" style="width: 405px; height: 408px;" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="Example-Queries-with-ms-tools">
-<h2>Example Queries with ms tools<a class="headerlink" href="#Example-Queries-with-ms-tools" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="Example-Queries-with-ms-tools">
+<h2>Example Queries with ms tools<a class="headerlink" href="#Example-Queries-with-ms-tools" title="Permalink to this heading"></a></h2>
 <p>Sometimes your measurement set might contain multiple spectral windows with different numbers of channels or polarizations. In such a situation, the above queries with the <code class="docutils literal notranslate"><span class="pre">tb</span></code> tool will most likely fail, because they are trying to read data with inherently different shapes into an array with one common shape. One solution is to use the <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a> tool.</p>
 <p>The two most useful methods are <code class="docutils literal notranslate"><span class="pre">ms.selectinit</span></code> followed by <code class="docutils literal notranslate"><span class="pre">ms.getdata</span></code>. The first earmarks a subset of data based upon the given <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code>, the second returns the actual data. It is possible to retrieve the data from a single spectral window because all data within a given spectral window will have the same polarization and channelization setup. The downside is that if your dataset has multiple spectral windows, you will need to repeat the queries for each one. It isn’t obvious that
 there is a faster way to retrieve the data in such a situation, however.</p>
@@ -1144,8 +1028,7 @@ there is a faster way to retrieve the data in such a situation, however.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="c1"># select the spectral window</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># query the desired columnames as a list</span>
@@ -1169,8 +1052,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># The returned query is a dictionary whose</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The returned query is a dictionary whose</span>
 <span class="c1"># keys are the lowercase column names</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 </pre></div>
@@ -1194,8 +1076,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># And the data values are the same as before</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And the data values are the same as before</span>
 <span class="n">uvw</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;uvw&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">uvw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -1209,16 +1090,15 @@ True
 (3, 325080)
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Putting-it-together-to-export-visibilities">
-<h2>Putting it together to export visibilities<a class="headerlink" href="#Putting-it-together-to-export-visibilities" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Putting-it-together-to-export-visibilities">
+<h2>Putting it together to export visibilities<a class="headerlink" href="#Putting-it-together-to-export-visibilities" title="Permalink to this heading"></a></h2>
 <p>This slightly larger example shows how to combine some of the above queries to read channel frequencies, baselines, and visibilites, and export them from the CASA environment saved as an <code class="docutils literal notranslate"><span class="pre">*.npz</span></code> file.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># query the data</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># query the data</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">ant1</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;ANTENNA1&quot;</span><span class="p">)</span>  <span class="c1"># array of int with shape [nvis]</span>
 <span class="n">ant2</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;ANTENNA2&quot;</span><span class="p">)</span>  <span class="c1"># array of int with shape [nvis]</span>
@@ -1243,8 +1123,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># get the channel information</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the channel information</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/SPECTRAL_WINDOW&quot;</span><span class="p">)</span>
 <span class="n">chan_freq</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;CHAN_FREQ&quot;</span><span class="p">)</span>
 <span class="n">num_chan</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;NUM_CHAN&quot;</span><span class="p">)</span>
@@ -1259,8 +1138,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">if</span> <span class="p">(</span><span class="n">nchan</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">chan_freq</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">chan_freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">nchan</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">chan_freq</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">chan_freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
     <span class="c1"># reverse channels</span>
     <span class="n">chan_freq</span> <span class="o">=</span> <span class="n">chan_freq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
@@ -1273,8 +1151,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ant1</span> <span class="o">!=</span> <span class="n">ant2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ant1</span> <span class="o">!=</span> <span class="n">ant2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">xc</span><span class="p">]</span>
 <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">xc</span><span class="p">]</span>
 <span class="n">uvw</span> <span class="o">=</span> <span class="n">uvw</span><span class="p">[:,</span> <span class="n">xc</span><span class="p">]</span>
@@ -1286,8 +1163,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># average the polarizations</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># average the polarizations</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1298,8 +1174,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># After this step, ``data`` should be shape ``(nchan, nvis)`` and weights should be shape ``(nvis,)``</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># After this step, ``data`` should be shape ``(nchan, nvis)`` and weights should be shape ``(nvis,)``</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -1320,8 +1195,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># when indexed with mask, returns valid visibilities</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># when indexed with mask, returns valid visibilities</span>
 <span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">flag</span>
 </pre></div>
 </div>
@@ -1330,8 +1204,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># convert uu and vv to kilolambda</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert uu and vv to kilolambda</span>
 <span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>  <span class="c1"># unpack into len nvis vectors</span>
 <span class="c1"># broadcast to the same shape as the data</span>
 <span class="c1"># stub to broadcast uu,vv, and weights to all channels</span>
@@ -1346,8 +1219,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># calculate wavelengths in meters</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate wavelengths in meters</span>
 <span class="n">wavelengths</span> <span class="o">=</span> <span class="n">c_ms</span> <span class="o">/</span> <span class="n">chan_freq</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># m</span>
 </pre></div>
 </div>
@@ -1356,8 +1228,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># calculate baselines in klambda</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate baselines in klambda</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">uu</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
 <span class="n">vv</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">vv</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
 </pre></div>
@@ -1367,8 +1238,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">chan_freq</span> <span class="o">*</span> <span class="mf">1e-9</span>  <span class="c1"># [GHz]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">chan_freq</span> <span class="o">*</span> <span class="mf">1e-9</span>  <span class="c1"># [GHz]</span>
 </pre></div>
 </div>
 </div>
@@ -1378,8 +1248,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># save data to numpy file for later use</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save data to numpy file for later use</span>
 <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span>
     <span class="s2">&quot;visibilities.npz&quot;</span><span class="p">,</span>
     <span class="n">frequencies</span><span class="o">=</span><span class="n">frequencies</span><span class="p">,</span>  <span class="c1"># [GHz]</span>
@@ -1392,55 +1261,38 @@ True
 </pre></div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="rescale_AS209_weights.html" class="btn btn-neutral float-right" title="Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="Visread documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rescale_AS209_weights.html" class="btn btn-neutral float-right" title="Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Ian Czekala.
-
-    </p>
+    <p>&#169; Copyright 2021, Ian Czekala.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

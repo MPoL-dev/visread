@@ -1,83 +1,45 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &mdash; visread 0.0.4 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Visread Installation" href="../installation.html" />
     <link rel="prev" title="Introduction to CASA tools" href="introduction_to_casatools.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> visread
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 0.0.4
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -85,19 +47,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</a><ul>
@@ -123,71 +74,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Visread API</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">visread</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/tutorials/rescale_AS209_weights.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -398,11 +308,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -411,10 +322,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -426,12 +341,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -458,14 +376,14 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Walkthrough:-Examining-DSHARP-AS-209-Weights-and-Exporting-Visibilities">
-<h1>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities<a class="headerlink" href="#Walkthrough:-Examining-DSHARP-AS-209-Weights-and-Exporting-Visibilities" title="Permalink to this headline">¶</a></h1>
+<section id="Walkthrough:-Examining-DSHARP-AS-209-Weights-and-Exporting-Visibilities">
+<h1>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities<a class="headerlink" href="#Walkthrough:-Examining-DSHARP-AS-209-Weights-and-Exporting-Visibilities" title="Permalink to this heading"></a></h1>
 <p>In this walkthrough tutorial, we’ll use CASA tools to examine the visibilities, visibility residuals, and weights of a real multi-configuration dataset from the DSHARP survey.</p>
-<div class="section" id="Obtaining-and-CLEANing-the-AS-209-measurement-set">
-<h2>Obtaining and CLEANing the AS 209 measurement set<a class="headerlink" href="#Obtaining-and-CLEANing-the-AS-209-measurement-set" title="Permalink to this headline">¶</a></h2>
-<p>The calibrated measurement sets from the DSHARP data release are available <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/">online</a>, and the full description of the survey is provided in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2018ApJ...869L..41A/abstract">Andrews et al. 2018</a>.</p>
-<div class="section" id="Model-Visibilities-and-MODEL_DATA">
-<h3>Model Visibilities and MODEL_DATA<a class="headerlink" href="#Model-Visibilities-and-MODEL_DATA" title="Permalink to this headline">¶</a></h3>
+<section id="Obtaining-and-CLEANing-the-AS-209-measurement-set">
+<h2>Obtaining and CLEANing the AS 209 measurement set<a class="headerlink" href="#Obtaining-and-CLEANing-the-AS-209-measurement-set" title="Permalink to this heading"></a></h2>
+<p>The calibrated measurement sets from the DSHARP data release are available <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/">online</a>, and the full description of the survey is provided in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2018ApJ...869L..41A/abstract">Andrews et al. 2018</a>.</p>
+<section id="Model-Visibilities-and-MODEL_DATA">
+<h3>Model Visibilities and MODEL_DATA<a class="headerlink" href="#Model-Visibilities-and-MODEL_DATA" title="Permalink to this heading"></a></h3>
 <p>In its simplest form, the measurement set just contains the visibility data in a <code class="docutils literal notranslate"><span class="pre">DATA</span></code> or <code class="docutils literal notranslate"><span class="pre">CORRECTED_DATA</span></code> column. In the process of using <code class="docutils literal notranslate"><span class="pre">tclean</span></code> to synthesize an image, however, CASA also calculates a set of model visibilities that correspond to the Fourier transform of the CLEAN model. It’s possible to store these model visibilities to the measurement set if the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> process was invoked with the <code class="docutils literal notranslate"><span class="pre">savemodel=&quot;modelcolumn&quot;</span></code> parameter. The model visibilities will be stored in a
 <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column with the same shape as the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> column.</p>
 <p>The calibrated DSHARP measurement sets available from the archive do not contain this <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column (most likely for space reasons), so we will need to recreate them by running the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> algorithm with the relevant settings. The full reduction scripts are <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/scripts/AS209_continuum.py">available online</a>, but we just need reproduce the relevant <code class="docutils literal notranslate"><span class="pre">tclean</span></code> commands used to produce a FITS image from the final, calibrated measurement set.</p>
@@ -474,8 +392,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">re</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -487,8 +404,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">traitlets.traitlets</span> <span class="kn">import</span> <span class="n">validate</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">traitlets.traitlets</span> <span class="kn">import</span> <span class="n">validate</span>
 </pre></div>
 </div>
 </div>
@@ -496,8 +412,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># change to the cached subdirectory that contains the cleaned MS</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change to the cached subdirectory that contains the cleaned MS</span>
 <span class="n">workdir</span> <span class="o">=</span> <span class="s2">&quot;AS209_MS&quot;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;AS209_continuum.ms&quot;</span>
@@ -505,16 +420,15 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Visualizing-the-CLEANed-image">
-<h3>Visualizing the CLEANed image<a class="headerlink" href="#Visualizing-the-CLEANed-image" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Visualizing-the-CLEANed-image">
+<h3>Visualizing the CLEANed image<a class="headerlink" href="#Visualizing-the-CLEANed-image" title="Permalink to this heading"></a></h3>
 <p>Just to make sure the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> process ran OK, let’s check the synthesized image that was produced</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
 </pre></div>
 </div>
 </div>
@@ -522,8 +436,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fitsname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fitsname</span><span class="p">)</span>
 <span class="n">header</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
 <span class="n">data</span> <span class="o">=</span> <span class="mf">1e3</span> <span class="o">*</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># mJy/pixel</span>
 <span class="c1"># get the coordinate labels</span>
@@ -553,8 +466,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">ext</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
 <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mJy / pixel&quot;</span><span class="p">)</span>
@@ -583,18 +495,17 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 </div>
 </div>
 <p>Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran <code class="docutils literal notranslate"><span class="pre">tclean</span></code> was to generate the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column in the measurement set. The actual CLEANed FITS image is just a nice byproduct.</p>
-</div>
-</div>
-<div class="section" id="Examining-measurement-set-structure">
-<h2>Examining measurement set structure<a class="headerlink" href="#Examining-measurement-set-structure" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="Examining-measurement-set-structure">
+<h2>Examining measurement set structure<a class="headerlink" href="#Examining-measurement-set-structure" title="Permalink to this heading"></a></h2>
 <p>Before you dive into the full analysis with CASA tools, it’s a very good idea to inspect the measurement set using <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about">listobs</a>.</p>
 <p>After you’ve done that, let’s start exploring the visibility values. First we’ll need to import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods">table</a> and <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">casatools</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">casatools</span>
 </pre></div>
 </div>
 </div>
@@ -602,8 +513,7 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -613,8 +523,7 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/DATA_DESCRIPTION&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/DATA_DESCRIPTION&quot;</span><span class="p">)</span>
 <span class="n">SPECTRAL_WINDOW_ID</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;SPECTRAL_WINDOW_ID&quot;</span><span class="p">)</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">SPECTRAL_WINDOW_ID</span><span class="p">)</span>
@@ -636,8 +545,7 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">colnames</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">colnames</span><span class="p">()</span>
 <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">colnames</span><span class="p">)</span>
@@ -657,8 +565,7 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">try</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
     <span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
     <span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
@@ -677,8 +584,7 @@ Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="c1"># select the spectral window</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># query the desired columnames as a list</span>
@@ -703,8 +609,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -721,8 +626,7 @@ dict_keys([&#39;data&#39;, &#39;uvw&#39;, &#39;weight&#39;])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -740,17 +644,16 @@ dict_keys([&#39;data&#39;, &#39;uvw&#39;, &#39;weight&#39;])
     0.46174076-0.27798796j  0.61960417+0.00973242j]]]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Using-the-tclean-model-to-calculate-residual-visibilities">
-<h2>Using the tclean model to calculate residual visibilities<a class="headerlink" href="#Using-the-tclean-model-to-calculate-residual-visibilities" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="Using-the-tclean-model-to-calculate-residual-visibilities">
+<h2>Using the tclean model to calculate residual visibilities<a class="headerlink" href="#Using-the-tclean-model-to-calculate-residual-visibilities" title="Permalink to this heading"></a></h2>
 <p>In any data analysis where you’re computing a forward model, it’s a good consitency check to examine the data residuals from that model, and, in particular, whether their scatter matches the expectations from the noise properties.</p>
 <p>We can calculate data residuals using the model visibilities derived from the tclean model and stored in the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column of the measurement set.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="c1"># select the spectral window</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="c1"># query the desired columnames as a list</span>
@@ -774,8 +677,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -784,13 +686,13 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[[0.05779036-0.00038263j 0.06051357-0.00047972j 0.03197915-0.00052703j
-   ... 0.05890298-0.00046937j 0.06827322-0.00047958j
-   0.1974636 -0.00059635j]]
+[[[0.05795327-0.00037503j 0.06064697-0.0005148j  0.03213371-0.0003984j
+   ... 0.05897298-0.00039497j 0.06831173-0.00042475j
+   0.19711027-0.00065186j]]
 
- [[0.05779036-0.00038263j 0.06051357-0.00047972j 0.03197915-0.00052703j
-   ... 0.05890298-0.00046937j 0.06827322-0.00047958j
-   0.1974636 -0.00059635j]]]
+ [[0.05795327-0.00037503j 0.06064697-0.0005148j  0.03213371-0.0003984j
+   ... 0.05897298-0.00039497j 0.06831173-0.00042475j
+   0.19711027-0.00065186j]]]
 </pre></div></div>
 </div>
 <p>Using these model visibilities, let’s calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
@@ -803,16 +705,15 @@ True
 <div class="math notranslate nohighlight">
 \[\mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}\]</div>
 <p>For now, <span class="math notranslate nohighlight">\(\mathrm{sigma\_rescale} = 1\)</span>, but we’ll see why this parameter is needed in a moment.</p>
-<div class="section" id="Helper-functions-for-examining-weight-scatter">
-<h3>Helper functions for examining weight scatter<a class="headerlink" href="#Helper-functions-for-examining-weight-scatter" title="Permalink to this headline">¶</a></h3>
+<section id="Helper-functions-for-examining-weight-scatter">
+<h3>Helper functions for examining weight scatter<a class="headerlink" href="#Helper-functions-for-examining-weight-scatter" title="Permalink to this heading"></a></h3>
 <p>Because we’d like to repeat this analysis for each spectral window in the measurement set, it makes things easier if we write these calculations as functions.</p>
 <p>The functions provided in this document are only dependent on the CASA tools <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code>. If you find yourself using these routines frequently, you might consider installing the <em>visread</em> package, since similar commands are provided in the API.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the scatter for each polarization.</span>
 
@@ -873,8 +774,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate a reference Gaussian as a function of :math:`x`</span>
 
@@ -898,8 +798,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">scatter_hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scatter_hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot a normalized histogram of scatter for real and imaginary</span>
 <span class="sd">    components of XX and YY polarizations.</span>
@@ -948,8 +847,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">plot_histogram_datadescid</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_histogram_datadescid</span><span class="p">(</span>
     <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wrap the scatter routine to plot a histogram of scatter for real and imaginary components of XX and YY polarizations, given a ``DATA_DESC_ID``.</span>
@@ -977,20 +875,19 @@ True
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="Checking-scatter-for-each-spectral-window">
-<h2>Checking scatter for each spectral window<a class="headerlink" href="#Checking-scatter-for-each-spectral-window" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="Checking-scatter-for-each-spectral-window">
+<h2>Checking scatter for each spectral window<a class="headerlink" href="#Checking-scatter-for-each-spectral-window" title="Permalink to this heading"></a></h2>
 <p>Now lets use our helper functions to investigate the characteristics of each spectral window.</p>
-<div class="section" id="Spectral-Window-7:-A-correctly-scaled-SPW">
-<h3>Spectral Window 7: A correctly scaled SPW<a class="headerlink" href="#Spectral-Window-7:-A-correctly-scaled-SPW" title="Permalink to this headline">¶</a></h3>
+<section id="Spectral-Window-7:-A-correctly-scaled-SPW">
+<h3>Spectral Window 7: A correctly scaled SPW<a class="headerlink" href="#Spectral-Window-7:-A-correctly-scaled-SPW" title="Permalink to this heading"></a></h3>
 <p>Let’s see how the residual visibilities in spectral window 7 scatter relative to their expected Gaussian envelope</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1002,16 +899,15 @@ True
 </div>
 </div>
 <p>Great, it looks like things are pretty much as we would expect here.</p>
-</div>
-<div class="section" id="Spectral-Window-22:-Visibility-outliers">
-<h3>Spectral Window 22: Visibility outliers<a class="headerlink" href="#Spectral-Window-22:-Visibility-outliers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="Spectral-Window-22:-Visibility-outliers">
+<h3>Spectral Window 22: Visibility outliers<a class="headerlink" href="#Spectral-Window-22:-Visibility-outliers" title="Permalink to this heading"></a></h3>
 <p>In the last example, we were a little bit cavalier and plotted the residuals for <em>all</em> visibilities, regardless of whether their <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> was true. If we do the same for the visibilities in spectral window 22,</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1027,8 +923,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1044,8 +939,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1061,8 +955,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1078,8 +971,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 </pre></div>
 </div>
 </div>
@@ -1087,8 +979,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">calculate_rescale_factor</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_rescale_factor</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">bins</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bins&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
     <span class="n">bin_heights</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
     <span class="n">bin_centers</span> <span class="o">=</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
@@ -1113,8 +1004,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">get_scatter_datadescid</span><span class="p">(</span>
         <span class="n">datadescid</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span>
@@ -1138,8 +1028,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">factor</span> <span class="o">=</span> <span class="n">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factor</span> <span class="o">=</span> <span class="n">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1149,7 +1038,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-1.8596119135410647
+1.8596319521755138
 </pre></div></div>
 </div>
 <p>If we rescale the <span class="math notranslate nohighlight">\(\sigma\)</span> values to make them a factor of <span class="math notranslate nohighlight">\(\sim 1.85\)</span> larger it looks like we are able to make the distributions match up a little bit better.</p>
@@ -1157,8 +1046,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">factor</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram_datadescid</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">factor</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1176,8 +1064,7 @@ weight scatter across spectral window.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># get the baselines and flags for spectral window 22</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the baselines and flags for spectral window 22</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="c1"># select the key</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
@@ -1200,8 +1087,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">flag_XX</span><span class="p">,</span> <span class="n">flag_YY</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flag_XX</span><span class="p">,</span> <span class="n">flag_YY</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">]</span>
 <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;uvw&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1e-3</span>  <span class="c1"># [km]</span>
 </pre></div>
 </div>
@@ -1210,8 +1096,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># calculate the scatter of the residual visibilities</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the scatter of the residual visibilities</span>
 <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">get_scatter_datadescid</span><span class="p">(</span>
     <span class="mi">22</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="n">factor</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -1223,8 +1108,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="n">flag_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">flag_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scatter_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
@@ -1245,8 +1129,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nchan</span> <span class="o">=</span> <span class="n">flag_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nchan</span> <span class="o">=</span> <span class="n">flag_XX</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">uu</span> <span class="o">=</span> <span class="n">u</span> <span class="o">*</span> <span class="n">broadcast</span>
 <span class="n">vv</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="n">broadcast</span>
@@ -1258,8 +1141,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">uu_XX</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="o">~</span><span class="n">flag_XX</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uu_XX</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="o">~</span><span class="n">flag_XX</span><span class="p">]</span>
 <span class="n">vv_XX</span> <span class="o">=</span> <span class="n">vv</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
 <span class="n">scatter_XX</span> <span class="o">=</span> <span class="n">scatter_XX</span><span class="p">[</span><span class="o">~</span><span class="n">flag_XX</span><span class="p">]</span>
 </pre></div>
@@ -1269,8 +1151,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">uu_YY</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uu_YY</span> <span class="o">=</span> <span class="n">uu</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
 <span class="n">vv_YY</span> <span class="o">=</span> <span class="n">vv</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
 <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_YY</span><span class="p">[</span><span class="o">~</span><span class="n">flag_YY</span><span class="p">]</span>
 </pre></div>
@@ -1280,8 +1161,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">vvmax</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vvmax</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="n">vvmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vvmax</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1290,8 +1170,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu_XX</span><span class="p">,</span> <span class="n">vv_XX</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">scatter_XX</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu_YY</span><span class="p">,</span> <span class="n">vv_YY</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">scatter_YY</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -1319,17 +1198,16 @@ Text(0, 0.5, &#39;$v$ [km]&#39;)
 </div>
 </div>
 <p>We don’t appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we’ll just accept these rescaled weights as is.</p>
-</div>
-</div>
-<div class="section" id="Rescaling-weights-for-export.">
-<h2>Rescaling weights for export.<a class="headerlink" href="#Rescaling-weights-for-export." title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="Rescaling-weights-for-export.">
+<h2>Rescaling weights for export.<a class="headerlink" href="#Rescaling-weights-for-export." title="Permalink to this heading"></a></h2>
 <p>We can use the previous routines to iterate through plots of each spectral window. For reference, here are the rescale factors we derived for each spectral window</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sigma_rescale_factors</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sigma_rescale_factors</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">ID</span><span class="p">:</span> <span class="n">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span> <span class="k">for</span> <span class="n">ID</span> <span class="ow">in</span> <span class="n">SPECTRAL_WINDOW_ID</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="n">ID</span> <span class="ow">in</span> <span class="n">SPECTRAL_WINDOW_ID</span><span class="p">:</span>
@@ -1370,55 +1248,38 @@ Text(0, 0.5, &#39;$v$ [km]&#39;)
 </pre></div></div>
 </div>
 <p>If you wanted to use these visibilities for forward modeling or <a class="reference external" href="https://mpol-dev.github.io/MPoL/">Regularized Maximum Likelihood (RML) imaging</a>, you will want to read and export the correctly flagged and rescaled visibilities and convert baselines to kilolambda.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../installation.html" class="btn btn-neutral float-right" title="Visread Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="introduction_to_casatools.html" class="btn btn-neutral float-left" title="Introduction to CASA tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../installation.html" class="btn btn-neutral float-right" title="Visread Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Ian Czekala.
-
-    </p>
+    <p>&#169; Copyright 2021, Ian Czekala.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
