@@ -21,6 +21,7 @@ jobs:
         pip install --upgrade pip
         pip install casatools
         pip install casatasks
+        pip install casadata
 
     - name: Install vanilla package
       run: |
