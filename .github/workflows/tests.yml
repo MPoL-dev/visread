@@ -19,24 +19,16 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-    
-    - name: Install fortran libs for CASA
-      run: |
-        lsb_release -a
-        sudo apt-get install libgfortran3
-    
-    - name: Install vanilla package 
-      run: |
-        pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .
-    
-    # https://open-bitbucket.nrao.edu/projects/CASA/repos/casa6/browse/casatools/casadata.md
-    - name: Update CASA runtime data
-      run: | 
-        python -m casatools --update-user-data
+        pip install casatools
+        pip install casatasks
 
+    - name Install vanilla package
+      run: |
+        pip install .
+    
     - name: Install test deps 
       run: |
-        pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[test]
+        pip install .[test]
     
     - name: Test with pytest
       run: | 
@@ -47,13 +39,13 @@ jobs:
 # (but don't deploy to gh-pages)
   docs:
     needs: tests
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
       - name: Set up Python 
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.8
       - name: Install doc deps
         run: |
           pip install --extra-index-url https://casa-pip.nrao.edu/repository/pypi-casa-release/simple .[docs]
