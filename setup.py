@@ -26,7 +26,6 @@ EXTRA_REQUIRES = {
     "test": ["pytest", "casatasks", "astropy"],
     "docs": [
         "sphinx>=2.3.0",
-        "numpy",
         "nbsphinx",
         "sphinx_material",
         "sphinx_copybutton",
@@ -54,7 +53,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/MPoL-dev/visread",
-    install_requires=["numpy", "casatools"],
+    install_requires=["numpy", "casatools", "casadata"],
     extras_require=EXTRA_REQUIRES,
     packages=setuptools.find_packages("src"),
     package_dir={"": "src"},
