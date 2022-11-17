@@ -14,19 +14,9 @@ help:
 
 .PHONY: help Makefile html clean
 
-NOTEBOOKS := tutorials/introduction_to_casatools.ipynb tutorials/rescale_AS209_weights.ipynb 
-
-tutorials/AS209_MS/AS209.fits: tutorials/dl_and_tclean_AS209.py
-	python tutorials/dl_and_tclean_AS209.py
-
 clean:
 	rm -rf _build
-	rm -rf ${NOTEBOOKS}
-	rm -rf tutorials/.ipynb_checkpoints
-	rm -rf tutorials/runs
+	rm -rf casa*log
 
-tutorials/%.ipynb: tutorials/%.py tutorials/AS209_MS/AS209.fits
-	jupytext --to ipynb --execute $<
-
-html: ${NOTEBOOKS}
-	python -m sphinx -T -E -b html -d _build/doctrees -D language=en . _build/html
+html:
+	sphinx-build -T -b html -d _build/doctrees -D language=en . _build/html

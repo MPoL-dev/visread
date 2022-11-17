@@ -40,9 +40,11 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
-    "nbsphinx",
     "sphinx_copybutton",
+    "myst_nb"
 ]
+
+myst_enable_extensions = ["dollarmath", "colon_fence"]
 
 autodoc_mock_imports = ["casatools"]
 
@@ -59,3 +61,6 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = "sphinx_rtd_theme"
+
+nb_execution_mode = "cache"
+nb_execution_timeout = -1

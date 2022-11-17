@@ -32,10 +32,11 @@ EXTRA_REQUIRES = {
         "sphinx_rtd_theme",
         "jupyter",
         "jupytext",
-        "nbconvert",
         "astropy",
         "casatasks",
         "matplotlib",
+        "myst-nb",
+        "jupyter-cache"
     ],
 }
 
