@@ -1,11 +1,5 @@
 import numpy as np
-import casatools
-
-# initialize the relevant CASA tools
-tb = casatools.table()
-ms = casatools.ms()
-msmd = casatools.msmetadata()
-
+from astropy.constants import c
 
 def weight_to_sigma(weight):
     r"""
@@ -16,38 +10,78 @@ def weight_to_sigma(weight):
         \sigma = \sqrt{1/w}
 
     Args:
-        weight (float): statistical weight value
+        weight (float or np.array): statistical weight value
 
     Returns:
-        sigma (float): the corresponding uncertainty
+        sigma (float or np.array): the corresponding uncertainty
     """
 
     return np.sqrt(1 / weight)
 
-def broadcast_weights(weight, nchan):
 
-    # weight is shape (npol, nvis)
+def broadcast_weights(weight, data_shape, chan_axis=1):
+    r"""
+    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications).
 
-    # we want to make it shape (npol, nchan, nvis)
+    Args:
+        weight (np.array): the weights
+        data_shape (tuple): the shape of the data
+        chan_axis (int): which axis represents the number of channels?
+
+    """
+
+    nchan = data_shape[chan_axis]
 
     broadcast = np.ones((2, nchan, 1))
     return weight[:, np.newaxis, :] * broadcast
 
+
 def rescale_weights(weight, sigma_rescale):
+    r"""
+    Rescale all weights by a common factor. It would be as if :math:`\sigma` were rescaled by this factor.
+    
+    .. math::
+
+        w_\mathrm{new} = w_\mathrm{old} / \sigma_\mathrm{rescale}^2
+
+    Args:
+        weight (float or np.array): the weights
+        sigma_rescale (float): the factor by which to rescale the weight 
+
+    Returns:
+        (float or np.array) the rescaled weights
+    """
     return weight / (sigma_rescale**2)
+
+
+def sum_weight_polarization(weight, polarization_axis=0):
+    """
+    Average the weights over the polarization axis.
+
+    Args:
+        weights (np.array): weight array. Could be shape `(2, nchan, nvis)` or just `(2, nvis)`, dependending on whether it has been broadcasted already. 
+        polarization_axis (int): the polarization axis, typically 0.
+
+    Returns:
+        (np.array): weight array summed over the polarization axis. Could be shape `(nchan, nvis)` or just `(nvis)` depending on whether it was broadcasted across channels.
+    """
+
+    return np.sum(weight, axis=polarization_axis)
+
 
 def convert_baselines(baselines, freq):
     r"""
     Convert baselines in meters to kilolambda.
 
     Args:
-        baselines (1D array nvis): baseline [m]
+        baselines (float or np.array): baselines in [m].
+        freq (float or np.array): frequencies in [Hz]. If either ``baselines`` or ``freq`` are numpy arrays, their shapes must be broadcast-able.
 
     Returns:
-        (1D array nvis): in [klambda]
+        (1D array nvis): baselines in [klambda]
     """
     # calculate wavelengths in meters
-    wavelengths = c_ms / freq  # m
+    wavelengths = c.value / freq  # m
 
     # calculate baselines in klambda
     return 1e-3 * baselines / wavelengths  # [klambda]
@@ -75,7 +109,7 @@ def broadcast_baselines(u, v, chan_freq):
     vv = v * broadcast
 
     # calculate wavelengths in meters
-    wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
+    wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 
     # calculate baselines in klambda
     uu = 1e-3 * uu / wavelengths  # [klambda]
@@ -83,27 +117,16 @@ def broadcast_baselines(u, v, chan_freq):
 
     return (uu, vv)
 
-def average_weight(weight):
+
+def average_data_polarizations(data, weight, flag=None, polarization_axis=0):
     """
-    Average the weights over the polarization axis.
+    Perform a weighted average of the data over the polarization axis and propagate flags, if necessary.
 
     Args:
-        weights (2, ): weight array. Could be shape `(2, nchan, nvis)` or just `(2, nvis)`, dependending on whether it has been broadcasted already.
-
-    Returns:
-        weights (): averaged weight array. Could be shape `(nchan, nvis)` or just `(nvis)` depending on whether it has been broadcasted already.
-    """
-
-    return np.sum(weight, axis=0)
-
-def average_polarizations(data, flag, weight, model_data=None):
-    """
-    Average over the polarization axis.
-
-    Args:
-        data (2, nchan, nvis): complex data array
-        flag (2, nchan, nvis): bool flag array
-        weight (2, nchan, nvis): assume it's already been broadcasted
+        data (npol, nchan, nvis): complex data array. Could either be real data or model_data.
+        weight (npol, nchan, nvis): weight array
+        flag (npol, nchan, nvis): bool flag array
+        polarization_axis (int): index of the polarization axis, typically 0.
 
     Returns:
         data, flag, weight averaged over the polarization axis each (nchan, nvis)
@@ -122,8 +145,6 @@ def average_polarizations(data, flag, weight, model_data=None):
         return data, flag, weight, model_data
     else:
         return data, flag, weight
-
-
 
 
 def get_crosscorrelation_mask(ant1, ant2):
@@ -154,7 +175,6 @@ def get_channel_sorted_data(filename, datadescid):
         flag = flag[:, ::-1, :]
 
     return chan_freq, data, model_data, flag
-
 
 
 def get_processed_visibilities(
