@@ -1,9 +1,10 @@
 ---
+file_format: mystnb
 jupyter:
   jupytext:
     text_representation:
       extension: .md
-      format_name: markdown
+      format_name: myst
       format_version: '1.3'
       jupytext_version: 1.14.1
   kernelspec:
@@ -12,11 +13,13 @@ jupyter:
     name: python3
 ---
 
-```python nbsphinx="hidden"
+```{code-cell} ipython3 
+:tags: [hide-cell]
 %matplotlib inline
 ```
 
-```python nbsphinx="hidden"
+```{code-cell} ipython3 
+:tags: [hide-cell]
 %run notebook_setup
 ```
 

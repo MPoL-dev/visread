@@ -133,6 +133,30 @@ def get_crosscorrelation_mask(ant1, ant2):
 
     return xc
 
+
+def get_channel_sorted_data(filename, datadescid):
+    # get the channels
+    chan_freq = get_channels(filename, datadescid)
+    nchan = len(chan_freq)
+
+    # get the data and flags
+    query = query_datadescid(filename, datadescid)
+    data = query["data"]
+    model_data = query["model_data"]
+    flag = query["flag"]
+
+    # check to make sure we're in blushifted - redshifted order, otherwise reverse channel order
+    if (nchan > 1) and (chan_freq[1] > chan_freq[0]):
+        # reverse channels
+        chan_freq = chan_freq[::-1]
+        data = data[:, ::-1, :]
+        model_data = model_data[:, ::-1, :]
+        flag = flag[:, ::-1, :]
+
+    return chan_freq, data, model_data, flag
+
+
+
 def get_processed_visibilities(
     filename, datadescid, sigma_rescale=1.0, model_data=False
 ):
