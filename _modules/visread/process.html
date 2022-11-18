@@ -98,21 +98,24 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">weight</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="broadcast_weights"><a class="viewcode-back" href="../../api.html#visread.process.broadcast_weights">[docs]</a><span class="k">def</span> <span class="nf">broadcast_weights</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">data_shape</span><span class="p">,</span> <span class="n">chan_axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="broadcast_weights"><a class="viewcode-back" href="../../api.html#visread.process.broadcast_weights">[docs]</a><span class="k">def</span> <span class="nf">broadcast_weights</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">data_shape</span><span class="p">,</span> <span class="n">chan_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications).</span>
+<span class="sd">    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications) but already averaged over polarizations.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        weight (np.array): the weights</span>
 <span class="sd">        data_shape (tuple): the shape of the data</span>
-<span class="sd">        chan_axis (int): which axis represents the number of channels?</span>
+<span class="sd">        chan_axis (int): the axis which represents the number of channels in the data array, typically 0 for visibility data that has already been averaged over polarizations.</span>
 
+<span class="sd">    Returns:</span>
+<span class="sd">        np.array (float) array of weights the same shape as the data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
 
     <span class="n">nchan</span> <span class="o">=</span> <span class="n">data_shape</span><span class="p">[</span><span class="n">chan_axis</span><span class="p">]</span>
 
-    <span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">broadcast</span></div>
+    <span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">weight</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">broadcast</span></div>
 
 
 <div class="viewcode-block" id="rescale_weights"><a class="viewcode-back" href="../../api.html#visread.process.rescale_weights">[docs]</a><span class="k">def</span> <span class="nf">rescale_weights</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="p">):</span>
@@ -133,12 +136,12 @@
     <span class="k">return</span> <span class="n">weight</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma_rescale</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="sum_weight_polarization"><a class="viewcode-back" href="../../api.html#visread.process.sum_weight_polarization">[docs]</a><span class="k">def</span> <span class="nf">sum_weight_polarization</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">polarization_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="average_weight_polarization"><a class="viewcode-back" href="../../api.html#visread.process.average_weight_polarization">[docs]</a><span class="k">def</span> <span class="nf">average_weight_polarization</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">polarization_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Average the weights over the polarization axis.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        weights (np.array): weight array. Could be shape `(2, nchan, nvis)` or just `(2, nvis)`, dependending on whether it has been broadcasted already. </span>
+<span class="sd">        weight (np.array): weight array. Could be shape `(2, nchan, nvis)` or just `(2, nvis)`, dependending on whether it has been broadcasted already. </span>
 <span class="sd">        polarization_axis (int): the polarization axis, typically 0.</span>
 
 <span class="sd">    Returns:</span>
@@ -146,6 +149,20 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">polarization_axis</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="average_flag_polarization"><a class="viewcode-back" href="../../api.html#visread.process.average_flag_polarization">[docs]</a><span class="k">def</span> <span class="nf">average_flag_polarization</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">polarization_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Collapse the flags across the polarization axis, taking the approach that if either polarization is flagged, the averaged product shoud be flagged too.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        flag (np.array bool): flag array. Could be multidimensional, e.g. `(2, nchan, nvis)` or just `(2, nvis)`.</span>
+<span class="sd">        polarization_axis (int): the polarization axis, typically 0.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (np.array bool): flag array collapsed across the polarization axis. Could be shape `(nchan, nvis)` or just `(nvis)` depending on whether it was broadcasted across channels.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">polarization_axis</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="convert_baselines"><a class="viewcode-back" href="../../api.html#visread.process.convert_baselines">[docs]</a><span class="k">def</span> <span class="nf">convert_baselines</span><span class="p">(</span><span class="n">baselines</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
@@ -166,9 +183,9 @@
     <span class="k">return</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">baselines</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span></div>
 
 
-<div class="viewcode-block" id="broadcast_baselines"><a class="viewcode-back" href="../../api.html#visread.process.broadcast_baselines">[docs]</a><span class="k">def</span> <span class="nf">broadcast_baselines</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chan_freq</span><span class="p">):</span>
+<div class="viewcode-block" id="broadcast_and_convert_baselines"><a class="viewcode-back" href="../../api.html#visread.process.broadcast_and_convert_baselines">[docs]</a><span class="k">def</span> <span class="nf">broadcast_and_convert_baselines</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chan_freq</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert baselines to kilolambda and broadcast</span>
+<span class="sd">    Convert baselines to kilolambda and broadcast to match shape of channel frequencies.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        u (1D array nvis): baseline [m]</span>
@@ -197,41 +214,92 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="average_data_polarizations"><a class="viewcode-back" href="../../api.html#visread.process.average_data_polarizations">[docs]</a><span class="k">def</span> <span class="nf">average_data_polarizations</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">flag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">polarization_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="average_data_polarization"><a class="viewcode-back" href="../../api.html#visread.process.average_data_polarization">[docs]</a><span class="k">def</span> <span class="nf">average_data_polarization</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">polarization_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Perform a weighted average of the data over the polarization axis and propagate flags, if necessary.</span>
+<span class="sd">    Perform a weighted average of the data over the polarization axis.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        data (npol, nchan, nvis): complex data array. Could either be real data or model_data.</span>
-<span class="sd">        weight (npol, nchan, nvis): weight array</span>
-<span class="sd">        flag (npol, nchan, nvis): bool flag array</span>
+<span class="sd">        weight (npol, nvis): weight array matching data array</span>
 <span class="sd">        polarization_axis (int): index of the polarization axis, typically 0.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        data, flag, weight averaged over the polarization axis each (nchan, nvis)</span>
+<span class="sd">        data averaged over the polarization axis.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Not recognized as a dual-polarization dataset&quot;</span>
+    <span class="k">assert</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">polarization_axis</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Not recognized as a dual-polarization dataset&quot;</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># we need to check whether weight is the same shape as the data, because sometimes the data is </span>
+    <span class="c1"># channelized and the weights are not</span>
+    <span class="c1"># e.g., data would have shape (npol, nchan, nvis)</span>
+    <span class="c1"># while weight would have shape (npol, nvis)</span>
 
-    <span class="k">if</span> <span class="n">model_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">model_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">model_data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># normalization after averaging over the polarization axis</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">average_weight_polarization</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">polarization_axis</span><span class="o">=</span><span class="n">polarization_axis</span><span class="p">)</span>
 
-    <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">model_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">model_data</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">polarization_axis</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="n">polarization_axis</span><span class="p">)</span> <span class="o">/</span> <span class="n">norm</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">weight</span></div>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;I don&#39;t know what to do with provided data and weight arrays with shapes </span><span class="si">{:}</span><span class="s2"> and </span><span class="si">{:}</span><span class="s2">, respectively&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span></div>
 
+<div class="viewcode-block" id="contains_autocorrelations"><a class="viewcode-back" href="../../api.html#visread.process.contains_autocorrelations">[docs]</a><span class="k">def</span> <span class="nf">contains_autocorrelations</span><span class="p">(</span><span class="n">ant1</span><span class="p">,</span> <span class="n">ant2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Test whether the list of antennas contain any autocorrelations.</span>
 
-<span class="k">def</span> <span class="nf">get_crosscorrelation_mask</span><span class="p">(</span><span class="n">ant1</span><span class="p">,</span> <span class="n">ant2</span><span class="p">):</span>
+<span class="sd">    Args:</span>
+<span class="sd">        ant1 (np.array int): antenna 1</span>
+<span class="sd">        ant2 (np.array int): antenna 2</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        boolean: True if list contains autocorrelation pairs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">autocorrelation_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">ant1</span> <span class="o">==</span> <span class="n">ant2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">autocorrelation_mask</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> </div>
+
+<span class="k">def</span> <span class="nf">get_crosscorrelation_indexes</span><span class="p">(</span><span class="n">ant1</span><span class="p">,</span> <span class="n">ant2</span><span class="p">):</span>
 
     <span class="c1"># index to cross-correlations</span>
     <span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ant1</span> <span class="o">!=</span> <span class="n">ant2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">xc</span>
+
+<div class="viewcode-block" id="isdecreasing"><a class="viewcode-back" href="../../api.html#visread.process.isdecreasing">[docs]</a><span class="k">def</span> <span class="nf">isdecreasing</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Return true if channels are stored in decreasing frequency order, i.e., blueshifted to redshifted.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        chan_freq (1D numpy array): the channel frequencies in Hz</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        boolean : True if channels are stored in decreasing frequency order (preferred order).</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># check to make sure we&#39;re in blushifted - redshifted order, otherwise reverse channel order</span>
+    <span class="n">nchan</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nchan</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="c1"># strictly decreasing</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span> <span class="c1"># strictly increasing</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;chan_freq array is neither strictly decreasing nor strictly increasing, investigate what went wrong.&quot;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="reverse_array"><a class="viewcode-back" href="../../api.html#visread.process.reverse_array">[docs]</a><span class="k">def</span> <span class="nf">reverse_array</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">channel_axis</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If the channel frequencies are stored in an order different than the one we desire, we can reverse the axes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        array (np.array): the input array, could be chan_freq, data, flag, etc.</span>
+<span class="sd">        channel_axis (int): which axis is the channel axis?</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        np.array sorted</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">channel_axis</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">get_channel_sorted_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">):</span>
