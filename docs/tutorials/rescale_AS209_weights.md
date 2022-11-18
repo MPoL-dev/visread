@@ -8,7 +8,7 @@ jupyter:
       format_version: '1.3'
       jupytext_version: 1.14.1
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
@@ -38,7 +38,7 @@ The calibrated DSHARP measurement sets available from the archive do not contain
 
 Because the measurement set is large (0.9 Gb) and the ``tclean`` process is computationally expensive (taking about 1 hr on a single core), we have pre-executed those commands and cached the measurement set and ``tclean`` products into the ``AS209_MS`` local directory. If you're interested in the exact ``tclean`` commands used, please check out the [dl_and_tclean_AS209.py](dl_and_tclean_AS209.py) script directly.
 
-```python
+```{code-cell}
 import re
 import numpy as np
 import matplotlib
@@ -46,11 +46,11 @@ import matplotlib.pyplot as plt
 import os
 ```
 
-```python
+```{code-cell}
 from traitlets.traitlets import validate
 ```
 
-```python
+```{code-cell}
 # change to the cached subdirectory that contains the cleaned MS
 workdir = "AS209_MS"
 os.chdir(workdir)
@@ -61,11 +61,11 @@ fitsname = "AS209.fits"
 ### Visualizing the CLEANed image
 Just to make sure the ``tclean`` process ran OK, let's check the synthesized image that was produced
 
-```python
+```{code-cell}
 from astropy.io import fits
 ```
 
-```python
+```{code-cell}
 hdul = fits.open(fitsname)
 header = hdul[0].header
 data = 1e3 * hdul[0].data  # mJy/pixel
@@ -91,7 +91,7 @@ ext = (
 norm = matplotlib.colors.Normalize(vmin=0, vmax=np.max(data))
 ```
 
-```python
+```{code-cell}
 fig, ax = plt.subplots(nrows=1, figsize=(4.5, 3.5))
 fig.subplots_adjust(left=0.2, bottom=0.2)
 im = ax.imshow(data, extent=ext, origin="lower", animated=True, norm=norm)
@@ -112,18 +112,18 @@ Before you dive into the full analysis with CASA tools, it's a very good idea to
 
 After you've done that, let's start exploring the visibility values. First we'll need to import and then instantiate the relevant CASA tools, [table](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods) and [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods).
 
-```python
+```{code-cell}
 import casatools
 ```
 
-```python
+```{code-cell}
 tb = casatools.table()
 ms = casatools.ms()
 ```
 
 We can get the indexes of the unique spectral windows, which are typically indexed by the ``DATA_DESC_ID``.
 
-```python
+```{code-cell}
 tb.open(fname + "/DATA_DESCRIPTION")
 SPECTRAL_WINDOW_ID = tb.getcol("SPECTRAL_WINDOW_ID")
 tb.close()
@@ -135,7 +135,7 @@ We see that there are 25 separate spectral windows! This is because the DSHARP i
 
 Next, let's open the main table of the measurement set and inspect the column names
 
-```python
+```{code-cell}
 tb.open(fname)
 colnames = tb.colnames()
 tb.close()
@@ -144,7 +144,7 @@ print(colnames)
 
 Because there are multiple spectral windows which do not share the same dimensions, we cannot use the ``tb`` tool to read the data directly. If we try, we'll get an error.
 
-```python
+```{code-cell}
 try:
     tb.open(fname)
     weight = tb.getcol("WEIGHT")  # array of float64 with shape [npol, nvis]
@@ -160,7 +160,7 @@ finally:
 
 So, we'll need to use the ``ms`` tool to read the visibilities for each spectral window, like so
 
-```python
+```{code-cell}
 ms.open(fname)
 # select the spectral window
 ms.selectinit(datadescid=0)
@@ -173,13 +173,13 @@ ms.close()
 
 The returned query is a dictionary whose keys are the lowercase column names
 
-```python
+```{code-cell}
 print(query.keys())
 ```
 
 and whose values are the numerical arrays for the spectral window that we queried
 
-```python
+```{code-cell}
 print(query["data"])
 ```
 
@@ -190,7 +190,7 @@ In any data analysis where you're computing a forward model, it's a good consite
 
 We can calculate data residuals using the model visibilities derived from the tclean model and stored in the ``MODEL_DATA`` column of the measurement set.
 
-```python
+```{code-cell}
 ms.open(fname)
 # select the spectral window
 ms.selectinit(datadescid=0)
@@ -201,7 +201,7 @@ ms.selectinit(reset=True)
 ms.close()
 ```
 
-```python
+```{code-cell}
 print(query["model_data"])
 ```
 
@@ -232,7 +232,7 @@ Because we'd like to repeat this analysis for each spectral window in the measur
 The functions provided in this document are only dependent on the CASA tools ``tb`` and ``ms``. If you find yourself using these routines frequently, you might consider installing the *visread* package, since similar commands are provided in the API.
 
 
-```python
+```{code-cell}
 def get_scatter_datadescid(datadescid, sigma_rescale=1.0, apply_flags=True):
     """
     Calculate the scatter for each polarization.
@@ -289,7 +289,7 @@ def get_scatter_datadescid(datadescid, sigma_rescale=1.0, apply_flags=True):
     return scatter_XX, scatter_YY
 ```
 
-```python
+```{code-cell}
 def gaussian(x, sigma=1):
     r"""
     Evaluate a reference Gaussian as a function of :math:`x`
@@ -309,7 +309,7 @@ def gaussian(x, sigma=1):
     return 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * (x / sigma) ** 2)
 ```
 
-```python
+```{code-cell}
 def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     """
     Plot a normalized histogram of scatter for real and imaginary
@@ -354,7 +354,7 @@ def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     return fig
 ```
 
-```python
+```{code-cell}
 def plot_histogram_datadescid(
     datadescid, sigma_rescale=1.0, log=False, apply_flags=True
 ):
@@ -389,7 +389,7 @@ Now lets use our helper functions to investigate the characteristics of each spe
 ### Spectral Window 7: A correctly scaled SPW
 Let's see how the residual visibilities in spectral window 7 scatter relative to their expected Gaussian envelope
 
-```python
+```{code-cell}
 plot_histogram_datadescid(7, apply_flags=False)
 ```
 
@@ -399,35 +399,35 @@ Great, it looks like things are pretty much as we would expect here.
 ### Spectral Window 22: Visibility outliers
 In the last example, we were a little bit cavalier and plotted the residuals for *all* visibilities, regardless of whether their ``FLAG`` was true. If we do the same for the visibilities in spectral window 22,
 
-```python
+```{code-cell}
 plot_histogram_datadescid(22, apply_flags=False)
 ```
 
 We find that something looks a little bit strange. Let's try plotting things on a log scale to get a closer look.
 
-```python
+```{code-cell}
 plot_histogram_datadescid(22, apply_flags=False, log=True)
 ```
 
 It appears as though there are a bunch of "outlier" visibilities included in this spectral window (the histogram y-axis is the relative frequency or probability density, so in actually there are a relatively small number of outlier visibilities). If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let's try plotting only the valid, unflagged, visibilities
 
-```python
+```{code-cell}
 plot_histogram_datadescid(22, apply_flags=True, log=True)
 ```
 
 This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale might make the discrepancy more visible
 
-```python
+```{code-cell}
 plot_histogram_datadescid(22, apply_flags=True, log=False)
 ```
 
 Lets write a routine to estimate by how much the $\sigma_0$ values would need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.
 
-```python
+```{code-cell}
 from scipy.optimize import minimize
 ```
 
-```python
+```{code-cell}
 def calculate_rescale_factor(scatter, **kwargs):
     bins = kwargs.get("bins", 40)
     bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
@@ -448,7 +448,7 @@ def calculate_rescale_factor(scatter, **kwargs):
         return False
 ```
 
-```python
+```{code-cell}
 def get_sigma_rescale_datadescid(datadescid, **kwargs):
     scatter_XX, scatter_YY = get_scatter_datadescid(
         datadescid, apply_flags=True, **kwargs
@@ -468,14 +468,14 @@ def get_sigma_rescale_datadescid(datadescid, **kwargs):
     return np.average(vals)
 ```
 
-```python
+```{code-cell}
 factor = get_sigma_rescale_datadescid(22)
 print(factor)
 ```
 
 If we rescale the $\sigma$ values to make them a factor of $\sim 1.85$ larger it looks like we are able to make the distributions match up a little bit better.
 
-```python
+```{code-cell}
 plot_histogram_datadescid(22, sigma_rescale=factor, apply_flags=True, log=False)
 ```
 
@@ -483,7 +483,7 @@ It's not really clear why this factor works, but factors of $\sqrt{2}$ and 2 app
 
 To investigate the overdispersion in spectral window 22, lets plot up the rescaled visibilities in the $u,v$ plane, colorized by their residual values to see if we can discern any patterns that may be the result of an inadequate calibration or CLEAN model.
 
-```python
+```{code-cell}
 # get the baselines and flags for spectral window 22
 ms.open(fname)
 # select the key
@@ -493,12 +493,12 @@ ms.selectinit(reset=True)
 ms.close()
 ```
 
-```python
+```{code-cell}
 flag_XX, flag_YY = query["flag"]
 u, v, w = query["uvw"] * 1e-3  # [km]
 ```
 
-```python
+```{code-cell}
 # calculate the scatter of the residual visibilities
 scatter_XX, scatter_YY = get_scatter_datadescid(
     22, sigma_rescale=factor, apply_flags=False
@@ -507,7 +507,7 @@ scatter_XX, scatter_YY = get_scatter_datadescid(
 
 Let's check the array shapes of each of these.
 
-```python
+```{code-cell}
 print(flag_XX.shape)
 print(scatter_XX.shape)
 print(u.shape)
@@ -515,7 +515,7 @@ print(u.shape)
 
 If we want to correctly apply the flags, we'll need to broadcast the baseline arrays to the full set of channels. (Even though this is a continuum dataset, it does have more than one channel to prevent bandwidth smearing).
 
-```python
+```{code-cell}
 nchan = flag_XX.shape[0]
 broadcast = np.ones((nchan, 1))
 uu = u * broadcast
@@ -524,24 +524,24 @@ vv = v * broadcast
 
 Now we index the "good" visibilities
 
-```python
+```{code-cell}
 uu_XX = uu[~flag_XX]
 vv_XX = vv[~flag_YY]
 scatter_XX = scatter_XX[~flag_XX]
 ```
 
-```python
+```{code-cell}
 uu_YY = uu[~flag_YY]
 vv_YY = vv[~flag_YY]
 scatter_YY = scatter_YY[~flag_YY]
 ```
 
-```python
+```{code-cell}
 vvmax = 5
 norm = matplotlib.colors.Normalize(vmin=-vvmax, vmax=vvmax)
 ```
 
-```python
+```{code-cell}
 fig, ax = plt.subplots(nrows=1, figsize=(4, 4))
 ax.scatter(uu_XX, vv_XX, s=0.1, c=scatter_XX.real, cmap="bwr", norm=norm)
 im = ax.scatter(uu_YY, vv_YY, s=0.1, c=scatter_YY.real, cmap="bwr", norm=norm)
@@ -558,7 +558,7 @@ We don't appear to see any large scale pattern with baseline, suggesting that th
 ## Rescaling weights for export.
 We can use the previous routines to iterate through plots of each spectral window. For reference, here are the rescale factors we derived for each spectral window
 
-```python
+```{code-cell}
 sigma_rescale_factors = {
     ID: get_sigma_rescale_datadescid(ID) for ID in SPECTRAL_WINDOW_ID
 }
