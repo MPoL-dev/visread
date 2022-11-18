@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -19,7 +20,6 @@
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -48,6 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/rescale_AS209_weights.html">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Visread Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casatools-api.html">Casatools API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Visread API</a></li>
 </ul>
 
@@ -64,8 +65,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,10 +81,12 @@
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#M"><strong>M</strong></a>
- | <a href="#P"><strong>P</strong></a>
- | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
@@ -91,7 +94,7 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.average_polarizations">average_polarizations() (in module visread.examine)</a>
+      <li><a href="api.html#visread.process.average_data_polarizations">average_data_polarizations() (in module visread.process)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -99,7 +102,27 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.broadcast_baselines">broadcast_baselines() (in module visread.examine)</a>
+      <li><a href="api.html#visread.process.broadcast_baselines">broadcast_baselines() (in module visread.process)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#visread.process.broadcast_weights">broadcast_weights() (in module visread.process)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#visread.process.convert_baselines">convert_baselines() (in module visread.process)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api.html#visread.utils.doppler_shift">doppler_shift() (in module visread.utils)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -107,19 +130,11 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.gaussian">gaussian() (in module visread.examine)</a>
-</li>
-      <li><a href="api.html#visread.examine.get_averaged_scatter">get_averaged_scatter() (in module visread.examine)</a>
-</li>
-      <li><a href="api.html#visread.examine.get_colnames">get_colnames() (in module visread.examine)</a>
+      <li><a href="api.html#visread.utils.gaussian">gaussian() (in module visread.utils)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.get_processed_visibilities">get_processed_visibilities() (in module visread.examine)</a>
-</li>
-      <li><a href="api.html#visread.examine.get_scatter_datadescid">get_scatter_datadescid() (in module visread.examine)</a>
-</li>
-      <li><a href="api.html#visread.examine.get_unique_datadescid">get_unique_datadescid() (in module visread.examine)</a>
+      <li><a href="api.html#visread.process.get_processed_visibilities">get_processed_visibilities() (in module visread.process)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -131,24 +146,26 @@
     module
 
       <ul>
-        <li><a href="api.html#module-visread.examine">visread.examine</a>
+        <li><a href="api.html#module-visread.process">visread.process</a>
+</li>
+        <li><a href="api.html#module-visread.utils">visread.utils</a>
 </li>
       </ul></li>
   </ul></td>
 </tr></table>
 
-<h2 id="P">P</h2>
+<h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.plot_scatter_datadescid">plot_scatter_datadescid() (in module visread.examine)</a>
+      <li><a href="api.html#visread.process.rescale_weights">rescale_weights() (in module visread.process)</a>
 </li>
   </ul></td>
 </tr></table>
 
-<h2 id="Q">Q</h2>
+<h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.query_datadescid">query_datadescid() (in module visread.examine)</a>
+      <li><a href="api.html#visread.process.sum_weight_polarization">sum_weight_polarization() (in module visread.process)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -157,10 +174,19 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    visread.examine
+    visread.process
 
       <ul>
-        <li><a href="api.html#module-visread.examine">module</a>
+        <li><a href="api.html#module-visread.process">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    visread.utils
+
+      <ul>
+        <li><a href="api.html#module-visread.utils">module</a>
 </li>
       </ul></li>
   </ul></td>
@@ -169,7 +195,7 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api.html#visread.examine.weight_to_sigma">weight_to_sigma() (in module visread.examine)</a>
+      <li><a href="api.html#visread.process.weight_to_sigma">weight_to_sigma() (in module visread.process)</a>
 </li>
   </ul></td>
 </tr></table>

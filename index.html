@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +21,6 @@
         <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/rescale_AS209_weights.html">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Visread Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casatools-api.html">Casatools API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Visread API</a></li>
 </ul>
 
@@ -66,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Visread documentation</li>
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Visread documentation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -77,31 +78,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="visread-documentation">
+  <section id="visread-documentation">
 <h1>Visread documentation<a class="headerlink" href="#visread-documentation" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/MPoL-dev/visread/actions/workflows/tests.yml"><img alt="Tests badge" src="https://github.com/MPoL-dev/visread/actions/workflows/tests.yml/badge.svg" /></a></p>
 <p><strong>What is this package</strong>? This package is mostly a collection of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory in a Python program using the built in CASA tools like <cite>table</cite> and <cite>ms</cite>. Once in memory, you can analyze them using your existing Python software stack, or save them to a binary file format (like <code class="docutils literal notranslate"><span class="pre">*.npz</span></code> or <code class="docutils literal notranslate"><span class="pre">*.hdf5</span></code>) so that you can transport them to a computing environment free from a CASA dependency.</p>
@@ -110,19 +87,22 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Introduction-to-measurement-sets">Introduction to measurement sets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#CASA-tools">CASA tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Example-Queries-with-table-tools">Example Queries with table tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Example-Queries-with-ms-tools">Example Queries with ms tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#Putting-it-together-to-export-visibilities">Putting it together to export visibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#introduction-to-measurement-sets">Introduction to measurement sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#mock-data-set">Mock data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#casa-tools-setup">CASA tools setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#example-metadata-queries">Example metadata queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#example-ms-tool-queries">Example ms tool queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#working-with-baselines">Working with baselines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#working-with-visibilities">Working with visibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/introduction_to_casatools.html#exporting-visibilities">Exporting visibilities</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/rescale_AS209_weights.html">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#Obtaining-and-CLEANing-the-AS-209-measurement-set">Obtaining and CLEANing the AS 209 measurement set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#Examining-measurement-set-structure">Examining measurement set structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#Using-the-tclean-model-to-calculate-residual-visibilities">Using the tclean model to calculate residual visibilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#Checking-scatter-for-each-spectral-window">Checking scatter for each spectral window</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#Rescaling-weights-for-export.">Rescaling weights for export.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#obtaining-and-cleaning-the-as-209-measurement-set">Obtaining and CLEANing the AS 209 measurement set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#examining-measurement-set-structure">Examining measurement set structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#using-the-tclean-model-to-calculate-residual-visibilities">Using the tclean model to calculate residual visibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#checking-scatter-for-each-spectral-window">Checking scatter for each spectral window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/rescale_AS209_weights.html#rescaling-weights-for-export">Rescaling weights for export.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Visread Installation</a><ul>
@@ -130,18 +110,15 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html#testing">Testing</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="casatools-api.html">Casatools API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="casatools-api.html#msmetadata">msmetadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casatools-api.html#ms">ms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="casatools-api.html#table">table</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Visread API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.average_polarizations"><code class="docutils literal notranslate"><span class="pre">average_polarizations()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.broadcast_baselines"><code class="docutils literal notranslate"><span class="pre">broadcast_baselines()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.gaussian"><code class="docutils literal notranslate"><span class="pre">gaussian()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.get_averaged_scatter"><code class="docutils literal notranslate"><span class="pre">get_averaged_scatter()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.get_colnames"><code class="docutils literal notranslate"><span class="pre">get_colnames()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.get_processed_visibilities"><code class="docutils literal notranslate"><span class="pre">get_processed_visibilities()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.get_scatter_datadescid"><code class="docutils literal notranslate"><span class="pre">get_scatter_datadescid()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.get_unique_datadescid"><code class="docutils literal notranslate"><span class="pre">get_unique_datadescid()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.plot_scatter_datadescid"><code class="docutils literal notranslate"><span class="pre">plot_scatter_datadescid()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.query_datadescid"><code class="docutils literal notranslate"><span class="pre">query_datadescid()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#visread.examine.weight_to_sigma"><code class="docutils literal notranslate"><span class="pre">weight_to_sigma()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#process-tools">Process tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-visread.utils">Utils</a></li>
 </ul>
 </li>
 </ul>

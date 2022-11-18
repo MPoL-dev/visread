@@ -22,6 +22,7 @@ Visread documentation
    tutorials/introduction_to_casatools
    tutorials/rescale_AS209_weights
    installation.rst
+   casatools-api.rst
    api.rst
 
 Citation
