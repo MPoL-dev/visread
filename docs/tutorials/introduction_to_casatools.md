@@ -32,21 +32,19 @@ Before you begin, it's worthwhile reviewing the CASA documentation on the measur
 
 A good first task is to load up an interactive prompt of CASA and work through the [Data Examination](https://casadocs.readthedocs.io/en/stable/notebooks/data_examination.html) routines like ``listobs`` and ``plotms`` to familiarize yourself with the basic structure of your measurement set. 
 
-It will be very helpful to know things like how many spectral windows there are, how many execution blocks there are, and what targets were observed. Hopefully you've already ``split`` out your data such that it only contains the target under consideration and does not include any extra calibrator targets. 
+It will be very helpful to know things like how many spectral windows there are, how many execution blocks there are, and what targets were observed. Hopefully you've already ``split`` out your data such that it only contains the target under consideration and does not include any extra calibrator targets, which can simplify many of the queries.  
 
-CASA provides the ``casabrowser/browsetable``tool, which is very handy for graphically exploring the structure and contents of this relational database. If something about the structure of the measurement set doesn't make sense, it's usually a good idea to open up ``browsetable`` and dig into the structure of the individual tables.
+CASA also provides the ``casabrowser/browsetable``tool, which is very handy for graphically exploring the structure and contents of this relational database. If something about the structure of the measurement set doesn't make sense, it's usually a good idea to open up ``browsetable`` and dig into the structure of the individual tables.
 
 
-## CASA tools
-CASA provides a set of lower-level "tools" for direct interaction with the measurement set contents. The full API list is available [here](https://casadocs.readthedocs.io/en/stable/api/casatools.html).
+## Mock data set 
 
-To experiment with reading and plotting visibilities, we'll use a measurement set that we prepared using simobserve. The full commands to generate the measurement set are available via the `mpoldatasets` package [here](https://github.com/MPoL-dev/mpoldatasets/blob/main/products/ALMA-logo/simobserve_cube.py).
-
-You can access the CASA tools from within your Python environment if you've successfully installed ``casatools`` package. If you are unable to install the modular package, you can always use the casatools directly inside of the monolithic CASA intepreter. If you're working directly within the CASA interpreter, you can skip this section and move directly to the example queries.
+To experiment with reading and plotting visibilities, we'll use a measurement set that we prepared using simobserve. The full commands to generate the measurement set are available via the `mpoldatasets` package [here](https://github.com/MPoL-dev/mpoldatasets/blob/main/products/ALMA-logo/simobserve_cube.py), but you could just as easily use your own measurement set. You can download the measurement set using the following commands.
 
 ```{code-cell}
 import numpy as np
 import matplotlib.pyplot as plt
+from astropy.constants import c
 from astropy.utils.data import download_file
 import tempfile
 import tarfile
@@ -85,41 +83,25 @@ Now we've successfully downloaded and extracted the measurement set
 fname = "logo_cube.noise.ms"
 ```
 
-If you're working with your own measurement set, you can start directly from here.
+If you're working with your own measurement set, you can start from the next section.
 
-Let's import and then instantiate the relevant CASA tools, [table](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods) and [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods).
+
+## CASA tools setup
+CASA provides a set of lower-level "tools" for direct interaction with the measurement set contents. The full API list is available [here](https://casadocs.readthedocs.io/en/stable/api/casatools.html). You can access the CASA tools from within your Python environment if you've successfully installed ``casatools`` package. If you are unable to install the modular package, you can always use the casatools directly inside of the monolithic CASA intepreter. If you're working directly within the CASA interpreter, you can skip this section and move directly to the example queries.
+
+Let's import and then instantiate the relevant CASA tools, [msmetadata](https://casadocs.readthedocs.io/en/stable/api/tt/casatools.msmetadata.html#casatools.msmetadata), [ms](https://casadocs.readthedocs.io/en/stable/api/tt/casatools.ms.html), and [table](https://casadocs.readthedocs.io/en/stable/api/tt/casatools.table.html).
 
 ```{code-cell}
 import casatools
 ```
 
 ```{code-cell}
-tb = casatools.table()
+msmd = casatools.msmetadata()
 ms = casatools.ms()
+tb = casatools.table()
 ```
 
-## Example Queries with table tools
-The following are some examples of simple queries you might like to do for a simply structured measurement set using the `tb` tool. If they don't work, you might look using the `ms` tool, described at the bottom of the page.
-
-
-### Unique spectral window IDs
-Get the indexes of the unique spectral windows, typically indexed by the ``DATA_DESC_ID``
-
-```{code-cell}
-tb.open(fname)
-spw_id = tb.getcol("DATA_DESC_ID")  # array of int with shape [npol, nchan, nvis]
-tb.close()
-print(np.unique(spw_id))
-```
-
-``DATA_DESC_ID`` might not always be a perfect stand-in for ``SPECTRAL_WINDOW_ID``, see the [data description table](https://casa.nrao.edu/casadocs-devel/stable/casa-fundamentals/measurement-set) for more information. You could also try accessing the ``DATA_DESCRIPTION`` table directly by providing it as a subdirectory to the main table like so
-
-```{code-cell}
-tb.open(fname + "/DATA_DESCRIPTION")
-SPECTRAL_WINDOW_ID = tb.getcol("SPECTRAL_WINDOW_ID")
-tb.close()
-print(SPECTRAL_WINDOW_ID)
-```
+## Example metadata queries
 
 ### Column names of main table
 Open the main table of the measurement set and inspect the column names
@@ -131,29 +113,86 @@ tb.close()
 print(colnames)
 ```
 
+### Unique spectral window IDs
+Get the indexes of the unique spectral windows, typically indexed by the ``DATA_DESC_ID``
+
+```{code-cell}
+msmd.open(fname)
+spws = msmd.datadescids() 
+msmd.done()
+print(spws)
+```
+
+``DATA_DESC_ID`` might not always be a perfect stand-in for ``SPECTRAL_WINDOW_ID``, see the [data description table](https://casadocs.readthedocs.io/en/stable/notebooks/casa-fundamentals.html#MeasurementSet-Basics) for more information. You could also try accessing the ``DATA_DESCRIPTION`` table directly by providing it as a subdirectory to the main table like so
+
+```{code-cell}
+tb.open(fname + "/DATA_DESCRIPTION")
+SPECTRAL_WINDOW_ID = tb.getcol("SPECTRAL_WINDOW_ID")
+tb.close()
+print(SPECTRAL_WINDOW_ID)
+```
+
 ### How many channels in each spw
 Let's figure out how many channels there are, and what their frequencies are (in Hz)
 
 ```{code-cell}
-tb.open(fname + "/SPECTRAL_WINDOW")
-num_chan = tb.getcol("NUM_CHAN")
-chan_freq = tb.getcol("CHAN_FREQ")
-tb.close()
-print(num_chan)
+spw_id = 0
+msmd.open(fname)
+chan_freq = msmd.chanfreqs(spw_id)
+msmd.done()
+nchan = len(chan_freq)
+print(nchan)
 print(chan_freq)
 ```
+
+
+## Example ms tool queries
+Sometimes your measurement set might contain multiple spectral windows with different numbers of channels or polarizations. In such a situation, the above queries with the ``tb`` tool will most likely fail, because they are trying to read data with inherently different shapes into an array with one common shape. One solution is to use the [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods) tool.
+
+Two useful methods are ``ms.selectinit`` followed by ``ms.getdata``. The first earmarks a subset of data based upon the given ``DATA_DESC_ID``, the second returns the actual data from the columns specified. It is possible to retrieve the data from a single spectral window because all data within a given spectral window will have the same polarization and channelization setup. The downside is that if your dataset has multiple spectral windows, you will need to repeat the queries for each one. It isn't obvious that there is a faster way to retrieve the data in such a situation, however.
+
+```{code-cell}
+ms.open(fname)
+# select the spectral window
+ms.selectinit(datadescid=0)
+# query the desired columnames as a list
+query = ms.getdata(["WEIGHT", "UVW"])
+# always a good idea to reset the earmarked data
+ms.selectinit(reset=True)
+ms.close()
+```
+
+```{code-cell}
+# The returned query is a dictionary whose
+# keys are the lowercase column names
+print(query)
+```
+
+```{code-cell}
+# And the data values are the same as before
+uvw = query["uvw"]
+print(uvw.shape)
+```
+
+
+## Working with baselines
+
+Baselines are stored in the `uvw` column, in units of meters. 
 
 ### Get the baselines
 Read the baselines (in units of [m])
 
 ```{code-cell}
-tb.open(fname)
-uvw = tb.getcol("UVW")  # array of float64 with shape [3, nvis]
-tb.close()
-uu, vv, ww = uvw  # unpack into len nvis vectors
+spw_id = 0
+ms.open(fname)
+ms.selectinit(spw_id)
+d = ms.getdata(["uvw"])  
+ms.done()
+# d["uvw"] is an array of float64 with shape [3, nvis]
+uu, vv, ww = d["uvw"]  # unpack into len nvis vectors
 ```
 
-We can plot these up easily
+We can plot these up using matplotlib
 
 ```{code-cell}
 fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
@@ -166,35 +205,16 @@ ax.set_ylabel(r"$v$ [m]")
 To convert the baselines to units of kilolambda, we need to know the observing frequency (or wavelength). For a spectral window with multiple channels (like this one), the baselines (if expressed in units of kilolambda) will be slightly different for each channel because the observing frequency is different for each channel. Here is one way to go about broadcasting the baselines to all channels and then converting them to units of kilolambda.
 
 ```{code-cell}
-tb.open(fname)
-uvw = tb.getcol("UVW")  # array of float64 with shape [3, nvis]
-tb.close()
-```
-
-```{code-cell}
-tb.open(fname + "/SPECTRAL_WINDOW")
-num_chan = tb.getcol("NUM_CHAN")
-chan_freq = tb.getcol("CHAN_FREQ")
-tb.close()
-```
-
-```{code-cell}
-uu, vv, ww = uvw  # unpack into len nvis vectors
-```
-
-```{code-cell}
 # broadcast to the same shape as the data
 # stub to broadcast uu,vv, and weights to all channels
-nchan = num_chan[0]  # grab the number of channels for the first spectral window
 broadcast = np.ones((nchan, 1))
 uu = uu * broadcast
 vv = vv * broadcast
 ```
 
 ```{code-cell}
-# calculate wavelengths in meters
-c_ms = 2.99792458e8  # [m s^-1]
-wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
+# calculate wavelengths for each channel, in meters
+wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 ```
 
 ```{code-cell}
@@ -211,6 +231,8 @@ ax.scatter(uu[0], vv[0], s=1.5, rasterized=True, linewidths=0.0, c="k")
 ax.set_xlabel(r"$u$ [k$\lambda$]")
 ax.set_ylabel(r"$v$ [k$\lambda$]")
 ```
+
+## Working with visibilities
 
 ### Read the visibility values and inspect flags
 Visibilities are stored in the main table of the measurement set. As long as all spectral windows have the same number of channels and polarizations, it should be possible to read visibilities using the table tool. If not, try the `ms` tool.
@@ -337,36 +359,9 @@ ax.set_xlabel(r"$q$ [m]")
 ax.set_ylabel(r"Amplitude [Jy]")
 ```
 
-## Example Queries with ms tools
-Sometimes your measurement set might contain multiple spectral windows with different numbers of channels or polarizations. In such a situation, the above queries with the ``tb`` tool will most likely fail, because they are trying to read data with inherently different shapes into an array with one common shape. One solution is to use the [ms](https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods) tool.
 
-The two most useful methods are ``ms.selectinit`` followed by ``ms.getdata``. The first earmarks a subset of data based upon the given ``DATA_DESC_ID``, the second returns the actual data. It is possible to retrieve the data from a single spectral window because all data within a given spectral window will have the same polarization and channelization setup. The downside is that if your dataset has multiple spectral windows, you will need to repeat the queries for each one. It isn't obvious that there is a faster way to retrieve the data in such a situation, however.
-
-```{code-cell}
-ms.open(fname)
-# select the spectral window
-ms.selectinit(datadescid=0)
-# query the desired columnames as a list
-query = ms.getdata(["WEIGHT", "UVW"])
-# always a good idea to reset the earmarked data
-ms.selectinit(reset=True)
-ms.close()
-```
-
-```{code-cell}
-# The returned query is a dictionary whose
-# keys are the lowercase column names
-print(query)
-```
-
-```{code-cell}
-# And the data values are the same as before
-uvw = query["uvw"]
-print(uvw.shape)
-```
-
-## Putting it together to export visibilities
-This slightly larger example shows how to combine some of the above queries to read channel frequencies, baselines, and visibilites, and export them from the CASA environment saved as an ``*.npz`` file.
+## Exporting visibilities
+This slightly larger example shows how to combine some of the above queries to read channel frequencies, baselines, and visibilites, and export them from the CASA environment saved as an ``*.npz`` file. We use the `table` tool here, but you could also use the `ms` tool.
 
 ```{code-cell}
 # query the data
@@ -442,7 +437,7 @@ weight = weight * broadcast
 
 ```{code-cell}
 # calculate wavelengths in meters
-wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
+wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 ```
 
 ```{code-cell}

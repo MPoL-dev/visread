@@ -48,5 +48,5 @@ If your spectral windows are different shapes, you will find the ``ms.selectinit
 table
 -----
 
-Compared to `ms`, the `table <https://casadocs.readthedocs.io/en/stable/api/tt/casatools.table.html>`_ tool is a more direct way to access the sub-tables within a measurement set. If you are working with a measurement set that only contains a single spectral window, you may find these routines useful. In practice, though, we tend to prefer using a combination of the ``msmetadata`` and ``ms`` tools because of their ability to handle measurement sets with heterogeneous spectral windows.
+Compared to `ms`, the `table <https://casadocs.readthedocs.io/en/stable/api/tt/casatools.table.html>`_ tool is a more direct way to access the sub-tables within a measurement set. If you are working with a measurement set that only contains a single spectral window, you may find these routines useful. In practice, though, we tend to prefer a combination of the ``msmetadata`` and ``ms`` tools because of their ability to handle measurement sets with heterogeneous spectral windows.
 
