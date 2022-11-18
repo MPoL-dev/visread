@@ -3,8 +3,6 @@ import casatools
 from scipy.optimize import minimize
 
 # initialize the relevant CASA tools
-tb = casatools.table()
-ms = casatools.ms()
 msmd = casatools.msmetadata()
 
 

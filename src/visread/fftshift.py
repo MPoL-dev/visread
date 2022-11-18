@@ -1,14 +1,14 @@
-import numpy as np
-import casatools
-import matplotlib.pyplot as plt
-from scipy.optimize import minimize
+# import numpy as np
+# import casatools
+# import matplotlib.pyplot as plt
+# from scipy.optimize import minimize
 
-# initialize the relevant CASA tools
-tb = casatools.table()
-ms = casatools.ms()
-msmd = casatools.msmetadata()
+# # initialize the relevant CASA tools
+# tb = casatools.table()
+# ms = casatools.ms()
+# msmd = casatools.msmetadata()
 
-c_ms = 2.99792458e8  # [m s^-1]
+# c_ms = 2.99792458e8  # [m s^-1]
 
 
 # this routine is meant primarily as a means to do the correction for ALMA Doppler setting.
