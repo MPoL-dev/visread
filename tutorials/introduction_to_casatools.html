@@ -111,7 +111,7 @@
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
 </pre></div>
 </div>
 </div>
@@ -124,13 +124,59 @@
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> notebook_setup
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%run notebook_setup
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/visread/visread/docs/tutorials/notebook_setup.py:21: DeprecationWarning: `magic(...)` is deprecated since IPython 0.13 (warning added in 8.1), use run_line_magic(magic_name, parameter_s).
   get_ipython().magic(&#39;config InlineBackend.figure_format = &quot;retina&quot;&#39;)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">File</span> <span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">visread</span><span class="o">/</span><span class="n">visread</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">tutorials</span><span class="o">/</span><span class="n">notebook_setup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">21</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="sd">&quot;&quot;&quot;isort:skip_file&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># set some plotting styles, inspired by DFM</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># https://github.com/exoplanet-dev/exoplanet/blob/main/docs/tutorials/notebook_setup.py</span>
+<span class="ne">---&gt; </span><span class="mi">21</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">magic</span><span class="p">(</span><span class="s1">&#39;config InlineBackend.figure_format = &quot;retina&quot;&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2470,</span> in <span class="ni">InteractiveShell.magic</span><span class="nt">(self, arg_s)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2468</span> <span class="n">magic_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">magic_arg_s</span> <span class="o">=</span> <span class="n">arg_s</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2469</span> <span class="n">magic_name</span> <span class="o">=</span> <span class="n">magic_name</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">prefilter</span><span class="o">.</span><span class="n">ESC_MAGIC</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2470</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="n">magic_name</span><span class="p">,</span> <span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">_stack_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2364,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2362</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2363</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2364</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2365</span> <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/config.py:165,</span> in <span class="ni">ConfigMagics.config</span><span class="nt">(self, s)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="kn">from</span> <span class="nn">traitlets.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="c1"># some IPython objects are Configurable, but do not yet have</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="c1"># any configurable traits.  Exclude them from the effects of</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="c1"># this magic, as their presence is just noise:</span>
+<span class="ne">--&gt; </span><span class="mi">165</span> <span class="n">configurables</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">configurables</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>                              <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">class_traits</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>                              <span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">classnames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">configurables</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">line</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/config.py:166,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="kn">from</span> <span class="nn">traitlets.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="c1"># some IPython objects are Configurable, but do not yet have</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="c1"># any configurable traits.  Exclude them from the effects of</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="c1"># this magic, as their presence is just noise:</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="n">configurables</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">configurables</span>
+<span class="ne">--&gt; </span><span class="mi">166</span>                              <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">class_traits</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>                              <span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">classnames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">configurables</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">line</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: type object &#39;CommManager&#39; has no attribute &#39;class_traits&#39;
 </pre></div>
 </div>
 </div>
@@ -151,44 +197,44 @@
 <p>To experiment with reading and plotting visibilities, we’ll use a measurement set that we prepared using simobserve. The full commands to generate the measurement set are available via the <code class="docutils literal notranslate"><span class="pre">mpoldatasets</span></code> package <a class="reference external" href="https://github.com/MPoL-dev/mpoldatasets/blob/main/products/ALMA-logo/simobserve_cube.py">here</a>, but you could just as easily use your own measurement set. You can download the measurement set using the following commands.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">astropy.constants</span> <span class="kn">import</span> <span class="n">c</span>
-<span class="kn">from</span> <span class="nn">astropy.utils.data</span> <span class="kn">import</span> <span class="n">download_file</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">tarfile</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+from astropy.constants import c
+from astropy.utils.data import download_file
+import tempfile
+import tarfile
+import os
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the mock dataset of the ALMA logo</span>
-<span class="n">fname_tar</span> <span class="o">=</span> <span class="n">download_file</span><span class="p">(</span>
-    <span class="s2">&quot;https://zenodo.org/record/4711811/files/logo_cube.noise.ms.tar.gz&quot;</span><span class="p">,</span>
-    <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">pkgname</span><span class="o">=</span><span class="s2">&quot;mpol&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># load the mock dataset of the ALMA logo
+fname_tar = download_file(
+    &quot;https://zenodo.org/record/4711811/files/logo_cube.noise.ms.tar.gz&quot;,
+    cache=True,
+    show_progress=True,
+    pkgname=&quot;mpol&quot;,
+)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the measurement set to a local directory</span>
-<span class="n">temp_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
-<span class="n">curdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">temp_dir</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># extract the measurement set to a local directory
+temp_dir = tempfile.TemporaryDirectory()
+curdir = os.getcwd()
+os.chdir(temp_dir.name)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname_tar</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
-    <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>with tarfile.open(fname_tar) as tar:
+    tar.extractall()
 </pre></div>
 </div>
 </div>
@@ -196,7 +242,7 @@
 <p>Now we’ve successfully downloaded and extracted the measurement set</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!ls 
 </pre></div>
 </div>
 </div>
@@ -208,7 +254,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;logo_cube.noise.ms&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fname = &quot;logo_cube.noise.ms&quot;
 </pre></div>
 </div>
 </div>
@@ -221,16 +267,16 @@
 <p>Let’s import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casadocs.readthedocs.io/en/stable/api/tt/casatools.msmetadata.html#casatools.msmetadata">msmetadata</a>, <a class="reference external" href="https://casadocs.readthedocs.io/en/stable/api/tt/casatools.ms.html">ms</a>, and <a class="reference external" href="https://casadocs.readthedocs.io/en/stable/api/tt/casatools.table.html">table</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">casatools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import casatools
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msmd</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">msmetadata</span><span class="p">()</span>
-<span class="n">ms</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
-<span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>msmd = casatools.msmetadata()
+ms = casatools.ms()
+tb = casatools.table()
 </pre></div>
 </div>
 </div>
@@ -243,10 +289,10 @@
 <p>Open the main table of the measurement set and inspect the column names</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">colnames</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">colnames</span><span class="p">()</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">colnames</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tb.open(fname)
+colnames = tb.colnames()
+tb.close()
+print(colnames)
 </pre></div>
 </div>
 </div>
@@ -262,10 +308,10 @@
 <p>Get the indexes of the unique spectral windows, typically indexed by the <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">spws</span> <span class="o">=</span> <span class="n">msmd</span><span class="o">.</span><span class="n">datadescids</span><span class="p">()</span> 
-<span class="n">msmd</span><span class="o">.</span><span class="n">done</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spws</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>msmd.open(fname)
+spws = msmd.datadescids() 
+msmd.done()
+print(spws)
 </pre></div>
 </div>
 </div>
@@ -273,7 +319,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-18 21:19:22	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-28 14:28:08	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
 </pre></div>
 </div>
 </div>
@@ -281,10 +327,10 @@
 <p><code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code> might not always be a perfect stand-in for <code class="docutils literal notranslate"><span class="pre">SPECTRAL_WINDOW_ID</span></code>, see the <a class="reference external" href="https://casadocs.readthedocs.io/en/stable/notebooks/casa-fundamentals.html#MeasurementSet-Basics">data description table</a> for more information. You could also try accessing the <code class="docutils literal notranslate"><span class="pre">DATA_DESCRIPTION</span></code> table directly by providing it as a subdirectory to the main table like so</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/DATA_DESCRIPTION&quot;</span><span class="p">)</span>
-<span class="n">SPECTRAL_WINDOW_ID</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;SPECTRAL_WINDOW_ID&quot;</span><span class="p">)</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">SPECTRAL_WINDOW_ID</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tb.open(fname + &quot;/DATA_DESCRIPTION&quot;)
+SPECTRAL_WINDOW_ID = tb.getcol(&quot;SPECTRAL_WINDOW_ID&quot;)
+tb.close()
+print(SPECTRAL_WINDOW_ID)
 </pre></div>
 </div>
 </div>
@@ -300,13 +346,13 @@
 <p>Let’s figure out how many channels there are, and what their frequencies are (in Hz)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spw_id</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">msmd</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">chan_freq</span> <span class="o">=</span> <span class="n">msmd</span><span class="o">.</span><span class="n">chanfreqs</span><span class="p">(</span><span class="n">spw_id</span><span class="p">)</span>
-<span class="n">msmd</span><span class="o">.</span><span class="n">done</span><span class="p">()</span>
-<span class="n">nchan</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">nchan</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>spw_id = 0
+msmd.open(fname)
+chan_freq = msmd.chanfreqs(spw_id)
+msmd.done()
+nchan = len(chan_freq)
+print(nchan)
+print(chan_freq)
 </pre></div>
 </div>
 </div>
@@ -317,7 +363,7 @@
  2.30525189e+11]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-18 21:19:22	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-28 14:28:08	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
 </pre></div>
 </div>
 </div>
@@ -330,14 +376,14 @@
 <p>Two useful methods are <code class="docutils literal notranslate"><span class="pre">ms.selectinit</span></code> followed by <code class="docutils literal notranslate"><span class="pre">ms.getdata</span></code>. The first earmarks a subset of data based upon the given <code class="docutils literal notranslate"><span class="pre">DATA_DESC_ID</span></code>, the second returns the actual data from the columns specified. It is possible to retrieve the data from a single spectral window because all data within a given spectral window will have the same polarization and channelization setup. The downside is that if your dataset has multiple spectral windows, you will need to repeat the queries for each one. It isn’t obvious that there is a faster way to retrieve the data in such a situation, however.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="c1"># select the spectral window</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># query the desired columnames as a list</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">,</span> <span class="s2">&quot;UVW&quot;</span><span class="p">])</span>
-<span class="c1"># always a good idea to reset the earmarked data</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ms.open(fname)
+# select the spectral window
+ms.selectinit(datadescid=0)
+# query the desired columnames as a list
+query = ms.getdata([&quot;WEIGHT&quot;, &quot;UVW&quot;])
+# always a good idea to reset the earmarked data
+ms.selectinit(reset=True)
+ms.close()
 </pre></div>
 </div>
 </div>
@@ -349,9 +395,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The returned query is a dictionary whose</span>
-<span class="c1"># keys are the lowercase column names</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># The returned query is a dictionary whose
+# keys are the lowercase column names
+print(query)
 </pre></div>
 </div>
 </div>
@@ -369,9 +415,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And the data values are the same as before</span>
-<span class="n">uvw</span> <span class="o">=</span> <span class="n">query</span><span class="p">[</span><span class="s2">&quot;uvw&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">uvw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># And the data values are the same as before
+uvw = query[&quot;uvw&quot;]
+print(uvw.shape)
 </pre></div>
 </div>
 </div>
@@ -390,13 +436,13 @@
 <p>Read the baselines (in units of [m])</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spw_id</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">spw_id</span><span class="p">)</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;uvw&quot;</span><span class="p">])</span>  
-<span class="n">ms</span><span class="o">.</span><span class="n">done</span><span class="p">()</span>
-<span class="c1"># d[&quot;uvw&quot;] is an array of float64 with shape [3, nvis]</span>
-<span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;uvw&quot;</span><span class="p">]</span>  <span class="c1"># unpack into len nvis vectors</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>spw_id = 0
+ms.open(fname)
+ms.selectinit(spw_id)
+d = ms.getdata([&quot;uvw&quot;])  
+ms.done()
+# d[&quot;uvw&quot;] is an array of float64 with shape [3, nvis]
+uu, vv, ww = d[&quot;uvw&quot;]  # unpack into len nvis vectors
 </pre></div>
 </div>
 </div>
@@ -404,10 +450,10 @@
 <p>We can plot these up using matplotlib</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u$ [m]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$v$ [m]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
+ax.scatter(uu, vv, s=1.5, rasterized=True, linewidths=0.0, c=&quot;k&quot;)
+ax.set_xlabel(r&quot;$u$ [m]&quot;)
+ax.set_ylabel(r&quot;$v$ [m]&quot;)
 </pre></div>
 </div>
 </div>
@@ -415,7 +461,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [m]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/fd5347efaee762261329208f2f07c8707bdebb7b761f3f423a4397fafa46ebad.png" src="../_images/fd5347efaee762261329208f2f07c8707bdebb7b761f3f423a4397fafa46ebad.png" />
+<img alt="../_images/31b7d5fa26289d9b9c5c0c3b2dc2f432d7ddac2ecae80f8bb07ea50499da12db.png" src="../_images/31b7d5fa26289d9b9c5c0c3b2dc2f432d7ddac2ecae80f8bb07ea50499da12db.png" />
 </div>
 </div>
 </section>
@@ -424,28 +470,28 @@
 <p>To convert the baselines to units of kilolambda, we need to know the observing frequency (or wavelength). For a spectral window with multiple channels (like this one), the baselines (if expressed in units of kilolambda) will be slightly different for each channel because the observing frequency is different for each channel. Here is one way to go about broadcasting the baselines to all channels and then converting them to units of kilolambda.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># broadcast to the same shape as the data</span>
-<span class="c1"># stub to broadcast uu,vv, and weights to all channels</span>
-<span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">uu</span> <span class="o">=</span> <span class="n">uu</span> <span class="o">*</span> <span class="n">broadcast</span>
-<span class="n">vv</span> <span class="o">=</span> <span class="n">vv</span> <span class="o">*</span> <span class="n">broadcast</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># broadcast to the same shape as the data
+# stub to broadcast uu,vv, and weights to all channels
+broadcast = np.ones((nchan, 1))
+uu = uu * broadcast
+vv = vv * broadcast
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate wavelengths for each channel, in meters</span>
-<span class="n">wavelengths</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">chan_freq</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># m</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># calculate wavelengths for each channel, in meters
+wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert baselines to klambda</span>
-<span class="n">uu</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">uu</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
-<span class="n">vv</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">vv</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># convert baselines to klambda
+uu = 1e-3 * uu / wavelengths  # [klambda]
+vv = 1e-3 * vv / wavelengths  # [klambda]
 </pre></div>
 </div>
 </div>
@@ -453,10 +499,10 @@
 <p>Let’s plot up the baseline coverage for the first channel of the cube (index <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">uu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$u$ [k$\lambda$]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$v$ [k$\lambda$]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
+ax.scatter(uu[0], vv[0], s=1.5, rasterized=True, linewidths=0.0, c=&quot;k&quot;)
+ax.set_xlabel(r&quot;$u$ [k$\lambda$]&quot;)
+ax.set_ylabel(r&quot;$v$ [k$\lambda$]&quot;)
 </pre></div>
 </div>
 </div>
@@ -464,7 +510,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [k$\\lambda$]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/79d5b2ccdcb82045ef50a6cfaf827288bf1b03332c84ab6e311fa08070e81622.png" src="../_images/79d5b2ccdcb82045ef50a6cfaf827288bf1b03332c84ab6e311fa08070e81622.png" />
+<img alt="../_images/690918feb2cd8fcc509180e1c7981095c4527e5ca1cb8f88562dea39ef63ff61.png" src="../_images/690918feb2cd8fcc509180e1c7981095c4527e5ca1cb8f88562dea39ef63ff61.png" />
 </div>
 </div>
 </section>
@@ -476,14 +522,14 @@
 <p>Visibilities are stored in the main table of the measurement set. As long as all spectral windows have the same number of channels and polarizations, it should be possible to read visibilities using the table tool. If not, try the <code class="docutils literal notranslate"><span class="pre">ms</span></code> tool.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
-<span class="n">data_raw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;DATA&quot;</span><span class="p">)</span>  <span class="c1"># array of complex128 with shape [npol, nchan, nvis]</span>
-<span class="n">data_corrected</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span>
-    <span class="s2">&quot;CORRECTED_DATA&quot;</span>
-<span class="p">)</span>  <span class="c1"># array of complex128 with shape [npol, nchan, nvis]</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tb.open(fname)
+weight = tb.getcol(&quot;WEIGHT&quot;)  # array of float64 with shape [npol, nvis]
+flag = tb.getcol(&quot;FLAG&quot;)  # array of bool with shape [npol, nchan, nvis]
+data_raw = tb.getcol(&quot;DATA&quot;)  # array of complex128 with shape [npol, nchan, nvis]
+data_corrected = tb.getcol(
+    &quot;CORRECTED_DATA&quot;
+)  # array of complex128 with shape [npol, nchan, nvis]
+tb.close()
 </pre></div>
 </div>
 </div>
@@ -518,7 +564,7 @@ w_i = \frac{1}{\sigma_i^2}
 <p>A common ALMA observation mode is dual-polarization, XX and YY. If this is the case for your observations, the data array will contain an extra dimension for each polarization.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(data_corrected.shape)
 </pre></div>
 </div>
 </div>
@@ -531,8 +577,8 @@ w_i = \frac{1}{\sigma_i^2}
 <p>Since it has a complex type, the data array contains the real and imaginary values</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data_corrected</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(data_corrected.real)
+print(data_corrected.imag)
 </pre></div>
 </div>
 </div>
@@ -598,7 +644,7 @@ w_i = \frac{1}{\sigma_i^2}
 <p>In the process of calibrating real-world data, some occasional visibilities need to be flagged or excluded from the analysis. The <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> column is a boolean flag that is <code class="docutils literal notranslate"><span class="pre">True</span></code> if the visibility <em>should be excluded</em>. To check if any visibilities are flagged in this spectral window, we can just see if there are any <code class="docutils literal notranslate"><span class="pre">True</span></code> values in the <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> column</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Are there any flagged visibilities?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Are there any flagged visibilities?&quot;, np.any(flag))
 </pre></div>
 </div>
 </div>
@@ -611,7 +657,7 @@ w_i = \frac{1}{\sigma_i^2}
 <p>Since this is a simulated measurement set, this is not surprising. When you are using real data, however, this is an important thing to check. If you <em>did</em> have flagged visibilities, to access only the valid visibilities you would do something like the following</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_good</span> <span class="o">=</span> <span class="n">data_corrected</span><span class="p">[</span><span class="o">~</span><span class="n">flag</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>data_good = data_corrected[~flag]
 </pre></div>
 </div>
 </div>
@@ -619,7 +665,7 @@ w_i = \frac{1}{\sigma_i^2}
 <p>where the <code class="docutils literal notranslate"><span class="pre">~</span></code> operator helps us index only the visibilities which <em>are not flagged</em>. Unfortunately, indexing en masse like this removes any polarization and channelization dimensionality, just giving you a flat list</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_good</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(data_good.shape)
 </pre></div>
 </div>
 </div>
@@ -636,12 +682,12 @@ w_i = \frac{1}{\sigma_i^2}
 <p>If your dataset is dual-polarization but you are not interested in treating the polarizations separately, it might be worth it to average the polarization channels together.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">uvw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;UVW&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [3, nvis]</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;CORRECTED_DATA&quot;</span><span class="p">)</span>  <span class="c1"># array of complex128 with shape [npol, nchan, nvis]</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tb.open(fname)
+uvw = tb.getcol(&quot;UVW&quot;)  # array of float64 with shape [3, nvis]
+weight = tb.getcol(&quot;WEIGHT&quot;)  # array of float64 with shape [npol, nvis]
+flag = tb.getcol(&quot;FLAG&quot;)  # array of bool with shape [npol, nchan, nvis]
+data = tb.getcol(&quot;CORRECTED_DATA&quot;)  # array of complex128 with shape [npol, nchan, nvis]
+tb.close()
 </pre></div>
 </div>
 </div>
@@ -653,54 +699,54 @@ w_i = \frac{1}{\sigma_i^2}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># average the polarizations</span>
-<span class="c1"># https://en.wikipedia.org/wiki/Weighted_arithmetic_mean</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># average the polarizations
+# https://en.wikipedia.org/wiki/Weighted_arithmetic_mean
+data = np.sum(data * weight[:, np.newaxis, :], axis=0) / np.sum(weight, axis=0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># flag the data if either polarization was flagged</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># flag the data if either polarization was flagged
+flag = np.any(flag, axis=0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># combine the weights across polarizations</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># combine the weights across polarizations
+weight = np.sum(weight, axis=0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the &quot;radial&quot; baseline</span>
-<span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>
-<span class="n">qq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">uu</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">vv</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calculate the &quot;radial&quot; baseline
+uu, vv, ww = uvw
+qq = np.sqrt(uu ** 2 + vv ** 2)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate visibility amplitude and phase</span>
-<span class="n">amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># calculate visibility amplitude and phase
+amp = np.abs(data)
+phase = np.angle(data)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s plot up the visibilities for the first channel</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">qq</span><span class="p">,</span> <span class="n">amp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$q$ [m]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Amplitude [Jy]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Let&#39;s plot up the visibilities for the first channel
+fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
+ax.scatter(qq, amp[0], s=1.5, rasterized=True, linewidths=0.0, c=&quot;k&quot;)
+ax.set_xlabel(r&quot;$q$ [m]&quot;)
+ax.set_ylabel(r&quot;Amplitude [Jy]&quot;)
 </pre></div>
 </div>
 </div>
@@ -708,7 +754,7 @@ w_i = \frac{1}{\sigma_i^2}
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Amplitude [Jy]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/d67232b62a1d31cff1f49d065f1f9439d8d28d58cbaf50da7f5cae1675b4522a.png" src="../_images/d67232b62a1d31cff1f49d065f1f9439d8d28d58cbaf50da7f5cae1675b4522a.png" />
+<img alt="../_images/23b815d577f943e9570fa14be92d8273a0e8e14d4289bd9f1c45c8498cacb237.png" src="../_images/23b815d577f943e9570fa14be92d8273a0e8e14d4289bd9f1c45c8498cacb237.png" />
 </div>
 </div>
 </section>
@@ -718,15 +764,15 @@ w_i = \frac{1}{\sigma_i^2}
 <p>This slightly larger example shows how to combine some of the above queries to read channel frequencies, baselines, and visibilites, and export them from the CASA environment saved as an <code class="docutils literal notranslate"><span class="pre">*.npz</span></code> file. We use the <code class="docutils literal notranslate"><span class="pre">table</span></code> tool here, but you could also use the <code class="docutils literal notranslate"><span class="pre">ms</span></code> tool.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># query the data</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">ant1</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;ANTENNA1&quot;</span><span class="p">)</span>  <span class="c1"># array of int with shape [nvis]</span>
-<span class="n">ant2</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;ANTENNA2&quot;</span><span class="p">)</span>  <span class="c1"># array of int with shape [nvis]</span>
-<span class="n">uvw</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;UVW&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [3, nvis]</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;WEIGHT&quot;</span><span class="p">)</span>  <span class="c1"># array of float64 with shape [npol, nvis]</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;FLAG&quot;</span><span class="p">)</span>  <span class="c1"># array of bool with shape [npol, nchan, nvis]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;CORRECTED_DATA&quot;</span><span class="p">)</span>  <span class="c1"># array of complex128 with shape [npol, nchan, nvis]</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># query the data
+tb.open(fname)
+ant1 = tb.getcol(&quot;ANTENNA1&quot;)  # array of int with shape [nvis]
+ant2 = tb.getcol(&quot;ANTENNA2&quot;)  # array of int with shape [nvis]
+uvw = tb.getcol(&quot;UVW&quot;)  # array of float64 with shape [3, nvis]
+weight = tb.getcol(&quot;WEIGHT&quot;)  # array of float64 with shape [npol, nvis]
+flag = tb.getcol(&quot;FLAG&quot;)  # array of bool with shape [npol, nchan, nvis]
+data = tb.getcol(&quot;CORRECTED_DATA&quot;)  # array of complex128 with shape [npol, nchan, nvis]
+tb.close()
 </pre></div>
 </div>
 </div>
@@ -738,13 +784,13 @@ w_i = \frac{1}{\sigma_i^2}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get the channel information</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span> <span class="o">+</span> <span class="s2">&quot;/SPECTRAL_WINDOW&quot;</span><span class="p">)</span>
-<span class="n">chan_freq</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;CHAN_FREQ&quot;</span><span class="p">)</span>
-<span class="n">num_chan</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">getcol</span><span class="p">(</span><span class="s2">&quot;NUM_CHAN&quot;</span><span class="p">)</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">chan_freq</span> <span class="o">=</span> <span class="n">chan_freq</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>  <span class="c1"># Hz</span>
-<span class="n">nchan</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># get the channel information
+tb.open(fname + &quot;/SPECTRAL_WINDOW&quot;)
+chan_freq = tb.getcol(&quot;CHAN_FREQ&quot;)
+num_chan = tb.getcol(&quot;NUM_CHAN&quot;)
+tb.close()
+chan_freq = chan_freq.flatten()  # Hz
+nchan = len(chan_freq)
 </pre></div>
 </div>
 </div>
@@ -752,11 +798,11 @@ w_i = \frac{1}{\sigma_i^2}
 <p>Check to make sure the channels are in blushifted to redshifted order, otherwise reverse channel order</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">nchan</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">chan_freq</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">chan_freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-    <span class="c1"># reverse channels</span>
-    <span class="n">chan_freq</span> <span class="o">=</span> <span class="n">chan_freq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
-    <span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="p">[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>if (nchan &gt; 1) and (chan_freq[1] &gt; chan_freq[0]):
+    # reverse channels
+    chan_freq = chan_freq[::-1]
+    data = data[:, ::-1, :]
+    flag = flag[:, ::-1, :]
 </pre></div>
 </div>
 </div>
@@ -764,31 +810,31 @@ w_i = \frac{1}{\sigma_i^2}
 <p>Keep only the cross-correlation visibilities and throw out the auto-correlation visibilities (i.e., where <code class="docutils literal notranslate"><span class="pre">ant1</span> <span class="pre">==</span> <span class="pre">ant2</span></code>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ant1</span> <span class="o">!=</span> <span class="n">ant2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">xc</span><span class="p">]</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">xc</span><span class="p">]</span>
-<span class="n">uvw</span> <span class="o">=</span> <span class="n">uvw</span><span class="p">[:,</span> <span class="n">xc</span><span class="p">]</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="p">[:,</span> <span class="n">xc</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>xc = np.where(ant1 != ant2)[0]
+data = data[:, :, xc]
+flag = flag[:, :, xc]
+uvw = uvw[:, xc]
+weight = weight[:, xc]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># average the polarizations</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">*</span> <span class="n">weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># average the polarizations
+data = np.sum(data * weight[:, np.newaxis, :], axis=0) / np.sum(weight, axis=0)
+flag = np.any(flag, axis=0)
+weight = np.sum(weight, axis=0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># After this step, ``data`` should be shape ``(nchan, nvis)`` and weights should be shape ``(nvis,)``</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># After this step, ``data`` should be shape ``(nchan, nvis)`` and weights should be shape ``(nvis,)``
+print(data.shape)
+print(flag.shape)
+print(weight.shape)
 </pre></div>
 </div>
 </div>
@@ -802,46 +848,46 @@ w_i = \frac{1}{\sigma_i^2}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># when indexed with mask, returns valid visibilities</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">flag</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># when indexed with mask, returns valid visibilities
+mask = ~flag
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert uu and vv to kilolambda</span>
-<span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">uvw</span>  <span class="c1"># unpack into len nvis vectors</span>
-<span class="c1"># broadcast to the same shape as the data</span>
-<span class="c1"># stub to broadcast uu,vv, and weights to all channels</span>
-<span class="n">broadcast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nchan</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">uu</span> <span class="o">=</span> <span class="n">uu</span> <span class="o">*</span> <span class="n">broadcast</span>
-<span class="n">vv</span> <span class="o">=</span> <span class="n">vv</span> <span class="o">*</span> <span class="n">broadcast</span>
-<span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="n">broadcast</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># convert uu and vv to kilolambda
+uu, vv, ww = uvw  # unpack into len nvis vectors
+# broadcast to the same shape as the data
+# stub to broadcast uu,vv, and weights to all channels
+broadcast = np.ones((nchan, 1))
+uu = uu * broadcast
+vv = vv * broadcast
+weight = weight * broadcast
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate wavelengths in meters</span>
-<span class="n">wavelengths</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">chan_freq</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># m</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># calculate wavelengths in meters
+wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate baselines in klambda</span>
-<span class="n">uu</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">uu</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
-<span class="n">vv</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">vv</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># calculate baselines in klambda
+uu = 1e-3 * uu / wavelengths  # [klambda]
+vv = 1e-3 * vv / wavelengths  # [klambda]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="n">chan_freq</span> <span class="o">*</span> <span class="mf">1e-9</span>  <span class="c1"># [GHz]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>frequencies = chan_freq * 1e-9  # [GHz]
 </pre></div>
 </div>
 </div>
@@ -850,16 +896,16 @@ w_i = \frac{1}{\sigma_i^2}
 <p>Here, we sidestep this issue by just exporting <em>all</em> of the data (including flagged, potentially erroneous, visibilities), but, we also include the <code class="docutils literal notranslate"><span class="pre">mask</span></code> used to identify the valid visibilities. This punts on a final decision about how to store unflagged visibilities—the user will need to make sure that they correctly apply the mask when they load the data in a new environment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save data to numpy file for later use</span>
-<span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span>
-    <span class="s2">&quot;visibilities.npz&quot;</span><span class="p">,</span>
-    <span class="n">frequencies</span><span class="o">=</span><span class="n">frequencies</span><span class="p">,</span>  <span class="c1"># [GHz]</span>
-    <span class="n">uu</span><span class="o">=</span><span class="n">uu</span><span class="p">,</span>  <span class="c1"># [klambda]</span>
-    <span class="n">vv</span><span class="o">=</span><span class="n">vv</span><span class="p">,</span>  <span class="c1"># [klambda]</span>
-    <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span>  <span class="c1"># [1/Jy^2]</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>  <span class="c1"># [Jy]</span>
-    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>  <span class="c1"># [Bool]</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># save data to numpy file for later use
+np.savez(
+    &quot;visibilities.npz&quot;,
+    frequencies=frequencies,  # [GHz]
+    uu=uu,  # [klambda]
+    vv=vv,  # [klambda]
+    weight=weight,  # [1/Jy^2]
+    data=data,  # [Jy]
+    mask=mask,  # [Bool]
+)
 </pre></div>
 </div>
 </div>
