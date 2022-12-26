@@ -25,7 +25,7 @@ except DistributionNotFound:
     __version__ = "unknown version"
 
 project = "visread"
-copyright = "2021, Ian Czekala"
+copyright = "2021-23, Ian Czekala"
 author = "Ian Czekala"
 
 # The full version, including alpha/beta/rc tags
@@ -44,9 +44,21 @@ extensions = [
     "myst_nb"
 ]
 
-myst_enable_extensions = ["dollarmath", "colon_fence"]
+# add in additional files
+source_suffix = {
+    ".ipynb": "myst-nb",
+    ".rst": "restructuredtext",
+    ".myst": "myst-nb",
+    ".md": "myst-nb",
+}
+
+
+myst_enable_extensions = ["dollarmath", "colon_fence", "amsmath"]
 
 autodoc_mock_imports = ["casatools"]
+autodoc_member_order = "bysource" 
+autodoc_default_options = {"members": None}
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -64,3 +76,6 @@ html_theme = "sphinx_rtd_theme"
 
 nb_execution_mode = "cache"
 nb_execution_timeout = -1
+
+nb_execution_excludepatterns = ["**.ipynb_checkpoints"]
+myst_heading_anchors = 3
