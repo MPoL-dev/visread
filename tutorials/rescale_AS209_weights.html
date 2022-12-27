@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &mdash; visread 0.0.4 documentation</title>
+  <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &mdash; visread 0.0.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> visread
           </a>
               <div class="version">
-                0.0.4
+                0.0.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -106,19 +106,6 @@
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%run notebook_setup
 </pre></div>
 </div>
@@ -126,52 +113,6 @@
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/visread/visread/docs/tutorials/notebook_setup.py:21: DeprecationWarning: `magic(...)` is deprecated since IPython 0.13 (warning added in 8.1), use run_line_magic(magic_name, parameter_s).
   get_ipython().magic(&#39;config InlineBackend.figure_format = &quot;retina&quot;&#39;)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">File</span> <span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">visread</span><span class="o">/</span><span class="n">visread</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">tutorials</span><span class="o">/</span><span class="n">notebook_setup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">21</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="sd">&quot;&quot;&quot;isort:skip_file&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># set some plotting styles, inspired by DFM</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># https://github.com/exoplanet-dev/exoplanet/blob/main/docs/tutorials/notebook_setup.py</span>
-<span class="ne">---&gt; </span><span class="mi">21</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">magic</span><span class="p">(</span><span class="s1">&#39;config InlineBackend.figure_format = &quot;retina&quot;&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2470,</span> in <span class="ni">InteractiveShell.magic</span><span class="nt">(self, arg_s)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2468</span> <span class="n">magic_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">magic_arg_s</span> <span class="o">=</span> <span class="n">arg_s</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2469</span> <span class="n">magic_name</span> <span class="o">=</span> <span class="n">magic_name</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">prefilter</span><span class="o">.</span><span class="n">ESC_MAGIC</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2470</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="n">magic_name</span><span class="p">,</span> <span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">_stack_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2364,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2362</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2363</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2364</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2365</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/config.py:165,</span> in <span class="ni">ConfigMagics.config</span><span class="nt">(self, s)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="kn">from</span> <span class="nn">traitlets.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="c1"># some IPython objects are Configurable, but do not yet have</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="c1"># any configurable traits.  Exclude them from the effects of</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="c1"># this magic, as their presence is just noise:</span>
-<span class="ne">--&gt; </span><span class="mi">165</span> <span class="n">configurables</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">configurables</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                              <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">class_traits</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                              <span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">classnames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">configurables</span> <span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">line</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/config.py:166,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="kn">from</span> <span class="nn">traitlets.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="c1"># some IPython objects are Configurable, but do not yet have</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="c1"># any configurable traits.  Exclude them from the effects of</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="c1"># this magic, as their presence is just noise:</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="n">configurables</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">configurables</span>
-<span class="ne">--&gt; </span><span class="mi">166</span>                              <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">class_traits</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                              <span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">classnames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">configurables</span> <span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">line</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-<span class="ne">AttributeError</span>: type object &#39;CommManager&#39; has no attribute &#39;class_traits&#39;
 </pre></div>
 </div>
 </div>
@@ -190,18 +131,10 @@
 <p>Because the measurement set is large (0.9 Gb) and the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> process is computationally expensive (taking about 1 hr on a single core), we have pre-executed those commands and cached the measurement set and <code class="docutils literal notranslate"><span class="pre">tclean</span></code> products into the <code class="docutils literal notranslate"><span class="pre">AS209_MS</span></code> local directory. If you’re interested in the exact <code class="docutils literal notranslate"><span class="pre">tclean</span></code> commands used, please check out the <a class="reference download internal" download="" href="../_downloads/c7dd1c1b360aefbae562788776b2e7e5/dl_and_tclean_AS209.py"><span class="xref download myst">dl_and_tclean_AS209.py</span></a> script directly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import re
-import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import os
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from traitlets.traitlets import validate
 </pre></div>
 </div>
 </div>
@@ -213,20 +146,6 @@ workdir = &quot;AS209_MS&quot;
 os.chdir(workdir)
 fname = &quot;AS209_continuum.ms&quot;
 fitsname = &quot;AS209.fits&quot;
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># change to the cached subdirectory that contains the cleaned MS</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">workdir</span> <span class="o">=</span> <span class="s2">&quot;AS209_MS&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">workdir</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;AS209_continuum.ms&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">fitsname</span> <span class="o">=</span> <span class="s2">&quot;AS209.fits&quot;</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;AS209_MS&#39;
 </pre></div>
 </div>
 </div>
@@ -285,6 +204,12 @@ ax.set_ylabel(r&quot;$\Delta \delta$ [${}^{\prime\prime}$]&quot;)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
+</pre></div>
+</div>
+<img alt="../_images/02b2063ecd475aa8a3205894dd8f67069dc449278deb7ab0e05749cff51ddc5f.png" src="../_images/02b2063ecd475aa8a3205894dd8f67069dc449278deb7ab0e05749cff51ddc5f.png" />
+</div>
 </div>
 <p>Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran <code class="docutils literal notranslate"><span class="pre">tclean</span></code> was to generate the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column in the measurement set. The actual CLEANed FITS image is just a nice byproduct.</p>
 </section>
@@ -318,6 +243,12 @@ print(SPECTRAL_WINDOW_ID)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+ 24]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We see that there are 25 separate spectral windows! This is because the DSHARP images were produced using all available Band 6 continuum data on each source—not just the long baseline observations acquired in ALMA cycle 4. The merging of all of these individual observations is what creates this structure with so many spectral windows.</p>
 <p>Next, let’s open the main table of the measurement set and inspect the column names</p>
@@ -327,6 +258,11 @@ print(SPECTRAL_WINDOW_ID)
 colnames = tb.colnames()
 tb.close()
 print(colnames)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;UVW&#39;, &#39;FLAG&#39;, &#39;FLAG_CATEGORY&#39;, &#39;WEIGHT&#39;, &#39;SIGMA&#39;, &#39;ANTENNA1&#39;, &#39;ANTENNA2&#39;, &#39;ARRAY_ID&#39;, &#39;DATA_DESC_ID&#39;, &#39;EXPOSURE&#39;, &#39;FEED1&#39;, &#39;FEED2&#39;, &#39;FIELD_ID&#39;, &#39;FLAG_ROW&#39;, &#39;INTERVAL&#39;, &#39;OBSERVATION_ID&#39;, &#39;PROCESSOR_ID&#39;, &#39;SCAN_NUMBER&#39;, &#39;STATE_ID&#39;, &#39;TIME&#39;, &#39;TIME_CENTROID&#39;, &#39;DATA&#39;, &#39;WEIGHT_SPECTRUM&#39;, &#39;SIGMA_SPECTRUM&#39;, &#39;MODEL_DATA&#39;]
 </pre></div>
 </div>
 </div>
@@ -363,6 +299,11 @@ ms.close()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <p>The returned query is a dictionary whose keys are the lowercase column names</p>
 <div class="cell docutils container">
@@ -371,11 +312,27 @@ ms.close()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;data&#39;, &#39;uvw&#39;, &#39;weight&#39;])
+</pre></div>
+</div>
+</div>
 </div>
 <p>and whose values are the numerical arrays for the spectral window that we queried</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(query[&quot;data&quot;])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[-0.09359986-0.07905877j  0.19716288+0.10789031j
+   -0.04736413-0.38649508j ...  0.4015328 +0.23623116j
+    0.20422684+0.29638007j  0.13025568-0.55658323j]]
+
+ [[ 0.43320566-0.16495545j -0.0630829 -0.10485866j
+   -0.36411372-0.40655291j ...  0.24039683-0.32688245j
+    0.46174076-0.27798796j  0.61960417+0.00973242j]]]
 </pre></div>
 </div>
 </div>
@@ -398,10 +355,26 @@ ms.close()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(query[&quot;model_data&quot;])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[0.05795327-0.00037503j 0.06064697-0.0005148j  0.03213371-0.0003984j
+   ... 0.05897298-0.00039497j 0.06831173-0.00042475j
+   0.19711027-0.00065186j]]
+
+ [[0.05795327-0.00037503j 0.06064697-0.0005148j  0.03213371-0.0003984j
+   ... 0.05897298-0.00039497j 0.06831173-0.00042475j
+   0.19711027-0.00065186j]]]
 </pre></div>
 </div>
 </div>
@@ -602,6 +575,9 @@ ms.close()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/460e8485f12e2d2b9185f6528193e51c2aa991c75a3670227f89da38d603bd66.png" src="../_images/460e8485f12e2d2b9185f6528193e51c2aa991c75a3670227f89da38d603bd66.png" />
+</div>
 </div>
 <p>Great, it looks like things are pretty much as we would expect here.</p>
 </section>
@@ -614,6 +590,9 @@ ms.close()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/737d169ff5785cba599d308ca7707178be26f01124a4c3d0a910052e1429082f.png" src="../_images/737d169ff5785cba599d308ca7707178be26f01124a4c3d0a910052e1429082f.png" />
+</div>
 </div>
 <p>We find that something looks a little bit strange. Let’s try plotting things on a log scale to get a closer look.</p>
 <div class="cell docutils container">
@@ -621,6 +600,9 @@ ms.close()
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_histogram_datadescid(22, apply_flags=False, log=True)
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/45459f0bfd8cf45708d4f714677c0b8f20417407ff1218ca794024f4a7ef8346.png" src="../_images/45459f0bfd8cf45708d4f714677c0b8f20417407ff1218ca794024f4a7ef8346.png" />
 </div>
 </div>
 <p>It appears as though there are a bunch of “outlier” visibilities included in this spectral window (the histogram y-axis is the relative frequency or probability density, so in actually there are a relatively small number of outlier visibilities). If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let’s try plotting only the valid, unflagged, visibilities</p>
@@ -630,6 +612,9 @@ ms.close()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/18725d074857b704d83faa315a95368be1230f4b5bcb3bab656ae027718def90.png" src="../_images/18725d074857b704d83faa315a95368be1230f4b5bcb3bab656ae027718def90.png" />
+</div>
 </div>
 <p>This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale might make the discrepancy more visible</p>
 <div class="cell docutils container">
@@ -637,6 +622,9 @@ ms.close()
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_histogram_datadescid(22, apply_flags=True, log=False)
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/78acd938f5c7eb05d0e7732d045a8d54814ce06abe7318818f0844f4afecf7c3.png" src="../_images/78acd938f5c7eb05d0e7732d045a8d54814ce06abe7318818f0844f4afecf7c3.png" />
 </div>
 </div>
 <p>Lets write a routine to estimate by how much the <span class="math notranslate nohighlight">\(\sigma_0\)</span> values would need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.</p>
@@ -701,6 +689,11 @@ print(factor)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8596319521755138
+</pre></div>
+</div>
+</div>
 </div>
 <p>If we rescale the <span class="math notranslate nohighlight">\(\sigma\)</span> values to make them a factor of <span class="math notranslate nohighlight">\(\sim 1.85\)</span> larger it looks like we are able to make the distributions match up a little bit better.</p>
 <div class="cell docutils container">
@@ -708,6 +701,9 @@ print(factor)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_histogram_datadescid(22, sigma_rescale=factor, apply_flags=True, log=False)
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/32f91ef968c41c98b0b7ba04e13354c5a669a1d3850214be410834e6a99c3dec.png" src="../_images/32f91ef968c41c98b0b7ba04e13354c5a669a1d3850214be410834e6a99c3dec.png" />
 </div>
 </div>
 <p>It’s not really clear why this factor works, but factors of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> and 2 appear in changes to the CASA weight calculations (<a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights">which have changed across recent CASA versions</a>). Since this DSHARP measurement set contains visibilities acquired in previous ALMA cycles (and potentially calibrated with earlier versions of CASA), these changes in weight definitions may be responsible for the varying weight scatter across spectral window.</p>
@@ -721,6 +717,11 @@ ms.selectinit(datadescid=22)
 query = ms.getdata([&quot;UVW&quot;, &quot;FLAG&quot;])
 ms.selectinit(reset=True)
 ms.close()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -749,6 +750,13 @@ scatter_XX, scatter_YY = get_scatter_datadescid(
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(flag_XX.shape)
 print(scatter_XX.shape)
 print(u.shape)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16, 297935)
+(16, 297935)
+(297935,)
 </pre></div>
 </div>
 </div>
@@ -804,6 +812,12 @@ ax.set_ylabel(r&quot;$v$ [km]&quot;)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [km]&#39;)
+</pre></div>
+</div>
+<img alt="../_images/9a395873b3054c51a620719fb2771574337257cde201fdc2f127ec4d34a9e096.png" src="../_images/9a395873b3054c51a620719fb2771574337257cde201fdc2f127ec4d34a9e096.png" />
+</div>
 </div>
 <p>We don’t appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we’ll just accept these rescaled weights as is.</p>
 </section>
@@ -818,6 +832,35 @@ ax.set_ylabel(r&quot;$v$ [km]&quot;)
 }
 for ID in SPECTRAL_WINDOW_ID:
     print(ID, &quot;{:.2f}&quot;.format(sigma_rescale_factors[ID]))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 1.21
+1 1.20
+2 1.25
+3 1.15
+4 1.15
+5 1.14
+6 1.15
+7 1.15
+8 1.15
+9 1.78
+10 1.28
+11 1.80
+12 1.28
+13 1.88
+14 1.77
+15 1.77
+16 1.80
+17 1.88
+18 1.89
+19 1.89
+20 1.99
+21 1.85
+22 1.86
+23 1.88
+24 1.95
 </pre></div>
 </div>
 </div>
@@ -837,7 +880,7 @@ for ID in SPECTRAL_WINDOW_ID:
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Ian Czekala.</p>
+    <p>&#169; Copyright 2021-23, Ian Czekala.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

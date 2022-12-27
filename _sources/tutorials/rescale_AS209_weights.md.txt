@@ -15,11 +15,6 @@ jupyter:
 
 ```{code-cell} ipython3 
 :tags: [hide-cell]
-%matplotlib inline
-```
-
-```{code-cell} ipython3 
-:tags: [hide-cell]
 %run notebook_setup
 ```
 
@@ -39,15 +34,10 @@ The calibrated DSHARP measurement sets available from the archive do not contain
 Because the measurement set is large (0.9 Gb) and the ``tclean`` process is computationally expensive (taking about 1 hr on a single core), we have pre-executed those commands and cached the measurement set and ``tclean`` products into the ``AS209_MS`` local directory. If you're interested in the exact ``tclean`` commands used, please check out the [dl_and_tclean_AS209.py](dl_and_tclean_AS209.py) script directly.
 
 ```{code-cell}
-import re
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import os
-```
-
-```{code-cell}
-from traitlets.traitlets import validate
 ```
 
 ```{code-cell}

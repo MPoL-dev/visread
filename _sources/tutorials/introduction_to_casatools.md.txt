@@ -15,11 +15,6 @@ jupyter:
 
 ```{code-cell} ipython3 
 :tags: [hide-cell]
-%matplotlib inline
-```
-
-```{code-cell} ipython3 
-:tags: [hide-cell]
 %run notebook_setup
 ```
 

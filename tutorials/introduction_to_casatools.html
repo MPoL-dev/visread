@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction to CASA tools &mdash; visread 0.0.4 documentation</title>
+  <title>Introduction to CASA tools &mdash; visread 0.0.5 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -38,7 +38,7 @@
             <a href="../index.html" class="icon icon-home"> visread
           </a>
               <div class="version">
-                0.0.4
+                0.0.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -111,19 +111,6 @@
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%run notebook_setup
 </pre></div>
 </div>
@@ -131,52 +118,6 @@
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/visread/visread/docs/tutorials/notebook_setup.py:21: DeprecationWarning: `magic(...)` is deprecated since IPython 0.13 (warning added in 8.1), use run_line_magic(magic_name, parameter_s).
   get_ipython().magic(&#39;config InlineBackend.figure_format = &quot;retina&quot;&#39;)
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">File</span> <span class="o">~/</span><span class="n">work</span><span class="o">/</span><span class="n">visread</span><span class="o">/</span><span class="n">visread</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">tutorials</span><span class="o">/</span><span class="n">notebook_setup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">21</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="sd">&quot;&quot;&quot;isort:skip_file&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># set some plotting styles, inspired by DFM</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># https://github.com/exoplanet-dev/exoplanet/blob/main/docs/tutorials/notebook_setup.py</span>
-<span class="ne">---&gt; </span><span class="mi">21</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">magic</span><span class="p">(</span><span class="s1">&#39;config InlineBackend.figure_format = &quot;retina&quot;&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2470,</span> in <span class="ni">InteractiveShell.magic</span><span class="nt">(self, arg_s)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2468</span> <span class="n">magic_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">magic_arg_s</span> <span class="o">=</span> <span class="n">arg_s</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2469</span> <span class="n">magic_name</span> <span class="o">=</span> <span class="n">magic_name</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">prefilter</span><span class="o">.</span><span class="n">ESC_MAGIC</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2470</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="n">magic_name</span><span class="p">,</span> <span class="n">magic_arg_s</span><span class="p">,</span> <span class="n">_stack_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/interactiveshell.py:2364,</span> in <span class="ni">InteractiveShell.run_line_magic</span><span class="nt">(self, magic_name, line, _stack_depth)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2362</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;local_ns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_local_scope</span><span class="p">(</span><span class="n">stack_depth</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2363</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">builtin_trap</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2364</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2365</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/config.py:165,</span> in <span class="ni">ConfigMagics.config</span><span class="nt">(self, s)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="kn">from</span> <span class="nn">traitlets.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="c1"># some IPython objects are Configurable, but do not yet have</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="c1"># any configurable traits.  Exclude them from the effects of</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="c1"># this magic, as their presence is just noise:</span>
-<span class="ne">--&gt; </span><span class="mi">165</span> <span class="n">configurables</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">configurables</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                              <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">class_traits</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                              <span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">classnames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">configurables</span> <span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">line</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.14/x64/lib/python3.8/site-packages/IPython/core/magics/config.py:166,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="kn">from</span> <span class="nn">traitlets.config.loader</span> <span class="kn">import</span> <span class="n">Config</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span> <span class="c1"># some IPython objects are Configurable, but do not yet have</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="c1"># any configurable traits.  Exclude them from the effects of</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="c1"># this magic, as their presence is just noise:</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="n">configurables</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">configurables</span>
-<span class="ne">--&gt; </span><span class="mi">166</span>                              <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">class_traits</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                              <span class="p">]),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">classnames</span> <span class="o">=</span> <span class="p">[</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">configurables</span> <span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">line</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-
-<span class="ne">AttributeError</span>: type object &#39;CommManager&#39; has no attribute &#39;class_traits&#39;
 </pre></div>
 </div>
 </div>
@@ -319,7 +260,7 @@ print(spws)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-28 14:28:08	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-12-27 19:23:26	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
 </pre></div>
 </div>
 </div>
@@ -363,7 +304,7 @@ print(chan_freq)
  2.30525189e+11]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-11-28 14:28:08	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2022-12-27 19:23:26	INFO	msmetadata_cmpt.cc::open	Performing internal consistency checks on logo_cube.noise.ms...
 </pre></div>
 </div>
 </div>
@@ -461,7 +402,7 @@ ax.set_ylabel(r&quot;$v$ [m]&quot;)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [m]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/31b7d5fa26289d9b9c5c0c3b2dc2f432d7ddac2ecae80f8bb07ea50499da12db.png" src="../_images/31b7d5fa26289d9b9c5c0c3b2dc2f432d7ddac2ecae80f8bb07ea50499da12db.png" />
+<img alt="../_images/fd5347efaee762261329208f2f07c8707bdebb7b761f3f423a4397fafa46ebad.png" src="../_images/fd5347efaee762261329208f2f07c8707bdebb7b761f3f423a4397fafa46ebad.png" />
 </div>
 </div>
 </section>
@@ -510,7 +451,7 @@ ax.set_ylabel(r&quot;$v$ [k$\lambda$]&quot;)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [k$\\lambda$]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/690918feb2cd8fcc509180e1c7981095c4527e5ca1cb8f88562dea39ef63ff61.png" src="../_images/690918feb2cd8fcc509180e1c7981095c4527e5ca1cb8f88562dea39ef63ff61.png" />
+<img alt="../_images/79d5b2ccdcb82045ef50a6cfaf827288bf1b03332c84ab6e311fa08070e81622.png" src="../_images/79d5b2ccdcb82045ef50a6cfaf827288bf1b03332c84ab6e311fa08070e81622.png" />
 </div>
 </div>
 </section>
@@ -754,7 +695,7 @@ ax.set_ylabel(r&quot;Amplitude [Jy]&quot;)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Amplitude [Jy]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/23b815d577f943e9570fa14be92d8273a0e8e14d4289bd9f1c45c8498cacb237.png" src="../_images/23b815d577f943e9570fa14be92d8273a0e8e14d4289bd9f1c45c8498cacb237.png" />
+<img alt="../_images/d67232b62a1d31cff1f49d065f1f9439d8d28d58cbaf50da7f5cae1675b4522a.png" src="../_images/d67232b62a1d31cff1f49d065f1f9439d8d28d58cbaf50da7f5cae1675b4522a.png" />
 </div>
 </div>
 </section>
@@ -924,7 +865,7 @@ np.savez(
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Ian Czekala.</p>
+    <p>&#169; Copyright 2021-23, Ian Czekala.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
