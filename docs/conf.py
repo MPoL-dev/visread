@@ -55,6 +55,8 @@ source_suffix = {
 
 myst_enable_extensions = ["dollarmath", "colon_fence", "amsmath"]
 
+# CASA imports are mocked with Sphinx ``autodoc_mock_imports`` because the CASA install 
+# requires ``libgfortran`` to be installed and apparently that's difficult with RTD.
 autodoc_mock_imports = ["casatools"]
 autodoc_member_order = "bysource" 
 autodoc_default_options = {"members": None}

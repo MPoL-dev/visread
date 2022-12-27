@@ -11,13 +11,10 @@ Process tools
 The routines in the ``process`` module are generally designed to process quantities extracted using casatools into alternative formats for plotting and analysis. 
 
 .. automodule:: visread.process
-    :members:
-
 
 Utils
 -----
 
 .. automodule:: visread.utils 
-    :members:
 
 

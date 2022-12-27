@@ -1,5 +1,7 @@
 # Minimal makefile for Sphinx documentation
-#
+
+tutorials/AS209_MS/AS209.fits: tutorials/dl_and_tclean_AS209.py
+	python tutorials/dl_and_tclean_AS209.py
 
 # You can set these variables from the command line, and also
 # from the environment for the first two.
@@ -17,6 +19,7 @@ help:
 clean:
 	rm -rf _build
 	rm -rf casa*log
+	rm -rf tutorials/AS209_MS
 
-html:
+html: tutorials/AS209_MS/AS209.fits
 	sphinx-build -T -b html -d _build/doctrees -D language=en . _build/html
