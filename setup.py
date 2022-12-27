@@ -32,6 +32,7 @@ EXTRA_REQUIRES = {
         "sphinx_rtd_theme",
         "jupyter",
         "jupytext",
+        "ipython!=8.7.0",  # broken version for syntax higlight https://github.com/spatialaudio/nbsphinx/issues/687
         "astropy",
         "casatasks",
         "matplotlib",

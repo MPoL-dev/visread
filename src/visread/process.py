@@ -262,6 +262,13 @@ def get_processed_visibilities(
 
 
     """
+
+    # get the channel frequencies 
+
+    # test whether they are decreasing or not
+
+
+
     # get sorted channels, data, and flags
     chan_freq, data, model_data, flag = get_channel_sorted_data(filename, datadescid)
     nchan = len(chan_freq)

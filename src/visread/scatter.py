@@ -2,8 +2,11 @@ import numpy as np
 import casatools
 from scipy.optimize import minimize
 
+from . import utils, process
+
 # initialize the relevant CASA tools
 msmd = casatools.msmetadata()
+ms = casatools.ms()
 
 
 def calculate_rescale_factor(scatter, **kwargs):
@@ -15,7 +18,7 @@ def calculate_rescale_factor(scatter, **kwargs):
     # between the bin_heights and the expectations from the
     # reference Gaussian
 
-    loss = lambda x: np.sum((bin_heights - gaussian(bin_centers, sigma=x)) ** 2)
+    loss = lambda x: np.sum((bin_heights - utils.gaussian(bin_centers, sigma=x)) ** 2)
 
     res = minimize(loss, 1.0)
 
@@ -33,7 +36,7 @@ def get_averaged_scatter(d):
     """
 
     residuals = d["data"] - d["model_data"]
-    sigma = weight_to_sigma(d["weight"])
+    sigma = process.weight_to_sigma(d["weight"])
 
     scatter = residuals / sigma
 
@@ -90,24 +93,23 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
 
     """
 
-    query = query_datadescid(filename, datadescid)
-    data, model_data, weight, flag = (
-        query["data"],
-        query["model_data"],
-        query["weight"],
-        query["flag"],
-    )
+
+    ms.open(filename)
+    ms.selectinit(datadescid=datadescid)
+    q = ms.getdata(["data", "model_data", "weight", "flag"])
+    ms.selectinit(reset=True)
+    ms.close()
 
     # TODO: assert model_data not None?
     assert (
-        len(model_data) > 0
+        len(q["model_data"]) > 0
     ), "MODEL_DATA column empty, retry tclean with savemodel='modelcolumn'"
 
     # subtract model from data
-    residuals = data - model_data
+    residuals = q["data"] - q["model_data"]
 
     # calculate sigma from weight
-    sigma = weight_to_sigma(weight)
+    sigma = process.weight_to_sigma(q["weight"])
     sigma *= sigma_rescale
 
     # divide by weight, augmented for channel dim
@@ -115,7 +117,7 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
 
     # separate polarizations
     scatter_XX, scatter_YY = scatter
-    flag_XX, flag_YY = flag
+    flag_XX, flag_YY = q["flag"]
 
     if apply_flags:
         # flatten across channels

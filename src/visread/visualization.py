@@ -1,11 +1,19 @@
 import numpy as np 
 import matplotlib.pyplot as plt
+import casatools 
+from . import utils, scatter, process
 
+ms = casatools.ms()
 
 def plot_baselines(filename, datadescid):
 
-    query = query_datadescid(filename, datadescid)
-    u, v, w = query["uvw"] * 1e-3  # [km]
+    ms.open(filename)
+    ms.selectinit(datadescid=datadescid)
+    q = ms.getdata(["uvw"])
+    ms.selectinit(reset=True)
+    ms.close()
+
+    u, v, w = q["uvw"] * 1e-3  # [km]
 
     fig, ax = plt.subplots(nrows=1)
     ax.scatter(u, v, s=0.5)
@@ -31,7 +39,7 @@ def plot_averaged_scatter(scatter, log=False, **kwargs):
     ax[1].set_xlabel(r"$\Im \{ V - \bar{V} \} / \sigma$")
 
     for a in ax.flatten():
-        a.plot(xs, gaussian(xs))
+        a.plot(xs, utils.gaussian(xs))
 
     fig.subplots_adjust(hspace=0.25, top=0.95)
 
@@ -65,7 +73,7 @@ def plot_scatter_datadescid(
     if chan_slice is not None:
         print("apply_flags setting is ignored when chan_slice is not None")
 
-        scatter_XX, scatter_YY = get_scatter_datadescid(
+        scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
             filename, datadescid, sigma_rescale, apply_flags=False
         )
 
@@ -73,7 +81,7 @@ def plot_scatter_datadescid(
         scatter_YY = scatter_YY[chan_slice]
 
     else:
-        scatter_XX, scatter_YY = get_scatter_datadescid(
+        scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
             filename, datadescid, sigma_rescale, apply_flags=apply_flags
         )
 
@@ -129,11 +137,15 @@ def _scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
 
 def plot_weight_hist(filename, datadescid, log=False, **kwargs):
 
-    query = query_datadescid(filename, datadescid)
-    weight = query["weight"]
+    ms.open(filename)
+    ms.selectinit(datadescid=datadescid)
+    q = ms.getdata(["weight"])
+    ms.selectinit(reset=True)
+    ms.close()
 
-    weight_XX, weight_YY = weight
-    scatter_XX, scatter_YY = weight_to_sigma(weight)
+
+    weight_XX, weight_YY = q["weight"]
+    scatter_XX, scatter_YY = process.weight_to_sigma(q["weight"])
 
     figsize = kwargs.get("figsize", (9, 9))
     bins = kwargs.get("bins", 20)
