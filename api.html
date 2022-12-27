@@ -74,6 +74,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#visread.utils.gaussian"><code class="docutils literal notranslate"><span class="pre">gaussian()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-visread.scatter">Scatter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.get_averaged_scatter"><code class="docutils literal notranslate"><span class="pre">get_averaged_scatter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.get_scatter_datadescid"><code class="docutils literal notranslate"><span class="pre">get_scatter_datadescid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-visread.visualization">Visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#visread.visualization.plot_scatter_datadescid"><code class="docutils literal notranslate"><span class="pre">plot_scatter_datadescid()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -372,6 +381,73 @@
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Gaussian function evaluated at <span class="math notranslate nohighlight">\(x\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-visread.scatter">
+<span id="scatter"></span><h2>Scatter<a class="headerlink" href="#module-visread.scatter" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.scatter.get_averaged_scatter">
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_averaged_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_averaged_scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_averaged_scatter" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> – dictionary with keys</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.scatter.get_scatter_datadescid">
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_scatter_datadescid" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \mathrm{sigma\_rescale} \times \sigma_0\]</div>
+<p>and <span class="math notranslate nohighlight">\(\sigma_0 = \sqrt{1/w}\)</span>. The scatter is defined as</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – measurement set filename</p></li>
+<li><p><strong>datadescid</strong> (<em>int</em>) – the DATA_DESC_ID to be queried</p></li>
+<li><p><strong>sigma_rescale</strong> (<em>int</em>) – multiply the uncertainties by this factor</p></li>
+<li><p><strong>apply_flags</strong> (<em>bool</em>) – calculate the scatter <em>after</em> the flags have been applied</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a 2-tuple of numpy arrays containing the scatter in each polarization.
+If <code class="docutils literal notranslate"><span class="pre">apply_flags==True</span></code>, each array will be 1-dimensional. If <code class="docutils literal notranslate"><span class="pre">apply_flags==False</span></code>, each array
+will retain its original shape, including channelization (e.g., shape <code class="docutils literal notranslate"><span class="pre">nchan,nvis</span></code>).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>scatter_XX, scatter_YY</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-visread.visualization">
+<span id="visualization"></span><h2>Visualization<a class="headerlink" href="#module-visread.visualization" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.visualization.plot_scatter_datadescid">
+<span class="sig-prename descclassname"><span class="pre">visread.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/visualization.html#plot_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.visualization.plot_scatter_datadescid" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a set of histograms of the scatter of the residual visibilities for the real and
+imaginary components of the XX and YY polarizations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – measurement set filename</p></li>
+<li><p><strong>datadescid</strong> (<em>int</em>) – the DATA_DESC_ID to be queried</p></li>
+<li><p><strong>log</strong> (<em>bool</em>) – should the histogram values be log scaled?</p></li>
+<li><p><strong>sigma_rescale</strong> (<em>int</em>) – multiply the uncertainties by this factor</p></li>
+<li><p><strong>chan_slice</strong> (<em>slice</em>) – if not None, a slice object specifying the channels to subselect</p></li>
+<li><p><strong>apply_flags</strong> (<em>bool</em>) – calculate the scatter <em>after</em> the flags have been applied</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>matplotlib figure with scatter histograms</p>
 </dd>
 </dl>
 </dd></dl>

@@ -17,4 +17,12 @@ Utils
 
 .. automodule:: visread.utils 
 
+Scatter
+-------
 
+.. automodule:: visread.scatter 
+
+Visualization
+-------------
+
+.. automodule:: visread.visualization
