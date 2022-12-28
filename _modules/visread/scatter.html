@@ -88,7 +88,19 @@
 <span class="n">ms</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">calculate_rescale_factor</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="calculate_rescale_factor"><a class="viewcode-back" href="../../api.html#visread.scatter.calculate_rescale_factor">[docs]</a><span class="k">def</span> <span class="nf">calculate_rescale_factor</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the multiplicative factor needed to scale :math:`\sigma` such that the scatter in the residuals matches that expected from a Gaussian.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scatter (np.array): an array of residuals normalized to their :math:`\sigma` values.</span>
+<span class="sd">        method (string): string passed to `scipy.optimize.minimize &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html&gt;`_ to choose minimization argument.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: the multiplicative factor needed to multiply against :math:`\sigma`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># create a histogram of the scatter values, should approximate a Gaussian distribution</span>
     <span class="n">bins</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bins&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
     <span class="n">bin_heights</span><span class="p">,</span> <span class="n">bin_edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
     <span class="n">bin_centers</span> <span class="o">=</span> <span class="n">bin_edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">bin_edges</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
@@ -96,20 +108,21 @@
     <span class="c1"># find the sigma_rescale which minimizes the mean squared error</span>
     <span class="c1"># between the bin_heights and the expectations from the</span>
     <span class="c1"># reference Gaussian</span>
-
     <span class="n">loss</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">bin_heights</span> <span class="o">-</span> <span class="n">utils</span><span class="o">.</span><span class="n">gaussian</span><span class="p">(</span><span class="n">bin_centers</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
 
 
 <div class="viewcode-block" id="get_averaged_scatter"><a class="viewcode-back" href="../../api.html#visread.scatter.get_averaged_scatter">[docs]</a><span class="k">def</span> <span class="nf">get_averaged_scatter</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the scatter in the residual visibilities, after they have been averaged over polarization.</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        d : dictionary with keys</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -179,7 +192,6 @@
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="c1"># TODO: assert model_data not None?</span>
     <span class="k">assert</span> <span class="p">(</span>
         <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
     <span class="p">),</span> <span class="s2">&quot;MODEL_DATA column empty, retry tclean with savemodel=&#39;modelcolumn&#39;&quot;</span>
