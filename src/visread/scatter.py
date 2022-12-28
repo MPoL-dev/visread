@@ -9,7 +9,19 @@ msmd = casatools.msmetadata()
 ms = casatools.ms()
 
 
-def calculate_rescale_factor(scatter, **kwargs):
+def calculate_rescale_factor(scatter, method="Nelder-Mead", **kwargs):
+    """
+    Calculate the multiplicative factor needed to scale :math:`\sigma` such that the scatter in the residuals matches that expected from a Gaussian.
+
+    Args:
+        scatter (np.array): an array of residuals normalized to their :math:`\sigma` values.
+        method (string): string passed to `scipy.optimize.minimize <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html>`_ to choose minimization argument.
+
+    Returns:
+        float: the multiplicative factor needed to multiply against :math:`\sigma`
+    """
+
+    # create a histogram of the scatter values, should approximate a Gaussian distribution
     bins = kwargs.get("bins", 40)
     bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
     bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
@@ -17,10 +29,9 @@ def calculate_rescale_factor(scatter, **kwargs):
     # find the sigma_rescale which minimizes the mean squared error
     # between the bin_heights and the expectations from the
     # reference Gaussian
-
     loss = lambda x: np.sum((bin_heights - utils.gaussian(bin_centers, sigma=x)) ** 2)
 
-    res = minimize(loss, 1.0)
+    res = minimize(loss, 1.0, method=method)
 
     if res.success:
         return res.x[0]
@@ -31,6 +42,8 @@ def calculate_rescale_factor(scatter, **kwargs):
 
 def get_averaged_scatter(d):
     """
+    Calculate the scatter in the residual visibilities, after they have been averaged over polarization.
+
     Args:
         d : dictionary with keys
     """
@@ -100,7 +113,6 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
     ms.selectinit(reset=True)
     ms.close()
 
-    # TODO: assert model_data not None?
     assert (
         len(q["model_data"]) > 0
     ), "MODEL_DATA column empty, retry tclean with savemodel='modelcolumn'"
