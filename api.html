@@ -1,18 +1,39 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Visread API &mdash; visread 0.0.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
@@ -23,22 +44,42 @@
         <script src="_static/copybutton.js"></script>
         <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Casatools API" href="casatools-api.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="index.html" class="icon icon-home"> visread
+          
+
+          
           </a>
+
+          
+            
+            
               <div class="version">
                 0.0.5
               </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -46,7 +87,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="tutorials/introduction_to_casatools.html">Introduction to CASA tools</a></li>
@@ -58,14 +110,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.weight_to_sigma"><code class="docutils literal notranslate"><span class="pre">weight_to_sigma()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.broadcast_weights"><code class="docutils literal notranslate"><span class="pre">broadcast_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.rescale_weights"><code class="docutils literal notranslate"><span class="pre">rescale_weights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visread.process.average_data_polarization"><code class="docutils literal notranslate"><span class="pre">average_data_polarization()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.average_weight_polarization"><code class="docutils literal notranslate"><span class="pre">average_weight_polarization()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.average_flag_polarization"><code class="docutils literal notranslate"><span class="pre">average_flag_polarization()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.convert_baselines"><code class="docutils literal notranslate"><span class="pre">convert_baselines()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.broadcast_and_convert_baselines"><code class="docutils literal notranslate"><span class="pre">broadcast_and_convert_baselines()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visread.process.average_data_polarization"><code class="docutils literal notranslate"><span class="pre">average_data_polarization()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.contains_autocorrelations"><code class="docutils literal notranslate"><span class="pre">contains_autocorrelations()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.isdecreasing"><code class="docutils literal notranslate"><span class="pre">isdecreasing()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visread.process.reverse_array"><code class="docutils literal notranslate"><span class="pre">reverse_array()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visread.process.get_channel_sorted_data"><code class="docutils literal notranslate"><span class="pre">get_channel_sorted_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.process.get_processed_visibilities"><code class="docutils literal notranslate"><span class="pre">get_processed_visibilities()</span></code></a></li>
 </ul>
 </li>
@@ -75,9 +127,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#scatter">Scatter</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.calculate_rescale_factor"><code class="docutils literal notranslate"><span class="pre">calculate_rescale_factor()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.get_averaged_scatter"><code class="docutils literal notranslate"><span class="pre">get_averaged_scatter()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visread.scatter.get_scatter_datadescid"><code class="docutils literal notranslate"><span class="pre">get_scatter_datadescid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.calculate_rescale_factor"><code class="docutils literal notranslate"><span class="pre">calculate_rescale_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.get_sigma_rescale_datadescid"><code class="docutils literal notranslate"><span class="pre">get_sigma_rescale_datadescid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visread.scatter.get_averaged_scatter"><code class="docutils literal notranslate"><span class="pre">get_averaged_scatter()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#visualization">Visualization</a><ul>
@@ -88,52 +141,93 @@
 </li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">visread</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Visread API</li>
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Visread API</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="visread-api">
-<h1>Visread API<a class="headerlink" href="#visread-api" title="Permalink to this heading"></a></h1>
+<h1>Visread API<a class="headerlink" href="#visread-api" title="Permalink to this heading">¶</a></h1>
 <p>Before getting started with the <em>visread</em> package, we recommend becoming familiar with the <a class="reference external" href="https://casadocs.readthedocs.io/en/stable/api/casatools.html">casatools</a> provided as part of CASA. You can see some of our highlights in the tutorials and in <a class="reference internal" href="casatools-api.html#casatools-api-label"><span class="std std-ref">Casatools API</span></a>.</p>
 <p>In this context, the <em>visread</em> routines are designed to perform additional processing to the products extracted from measurement sets using casatools.</p>
 <p>The philosophy of this packaged is to augment the casatools functionality, and is meant to be used in coordination with it. The reason is that every measurement set seems to be slightly different (depending on the type of observation, how it was calibrated, and whether the user performed any additional processing) and therefore it’s difficult to create many general purpose, fully abstracted routines.</p>
 <section id="process-tools">
-<h2>Process tools<a class="headerlink" href="#process-tools" title="Permalink to this heading"></a></h2>
+<h2>Process tools<a class="headerlink" href="#process-tools" title="Permalink to this heading">¶</a></h2>
 <p>The routines in the <code class="docutils literal notranslate"><span class="pre">process</span></code> module are generally designed to process quantities extracted using casatools into alternative formats for plotting and analysis.</p>
 <span class="target" id="module-visread.process"></span><dl class="py function">
 <dt class="sig sig-object py" id="visread.process.weight_to_sigma">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">weight_to_sigma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#weight_to_sigma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.weight_to_sigma" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">weight_to_sigma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#weight_to_sigma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.weight_to_sigma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a weight (<span class="math notranslate nohighlight">\(w\)</span>) to an uncertainty (<span class="math notranslate nohighlight">\(\sigma\)</span>) using</p>
 <div class="math notranslate nohighlight">
 \[\sigma = \sqrt{1/w}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>weight</strong> (<em>float</em><em> or </em><em>np.array</em>) – statistical weight value</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the corresponding uncertainty</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>sigma (float or np.array)</p>
 </dd>
 </dl>
@@ -141,17 +235,17 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.broadcast_weights">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">broadcast_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#broadcast_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.broadcast_weights" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">broadcast_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#broadcast_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.broadcast_weights" title="Permalink to this definition">¶</a></dt>
 <dd><p>Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications) but already averaged over polarizations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>weight</strong> (<em>np.array</em>) – the weights</p></li>
 <li><p><strong>data_shape</strong> (<em>tuple</em>) – the shape of the data</p></li>
 <li><p><strong>chan_axis</strong> (<em>int</em>) – the axis which represents the number of channels in the data array, typically 0 for visibility data that has already been averaged over polarizations.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>np.array (float) array of weights the same shape as the data</p>
 </dd>
 </dl>
@@ -159,38 +253,56 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.rescale_weights">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">rescale_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#rescale_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.rescale_weights" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">rescale_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#rescale_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.rescale_weights" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rescale all weights by a common factor. It would be as if <span class="math notranslate nohighlight">\(\sigma\)</span> were rescaled by this factor.</p>
 <div class="math notranslate nohighlight">
 \[w_\mathrm{new} = w_\mathrm{old} / \sigma_\mathrm{rescale}^2\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>weight</strong> (<em>float</em><em> or </em><em>np.array</em>) – the weights</p></li>
 <li><p><strong>sigma_rescale</strong> (<em>float</em>) – the factor by which to rescale the weight</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(float or np.array) the rescaled weights</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="visread.process.average_data_polarization">
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">average_data_polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#average_data_polarization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.average_data_polarization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a weighted average of the data over the polarization axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>npol</em><em>, </em><em>nchan</em><em>, </em><em>nvis</em>) – complex data array. Could either be real data or model_data.</p></li>
+<li><p><strong>weight</strong> (<em>npol</em><em>, </em><em>nvis</em>) – weight array matching data array (before broadcast)</p></li>
+<li><p><strong>polarization_axis</strong> (<em>int</em>) – index of the polarization axis, typically 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>data averaged over the polarization axis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="visread.process.average_weight_polarization">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">average_weight_polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#average_weight_polarization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.average_weight_polarization" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">average_weight_polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#average_weight_polarization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.average_weight_polarization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Average the weights over the polarization axis.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>weight</strong> (<em>np.array</em>) – weight array. Could be shape <cite>(2, nchan, nvis)</cite> or just <cite>(2, nvis)</cite>, dependending on whether it has been broadcasted already.</p></li>
 <li><p><strong>polarization_axis</strong> (<em>int</em>) – the polarization axis, typically 0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>weight array summed over the polarization axis. Could be shape <cite>(nchan, nvis)</cite> or just <cite>(nvis)</cite> depending on whether it was broadcasted across channels.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(np.array)</p>
 </dd>
 </dl>
@@ -198,19 +310,19 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.average_flag_polarization">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">average_flag_polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#average_flag_polarization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.average_flag_polarization" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">average_flag_polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#average_flag_polarization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.average_flag_polarization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collapse the flags across the polarization axis, taking the approach that if either polarization is flagged, the averaged product shoud be flagged too.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>flag</strong> (<em>np.array bool</em>) – flag array. Could be multidimensional, e.g. <cite>(2, nchan, nvis)</cite> or just <cite>(2, nvis)</cite>.</p></li>
 <li><p><strong>polarization_axis</strong> (<em>int</em>) – the polarization axis, typically 0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>flag array collapsed across the polarization axis. Could be shape <cite>(nchan, nvis)</cite> or just <cite>(nvis)</cite> depending on whether it was broadcasted across channels.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(np.array bool)</p>
 </dd>
 </dl>
@@ -218,19 +330,19 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.convert_baselines">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baselines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.convert_baselines" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baselines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.convert_baselines" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert baselines in meters to kilolambda.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>baselines</strong> (<em>float</em><em> or </em><em>np.array</em>) – baselines in [m].</p></li>
 <li><p><strong>freq</strong> (<em>float</em><em> or </em><em>np.array</em>) – frequencies in [Hz]. If either <code class="docutils literal notranslate"><span class="pre">baselines</span></code> or <code class="docutils literal notranslate"><span class="pre">freq</span></code> are numpy arrays, their shapes must be broadcast-able.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>baselines in [klambda]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(1D array nvis)</p>
 </dd>
 </dl>
@@ -238,55 +350,37 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.broadcast_and_convert_baselines">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">broadcast_and_convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#broadcast_and_convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.broadcast_and_convert_baselines" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">broadcast_and_convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#broadcast_and_convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.broadcast_and_convert_baselines" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert baselines to kilolambda and broadcast to match shape of channel frequencies.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>u</strong> (<em>1D array nvis</em>) – baseline [m]</p></li>
 <li><p><strong>v</strong> (<em>1D array nvis</em>) – baseline [m]</p></li>
 <li><p><strong>chan_freq</strong> (<em>1D array nchan</em>) – frequencies [Hz]</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="visread.process.average_data_polarization">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">average_data_polarization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#average_data_polarization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.average_data_polarization" title="Permalink to this definition"></a></dt>
-<dd><p>Perform a weighted average of the data over the polarization axis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>npol</em><em>, </em><em>nchan</em><em>, </em><em>nvis</em>) – complex data array. Could either be real data or model_data.</p></li>
-<li><p><strong>weight</strong> (<em>npol</em><em>, </em><em>nvis</em>) – weight array matching data array</p></li>
-<li><p><strong>polarization_axis</strong> (<em>int</em>) – index of the polarization axis, typically 0.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>data averaged over the polarization axis.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="visread.process.contains_autocorrelations">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">contains_autocorrelations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ant1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ant2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#contains_autocorrelations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.contains_autocorrelations" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">contains_autocorrelations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ant1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ant2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#contains_autocorrelations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.contains_autocorrelations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test whether the list of antennas contain any autocorrelations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ant1</strong> (<em>np.array int</em>) – antenna 1</p></li>
 <li><p><strong>ant2</strong> (<em>np.array int</em>) – antenna 2</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if list contains autocorrelation pairs.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>boolean</p>
 </dd>
 </dl>
@@ -294,52 +388,62 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.isdecreasing">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">isdecreasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chan_freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#isdecreasing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.isdecreasing" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">isdecreasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chan_freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#isdecreasing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.isdecreasing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return true if channels are stored in decreasing frequency order, i.e., blueshifted to redshifted.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>chan_freq</strong> (<em>1D numpy array</em>) – the channel frequencies in Hz</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if channels are stored in decreasing frequency order (preferred order).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>boolean</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="visread.process.reverse_array">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">reverse_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#reverse_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.reverse_array" title="Permalink to this definition"></a></dt>
-<dd><p>If the channel frequencies are stored in an order different than the one we desire, we can reverse the axes.</p>
+<dt class="sig sig-object py" id="visread.process.get_channel_sorted_data">
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">get_channel_sorted_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incl_model_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#get_channel_sorted_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.get_channel_sorted_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Acquire and sort the channel frequencies, data, flags, and model_data columns.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<em>np.array</em>) – the input array, could be chan_freq, data, flag, etc.</p></li>
-<li><p><strong>channel_axis</strong> (<em>int</em>) – which axis is the channel axis?</p></li>
+<li><p><strong>filename</strong> (<em>string</em>) – the measurement set to query</p></li>
+<li><p><strong>datadescid</strong> (<em>int</em>) – the spw id to query</p></li>
+<li><p><strong>incl_model_data</strong> (<em>boolean</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, return the <code class="docutils literal notranslate"><span class="pre">model_data</span></code> column as well</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>np.array sorted</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>chan_freq, data, flag, model_data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.get_processed_visibilities">
-<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">get_processed_visibilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#get_processed_visibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.get_processed_visibilities" title="Permalink to this definition"></a></dt>
-<dd><p>Get all of the visibilities from a specific datadescid. Average polarizations.</p>
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">get_processed_visibilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incl_model_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#get_processed_visibilities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.get_processed_visibilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process all of the visibilities from a specific datadescid. This means</p>
+<ul class="simple">
+<li><p>(If necessary) reversing the channel dimension such that channel frequency decreases with increasing array index (blueshifted to redshifted)</p></li>
+<li><p>averaging the polarizations together</p></li>
+<li><p>rescaling weights</p></li>
+<li><p>scanning and removing any auto-correlation visibilities</p></li>
+</ul>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em>) – path to measurementset to process</p></li>
 <li><p><strong>datadescid</strong> (<em>int</em>) – a specific datadescid to process</p></li>
 <li><p><strong>sigma_rescale</strong> (<em>float</em>) – by what factor should the sigmas be rescaled (applied to weights via <code class="docutils literal notranslate"><span class="pre">rescale_weights</span></code>)</p></li>
-<li><p><strong>model_data</strong> (<em>bool</em>) – include the model_data column?</p></li>
+<li><p><strong>incl_model_data</strong> (<em>bool</em>) – include the model_data column?</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>dictionary with keys “frequencies”, “uu”, “data”, “flag”, “weight”</p>
 </dd>
 </dl>
@@ -347,19 +451,19 @@
 
 </section>
 <section id="module-visread.utils">
-<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-visread.utils" title="Permalink to this heading"></a></h2>
+<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-visread.utils" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.utils.doppler_shift">
-<span class="sig-prename descclassname"><span class="pre">visread.utils.</span></span><span class="sig-name descname"><span class="pre">doppler_shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/utils.html#doppler_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.utils.doppler_shift" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.utils.</span></span><span class="sig-name descname"><span class="pre">doppler_shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/utils.html#doppler_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.utils.doppler_shift" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the relativistic doppler shift. Negative velocities mean that the frequencies will be blueshifted.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>freq</strong> (<em>float</em><em> or </em><em>np.array</em>) – the frequencies in units of Hz.</p></li>
 <li><p><strong>v</strong> (<em>float</em><em> or </em><em>np.array</em>) – the velocities in units of m/s. If either <cite>freq</cite> or <cite>v</cite> are arrays, they must have broadcast-able shapes.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>shifted frequencies</p>
 </dd>
 </dl>
@@ -367,10 +471,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.utils.gaussian">
-<span class="sig-prename descclassname"><span class="pre">visread.utils.</span></span><span class="sig-name descname"><span class="pre">gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/utils.html#gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.utils.gaussian" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.utils.</span></span><span class="sig-name descname"><span class="pre">gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/utils.html#gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.utils.gaussian" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate a reference Gaussian as a function of <span class="math notranslate nohighlight">\(x\)</span></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<em>float</em>) – location to evaluate Gaussian</p></li>
 <li><p><strong>sigma</strong> (<em>float</em>) – standard deviation of Gaussion (default 1)</p></li>
@@ -381,7 +485,7 @@
 <div class="math notranslate nohighlight">
 \[f(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left ( -\frac{x^2}{2 \sigma^2}\right )\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Gaussian function evaluated at <span class="math notranslate nohighlight">\(x\)</span></p>
 </dd>
 </dl>
@@ -389,42 +493,11 @@
 
 </section>
 <section id="scatter">
-<h2>Scatter<a class="headerlink" href="#scatter" title="Permalink to this heading"></a></h2>
+<h2>Scatter<a class="headerlink" href="#scatter" title="Permalink to this heading">¶</a></h2>
 <p>The routines in the <code class="docutils literal notranslate"><span class="pre">utils</span></code> module are designed to calculate the scatter of the visibility residuals.</p>
 <span class="target" id="module-visread.scatter"></span><dl class="py function">
-<dt class="sig sig-object py" id="visread.scatter.calculate_rescale_factor">
-<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">calculate_rescale_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scatter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Nelder-Mead'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#calculate_rescale_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.calculate_rescale_factor" title="Permalink to this definition"></a></dt>
-<dd><p>Calculate the multiplicative factor needed to scale <span class="math notranslate nohighlight">\(\sigma\)</span> such that the scatter in the residuals matches that expected from a Gaussian.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scatter</strong> (<em>np.array</em>) – an array of residuals normalized to their <span class="math notranslate nohighlight">\(\sigma\)</span> values.</p></li>
-<li><p><strong>method</strong> (<em>string</em>) – string passed to <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to choose minimization argument.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the multiplicative factor needed to multiply against <span class="math notranslate nohighlight">\(\sigma\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="visread.scatter.get_averaged_scatter">
-<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_averaged_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_averaged_scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_averaged_scatter" title="Permalink to this definition"></a></dt>
-<dd><p>Calculate the scatter in the residual visibilities, after they have been averaged over polarization.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>d</strong> – dictionary with keys</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="visread.scatter.get_scatter_datadescid">
-<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_scatter_datadescid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_scatter_datadescid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
 <div class="math notranslate nohighlight">
 \[\sigma = \mathrm{sigma\_rescale} \times \sigma_0\]</div>
@@ -432,7 +505,7 @@
 <div class="math notranslate nohighlight">
 \[\mathrm{scatter} = \frac{\mathrm{DATA} - \mathrm{MODEL\_DATA}}{\sigma}\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>string</em>) – measurement set filename</p></li>
 <li><p><strong>datadescid</strong> (<em>int</em>) – the DATA_DESC_ID to be queried</p></li>
@@ -440,28 +513,91 @@
 <li><p><strong>apply_flags</strong> (<em>bool</em>) – calculate the scatter <em>after</em> the flags have been applied</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a 2-tuple of numpy arrays containing the scatter in each polarization.
 If <code class="docutils literal notranslate"><span class="pre">apply_flags==True</span></code>, each array will be 1-dimensional. If <code class="docutils literal notranslate"><span class="pre">apply_flags==False</span></code>, each array
 will retain its original shape, including channelization (e.g., shape <code class="docutils literal notranslate"><span class="pre">nchan,nvis</span></code>).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>scatter_XX, scatter_YY</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.scatter.calculate_rescale_factor">
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">calculate_rescale_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scatter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Nelder-Mead'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#calculate_rescale_factor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.calculate_rescale_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the multiplicative factor needed to scale <span class="math notranslate nohighlight">\(\sigma\)</span> such that the scatter in the residuals matches that expected from a Gaussian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scatter</strong> (<em>np.array</em>) – an array of residuals normalized to their <span class="math notranslate nohighlight">\(\sigma\)</span> values.</p></li>
+<li><p><strong>method</strong> (<em>string</em>) – string passed to <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">scipy.optimize.minimize</a> to choose minimization argument.</p></li>
+<li><p><strong>bins</strong> (<em>int</em>) – number of bins to use in the histogram</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the multiplicative factor needed to multiply against <span class="math notranslate nohighlight">\(\sigma\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.scatter.get_sigma_rescale_datadescid">
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_sigma_rescale_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_sigma_rescale_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_sigma_rescale_datadescid" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a given datadescid, calculate the residual scatter in each of the XX and YY polarization visibilities, then calculate the sigma rescale factor for each of the real and imaginary values of the polarizations. Return the average of all four quantities as the final sigma rescale factor for that datadescid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – path to measurement set</p></li>
+<li><p><strong>datadescid</strong> (<em>int</em>) – the spectral window in the measurement set</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the multiplicative factor by which to scale <span class="math notranslate nohighlight">\(\sigma\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.scatter.get_averaged_scatter">
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_averaged_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_averaged_scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_averaged_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the scatter of the residual visibilities, assuming they have already been averaged across polarization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.array complex</em>) – the data visibilities</p></li>
+<li><p><strong>model_data</strong> (<em>np.array complex</em>) – the model visibilities</p></li>
+<li><p><strong>weight</strong> (<em>np.array real</em>) – the statistical weight of the uncertainties</p></li>
+<li><p><strong>flag</strong> (<em>np.array bool</em>) – the flags of the dataset, in original format (<code class="docutils literal notranslate"><span class="pre">True</span></code> should be flagged).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the scatter of the residual visibilities in units of <span class="math notranslate nohighlight">\(\sigma\)</span></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.arary</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
 <section id="visualization">
-<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading"></a></h2>
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading">¶</a></h2>
 <p>The routines in the <code class="docutils literal notranslate"><span class="pre">visualization</span></code> module are designed to plot various diagnostic plots for the visibility residuals.</p>
 <span class="target" id="module-visread.visualization"></span><dl class="py function">
 <dt class="sig sig-object py" id="visread.visualization.plot_scatter_datadescid">
-<span class="sig-prename descclassname"><span class="pre">visread.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/visualization.html#plot_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.visualization.plot_scatter_datadescid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/visualization.html#plot_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.visualization.plot_scatter_datadescid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot a set of histograms of the scatter of the residual visibilities for the real and
 imaginary components of the XX and YY polarizations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>string</em>) – measurement set filename</p></li>
 <li><p><strong>datadescid</strong> (<em>int</em>) – the DATA_DESC_ID to be queried</p></li>
@@ -471,7 +607,7 @@ imaginary components of the XX and YY polarizations.</p>
 <li><p><strong>apply_flags</strong> (<em>bool</em>) – calculate the scatter <em>after</em> the flags have been applied</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>matplotlib figure with scatter histograms</p>
 </dd>
 </dl>
@@ -482,32 +618,49 @@ imaginary components of the XX and YY polarizations.</p>
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="casatools-api.html" class="btn btn-neutral float-left" title="Casatools API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-23, Ian Czekala.</p>
-  </div>
+    <p>
+        &#169; Copyright 2021-23, Ian Czekala.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

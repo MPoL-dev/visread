@@ -1,18 +1,39 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &mdash; visread 0.0.5 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
@@ -23,23 +44,43 @@
         <script src="../_static/copybutton.js"></script>
         <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Visread Installation" href="../installation.html" />
     <link rel="prev" title="Introduction to CASA tools" href="introduction_to_casatools.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="../index.html" class="icon icon-home"> visread
+          
+
+          
           </a>
+
+          
+            
+            
               <div class="version">
                 0.0.5
               </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -47,7 +88,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction_to_casatools.html">Introduction to CASA tools</a></li>
@@ -75,30 +127,71 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Visread API</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">visread</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</li>
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="../_sources/tutorials/rescale_AS209_weights.md.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -119,13 +212,13 @@
 </details>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="walkthrough-examining-dsharp-as-209-weights-and-exporting-visibilities">
-<h1>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities<a class="headerlink" href="#walkthrough-examining-dsharp-as-209-weights-and-exporting-visibilities" title="Permalink to this heading"></a></h1>
+<h1>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities<a class="headerlink" href="#walkthrough-examining-dsharp-as-209-weights-and-exporting-visibilities" title="Permalink to this heading">¶</a></h1>
 <p>In this walkthrough tutorial, we’ll use CASA tools to examine the visibilities, visibility residuals, and weights of a real multi-configuration dataset from the DSHARP survey.</p>
 <section id="obtaining-and-cleaning-the-as-209-measurement-set">
-<h2>Obtaining and CLEANing the AS 209 measurement set<a class="headerlink" href="#obtaining-and-cleaning-the-as-209-measurement-set" title="Permalink to this heading"></a></h2>
+<h2>Obtaining and CLEANing the AS 209 measurement set<a class="headerlink" href="#obtaining-and-cleaning-the-as-209-measurement-set" title="Permalink to this heading">¶</a></h2>
 <p>The calibrated measurement sets from the DSHARP data release are available <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/">online</a>, and the full description of the survey is provided in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2018ApJ...869L..41A/abstract">Andrews et al. 2018</a>.</p>
 <section id="model-visibilities-and-model-data">
-<h3>Model Visibilities and MODEL_DATA<a class="headerlink" href="#model-visibilities-and-model-data" title="Permalink to this heading"></a></h3>
+<h3>Model Visibilities and MODEL_DATA<a class="headerlink" href="#model-visibilities-and-model-data" title="Permalink to this heading">¶</a></h3>
 <p>In its simplest form, the measurement set just contains the visibility data in a <code class="docutils literal notranslate"><span class="pre">DATA</span></code> or <code class="docutils literal notranslate"><span class="pre">CORRECTED_DATA</span></code> column. In the process of using <code class="docutils literal notranslate"><span class="pre">tclean</span></code> to synthesize an image, however, CASA also calculates a set of model visibilities that correspond to the Fourier transform of the CLEAN model. It’s possible to store these model visibilities to the measurement set if the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> process was invoked with the <code class="docutils literal notranslate"><span class="pre">savemodel=&quot;modelcolumn&quot;</span></code> parameter. The model visibilities will be stored in a <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column with the same shape as the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> column.</p>
 <p>The calibrated DSHARP measurement sets available from the archive do not contain this <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column (most likely for space reasons), so we will need to recreate them by running the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> algorithm with the relevant settings. The full reduction scripts are <a class="reference external" href="https://almascience.eso.org/almadata/lp/DSHARP/scripts/AS209_continuum.py">available online</a>, but we just need reproduce the relevant <code class="docutils literal notranslate"><span class="pre">tclean</span></code> commands used to produce a FITS image from the final, calibrated measurement set.</p>
 <p>Because the measurement set is large (0.9 Gb) and the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> process is computationally expensive (taking about 1 hr on a single core), we have pre-executed those commands and cached the measurement set and <code class="docutils literal notranslate"><span class="pre">tclean</span></code> products into the <code class="docutils literal notranslate"><span class="pre">AS209_MS</span></code> local directory. If you’re interested in the exact <code class="docutils literal notranslate"><span class="pre">tclean</span></code> commands used, please check out the <a class="reference download internal" download="" href="../_downloads/c7dd1c1b360aefbae562788776b2e7e5/dl_and_tclean_AS209.py"><span class="xref download myst">dl_and_tclean_AS209.py</span></a> script directly.</p>
@@ -152,7 +245,7 @@
 </div>
 </section>
 <section id="visualizing-the-cleaned-image">
-<h3>Visualizing the CLEANed image<a class="headerlink" href="#visualizing-the-cleaned-image" title="Permalink to this heading"></a></h3>
+<h3>Visualizing the CLEANed image<a class="headerlink" href="#visualizing-the-cleaned-image" title="Permalink to this heading">¶</a></h3>
 <p>Just to make sure the <code class="docutils literal notranslate"><span class="pre">tclean</span></code> process ran OK, let’s check the synthesized image that was produced</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -208,14 +301,14 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/02b2063ecd475aa8a3205894dd8f67069dc449278deb7ab0e05749cff51ddc5f.png" src="../_images/02b2063ecd475aa8a3205894dd8f67069dc449278deb7ab0e05749cff51ddc5f.png" />
+<img alt="../_images/95e307c3884bcfcb8bd85946a29f59e36f15f3dac496fff74dfa38db2e694acc.png" src="../_images/95e307c3884bcfcb8bd85946a29f59e36f15f3dac496fff74dfa38db2e694acc.png" />
 </div>
 </div>
 <p>Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran <code class="docutils literal notranslate"><span class="pre">tclean</span></code> was to generate the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column in the measurement set. The actual CLEANed FITS image is just a nice byproduct.</p>
 </section>
 </section>
 <section id="examining-measurement-set-structure">
-<h2>Examining measurement set structure<a class="headerlink" href="#examining-measurement-set-structure" title="Permalink to this heading"></a></h2>
+<h2>Examining measurement set structure<a class="headerlink" href="#examining-measurement-set-structure" title="Permalink to this heading">¶</a></h2>
 <p>Before you dive into the full analysis with CASA tools, it’s a very good idea to inspect the measurement set using <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_listobs/about">listobs</a>.</p>
 <p>After you’ve done that, let’s start exploring the visibility values. First we’ll need to import and then instantiate the relevant CASA tools, <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_table/methods">table</a> and <a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/global-tool-list/tool_ms/methods">ms</a>.</p>
 <div class="cell docutils container">
@@ -339,7 +432,7 @@
 </div>
 </section>
 <section id="using-the-tclean-model-to-calculate-residual-visibilities">
-<h2>Using the tclean model to calculate residual visibilities<a class="headerlink" href="#using-the-tclean-model-to-calculate-residual-visibilities" title="Permalink to this heading"></a></h2>
+<h2>Using the tclean model to calculate residual visibilities<a class="headerlink" href="#using-the-tclean-model-to-calculate-residual-visibilities" title="Permalink to this heading">¶</a></h2>
 <p>In any data analysis where you’re computing a forward model, it’s a good consitency check to examine the data residuals from that model, and, in particular, whether their scatter matches the expectations from the noise properties.</p>
 <p>We can calculate data residuals using the model visibilities derived from the tclean model and stored in the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column of the measurement set.</p>
 <div class="cell docutils container">
@@ -396,13 +489,13 @@
 \]</div>
 <p>For now, <span class="math notranslate nohighlight">\(\mathrm{sigma\_rescale} = 1\)</span>, but we’ll see why this parameter is needed in a moment.</p>
 <section id="helper-functions-for-examining-weight-scatter">
-<h3>Helper functions for examining weight scatter<a class="headerlink" href="#helper-functions-for-examining-weight-scatter" title="Permalink to this heading"></a></h3>
+<h3>Helper functions for examining weight scatter<a class="headerlink" href="#helper-functions-for-examining-weight-scatter" title="Permalink to this heading">¶</a></h3>
 <p>Because we’d like to repeat this analysis for each spectral window in the measurement set, it makes things easier if we write these calculations as functions.</p>
 <p>The functions provided in this document are only dependent on the CASA tools <code class="docutils literal notranslate"><span class="pre">tb</span></code> and <code class="docutils literal notranslate"><span class="pre">ms</span></code>. If you find yourself using these routines frequently, you might consider installing the <em>visread</em> package, since similar commands are provided in the API.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the scatter for each polarization.</span>
 
 <span class="sd">    Args:</span>
@@ -462,7 +555,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate a reference Gaussian as a function of :math:`x`</span>
 
 <span class="sd">    Args:</span>
@@ -485,7 +578,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scatter_hist</span><span class="p">(</span><span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot a normalized histogram of scatter for real and imaginary</span>
 <span class="sd">    components of XX and YY polarizations.</span>
 
@@ -535,7 +628,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_histogram_datadescid</span><span class="p">(</span>
     <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Wrap the scatter routine to plot a histogram of scatter for real and imaginary components of XX and YY polarizations, given a ``DATA_DESC_ID``.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrap the scatter routine to plot a histogram of scatter for real and imaginary components of XX and YY polarizations, given a ``DATA_DESC_ID``.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        datadescid (int): the DATA_DESC_ID to be queried</span>
@@ -564,10 +657,10 @@
 </section>
 </section>
 <section id="checking-scatter-for-each-spectral-window">
-<h2>Checking scatter for each spectral window<a class="headerlink" href="#checking-scatter-for-each-spectral-window" title="Permalink to this heading"></a></h2>
+<h2>Checking scatter for each spectral window<a class="headerlink" href="#checking-scatter-for-each-spectral-window" title="Permalink to this heading">¶</a></h2>
 <p>Now lets use our helper functions to investigate the characteristics of each spectral window.</p>
 <section id="spectral-window-7-a-correctly-scaled-spw">
-<h3>Spectral Window 7: A correctly scaled SPW<a class="headerlink" href="#spectral-window-7-a-correctly-scaled-spw" title="Permalink to this heading"></a></h3>
+<h3>Spectral Window 7: A correctly scaled SPW<a class="headerlink" href="#spectral-window-7-a-correctly-scaled-spw" title="Permalink to this heading">¶</a></h3>
 <p>Let’s see how the residual visibilities in spectral window 7 scatter relative to their expected Gaussian envelope</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -576,13 +669,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/460e8485f12e2d2b9185f6528193e51c2aa991c75a3670227f89da38d603bd66.png" src="../_images/460e8485f12e2d2b9185f6528193e51c2aa991c75a3670227f89da38d603bd66.png" />
+<img alt="../_images/f6d3672e9968ef8126b8f25fc765d3d2f039d6f07a8f38ce5a38d511f8e07c08.png" src="../_images/f6d3672e9968ef8126b8f25fc765d3d2f039d6f07a8f38ce5a38d511f8e07c08.png" />
 </div>
 </div>
 <p>Great, it looks like things are pretty much as we would expect here.</p>
 </section>
 <section id="spectral-window-22-visibility-outliers">
-<h3>Spectral Window 22: Visibility outliers<a class="headerlink" href="#spectral-window-22-visibility-outliers" title="Permalink to this heading"></a></h3>
+<h3>Spectral Window 22: Visibility outliers<a class="headerlink" href="#spectral-window-22-visibility-outliers" title="Permalink to this heading">¶</a></h3>
 <p>In the last example, we were a little bit cavalier and plotted the residuals for <em>all</em> visibilities, regardless of whether their <code class="docutils literal notranslate"><span class="pre">FLAG</span></code> was true. If we do the same for the visibilities in spectral window 22,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,7 +684,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/737d169ff5785cba599d308ca7707178be26f01124a4c3d0a910052e1429082f.png" src="../_images/737d169ff5785cba599d308ca7707178be26f01124a4c3d0a910052e1429082f.png" />
+<img alt="../_images/770a50bcd2830205c4596a87c7b13cfb816633a75cb16615497db71cef41ec6b.png" src="../_images/770a50bcd2830205c4596a87c7b13cfb816633a75cb16615497db71cef41ec6b.png" />
 </div>
 </div>
 <p>We find that something looks a little bit strange. Let’s try plotting things on a log scale to get a closer look.</p>
@@ -602,7 +695,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/45459f0bfd8cf45708d4f714677c0b8f20417407ff1218ca794024f4a7ef8346.png" src="../_images/45459f0bfd8cf45708d4f714677c0b8f20417407ff1218ca794024f4a7ef8346.png" />
+<img alt="../_images/2ef448bd52d444f13e67c09bcd5ab8d589f80e569105d5b1f3d66c5da3d3d188.png" src="../_images/2ef448bd52d444f13e67c09bcd5ab8d589f80e569105d5b1f3d66c5da3d3d188.png" />
 </div>
 </div>
 <p>It appears as though there are a bunch of “outlier” visibilities included in this spectral window (the histogram y-axis is the relative frequency or probability density, so in actually there are a relatively small number of outlier visibilities). If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let’s try plotting only the valid, unflagged, visibilities</p>
@@ -613,7 +706,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18725d074857b704d83faa315a95368be1230f4b5bcb3bab656ae027718def90.png" src="../_images/18725d074857b704d83faa315a95368be1230f4b5bcb3bab656ae027718def90.png" />
+<img alt="../_images/0a35d351c858c739ed20275f8962ab7085e48d88f832ed32e8dfb6df8e74217a.png" src="../_images/0a35d351c858c739ed20275f8962ab7085e48d88f832ed32e8dfb6df8e74217a.png" />
 </div>
 </div>
 <p>This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale might make the discrepancy more visible</p>
@@ -624,7 +717,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/78acd938f5c7eb05d0e7732d045a8d54814ce06abe7318818f0844f4afecf7c3.png" src="../_images/78acd938f5c7eb05d0e7732d045a8d54814ce06abe7318818f0844f4afecf7c3.png" />
+<img alt="../_images/0197267e8a34f33aa8820beec7715900d432c0ac455be6ed60b1c2b5c8198112.png" src="../_images/0197267e8a34f33aa8820beec7715900d432c0ac455be6ed60b1c2b5c8198112.png" />
 </div>
 </div>
 <p>Lets write a routine to estimate by how much the <span class="math notranslate nohighlight">\(\sigma_0\)</span> values would need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.</p>
@@ -703,7 +796,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/32f91ef968c41c98b0b7ba04e13354c5a669a1d3850214be410834e6a99c3dec.png" src="../_images/32f91ef968c41c98b0b7ba04e13354c5a669a1d3850214be410834e6a99c3dec.png" />
+<img alt="../_images/164c02f12e7e7e4b4e029709632329610a6d6b0b2fca8a3a5c194331bbaf67ae.png" src="../_images/164c02f12e7e7e4b4e029709632329610a6d6b0b2fca8a3a5c194331bbaf67ae.png" />
 </div>
 </div>
 <p>It’s not really clear why this factor works, but factors of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> and 2 appear in changes to the CASA weight calculations (<a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights">which have changed across recent CASA versions</a>). Since this DSHARP measurement set contains visibilities acquired in previous ALMA cycles (and potentially calibrated with earlier versions of CASA), these changes in weight definitions may be responsible for the varying weight scatter across spectral window.</p>
@@ -816,14 +909,14 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [km]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/9a395873b3054c51a620719fb2771574337257cde201fdc2f127ec4d34a9e096.png" src="../_images/9a395873b3054c51a620719fb2771574337257cde201fdc2f127ec4d34a9e096.png" />
+<img alt="../_images/4d61dc7ccfbf7f469eb8bd455cab6b34b4b56a0039fd170748a069592c3506e0.png" src="../_images/4d61dc7ccfbf7f469eb8bd455cab6b34b4b56a0039fd170748a069592c3506e0.png" />
 </div>
 </div>
 <p>We don’t appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we’ll just accept these rescaled weights as is.</p>
 </section>
 </section>
 <section id="rescaling-weights-for-export">
-<h2>Rescaling weights for export.<a class="headerlink" href="#rescaling-weights-for-export" title="Permalink to this heading"></a></h2>
+<h2>Rescaling weights for export.<a class="headerlink" href="#rescaling-weights-for-export" title="Permalink to this heading">¶</a></h2>
 <p>We can use the previous routines to iterate through plots of each spectral window. For reference, here are the rescale factors we derived for each spectral window</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -871,33 +964,50 @@
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction_to_casatools.html" class="btn btn-neutral float-left" title="Introduction to CASA tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="../installation.html" class="btn btn-neutral float-right" title="Visread Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction_to_casatools.html" class="btn btn-neutral float-left" title="Introduction to CASA tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-23, Ian Czekala.</p>
-  </div>
+    <p>
+        &#169; Copyright 2021-23, Ian Czekala.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
