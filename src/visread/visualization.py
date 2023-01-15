@@ -128,7 +128,7 @@ def _scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     )
 
     for a in ax.flatten():
-        a.plot(xs, gaussian(xs))
+        a.plot(xs, utils.gaussian(xs))
 
     fig.subplots_adjust(hspace=0.25, top=0.95)
 

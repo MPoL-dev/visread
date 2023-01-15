@@ -1,5 +1,9 @@
 import numpy as np
 from astropy.constants import c
+import casatools 
+
+msmd = casatools.msmetadata()
+ms = casatools.ms()
 
 def weight_to_sigma(weight):
     r"""
@@ -55,6 +59,35 @@ def rescale_weights(weight, sigma_rescale):
         (float or np.array) the rescaled weights
     """
     return weight / (sigma_rescale**2)
+
+def average_data_polarization(data, weight, polarization_axis=0):
+    """
+    Perform a weighted average of the data over the polarization axis.
+
+    Args:
+        data (npol, nchan, nvis): complex data array. Could either be real data or model_data.
+        weight (npol, nvis): weight array matching data array (before broadcast)
+        polarization_axis (int): index of the polarization axis, typically 0.
+
+    Returns:
+        data averaged over the polarization axis.
+    """
+    assert data.shape[polarization_axis] == 2, "Not recognized as a dual-polarization dataset"
+
+    # we need to check whether weight is the same shape as the data, because sometimes the data is 
+    # channelized and the weights are not
+    # e.g., data would have shape (npol, nchan, nvis)
+    # while weight would have shape (npol, nvis)
+
+    # normalization after averaging over the polarization axis
+    norm = average_weight_polarization(weight, polarization_axis=polarization_axis)
+
+    if len(data.shape) == len(weight.shape):
+        return np.sum(data * weight, axis=polarization_axis) / norm
+    elif (len(data.shape) == 3) and (len(weight.shape) == 2):
+        return np.sum(data * weight[:,np.newaxis,:], axis=polarization_axis) / norm
+    else:
+        raise RuntimeError("I don't know what to do with provided data and weight arrays with shapes {:} and {:}, respectively".format(data.shape, weight.shape))
 
 
 def average_weight_polarization(weight, polarization_axis=0):
@@ -135,34 +168,6 @@ def broadcast_and_convert_baselines(u, v, chan_freq):
     return (uu, vv)
 
 
-def average_data_polarization(data, weight, polarization_axis=0):
-    """
-    Perform a weighted average of the data over the polarization axis.
-
-    Args:
-        data (npol, nchan, nvis): complex data array. Could either be real data or model_data.
-        weight (npol, nvis): weight array matching data array
-        polarization_axis (int): index of the polarization axis, typically 0.
-
-    Returns:
-        data averaged over the polarization axis.
-    """
-    assert data.shape[polarization_axis] == 2, "Not recognized as a dual-polarization dataset"
-
-    # we need to check whether weight is the same shape as the data, because sometimes the data is 
-    # channelized and the weights are not
-    # e.g., data would have shape (npol, nchan, nvis)
-    # while weight would have shape (npol, nvis)
-
-    # normalization after averaging over the polarization axis
-    norm = average_weight_polarization(weight, polarization_axis=polarization_axis)
-
-    if len(data.shape) == len(weight.shape):
-        return np.sum(data * weight, axis=polarization_axis) / norm
-    elif (len(data.shape) == 3) and (len(weight.shape) == 2):
-        return np.sum(data * weight[:,np.newaxis,:], axis=polarization_axis) / norm
-    else:
-        raise RuntimeError("I don't know what to do with provided data and weight arrays with shapes {:} and {:}, respectively".format(data.shape, weight.shape))
 
 def contains_autocorrelations(ant1, ant2):
     """
@@ -209,53 +214,67 @@ def isdecreasing(chan_freq):
     else:
         raise RuntimeError("chan_freq array is neither strictly decreasing nor strictly increasing, investigate what went wrong.")
         
-def reverse_array(array, channel_axis=1):
+def get_channel_sorted_data(filename, datadescid, incl_model_data=True):
     """
-    If the channel frequencies are stored in an order different than the one we desire, we can reverse the axes.
+    Acquire and sort the channel frequencies, data, flags, and model_data columns.
 
     Args:
-        array (np.array): the input array, could be chan_freq, data, flag, etc.
-        channel_axis (int): which axis is the channel axis?
-    
+        filename (string): the measurement set to query
+        datadescid (int): the spw id to query
+        incl_model_data (boolean): if ``True``, return the ``model_data`` column as well
+
     Returns:
-        np.array sorted
+        tuple: chan_freq, data, flag, model_data
     """
-    return np.flip(array, axis=channel_axis)
-
-
-def get_channel_sorted_data(filename, datadescid):
-    # get the channels
-    chan_freq = get_channels(filename, datadescid)
-    nchan = len(chan_freq)
+    
+    # get the channel frequencies
+    msmd.open(filename)
+    chan_freq = msmd.chanfreqs(datadescid)
+    msmd.done()
 
     # get the data and flags
-    query = query_datadescid(filename, datadescid)
-    data = query["data"]
-    model_data = query["model_data"]
-    flag = query["flag"]
+    ms.open(filename)
+    ms.selectinit(datadescid=datadescid)
+    if incl_model_data:
+        q = ms.getdata(["data", "model_data", "flag"])
+        model_data = q["model_data"]
+    else:
+        q = ms.getdata(["data", "flag"])
+    ms.selectinit(reset=True)
+    ms.close()
+
+    data = q["data"]
+    flag = q["flag"]
 
     # check to make sure we're in blushifted - redshifted order, otherwise reverse channel order
-    if (nchan > 1) and (chan_freq[1] > chan_freq[0]):
+    if (len(chan_freq) > 1) and (chan_freq[1] > chan_freq[0]):
         # reverse channels
-        chan_freq = chan_freq[::-1]
-        data = data[:, ::-1, :]
-        model_data = model_data[:, ::-1, :]
-        flag = flag[:, ::-1, :]
+        chan_freq = np.flip(chan_freq)
+        data = np.flip(data, axis=1)
+        flag = np.flip(flag, axis=1) 
 
-    return chan_freq, data, model_data, flag
+        if incl_model_data:
+            model_data = np.flip(model_data, axis=1)
+
+    return chan_freq, data, flag, model_data
 
 
 def get_processed_visibilities(
-    filename, datadescid, sigma_rescale=1.0, model_data=False
+    filename, datadescid, sigma_rescale=1.0, incl_model_data=None
 ):
     r"""
-    Get all of the visibilities from a specific datadescid. Average polarizations.
+    Process all of the visibilities from a specific datadescid. This means 
+    
+    * (If necessary) reversing the channel dimension such that channel frequency decreases with increasing array index (blueshifted to redshifted)
+    * averaging the polarizations together
+    * rescaling weights
+    * scanning and removing any auto-correlation visibilities
 
     Args:
         filename (str): path to measurementset to process
         datadescid (int): a specific datadescid to process
         sigma_rescale (float): by what factor should the sigmas be rescaled (applied to weights via ``rescale_weights``)
-        model_data (bool): include the model_data column?
+        incl_model_data (bool): include the model_data column?
 
     Returns:
         dictionary with keys "frequencies", "uu", "data", "flag", "weight"
@@ -263,50 +282,53 @@ def get_processed_visibilities(
 
     """
 
-    # get the channel frequencies 
-
-    # test whether they are decreasing or not
-
-
-
     # get sorted channels, data, and flags
-    chan_freq, data, model_data, flag = get_channel_sorted_data(filename, datadescid)
+    chan_freq, data, flag, model_data = get_channel_sorted_data(filename, datadescid, incl_model_data)
     nchan = len(chan_freq)
 
     # get baselines, weights, and antennas
-    query = query_datadescid(filename, datadescid)
+    ms.open(filename)
+    ms.selectinit(datadescid=datadescid)
+    q = ms.getdata(["uvw", "weight", "antenna1", "antenna2"])
+    ms.selectinit(reset=True)
+    ms.close()
 
-    # broadcast baselines
-    uu, vv, ww = query["uvw"]  # [m]
-    uu, vv = broadcast_baselines(uu, vv, chan_freq)
+    uu, vv, ww = q["uvw"]  # [m]
 
-    # broadcast and rescale weights
-    weight = query["weight"]
-    weight = broadcast_weights(weight, nchan)
+    # rescale weights
+    weight = q["weight"]
     weight = rescale_weights(weight, sigma_rescale)
 
-    # average polarizations
-    data, flag, weight, model_data = average_polarizations(
-        data, flag, weight, model_data
-    )
+    # average the data across polarization
+    data = average_data_polarization(data, weight)
+    flag = average_flag_polarization(flag)
+
+    if incl_model_data:
+        model_data = average_data_polarization(model_data, weight)
+    
+    # finally average weights across polarization
+    weight = average_weight_polarization(weight)
 
     # calculate the cross correlation mask
-    ant1 = query["antenna1"]
-    ant2 = query["antenna2"]
-    xc = get_crosscorrelation_mask(ant1, ant2)
+    ant1 = q["antenna1"]
+    ant2 = q["antenna2"]
 
-    # apply the xc mask across channels
-    # drop autocorrelation channels
-    uu = uu[:, xc]
-    vv = vv[:, xc]
-    data = data[:, xc]
-    model_data = model_data[:, xc]
-    flag = flag[:, xc]
-    weight = weight[:, xc]
+    # make sure the dataset doesn't contain auto-correlations
+    assert np.sum((ant1 == ant2)) == 0, "Dataset contains autocorrelations, exiting."
+
+    # # apply the xc mask across channels
+    # # drop autocorrelation channels
+    # uu = uu[:, xc]
+    # vv = vv[:, xc]
+    # data = data[:, xc]
+    # model_data = model_data[:, xc]
+    # flag = flag[:, xc]
+    # weight = weight[:, xc]
 
     # take the complex conjugate
     data = np.conj(data)
-    model_data = np.conj(model_data)
+    if incl_model_data:
+        model_data = np.conj(model_data)
 
     return {
         "frequencies": chan_freq,

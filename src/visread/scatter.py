@@ -8,77 +8,6 @@ from . import utils, process
 msmd = casatools.msmetadata()
 ms = casatools.ms()
 
-
-def calculate_rescale_factor(scatter, method="Nelder-Mead", **kwargs):
-    """
-    Calculate the multiplicative factor needed to scale :math:`\sigma` such that the scatter in the residuals matches that expected from a Gaussian.
-
-    Args:
-        scatter (np.array): an array of residuals normalized to their :math:`\sigma` values.
-        method (string): string passed to `scipy.optimize.minimize <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html>`_ to choose minimization argument.
-
-    Returns:
-        float: the multiplicative factor needed to multiply against :math:`\sigma`
-    """
-
-    # create a histogram of the scatter values, should approximate a Gaussian distribution
-    bins = kwargs.get("bins", 40)
-    bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
-    bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
-
-    # find the sigma_rescale which minimizes the mean squared error
-    # between the bin_heights and the expectations from the
-    # reference Gaussian
-    loss = lambda x: np.sum((bin_heights - utils.gaussian(bin_centers, sigma=x)) ** 2)
-
-    res = minimize(loss, 1.0, method=method)
-
-    if res.success:
-        return res.x[0]
-    else:
-        print(res)
-        return False
-
-
-def get_averaged_scatter(d):
-    """
-    Calculate the scatter in the residual visibilities, after they have been averaged over polarization.
-
-    Args:
-        d : dictionary with keys
-    """
-
-    residuals = d["data"] - d["model_data"]
-    sigma = process.weight_to_sigma(d["weight"])
-
-    scatter = residuals / sigma
-
-    # apply flags
-    flag = d["flag"]
-
-    return scatter[~flag]
-
-
-def get_sigma_rescale_datadescid(filename, datadescid, **kwargs):
-    scatter_XX, scatter_YY = get_scatter_datadescid(
-        filename, datadescid, apply_flags=True, **kwargs
-    )
-
-    vals = np.array(
-        [
-            calculate_rescale_factor(scatter)
-            for scatter in [
-                scatter_XX.real,
-                scatter_XX.imag,
-                scatter_YY.real,
-                scatter_YY.imag,
-            ]
-        ]
-    )
-
-    return np.average(vals)
-
-
 def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=True):
     r"""
     Calculate the residuals for each polarization (XX, YY) in units of :math:`\sigma`, where
@@ -137,3 +66,86 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
         scatter_YY = scatter_YY[~flag_YY]
 
     return scatter_XX, scatter_YY
+
+def calculate_rescale_factor(scatter, method="Nelder-Mead", bins=40):
+    """
+    Calculate the multiplicative factor needed to scale :math:`\sigma` such that the scatter in the residuals matches that expected from a Gaussian.
+
+    Args:
+        scatter (np.array): an array of residuals normalized to their :math:`\sigma` values.
+        method (string): string passed to `scipy.optimize.minimize <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html>`_ to choose minimization argument.
+        bins (int): number of bins to use in the histogram
+
+    Returns:
+        float: the multiplicative factor needed to multiply against :math:`\sigma`
+    """
+
+    # create a histogram of the scatter values, should approximate a Gaussian distribution
+    bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
+    bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
+
+    # find the sigma_rescale which minimizes the mean squared error
+    # between the bin_heights and the expectations from the
+    # reference Gaussian
+    loss = lambda x: np.sum((bin_heights - utils.gaussian(bin_centers, sigma=x)) ** 2)
+
+    res = minimize(loss, 1.0, method=method)
+
+    if res.success:
+        return res.x[0]
+    else:
+        print(res)
+        return False
+
+
+def get_sigma_rescale_datadescid(filename, datadescid):
+    """
+    For a given datadescid, calculate the residual scatter in each of the XX and YY polarization visibilities, then calculate the sigma rescale factor for each of the real and imaginary values of the polarizations. Return the average of all four quantities as the final sigma rescale factor for that datadescid.
+
+    Args:
+        filename (string): path to measurement set
+        datadescid (int): the spectral window in the measurement set
+        
+    Returns:
+        float: the multiplicative factor by which to scale :math:`\sigma`
+    """
+    scatter_XX, scatter_YY = get_scatter_datadescid(
+        filename, datadescid, apply_flags=True)
+
+    vals = np.array(
+        [
+            calculate_rescale_factor(scatter)
+            for scatter in [
+                scatter_XX.real,
+                scatter_XX.imag,
+                scatter_YY.real,
+                scatter_YY.imag,
+            ]
+        ]
+    )
+
+    return np.average(vals)
+
+def get_averaged_scatter(data, model_data, weight, flag=None):
+    """
+    Calculate the scatter of the residual visibilities, assuming they have already been averaged across polarization.
+
+    Args:
+        data (np.array complex): the data visibilities
+        model_data (np.array complex): the model visibilities
+        weight (np.array real): the statistical weight of the uncertainties
+        flag (np.array bool): the flags of the dataset, in original format (``True`` should be flagged).
+
+    Returns:
+        np.arary: the scatter of the residual visibilities in units of :math:`\sigma`
+    """
+
+    residuals = data - model_data
+    sigma = process.weight_to_sigma(weight)
+
+    scatter = residuals / sigma
+
+    if flag is not None:
+        return scatter[~flag]
+    else:
+        return scatter
