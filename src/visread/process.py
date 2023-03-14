@@ -255,8 +255,11 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True):
 
         if incl_model_data:
             model_data = np.flip(model_data, axis=1)
-
-    return chan_freq, data, flag, model_data
+    
+    if incl_model_data:
+        return chan_freq, data, flag, model_data
+    else:
+        return chan_freq, data, flag, None
 
 
 def get_processed_visibilities(
@@ -314,7 +317,7 @@ def get_processed_visibilities(
     ant2 = q["antenna2"]
 
     # make sure the dataset doesn't contain auto-correlations
-    assert np.sum((ant1 == ant2)) == 0, "Dataset contains autocorrelations, exiting."
+    assert not contains_autocorrelations(ant1, ant2), "Dataset contains autocorrelations, exiting."
 
     # # apply the xc mask across channels
     # # drop autocorrelation channels
