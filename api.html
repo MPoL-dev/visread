@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visread API &mdash; visread 0.0.5 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -408,7 +410,7 @@
 <p>The routines in the <code class="docutils literal notranslate"><span class="pre">utils</span></code> module are designed to calculate the scatter of the visibility residuals.</p>
 <span class="target" id="module-visread.scatter"></span><dl class="py function">
 <dt class="sig sig-object py" id="visread.scatter.get_scatter_datadescid">
-<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_scatter_datadescid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.scatter.</span></span><span class="sig-name descname"><span class="pre">get_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/scatter.html#get_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.scatter.get_scatter_datadescid" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the residuals for each polarization (XX, YY) in units of <span class="math notranslate nohighlight">\(\sigma\)</span>, where</p>
 <div class="math notranslate nohighlight">
 \[\sigma = \mathrm{sigma\_rescale} \times \sigma_0\]</div>
@@ -422,6 +424,7 @@
 <li><p><strong>datadescid</strong> (<em>int</em>) – the DATA_DESC_ID to be queried</p></li>
 <li><p><strong>sigma_rescale</strong> (<em>int</em>) – multiply the uncertainties by this factor</p></li>
 <li><p><strong>apply_flags</strong> (<em>bool</em>) – calculate the scatter <em>after</em> the flags have been applied</p></li>
+<li><p><strong>residual</strong> (<em>bool</em>) – if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -504,7 +507,7 @@ will retain its original shape, including channelization (e.g., shape <code clas
 <p>The routines in the <code class="docutils literal notranslate"><span class="pre">visualization</span></code> module are designed to plot various diagnostic plots for the visibility residuals.</p>
 <span class="target" id="module-visread.visualization"></span><dl class="py function">
 <dt class="sig sig-object py" id="visread.visualization.plot_scatter_datadescid">
-<span class="sig-prename descclassname"><span class="pre">visread.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/visualization.html#plot_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.visualization.plot_scatter_datadescid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">visread.visualization.</span></span><span class="sig-name descname"><span class="pre">plot_scatter_datadescid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datadescid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">apply_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/visualization.html#plot_scatter_datadescid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.visualization.plot_scatter_datadescid" title="Permalink to this definition"></a></dt>
 <dd><p>Plot a set of histograms of the scatter of the residual visibilities for the real and
 imaginary components of the XX and YY polarizations.</p>
 <dl class="field-list simple">
@@ -516,6 +519,7 @@ imaginary components of the XX and YY polarizations.</p>
 <li><p><strong>sigma_rescale</strong> (<em>int</em>) – multiply the uncertainties by this factor</p></li>
 <li><p><strong>chan_slice</strong> (<em>slice</em>) – if not None, a slice object specifying the channels to subselect</p></li>
 <li><p><strong>apply_flags</strong> (<em>bool</em>) – calculate the scatter <em>after</em> the flags have been applied</p></li>
+<li><p><strong>residual</strong> (<em>bool</em>) – if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
