@@ -8,7 +8,7 @@ from . import utils, process
 msmd = casatools.msmetadata()
 ms = casatools.ms()
 
-def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=True, residual=True):
+def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=True, residual=True, datacolumn="corrected_data"):
     r"""
     Calculate the residuals for each polarization (XX, YY) in units of :math:`\sigma`, where
 
@@ -28,6 +28,7 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
         sigma_rescale (int):  multiply the uncertainties by this factor
         apply_flags (bool): calculate the scatter *after* the flags have been applied
         residual (bool): if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.
+        datacolumn (string): which datacolumn to use (i.e., 'corrected_data' or 'data').
 
     Returns:
         scatter_XX, scatter_YY: a 2-tuple of numpy arrays containing the scatter in each polarization.
@@ -39,7 +40,7 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
 
     ms.open(filename)
     ms.selectinit(datadescid=datadescid)
-    keys = ["data", "weight", "flag"]
+    keys = ["weight", "flag", datacolumn]
     if residual:
         keys += ["model_data"]
     q = ms.getdata(keys)
@@ -52,11 +53,11 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
         ), "MODEL_DATA column empty, retry tclean with savemodel='modelcolumn'"
 
         # subtract model from data
-        residuals = q["data"] - q["model_data"]
+        residuals = q[datacolumn] - q["model_data"]
 
     else:
         # assume the S/N of each individual visibility is negligible. 
-        residuals = q["data"]
+        residuals = q[datacolumn]
 
     # calculate sigma from weight
     sigma = process.weight_to_sigma(q["weight"])

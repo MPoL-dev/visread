@@ -54,6 +54,7 @@ def plot_scatter_datadescid(
     chan_slice=None,
     apply_flags=True,
     residual=True,
+    datacolumn="corrected_data"
 ):
     r"""
     Plot a set of histograms of the scatter of the residual visibilities for the real and
@@ -67,6 +68,7 @@ def plot_scatter_datadescid(
         chan_slice (slice): if not None, a slice object specifying the channels to subselect
         apply_flags (bool): calculate the scatter *after* the flags have been applied
         residual (bool): if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.
+        datacolumn (string): which datacolumn to use (i.e., 'corrected_data' or 'data').
 
     Returns:
         matplotlib figure with scatter histograms
@@ -76,7 +78,7 @@ def plot_scatter_datadescid(
         print("apply_flags setting is ignored when chan_slice is not None")
 
         scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
-            filename, datadescid, sigma_rescale, apply_flags=False, residual=residual
+            filename, datadescid, sigma_rescale, apply_flags=False, residual=residual, datacolumn=datacolumn
         )
 
         scatter_XX = scatter_XX[chan_slice]
@@ -84,7 +86,7 @@ def plot_scatter_datadescid(
 
     else:
         scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
-            filename, datadescid, sigma_rescale, apply_flags=apply_flags, residual=residual
+            filename, datadescid, sigma_rescale, apply_flags=apply_flags, residual=residual, datacolumn=datacolumn
         )
 
     scatter_XX = scatter_XX.flatten()
