@@ -93,7 +93,7 @@
 <span class="n">msmd</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">msmetadata</span><span class="p">()</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">ms</span><span class="p">()</span>
 
-<div class="viewcode-block" id="get_scatter_datadescid"><a class="viewcode-back" href="../../api.html#visread.scatter.get_scatter_datadescid">[docs]</a><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="get_scatter_datadescid"><a class="viewcode-back" href="../../api.html#visread.scatter.get_scatter_datadescid">[docs]</a><span class="k">def</span> <span class="nf">get_scatter_datadescid</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="s2">&quot;corrected_data&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the residuals for each polarization (XX, YY) in units of :math:`\sigma`, where</span>
 
@@ -113,6 +113,7 @@
 <span class="sd">        sigma_rescale (int):  multiply the uncertainties by this factor</span>
 <span class="sd">        apply_flags (bool): calculate the scatter *after* the flags have been applied</span>
 <span class="sd">        residual (bool): if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.</span>
+<span class="sd">        datacolumn (string): which datacolumn to use (i.e., &#39;corrected_data&#39; or &#39;data&#39;).</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        scatter_XX, scatter_YY: a 2-tuple of numpy arrays containing the scatter in each polarization.</span>
@@ -124,7 +125,7 @@
 
     <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">)</span>
-    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;flag&quot;</span><span class="p">]</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="n">datacolumn</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">residual</span><span class="p">:</span>
         <span class="n">keys</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">]</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
@@ -137,11 +138,11 @@
         <span class="p">),</span> <span class="s2">&quot;MODEL_DATA column empty, retry tclean with savemodel=&#39;modelcolumn&#39;&quot;</span>
 
         <span class="c1"># subtract model from data</span>
-        <span class="n">residuals</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">]</span>
+        <span class="n">residuals</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">datacolumn</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">]</span>
 
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># assume the S/N of each individual visibility is negligible. </span>
-        <span class="n">residuals</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="n">residuals</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">datacolumn</span><span class="p">]</span>
 
     <span class="c1"># calculate sigma from weight</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">weight_to_sigma</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">])</span>

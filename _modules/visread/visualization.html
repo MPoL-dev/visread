@@ -139,6 +139,7 @@
     <span class="n">chan_slice</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">residual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">datacolumn</span><span class="o">=</span><span class="s2">&quot;corrected_data&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot a set of histograms of the scatter of the residual visibilities for the real and</span>
@@ -152,6 +153,7 @@
 <span class="sd">        chan_slice (slice): if not None, a slice object specifying the channels to subselect</span>
 <span class="sd">        apply_flags (bool): calculate the scatter *after* the flags have been applied</span>
 <span class="sd">        residual (bool): if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.</span>
+<span class="sd">        datacolumn (string): which datacolumn to use (i.e., &#39;corrected_data&#39; or &#39;data&#39;).</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        matplotlib figure with scatter histograms</span>
@@ -161,7 +163,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;apply_flags setting is ignored when chan_slice is not None&quot;</span><span class="p">)</span>
 
         <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter</span><span class="o">.</span><span class="n">get_scatter_datadescid</span><span class="p">(</span>
-            <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="n">residual</span>
+            <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="n">residual</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="n">datacolumn</span>
         <span class="p">)</span>
 
         <span class="n">scatter_XX</span> <span class="o">=</span> <span class="n">scatter_XX</span><span class="p">[</span><span class="n">chan_slice</span><span class="p">]</span>
@@ -169,7 +171,7 @@
 
     <span class="k">else</span><span class="p">:</span>
         <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter</span><span class="o">.</span><span class="n">get_scatter_datadescid</span><span class="p">(</span>
-            <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="n">apply_flags</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="n">residual</span>
+            <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="n">apply_flags</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="n">residual</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="n">datacolumn</span>
         <span class="p">)</span>
 
     <span class="n">scatter_XX</span> <span class="o">=</span> <span class="n">scatter_XX</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
