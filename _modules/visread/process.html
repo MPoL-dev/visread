@@ -299,7 +299,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;chan_freq array is neither strictly decreasing nor strictly increasing, investigate what went wrong.&quot;</span><span class="p">)</span></div>
         
-<div class="viewcode-block" id="get_channel_sorted_data"><a class="viewcode-back" href="../../api.html#visread.process.get_channel_sorted_data">[docs]</a><span class="k">def</span> <span class="nf">get_channel_sorted_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">incl_model_data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="get_channel_sorted_data"><a class="viewcode-back" href="../../api.html#visread.process.get_channel_sorted_data">[docs]</a><span class="k">def</span> <span class="nf">get_channel_sorted_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">incl_model_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="s2">&quot;corrected_data&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Acquire and sort the channel frequencies, data, flags, and model_data columns.</span>
 
@@ -307,7 +307,8 @@
 <span class="sd">        filename (string): the measurement set to query</span>
 <span class="sd">        datadescid (int): the spw id to query</span>
 <span class="sd">        incl_model_data (boolean): if ``True``, return the ``model_data`` column as well</span>
-
+<span class="sd">        datacolumn (string): &quot;corrected_data&quot; by default</span>
+<span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        tuple: chan_freq, data, flag, model_data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -320,15 +321,17 @@
     <span class="c1"># get the data and flags</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">)</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="n">datacolumn</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">incl_model_data</span><span class="p">:</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;model_data&quot;</span><span class="p">,</span> <span class="s2">&quot;flag&quot;</span><span class="p">])</span>
+        <span class="n">keys</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">]</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
         <span class="n">model_data</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;model_data&quot;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;flag&quot;</span><span class="p">])</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">datacolumn</span><span class="p">]</span>
     <span class="n">flag</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">]</span>
 
     <span class="c1"># check to make sure we&#39;re in blushifted - redshifted order, otherwise reverse channel order</span>
@@ -348,7 +351,7 @@
 
 
 <div class="viewcode-block" id="get_processed_visibilities"><a class="viewcode-back" href="../../api.html#visread.process.get_processed_visibilities">[docs]</a><span class="k">def</span> <span class="nf">get_processed_visibilities</span><span class="p">(</span>
-    <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">incl_model_data</span><span class="o">=</span><span class="kc">None</span>
+    <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">sigma_rescale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">incl_model_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="s2">&quot;corrected_data&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Process all of the visibilities from a specific datadescid. This means </span>
@@ -371,15 +374,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># get sorted channels, data, and flags</span>
-    <span class="n">chan_freq</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">model_data</span> <span class="o">=</span> <span class="n">get_channel_sorted_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">incl_model_data</span><span class="p">)</span>
-    <span class="n">nchan</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
+    <span class="n">chan_freq</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">flag</span><span class="p">,</span> <span class="n">model_data</span> <span class="o">=</span> <span class="n">get_channel_sorted_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">incl_model_data</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="n">datacolumn</span><span class="p">)</span>
 
     <span class="c1"># get baselines, weights, and antennas</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">)</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;uvw&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;antenna1&quot;</span><span class="p">,</span> <span class="s2">&quot;antenna2&quot;</span><span class="p">])</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">getdata</span><span class="p">([</span><span class="s2">&quot;uvw&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;antenna1&quot;</span><span class="p">,</span> <span class="s2">&quot;antenna2&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">])</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">time</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
 
     <span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">ww</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="s2">&quot;uvw&quot;</span><span class="p">]</span>  <span class="c1"># [m]</span>
 
@@ -422,6 +426,9 @@
         <span class="s2">&quot;frequencies&quot;</span><span class="p">:</span> <span class="n">chan_freq</span><span class="p">,</span>
         <span class="s2">&quot;uu&quot;</span><span class="p">:</span> <span class="n">uu</span><span class="p">,</span>
         <span class="s2">&quot;vv&quot;</span><span class="p">:</span> <span class="n">vv</span><span class="p">,</span>
+        <span class="s2">&quot;antenna1&quot;</span><span class="p">:</span> <span class="n">ant1</span><span class="p">,</span>
+        <span class="s2">&quot;antenna2&quot;</span><span class="p">:</span> <span class="n">ant2</span><span class="p">,</span>
+        <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
         <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
         <span class="s2">&quot;model_data&quot;</span><span class="p">:</span> <span class="n">model_data</span><span class="p">,</span>
         <span class="s2">&quot;flag&quot;</span><span class="p">:</span> <span class="n">flag</span><span class="p">,</span>

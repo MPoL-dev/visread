@@ -193,7 +193,7 @@
         <span class="k">return</span> <span class="kc">False</span></div>
 
 
-<div class="viewcode-block" id="get_sigma_rescale_datadescid"><a class="viewcode-back" href="../../api.html#visread.scatter.get_sigma_rescale_datadescid">[docs]</a><span class="k">def</span> <span class="nf">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">):</span>
+<div class="viewcode-block" id="get_sigma_rescale_datadescid"><a class="viewcode-back" href="../../api.html#visread.scatter.get_sigma_rescale_datadescid">[docs]</a><span class="k">def</span> <span class="nf">get_sigma_rescale_datadescid</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="s2">&quot;corrected_data&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    For a given datadescid, calculate the residual scatter in each of the XX and YY polarization visibilities, then calculate the sigma rescale factor for each of the real and imaginary values of the polarizations. Return the average of all four quantities as the final sigma rescale factor for that datadescid.</span>
 
@@ -205,7 +205,7 @@
 <span class="sd">        float: the multiplicative factor by which to scale :math:`\sigma`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">get_scatter_datadescid</span><span class="p">(</span>
-        <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">filename</span><span class="p">,</span> <span class="n">datadescid</span><span class="p">,</span> <span class="n">apply_flags</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">datacolumn</span><span class="o">=</span><span class="n">datacolumn</span><span class="p">)</span>
 
     <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
         <span class="p">[</span>
