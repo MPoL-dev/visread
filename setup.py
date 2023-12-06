@@ -22,9 +22,10 @@ def get_version(rel_path):
 
 version = get_version("src/visread/__init__.py")
 
-EXTRA_REQUIRES = {
-    "test": ["pytest", "casatasks", "astropy"],
-    "docs": [
+EXTRA_REQUIRES = {}
+EXTRA_REQUIRES["casa"] = ["casatools", "casadata"]
+EXTRA_REQUIRES["test"] = EXTRA_REQUIRES["casa"] + ["pytest", "casatasks", "astropy"]
+EXTRA_REQUIRES["docs"] = EXTRA_REQUIRES["casa"] + [
         "sphinx>=2.3.0",
         "nbsphinx",
         "sphinx_material",
@@ -38,11 +39,10 @@ EXTRA_REQUIRES = {
         "matplotlib",
         "myst-nb",
         "jupyter-cache"
-    ],
-}
+    ]
 
 EXTRA_REQUIRES["dev"] = (
-    EXTRA_REQUIRES["test"] + EXTRA_REQUIRES["docs"] + ["pylint", "black"]
+    EXTRA_REQUIRES["casa"] + EXTRA_REQUIRES["test"] + EXTRA_REQUIRES["docs"] + ["pylint", "black"]
 )
 
 
@@ -55,7 +55,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/MPoL-dev/visread",
-    install_requires=["numpy", "casatools", "casadata"],
+    install_requires=["numpy"],
     extras_require=EXTRA_REQUIRES,
     packages=setuptools.find_packages("src"),
     package_dir={"": "src"},
