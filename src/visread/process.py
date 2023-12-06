@@ -214,7 +214,7 @@ def isdecreasing(chan_freq):
     else:
         raise RuntimeError("chan_freq array is neither strictly decreasing nor strictly increasing, investigate what went wrong.")
         
-def get_channel_sorted_data(filename, datadescid, incl_model_data=True):
+def get_channel_sorted_data(filename, datadescid, incl_model_data=True, datacolumn="corrected_data"):
     """
     Acquire and sort the channel frequencies, data, flags, and model_data columns.
 
@@ -222,7 +222,8 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True):
         filename (string): the measurement set to query
         datadescid (int): the spw id to query
         incl_model_data (boolean): if ``True``, return the ``model_data`` column as well
-
+        datacolumn (string): "corrected_data" by default
+        
     Returns:
         tuple: chan_freq, data, flag, model_data
     """
@@ -235,15 +236,17 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True):
     # get the data and flags
     ms.open(filename)
     ms.selectinit(datadescid=datadescid)
+    keys = ["flag", datacolumn]
     if incl_model_data:
-        q = ms.getdata(["data", "model_data", "flag"])
+        keys += ["model_data"]
+        q = ms.getdata(keys)
         model_data = q["model_data"]
     else:
-        q = ms.getdata(["data", "flag"])
+        q = ms.getdata(keys)
     ms.selectinit(reset=True)
     ms.close()
 
-    data = q["data"]
+    data = q[datacolumn]
     flag = q["flag"]
 
     # check to make sure we're in blushifted - redshifted order, otherwise reverse channel order
@@ -263,7 +266,7 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True):
 
 
 def get_processed_visibilities(
-    filename, datadescid, sigma_rescale=1.0, incl_model_data=None
+    filename, datadescid, sigma_rescale=1.0, incl_model_data=None, datacolumn="corrected_data"
 ):
     r"""
     Process all of the visibilities from a specific datadescid. This means 
@@ -286,15 +289,16 @@ def get_processed_visibilities(
     """
 
     # get sorted channels, data, and flags
-    chan_freq, data, flag, model_data = get_channel_sorted_data(filename, datadescid, incl_model_data)
-    nchan = len(chan_freq)
+    chan_freq, data, flag, model_data = get_channel_sorted_data(filename, datadescid, incl_model_data, datacolumn=datacolumn)
 
     # get baselines, weights, and antennas
     ms.open(filename)
     ms.selectinit(datadescid=datadescid)
-    q = ms.getdata(["uvw", "weight", "antenna1", "antenna2"])
+    q = ms.getdata(["uvw", "weight", "antenna1", "antenna2", "time"])
     ms.selectinit(reset=True)
     ms.close()
+
+    time = q["time"]
 
     uu, vv, ww = q["uvw"]  # [m]
 
@@ -337,6 +341,9 @@ def get_processed_visibilities(
         "frequencies": chan_freq,
         "uu": uu,
         "vv": vv,
+        "antenna1": ant1,
+        "antenna2": ant2,
+        "time": time,
         "data": data,
         "model_data": model_data,
         "flag": flag,

@@ -108,7 +108,7 @@ def calculate_rescale_factor(scatter, method="Nelder-Mead", bins=40):
         return False
 
 
-def get_sigma_rescale_datadescid(filename, datadescid):
+def get_sigma_rescale_datadescid(filename, datadescid, datacolumn="corrected_data"):
     """
     For a given datadescid, calculate the residual scatter in each of the XX and YY polarization visibilities, then calculate the sigma rescale factor for each of the real and imaginary values of the polarizations. Return the average of all four quantities as the final sigma rescale factor for that datadescid.
 
@@ -120,7 +120,7 @@ def get_sigma_rescale_datadescid(filename, datadescid):
         float: the multiplicative factor by which to scale :math:`\sigma`
     """
     scatter_XX, scatter_YY = get_scatter_datadescid(
-        filename, datadescid, apply_flags=True)
+        filename, datadescid, apply_flags=True, datacolumn=datacolumn)
 
     vals = np.array(
         [
