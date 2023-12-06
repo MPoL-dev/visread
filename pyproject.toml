@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -41,5 +41,8 @@ docs = ["casatools",
 Homepage = "https://mpol-dev.github.io/visread/"
 Issues = "https://github.com/MPoL-dev/visread/issues"
 
-[tool.setuptools.dynamic]
-version = {attr = "visread.__version__"}
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "_version.py"
