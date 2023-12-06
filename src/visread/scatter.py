@@ -3,8 +3,9 @@ from scipy.optimize import minimize
 
 from . import utils, process
 
-def get_scatter(data, weight, flag, model=None, sigma_rescale=1.0, apply_flags=True, residual=True):
-
+def get_scatter(
+    data, weight, flag, model=None, sigma_rescale=1.0, apply_flags=True, residual=True
+):
     if residual:
         residuals = data - model
     else:
@@ -27,6 +28,7 @@ def get_scatter(data, weight, flag, model=None, sigma_rescale=1.0, apply_flags=T
         scatter_YY = scatter_YY[~flag_YY]
 
     return scatter_XX, scatter_YY
+
 
 def calculate_rescale_factor(scatter, method="Nelder-Mead", bins=40):
     """

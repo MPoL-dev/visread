@@ -1,11 +1,14 @@
-import numpy as np 
-import matplotlib.pyplot as plt
-import casatools 
-from . import utils, scatter, process, visualization
+import casatools
+from . import scatter, visualization
+
+# initialize the relevant CASA tools
+msmd = casatools.msmetadata()
+ms = casatools.ms()
+
 
 def plot_baselines(filename, ddid):
     ms.open(filename)
-    ms.selectinit(datadescid=datadescid)
+    ms.selectinit(datadescid=ddid)
     q = ms.getdata(["uvw"])
     ms.selectinit(reset=True)
     ms.close()
@@ -23,7 +26,7 @@ def plot_scatter_datadescid(
     chan_slice=None,
     apply_flags=True,
     residual=True,
-    datacolumn="corrected_data"
+    datacolumn="corrected_data",
 ):
     r"""
     Plot a set of histograms of the scatter of the residual visibilities for the real and
@@ -47,7 +50,12 @@ def plot_scatter_datadescid(
         print("apply_flags setting is ignored when chan_slice is not None")
 
         scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
-            filename, datadescid, sigma_rescale, apply_flags=False, residual=residual, datacolumn=datacolumn
+            filename,
+            datadescid,
+            sigma_rescale,
+            apply_flags=False,
+            residual=residual,
+            datacolumn=datacolumn,
         )
 
         scatter_XX = scatter_XX[chan_slice]
@@ -55,7 +63,12 @@ def plot_scatter_datadescid(
 
     else:
         scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
-            filename, datadescid, sigma_rescale, apply_flags=apply_flags, residual=residual, datacolumn=datacolumn
+            filename,
+            datadescid,
+            sigma_rescale,
+            apply_flags=apply_flags,
+            residual=residual,
+            datacolumn=datacolumn,
         )
 
     scatter_XX = scatter_XX.flatten()
@@ -68,7 +81,6 @@ def plot_scatter_datadescid(
 
 
 def plot_weight_hist(filename, datadescid, log=False, **kwargs):
-
     ms.open(filename)
     ms.selectinit(datadescid=datadescid)
     q = ms.getdata(["weight"])
@@ -77,4 +89,6 @@ def plot_weight_hist(filename, datadescid, log=False, **kwargs):
 
     weight_XX, weight_YY = q["weight"]
 
-    return visualization.plot_weight_hist(weight_XX, weight_YY, "DATA_DESC_ID: {:}".format(datadescid))
+    return visualization.plot_weight_hist(
+        weight_XX, weight_YY, "DATA_DESC_ID: {:}".format(datadescid)
+    )

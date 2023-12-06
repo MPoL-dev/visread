@@ -1,14 +1,21 @@
 import numpy as np
 import casatools
-from scipy.optimize import minimize
 
-from . import utils, process, scatter
+from . import scatter
 
 # initialize the relevant CASA tools
 msmd = casatools.msmetadata()
 ms = casatools.ms()
 
-def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=True, residual=True, datacolumn="corrected_data"):
+
+def get_scatter_datadescid(
+    filename,
+    datadescid,
+    sigma_rescale=1.0,
+    apply_flags=True,
+    residual=True,
+    datacolumn="corrected_data",
+):
     r"""
     Calculate the residuals for each polarization (XX, YY) in units of :math:`\sigma`, where
 
@@ -54,7 +61,15 @@ def get_scatter_datadescid(filename, datadescid, sigma_rescale=1.0, apply_flags=
     else:
         model = None
 
-    scatter.get_scatter(q[datacolumn], q["weight"], q["flag"], model=model, sigma_rescale=sigma_rescale, apply_flags=apply_flags, residual=residual)
+    scatter.get_scatter(
+        q[datacolumn],
+        q["weight"],
+        q["flag"],
+        model=model,
+        sigma_rescale=sigma_rescale,
+        apply_flags=apply_flags,
+        residual=residual,
+    )
 
 
 def get_sigma_rescale_datadescid(filename, datadescid, datacolumn="corrected_data"):
@@ -64,12 +79,13 @@ def get_sigma_rescale_datadescid(filename, datadescid, datacolumn="corrected_dat
     Args:
         filename (string): path to measurement set
         datadescid (int): the spectral window in the measurement set
-        
+
     Returns:
         float: the multiplicative factor by which to scale :math:`\sigma`
     """
     scatter_XX, scatter_YY = get_scatter_datadescid(
-        filename, datadescid, apply_flags=True, datacolumn=datacolumn)
+        filename, datadescid, apply_flags=True, datacolumn=datacolumn
+    )
 
     vals = np.array(
         [
