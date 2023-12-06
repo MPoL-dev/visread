@@ -1,0 +1,1 @@
+from visread.visread_version import __version__

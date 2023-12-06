@@ -45,4 +45,4 @@ Issues = "https://github.com/MPoL-dev/visread/issues"
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "_version.py"
+version-file = "src/visread/visread_version.py"

@@ -139,3 +139,6 @@ docs/tutorials/*.ipynb
 
 # AS209 measurement set files 
 docs/tutorials/AS209_MS
+
+# hatch-generated version file
+src/visread/visread_version.py
