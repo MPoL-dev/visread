@@ -4,7 +4,7 @@
 [![gh-pages docs](https://github.com/MPoL-dev/visread/actions/workflows/gh_docs.yml/badge.svg)](https://github.com/MPoL-dev/visread/actions/workflows/gh_docs.yml)
 [![DOI](https://zenodo.org/badge/327205529.svg)](https://zenodo.org/badge/latestdoi/327205529)
 
-A minimal tool built on CASA to help read and process visibilities from a calibrated CASA Measurement Set.
+A set of tools to help read and process interferometric visibilities.
 
 For more information, see the [DOCUMENTATION](https://mpol-dev.github.io/visread/)
 
