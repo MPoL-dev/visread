@@ -1,3 +1,45 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "visread"
+readme = "README.md"
+dynamic = ["version"]
+authors = [{name="Ian Czekala", email="ic95@st-andrews.ac.uk"}]
+description="Tools to read and process interferometric visibilities from Measurement Sets"
+requires-python = ">3.6"
+classifiers=[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = ["numpy"]
+
+[project.optional-dependencies]
+casa = ["casatools", "casadata"]
+test = ["casatools", "casadata", "pytest", "casatasks", "astropy"]
+docs = ["casatools", 
+        "casadata", 
+        "sphinx>=2.3.0",
+        "nbsphinx",
+        "sphinx_material",
+        "sphinx_copybutton",
+        "sphinx_rtd_theme",
+        "jupyter",
+        "jupytext",
+        "ipython!=8.7.0",  # broken version for syntax higlight https://github.com/spatialaudio/nbsphinx/issues/687
+        "astropy",
+        "casatasks",
+        "matplotlib",
+        "myst-nb",
+        "jupyter-cache",
+        "pylint", 
+        "black"]
+
+[project.urls]
+Homepage = "https://mpol-dev.github.io/visread/"
+Issues = "https://github.com/MPoL-dev/visread/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "visread.__version__"}
