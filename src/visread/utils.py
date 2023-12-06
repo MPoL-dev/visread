@@ -1,11 +1,5 @@
 import numpy as np
-import casatools
 from astropy.constants import c
-
-# initialize the relevant CASA tools
-tb = casatools.table()
-ms = casatools.ms()
-msmd = casatools.msmetadata()
 
 def doppler_shift(freq, v):
     """

@@ -24,6 +24,26 @@ Then you can install *visread* and the CASA dependencies with ::
 
 If you have any problems, please file a detailed `Github issue <https://github.com/MPoL-dev/visread/issues>`_.
 
+
+Installation and Usage Patterns
+-------------------------------
+
+Case 1: 
+
+You are unable to install Modular CASA (i.e., `casatools`) into your primary computing enivronment. Common reasons include Python version incompatability (e.g., you are running Python 3.12, but Modular CASA only installs into Python 3.8) or Operating System incompatibility (e.g., you are running MacOS 14, but Modular CASA only installs into MacOS 12). 
+
+So, you normally work with CASA to reduce your data in a specialized environment that supports the installation of CASA. Presumably there are factors that make this environment more difficult to access than your primary environment (such as SSH or VNC to a server), otherwise it would probably be your primary environment.
+
+We suggest the following workflow. In your specialized, CASA-friendly environment, install `visread[casa]` to help export the visibilities from the measurement set to a neutral data format, like `.npy` or `.asdf`. Then, trasnsfer this file to your primary environment.
+
+Into your primary environment, install `visread`, without the CASA dependency. And you can use data visualization tools.
+
+Case 2:
+
+You are able to install Modular CASA into your primary computing environment. In this case, install `visread[casa]` directly into your primary environment. 
+
+
+
 Development
 -----------
 
