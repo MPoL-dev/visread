@@ -25,7 +25,7 @@ docs = ["casatools",
         "nbsphinx",
         "sphinx_material",
         "sphinx_copybutton",
-        "sphinx_rtd_theme",
+        "sphinx_book_theme>=0.9.3",
         "jupyter",
         "jupytext",
         "ipython!=8.7.0",  # broken version for syntax higlight https://github.com/spatialaudio/nbsphinx/issues/687
