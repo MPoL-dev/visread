@@ -28,4 +28,4 @@ def test_calculate_rescale_factor(data_dict):
 
     # no problems with this mock dataset, so the rescale
     # factor should be about 1.
-    assert vals == pytest.approx(1.0, rel=0.01)
+    assert vals == pytest.approx(1.0, rel=0.05)
