@@ -85,7 +85,7 @@ def plot_averaged_scatter(scatter, log=False, **kwargs):
 
     return fig
 
-def plot_weight_hist(weight_XX, weight_YY, title=None):
+def plot_weight_hist(weight_XX, weight_YY, log=False, title=None, **kwargs):
     sigma_XX = process.weight_to_sigma(weight_XX)
     sigma_YY = process.weight_to_sigma(weight_YY)
 

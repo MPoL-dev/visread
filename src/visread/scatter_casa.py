@@ -1,5 +1,4 @@
 import numpy as np
-
 from . import scatter
 
 try:
@@ -96,7 +95,7 @@ def get_sigma_rescale_datadescid(filename, datadescid, datacolumn="corrected_dat
 
     vals = np.array(
         [
-            calculate_rescale_factor(scatter)
+            scatter.calculate_rescale_factor(scatter)
             for scatter in [
                 scatter_XX.real,
                 scatter_XX.imag,
