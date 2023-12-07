@@ -18,9 +18,11 @@ jupyter:
 %run notebook_setup
 ```
 
+(intro-casatools-label)=
+
 # Introduction to CASA tools
 
-This tutorial is meant to provide an introduction to working with some the 'tools' provided in the CASA package. In particular, we'll focus on the `msmetadata`, `tb`, and `ms` tools.
+This tutorial is meant to provide an introduction to working with some the 'tools' provided in the [CASA package](https://casadocs.readthedocs.io/en/stable/index.html). In particular, we'll focus on the `msmetadata`, `tb`, and `ms` tools. 
 
 ## Introduction to measurement sets
 Before you begin, it's worthwhile reviewing the CASA documentation on the measurement set, which is the default storage format for radio interferometric observations. The basics are [here](https://casadocs.readthedocs.io/en/stable/notebooks/casa-fundamentals.html#MeasurementSet-Basics). To make a long story short, a measurement set (e.g., ``my_ALMA_data.ms``) is a folder containing a set of binary 'tables' with your data and metadata. The contents within this measurement set folder serve as a [relational database](https://en.wikipedia.org/wiki/Relational_database). It helps to keep this structure in mind as we navigate its contents.
