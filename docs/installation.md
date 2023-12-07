@@ -102,3 +102,12 @@ python -m pytest
 ```
 
 Now, all tests in the suite should run. If any tests fail on your machine, please file a detailed [Github issue](https://github.com/MPoL-dev/visread/issues).
+
+### Viewing test and debug plots
+
+Some tests produce temporary files, like plots, that could be useful to view for development or debugging. Normally these are saved to a temporary directory created by the system which will be cleaned up after the tests finish. To preserve them, first create a plot directory (e.g., `plotsdir`) and then run the tests with this `--basetemp` specified
+
+```
+mkdir plotsdir
+python -m pytest --basetemp=plotsdir
+```
