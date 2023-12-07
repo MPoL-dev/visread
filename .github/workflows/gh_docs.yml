@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8
       - name: Install doc deps
@@ -24,7 +24,7 @@ jobs:
         run: |
           make -C docs clean
       - name: Cache/Restore the AS 209 measurement set
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-AS209
         with:
