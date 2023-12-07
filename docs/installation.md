@@ -25,11 +25,11 @@ Then you can install *visread* and the CASA dependencies based on your expected 
 
 ## Usage Patterns
 
-Consider which of the two cases matches your situation.
+Consider which of the two patterns matches your situation.
 
-### Case 1
+### Pattern 1
 
-You are unable to install Modular CASA (i.e., `casatools`) into your primary computing environment. Common reasons include Python version incompatibility (e.g., you are running Python 3.12, but Modular CASA only installs into Python 3.8) or Operating System incompatibility (e.g., you are running MacOS 14, but Modular CASA only installs into MacOS 12).
+You are unable to install Modular CASA (e.g., `casatools`) into your primary computing environment. Common reasons include incompatible Python versions (e.g., you are running Python 3.12, but Modular CASA only installs into Python 3.8) or operating systems (e.g., you are running MacOS 14, but Modular CASA only installs into MacOS 12).
 
 So, you normally work with CASA to reduce your data in a specialized environment that supports the installation of CASA. Presumably there are factors that make this environment more difficult to access than your primary environment (such as SSH or VNC to a server), otherwise it would probably be your primary environment.
 
@@ -41,15 +41,15 @@ pip install 'visread[casa]'
 
 and use the visread casa-based routines to help export the visibilities from the measurement set to a common data format, like `.npy` or `.asdf`. Then, transfer this data file to your primary environment.
 
-Then, in your primary environment, install 
+In your primary environment, install 
 
 ```
 pip install visread
 ```
 
-(without the CASA dependency). This enables you to use the data visualization features of visread.
+(without the CASA dependency), so that you can use the data visualization features of visread.
 
-### Case 2
+### Pattern 2
 
 You are able to install Modular CASA into your primary computing environment. In this case, simply install 
 
@@ -57,7 +57,7 @@ You are able to install Modular CASA into your primary computing environment. In
 pip install 'visread[casa]'
 ```
 
-directly into your primary environment.
+directly into your primary environment and work on everything in the same place.
 
 
 If you have any problems with installation, please file a detailed [Github issue](https://github.com/MPoL-dev/visread/issues).
@@ -68,23 +68,37 @@ If you have any problems with installation, please file a detailed [Github issue
 If you're interested in extending the package, you can clone it from GitHub and then install it locally for development:
 
 ```
-$ pip install -e .[dev]
+$ pip install -e '.[dev]'
 ```
 
-If you make a useful change, please consider submitting a [pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to the [github repo](https://github.com/MPoL-dev/visread)!
+If you make a change that you think will be useful, please consider submitting a [pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) to the [github repo](https://github.com/MPoL-dev/visread)!
 
 ## Testing
 
-You can run the tests on the package by first installing it with:
+The test suite contains two sets of tests. The first "core" set does not require `casatools` or `casatasks`, and can be installed via 
 
 ```
-$ pip install -e .[test]
+pip install -e '.[test]'
 ```
 
-(which installs the casatasks and pytest packages, you could also just additionally install those yourself, too). Then run:
+You can run the tests via
 
 ```
-$ python -m pytest
+python -m pytest
 ```
 
-The tests work by creating a fake measurement set using [simobserve](https://casa.nrao.edu/casadocs-devel/stable/global-task-list/task_simobserve/about) and then working with it with *visread*. If any tests fail on your machine, please file a detailed [Github issue](https://github.com/MPoL-dev/visread/issues).
+The test suite has logic to determine if `casatools` and `casatasks` are installed on your system. If these packages are not installed, then the test suite will simply skip the tests that require these packages.
+
+If you have an environment in which you are able to install the casa dependencies, then do
+
+```
+pip install -e '.[test,casa]'
+```
+
+and run 
+
+```
+python -m pytest
+```
+
+Now, all tests in the suite should run. If any tests fail on your machine, please file a detailed [Github issue](https://github.com/MPoL-dev/visread/issues).

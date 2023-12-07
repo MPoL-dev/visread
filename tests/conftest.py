@@ -3,8 +3,17 @@ import casatasks
 import os
 from astropy.utils.data import download_file
 
+# ascertain if casatasks is installed
+try:
+    import casatasks
+
+    no_casa = False
+except ModuleNotFoundError:
+    no_casa = True
+
 
 # create a fixture for temporary MS file itself
+@pytest.mark.skipif(no_casa, reason="modular casa not available on this system")
 @pytest.fixture(scope="session")
 def ms_cont_path(tmp_path_factory):
     # Generate a continuum MS
@@ -49,6 +58,7 @@ def ms_cont_path(tmp_path_factory):
     return ms_path
 
 
+@pytest.mark.skipif(no_casa, reason="modular casa not available on this system")
 @pytest.fixture(scope="session")
 def ms_cube_path(tmp_path_factory):
     # Generate an MS for a spectral cube
