@@ -48,6 +48,8 @@ fname = "AS209_continuum.ms"
 fitsname = "AS209.fits"
 ```
 
+(AS209-label)=
+
 ### Visualizing the CLEANed image
 Just to make sure the ``tclean`` process ran OK, let's check the synthesized image that was produced
 

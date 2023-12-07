@@ -1,1 +1,1 @@
-__version__ = "0.0.5"
+from visread.visread_version import __version__

@@ -41,7 +41,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
     "sphinx_copybutton",
-    "myst_nb"
+    "myst_nb",
 ]
 
 # add in additional files
@@ -52,13 +52,12 @@ source_suffix = {
     ".md": "myst-nb",
 }
 
-
 myst_enable_extensions = ["dollarmath", "colon_fence", "amsmath"]
 
-# CASA imports are mocked with Sphinx ``autodoc_mock_imports`` because the CASA install 
+# CASA imports are mocked with Sphinx ``autodoc_mock_imports`` because the CASA install
 # requires ``libgfortran`` to be installed and apparently that's difficult with RTD.
 autodoc_mock_imports = ["casatools"]
-autodoc_member_order = "bysource" 
+autodoc_member_order = "bysource"
 autodoc_default_options = {"members": None}
 
 
@@ -72,9 +71,12 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-html_theme = "sphinx_rtd_theme"
+# -- Options for HTML output -------------------------------------------------
+html_theme = "sphinx_book_theme"
+html_theme_options = {
+    "repository_url": "https://github.com/MPoL-dev/visread",
+    "use_repository_button": True,
+}
 
 nb_execution_mode = "cache"
 nb_execution_timeout = -1

@@ -1,11 +1,5 @@
 import numpy as np
-import casatools
 from astropy.constants import c
-
-# initialize the relevant CASA tools
-tb = casatools.table()
-ms = casatools.ms()
-msmd = casatools.msmetadata()
 
 def doppler_shift(freq, v):
     """
@@ -18,10 +12,11 @@ def doppler_shift(freq, v):
     Returns:
         shifted frequencies
     """
-    
+
     beta = v / c.value
 
-    return np.sqrt((1 - beta)/(1 + beta)) * freq # Hz
+    return np.sqrt((1 - beta) / (1 + beta)) * freq  # Hz
+
 
 def gaussian(x, sigma=1):
     r"""
@@ -41,6 +36,3 @@ def gaussian(x, sigma=1):
         Gaussian function evaluated at :math:`x`
     """
     return 1 / (sigma * np.sqrt(2 * np.pi)) * np.exp(-0.5 * (x / sigma) ** 2)
-
-
-

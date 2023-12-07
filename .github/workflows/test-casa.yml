@@ -1,4 +1,4 @@
-name: package test and docs test
+name: test and docs with casa
 
 on: [push, pull_request]
 
@@ -8,11 +8,11 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.8]
+        python-version: ["3.8"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
     
@@ -20,13 +20,9 @@ jobs:
       run: |
         pip install --upgrade pip
         
-    - name: Install vanilla package
-      run: |
-        pip install .
-    
     - name: Install test deps 
       run: |
-        pip install .[test]
+        pip install .[test,casa]
     
     - name: Test with pytest
       run: | 
