@@ -2,59 +2,53 @@ import numpy as np
 from astropy.constants import c
 
 
-def weight_to_sigma(weight):
+def convert_baselines(baselines, freq):
     r"""
-    Convert a weight (:math:`w`) to an uncertainty (:math:`\sigma`) using
-
-    .. math::
-
-        \sigma = \sqrt{1/w}
+    Convert baselines in meters to kilolambda.
 
     Args:
-        weight (float or np.array): statistical weight value
+        baselines (float or np.array): baselines in [m].
+        freq (float or np.array): frequencies in [Hz]. If either ``baselines`` or ``freq`` are numpy arrays, their shapes must be broadcast-able.
 
     Returns:
-        sigma (float or np.array): the corresponding uncertainty
+        (1D array nvis): baselines in [klambda]
     """
+    # calculate wavelengths in meters
+    wavelengths = c.value / freq  # m
 
-    return np.sqrt(1 / weight)
+    # calculate baselines in klambda
+    return 1e-3 * baselines / wavelengths  # [klambda]
 
 
-def broadcast_weights(weight, data_shape, chan_axis=0):
+def broadcast_and_convert_baselines(u, v, chan_freq):
     r"""
-    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications) but already averaged over polarizations.
+    Convert baselines to kilolambda and broadcast to match shape of channel frequencies.
 
     Args:
-        weight (np.array): the weights
-        data_shape (tuple): the shape of the data
-        chan_axis (int): the axis which represents the number of channels in the data array, typically 0 for visibility data that has already been averaged over polarizations.
+        u (1D array nvis): baseline [m]
+        v (1D array nvis): baseline [m]
+        chan_freq (1D array nchan): frequencies [Hz]
 
     Returns:
-        np.array (float) array of weights the same shape as the data
+        (u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]
     """
 
-    nchan = data_shape[chan_axis]
+    nchan = len(chan_freq)
 
+    # broadcast to the same shape as the data
+    # stub to broadcast u, v to all channels
     broadcast = np.ones((nchan, 1))
-    return weight[np.newaxis, :] * broadcast
+    uu = u * broadcast
+    vv = v * broadcast
 
+    # calculate wavelengths in meters
+    wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 
-def rescale_weights(weight, sigma_rescale):
-    r"""
-    Rescale all weights by a common factor. It would be as if :math:`\sigma` were rescaled by this factor.
+    # calculate baselines in klambda
+    uu = 1e-3 * uu / wavelengths  # [klambda]
+    vv = 1e-3 * vv / wavelengths  # [klambda]
 
-    .. math::
-
-        w_\mathrm{new} = w_\mathrm{old} / \sigma_\mathrm{rescale}^2
-
-    Args:
-        weight (float or np.array): the weights
-        sigma_rescale (float): the factor by which to rescale the weight
-
-    Returns:
-        (float or np.array) the rescaled weights
-    """
-    return weight / (sigma_rescale**2)
+    return (uu, vv)
 
 
 def average_data_polarization(data, weight, polarization_axis=0):
@@ -123,53 +117,59 @@ def average_flag_polarization(flag, polarization_axis=0):
     return np.any(flag, axis=polarization_axis)
 
 
-def convert_baselines(baselines, freq):
+def weight_to_sigma(weight):
     r"""
-    Convert baselines in meters to kilolambda.
+    Convert a weight (:math:`w`) to an uncertainty (:math:`\sigma`) using
+
+    .. math::
+
+        \sigma = \sqrt{1/w}
 
     Args:
-        baselines (float or np.array): baselines in [m].
-        freq (float or np.array): frequencies in [Hz]. If either ``baselines`` or ``freq`` are numpy arrays, their shapes must be broadcast-able.
+        weight (float or np.array): statistical weight value
 
     Returns:
-        (1D array nvis): baselines in [klambda]
+        sigma (float or np.array): the corresponding uncertainty
     """
-    # calculate wavelengths in meters
-    wavelengths = c.value / freq  # m
 
-    # calculate baselines in klambda
-    return 1e-3 * baselines / wavelengths  # [klambda]
+    return np.sqrt(1 / weight)
 
 
-def broadcast_and_convert_baselines(u, v, chan_freq):
+def broadcast_weights(weight, data_shape, chan_axis=0):
     r"""
-    Convert baselines to kilolambda and broadcast to match shape of channel frequencies.
+    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications) but already averaged over polarizations.
 
     Args:
-        u (1D array nvis): baseline [m]
-        v (1D array nvis): baseline [m]
-        chan_freq (1D array nchan): frequencies [Hz]
+        weight (np.array): the weights
+        data_shape (tuple): the shape of the data
+        chan_axis (int): the axis which represents the number of channels in the data array, typically 0 for visibility data that has already been averaged over polarizations.
 
     Returns:
-        (u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]
+        np.array (float) array of weights the same shape as the data
     """
 
-    nchan = len(chan_freq)
+    nchan = data_shape[chan_axis]
 
-    # broadcast to the same shape as the data
-    # stub to broadcast u, v to all channels
     broadcast = np.ones((nchan, 1))
-    uu = u * broadcast
-    vv = v * broadcast
+    return weight[np.newaxis, :] * broadcast
 
-    # calculate wavelengths in meters
-    wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 
-    # calculate baselines in klambda
-    uu = 1e-3 * uu / wavelengths  # [klambda]
-    vv = 1e-3 * vv / wavelengths  # [klambda]
+def rescale_weights(weight, sigma_rescale):
+    r"""
+    Rescale all weights by a common factor. It would be as if :math:`\sigma` were rescaled by this factor.
 
-    return (uu, vv)
+    .. math::
+
+        w_\mathrm{new} = w_\mathrm{old} / \sigma_\mathrm{rescale}^2
+
+    Args:
+        weight (float or np.array): the weights
+        sigma_rescale (float): the factor by which to rescale the weight
+
+    Returns:
+        (float or np.array) the rescaled weights
+    """
+    return weight / (sigma_rescale**2)
 
 
 def contains_autocorrelations(ant1, ant2):
