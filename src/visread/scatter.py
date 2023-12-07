@@ -30,12 +30,12 @@ def get_scatter(
     return scatter_XX, scatter_YY
 
 
-def calculate_rescale_factor(scatter, method="Nelder-Mead", bins=40):
+def calculate_rescale_factor(s, method="Nelder-Mead", bins=40):
     """
     Calculate the multiplicative factor needed to scale :math:`\sigma` such that the scatter in the residuals matches that expected from a Gaussian.
 
     Args:
-        scatter (np.array): an array of residuals normalized to their :math:`\sigma` values.
+        s (np.array): an array of residuals normalized to their :math:`\sigma` values. Assumes values are float.
         method (string): string passed to `scipy.optimize.minimize <https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html>`_ to choose minimization argument.
         bins (int): number of bins to use in the histogram
 
@@ -43,8 +43,11 @@ def calculate_rescale_factor(scatter, method="Nelder-Mead", bins=40):
         float: the multiplicative factor needed to multiply against :math:`\sigma`
     """
 
+    if s.dtype == np.complex128:
+        raise RuntimeError("You passed a complex-valued scatter quantity to scatter.calculate_rescale_factor. This routine only works on float, so if you have a complex data type, pass .real and .imag components on separate invocations.")
+
     # create a histogram of the scatter values, should approximate a Gaussian distribution
-    bin_heights, bin_edges = np.histogram(scatter, density=True, bins=bins)
+    bin_heights, bin_edges = np.histogram(s, density=True, bins=bins)
     bin_centers = bin_edges[:-1] + np.diff(bin_edges) / 2
 
     # find the sigma_rescale which minimizes the mean squared error
@@ -72,7 +75,7 @@ def get_averaged_scatter(data, model_data, weight, flag=None):
         flag (np.array bool): the flags of the dataset, in original format (``True`` should be flagged).
 
     Returns:
-        np.arary: the scatter of the residual visibilities in units of :math:`\sigma`
+        np.array: the scatter of the residual visibilities in units of :math:`\sigma`
     """
 
     residuals = data - model_data
