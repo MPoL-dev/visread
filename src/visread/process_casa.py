@@ -129,7 +129,7 @@ def get_processed_visibilities(
     ant2 = q["antenna2"]
 
     # make sure the dataset doesn't contain auto-correlations
-    assert not contains_autocorrelations(
+    assert not process.contains_autocorrelations(
         ant1, ant2
     ), "Dataset contains autocorrelations, exiting."
 
