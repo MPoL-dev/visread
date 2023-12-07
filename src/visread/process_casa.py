@@ -1,10 +1,21 @@
 from . import process
-import casatools 
 
-msmd = casatools.msmetadata()
-ms = casatools.ms()
+try:
+    import casatools
 
-def get_channel_sorted_data(filename, datadescid, incl_model_data=True, datacolumn="corrected_data"):
+    # initialize the relevant CASA tools
+    msmd = casatools.msmetadata()
+    ms = casatools.ms()
+except ModuleNotFoundError as e:
+    print(
+        "casatools module not found on system. If your system configuration is compatible, you can try installing these optional dependencies with `pip install 'visread[casa]'`. More information on Modular CASA can be found https://casadocs.readthedocs.io/en/stable/notebooks/introduction.html#Modular-Packages "
+    )
+    raise e
+
+
+def get_channel_sorted_data(
+    filename, datadescid, incl_model_data=True, datacolumn="corrected_data"
+):
     """
     Acquire and sort the channel frequencies, data, flags, and model_data columns.
 
@@ -13,11 +24,11 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True, datacolu
         datadescid (int): the spw id to query
         incl_model_data (boolean): if ``True``, return the ``model_data`` column as well
         datacolumn (string): "corrected_data" by default
-        
+
     Returns:
         tuple: chan_freq, data, flag, model_data
     """
-    
+
     # get the channel frequencies
     msmd.open(filename)
     chan_freq = msmd.chanfreqs(datadescid)
@@ -44,11 +55,11 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True, datacolu
         # reverse channels
         chan_freq = np.flip(chan_freq)
         data = np.flip(data, axis=1)
-        flag = np.flip(flag, axis=1) 
+        flag = np.flip(flag, axis=1)
 
         if incl_model_data:
             model_data = np.flip(model_data, axis=1)
-    
+
     if incl_model_data:
         return chan_freq, data, flag, model_data
     else:
@@ -56,11 +67,15 @@ def get_channel_sorted_data(filename, datadescid, incl_model_data=True, datacolu
 
 
 def get_processed_visibilities(
-    filename, datadescid, sigma_rescale=1.0, incl_model_data=None, datacolumn="corrected_data"
+    filename,
+    datadescid,
+    sigma_rescale=1.0,
+    incl_model_data=None,
+    datacolumn="corrected_data",
 ):
     r"""
-    Process all of the visibilities from a specific datadescid. This means 
-    
+    Process all of the visibilities from a specific datadescid. This means
+
     * (If necessary) reversing the channel dimension such that channel frequency decreases with increasing array index (blueshifted to redshifted)
     * averaging the polarizations together
     * rescaling weights
@@ -79,7 +94,9 @@ def get_processed_visibilities(
     """
 
     # get sorted channels, data, and flags
-    chan_freq, data, flag, model_data = get_channel_sorted_data(filename, datadescid, incl_model_data, datacolumn=datacolumn)
+    chan_freq, data, flag, model_data = get_channel_sorted_data(
+        filename, datadescid, incl_model_data, datacolumn=datacolumn
+    )
 
     # get baselines, weights, and antennas
     ms.open(filename)
@@ -102,7 +119,7 @@ def get_processed_visibilities(
 
     if incl_model_data:
         model_data = process.average_data_polarization(model_data, weight)
-    
+
     # finally average weights across polarization
     weight = process.average_weight_polarization(weight)
 
@@ -111,7 +128,9 @@ def get_processed_visibilities(
     ant2 = q["antenna2"]
 
     # make sure the dataset doesn't contain auto-correlations
-    assert not contains_autocorrelations(ant1, ant2), "Dataset contains autocorrelations, exiting."
+    assert not contains_autocorrelations(
+        ant1, ant2
+    ), "Dataset contains autocorrelations, exiting."
 
     # # apply the xc mask across channels
     # # drop autocorrelation channels

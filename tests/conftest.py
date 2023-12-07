@@ -2,7 +2,6 @@ import pytest
 import os
 import numpy as np
 from astropy.utils.data import download_file
-from dataclasses import dataclass
 
 # ascertain if casatasks is installed
 try:
@@ -39,9 +38,10 @@ def data_dict():
     weight = 1 / sigma**2
 
     # temporarily broadcast sigma to the full size for the noise call
-    data_real = model + np.random.normal(scale=sigma[:,np.newaxis,:], size=(npol, nchan, nvis))
-    data_imag = model + np.random.normal(scale=sigma[:,np.newaxis,:], size=(npol, nchan, nvis))
-    data = data_real + data_imag * 1.0j
+    noise_real = np.random.normal(scale=sigma[:,np.newaxis,:], size=(npol, nchan, nvis))
+    noise_imag = np.random.normal(scale=sigma[:,np.newaxis,:], size=(npol, nchan, nvis))
+    noise = noise_real + noise_imag * 1.0j
+    data = model + noise
 
     # no data flagged here
     flag = np.zeros((npol, nchan, nvis), dtype=np.bool_)

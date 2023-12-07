@@ -51,6 +51,61 @@ def broadcast_and_convert_baselines(u, v, chan_freq):
     return (uu, vv)
 
 
+def broadcast_weights(weight, data_shape, chan_axis=0):
+    r"""
+    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications) but already averaged over polarizations.
+
+    Args:
+        weight (np.array): the weights
+        data_shape (tuple): the shape of the data
+        chan_axis (int): the axis which represents the number of channels in the data array, typically 0 for visibility data that has already been averaged over polarizations.
+
+    Returns:
+        np.array (float) array of weights the same shape as the data
+    """
+
+    nchan = data_shape[chan_axis]
+
+    broadcast = np.ones((nchan, 1))
+    return weight[np.newaxis, :] * broadcast
+
+
+def weight_to_sigma(weight):
+    r"""
+    Convert a weight (:math:`w`) to an uncertainty (:math:`\sigma`) using
+
+    .. math::
+
+        \sigma = \sqrt{1/w}
+
+    Args:
+        weight (float or np.array): statistical weight value
+
+    Returns:
+        sigma (float or np.array): the corresponding uncertainty
+    """
+
+    return np.sqrt(1 / weight)
+
+
+def rescale_weights(weight, sigma_rescale):
+    r"""
+    Rescale all weights by a common factor. It would be as if :math:`\sigma` were rescaled by this factor.
+
+    .. math::
+
+        w_\mathrm{new} = w_\mathrm{old} / \sigma_\mathrm{rescale}^2
+
+    Args:
+        weight (float or np.array): the weights
+        sigma_rescale (float): the factor by which to rescale the weight
+
+    Returns:
+        (float or np.array) the rescaled weights
+    """
+    return weight / (sigma_rescale**2)
+
+
 def average_data_polarization(data, weight, polarization_axis=0):
     """
     Perform a weighted average of the data over the polarization axis.
@@ -115,61 +170,6 @@ def average_flag_polarization(flag, polarization_axis=0):
 
     """
     return np.any(flag, axis=polarization_axis)
-
-
-def weight_to_sigma(weight):
-    r"""
-    Convert a weight (:math:`w`) to an uncertainty (:math:`\sigma`) using
-
-    .. math::
-
-        \sigma = \sqrt{1/w}
-
-    Args:
-        weight (float or np.array): statistical weight value
-
-    Returns:
-        sigma (float or np.array): the corresponding uncertainty
-    """
-
-    return np.sqrt(1 / weight)
-
-
-def broadcast_weights(weight, data_shape, chan_axis=0):
-    r"""
-    Broadcast a vector of non-channelized weights to match the shape of the visibility data that is channelized (e.g., for spectral line applications) but already averaged over polarizations.
-
-    Args:
-        weight (np.array): the weights
-        data_shape (tuple): the shape of the data
-        chan_axis (int): the axis which represents the number of channels in the data array, typically 0 for visibility data that has already been averaged over polarizations.
-
-    Returns:
-        np.array (float) array of weights the same shape as the data
-    """
-
-    nchan = data_shape[chan_axis]
-
-    broadcast = np.ones((nchan, 1))
-    return weight[np.newaxis, :] * broadcast
-
-
-def rescale_weights(weight, sigma_rescale):
-    r"""
-    Rescale all weights by a common factor. It would be as if :math:`\sigma` were rescaled by this factor.
-
-    .. math::
-
-        w_\mathrm{new} = w_\mathrm{old} / \sigma_\mathrm{rescale}^2
-
-    Args:
-        weight (float or np.array): the weights
-        sigma_rescale (float): the factor by which to rescale the weight
-
-    Returns:
-        (float or np.array) the rescaled weights
-    """
-    return weight / (sigma_rescale**2)
 
 
 def contains_autocorrelations(ant1, ant2):

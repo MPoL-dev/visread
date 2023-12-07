@@ -1,11 +1,18 @@
 import numpy as np
-import casatools
 
 from . import scatter
 
-# initialize the relevant CASA tools
-msmd = casatools.msmetadata()
-ms = casatools.ms()
+try:
+    import casatools
+
+    # initialize the relevant CASA tools
+    msmd = casatools.msmetadata()
+    ms = casatools.ms()
+except ModuleNotFoundError as e:
+    print(
+        "casatools module not found on system. If your system configuration is compatible, you can try installing these optional dependencies with `pip install 'visread[casa]'`. More information on Modular CASA can be found https://casadocs.readthedocs.io/en/stable/notebooks/introduction.html#Modular-Packages "
+    )
+    raise e
 
 
 def get_scatter_datadescid(

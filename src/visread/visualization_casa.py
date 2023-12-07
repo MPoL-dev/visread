@@ -1,9 +1,15 @@
-import casatools
 from . import scatter, visualization
 
-# initialize the relevant CASA tools
-msmd = casatools.msmetadata()
-ms = casatools.ms()
+try:
+    # initialize the relevant CASA tools
+    import casatools
+    msmd = casatools.msmetadata()
+    ms = casatools.ms()
+except ModuleNotFoundError as e:
+    print(
+        "casatools module not found on system. If your system configuration is compatible, you can try installing these optional dependencies with `pip install 'visread[casa]'`. More information on Modular CASA can be found https://casadocs.readthedocs.io/en/stable/notebooks/introduction.html#Modular-Packages "
+    )
+    raise e
 
 
 def plot_baselines(filename, ddid):
@@ -13,7 +19,7 @@ def plot_baselines(filename, ddid):
     ms.selectinit(reset=True)
     ms.close()
 
-    u, v, w = q["uvw"] * 1e-3  # [km]
+    u, v, w = q["uvw"]  # [m]
 
     return visualization.plot_baselines(u, v, "DATA_DESC_ID: {:}".format(ddid))
 

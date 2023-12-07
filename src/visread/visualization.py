@@ -1,6 +1,7 @@
-import numpy as np 
+import numpy as np
 import matplotlib.pyplot as plt
 from . import utils, scatter, process
+
 
 def plot_baselines(u, v, title=None):
     """
@@ -9,7 +10,7 @@ def plot_baselines(u, v, title=None):
     Args:
         u: baseline in meters
         v: baseline in meters.
-    
+
     Returns:
         matplotlib.fig
 
@@ -23,25 +24,6 @@ def plot_baselines(u, v, title=None):
 
     return fig
 
-def plot_averaged_scatter(scatter, log=False,   **kwargs):
-
-    xs = np.linspace(-5, 5)
-
-    figsize = kwargs.get("figsize", (9, 4))
-    bins = kwargs.get("bins", 40)
-
-    fig, ax = plt.subplots(ncols=2, figsize=figsize)
-    ax[0].hist(scatter.real, bins=bins, density=True, log=log)
-    ax[0].set_xlabel(r"$\Re \{ V - \bar{V} \} / \sigma$")
-    ax[1].hist(scatter.imag, bins=bins, density=True, log=log)
-    ax[1].set_xlabel(r"$\Im \{ V - \bar{V} \} / \sigma$")
-
-    for a in ax.flatten():
-        a.plot(xs, utils.gaussian(xs))
-
-    fig.subplots_adjust(hspace=0.25, top=0.95)
-
-    return fig
 
 def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     """
@@ -84,11 +66,29 @@ def scatter_hist(scatter_XX, scatter_YY, log=False, **kwargs):
     return fig
 
 
-def plot_weight_hist(weight_XX, weight_YY, title=None):
+def plot_averaged_scatter(scatter, log=False, **kwargs):
+    xs = np.linspace(-5, 5)
 
+    figsize = kwargs.get("figsize", (9, 4))
+    bins = kwargs.get("bins", 40)
+
+    fig, ax = plt.subplots(ncols=2, figsize=figsize)
+    ax[0].hist(scatter.real, bins=bins, density=True, log=log)
+    ax[0].set_xlabel(r"$\Re \{ V - \bar{V} \} / \sigma$")
+    ax[1].hist(scatter.imag, bins=bins, density=True, log=log)
+    ax[1].set_xlabel(r"$\Im \{ V - \bar{V} \} / \sigma$")
+
+    for a in ax.flatten():
+        a.plot(xs, utils.gaussian(xs))
+
+    fig.subplots_adjust(hspace=0.25, top=0.95)
+
+    return fig
+
+def plot_weight_hist(weight_XX, weight_YY, title=None):
     sigma_XX = process.weight_to_sigma(weight_XX)
     sigma_YY = process.weight_to_sigma(weight_YY)
-    
+
     figsize = kwargs.get("figsize", (9, 9))
     bins = kwargs.get("bins", 20)
 
@@ -104,6 +104,7 @@ def plot_weight_hist(weight_XX, weight_YY, title=None):
     ax[1, 1].hist(sigma_YY, bins=bins, log=log)
     ax[1, 1].set_xlabel(r"$\sigma_\mathrm{YY}\,[\mathrm{Jy}]$")
     fig.subplots_adjust(hspace=0.25)
-    fig.suptitle(title)
+    if title is not None:
+        fig.suptitle(title)
 
     return fig

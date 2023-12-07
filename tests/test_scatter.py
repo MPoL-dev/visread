@@ -1,5 +1,6 @@
 import numpy as np
 from visread import scatter
+import pytest
 
 
 def test_get_scatter(data_dict):
@@ -25,4 +26,6 @@ def test_calculate_rescale_factor(data_dict):
         ]
     )
 
-    print("Scatter rescales", vals)
+    # no problems with this mock dataset, so the rescale
+    # factor should be about 1.
+    assert vals == pytest.approx(1.0, rel=0.01)
