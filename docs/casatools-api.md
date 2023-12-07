@@ -2,7 +2,7 @@
 
 # Casatools API
 
-Over the past few ALMA cycles, the documentation for the [casatools](https://casadocs.readthedocs.io/en/stable/api/casatools.html) has improved tremendously, obviating the need for many of the original *visread* routines. Therefore, we have removed this duplicate functionality from the visread package and instead highlight several of the casatools that we use on a regular basis. Following the tutorials, we recommend that you familiarize yourself with these tools and then use *visread* conversion routines as needed. Be aware that there are many [casatools](https://casadocs.readthedocs.io/en/stable/api/casatools.html) available beyond those listed here, too.
+Over the past few ALMA cycles, the documentation for the [casatools](https://casadocs.readthedocs.io/en/stable/api/casatools.html) has improved tremendously, obviating the need for many of the original *visread* routines. Therefore, we have removed that duplicate functionality from the visread package. Instead, we highlight several of the casatools that we use on a regular basis. Following the tutorials, we recommend that you familiarize yourself with these tools and then use *visread* conversion routines as needed. Be aware that there are many [casatools](https://casadocs.readthedocs.io/en/stable/api/casatools.html) available beyond those listed here, too.
 
 ## msmetadata
 

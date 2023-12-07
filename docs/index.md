@@ -4,11 +4,11 @@
 [![gh-pages docs](https://github.com/MPoL-dev/visread/actions/workflows/gh_docs.yml/badge.svg)](https://mpol-dev.github.io/visread/)
 
 This package is really three things:
-1) a collection of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory using CASA tools like `table` and `ms`. For this, you don't even need to concern yourself with installing visread package, just start browsing the tutorials directly: {ref}`intro-casatools-label`, {ref}`AS209-label`, and {ref}`casatools-api-label`.
-2) a few routines within the visread package that codify the data access patterns shown in the tutorials, available via `pip install visread[casa]` and described further in \[installation.md\]. These routines depend on the `casatools` package, and thus have the same Python version and operating system requirements that \[Modular CASA\](<https://casadocs.readthedocs.io/en/stable/notebooks/introduction.html#Compatibility>) does. Depending on the state of the release cycle, these can be quite constraining and preclude using modern Python versions.
-3) a set of non-imaging analysis and visualization routines to work with the visibility data, available via `pip install visread` and described further in \[installation.md\]. These core routines *do not* have a `casatools` dependency, and so they should be usuable in all current Python versions.
+1) a collection of documentation and tutorials demonstrating how to read visibilities (and associated metadata) from a calibrated CASA Measurement Set file into memory using CASA tools like `table` and `ms`. For this, you don't need to install the visread package, just start browsing the tutorials directly: {ref}`intro-casatools-label`, {ref}`AS209-label`, and {ref}`casatools-api-label`.
+2) a few routines within the visread package that codify the data access patterns sketched out in the `casatools` tutorials. These routines depend on the `casatools` package, and thus have the same Python version and operating system requirements that [Modular CASA](<https://casadocs.readthedocs.io/en/stable/notebooks/introduction.html#Compatibility>) does. Depending on the CASA release cycle, these constraints can preclude modern Python versions. Therefore, these routines are designed to be an *optional* feature of visread and are only installed with `pip install 'visread[casa]'`.
+3) a set of non-imaging analysis and visualization routines to work with the visibility data. These core routines *do not* have a `casatools` dependency, and so they should have maximal compatability with current Python versions. They are available via `pip install visread`.
 
-**To get started**, you can get some ideas for working with `table` and `ms` directly from the *Introduction to CASA tools*. For convenience, you can install the *visread* package to provide some lightweight routines for common visibility manipulations, which are built on top of the core `casatools` functionality.
+If you are interested in working with the visread package, we recommend reading the [Installation Guide](installation.md) to learn more about suggested install patterns.
 
 ```{toctree}
 :caption: 'Contents:'
@@ -16,9 +16,10 @@ This package is really three things:
 
 tutorials/introduction_to_casatools
 tutorials/rescale_AS209_weights
-installation.rst
 casatools-api.rst
+installation.rst
 api.rst
+api-casa-dep.rst
 ```
 
 # Citation
