@@ -4,7 +4,7 @@ from astropy.constants import c
 
 def convert_baselines(baselines, freq):
     r"""
-    Convert baselines in meters to kilolambda. Assumes that baselines and freq will broadcast under division.
+    Convert baselines in meters to lambda. Assumes that baselines and freq will broadcast under division.
 
     Args:
         baselines (float or np.array): baselines in [m].
