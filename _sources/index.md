@@ -1,6 +1,6 @@
 # Visread documentation
 
-[![Tests](https://github.com/MPoL-dev/visread/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/MPoL-dev/visread/actions/workflows/tests.yml)
+[![Tests](https://github.com/MPoL-dev/visread/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/MPoL-dev/visread/actions/workflows/test.yml)
 [![gh-pages docs](https://github.com/MPoL-dev/visread/actions/workflows/gh_docs.yml/badge.svg)](https://mpol-dev.github.io/visread/)
 
 This package is really three things:

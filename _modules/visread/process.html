@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>visread.process &#8212; visread 0.1.dev1+g2b0b745 documentation</title>
+    <title>visread.process &#8212; visread 0.1.dev1+g1049f6c documentation</title>
   
   
   
@@ -132,7 +132,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+g2b0b745 documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+g1049f6c documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -269,25 +269,25 @@ document.write(`
 
 <div class="viewcode-block" id="convert_baselines"><a class="viewcode-back" href="../../api.html#visread.process.convert_baselines">[docs]</a><span class="k">def</span> <span class="nf">convert_baselines</span><span class="p">(</span><span class="n">baselines</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert baselines in meters to kilolambda. Assumes that baselines and freq will broadcast under division.</span>
+<span class="sd">    Convert baselines in meters to lambda. Assumes that baselines and freq will broadcast under division.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        baselines (float or np.array): baselines in [m].</span>
 <span class="sd">        freq (float or np.array): frequencies in [Hz]. If either ``baselines`` or ``freq`` are numpy arrays, their shapes must be broadcast-able.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        (1D array nvis): baselines in [klambda]</span>
+<span class="sd">        (1D array nvis): baselines in [lambda]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># calculate wavelengths in meters</span>
     <span class="n">wavelengths</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">freq</span>  <span class="c1"># m</span>
 
-    <span class="c1"># calculate baselines in klambda</span>
-    <span class="k">return</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">baselines</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span></div>
+    <span class="c1"># calculate baselines in lambda</span>
+    <span class="k">return</span> <span class="n">baselines</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [lambda]</span></div>
 
 
 <div class="viewcode-block" id="broadcast_and_convert_baselines"><a class="viewcode-back" href="../../api.html#visread.process.broadcast_and_convert_baselines">[docs]</a><span class="k">def</span> <span class="nf">broadcast_and_convert_baselines</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">chan_freq</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert baselines to kilolambda and broadcast to match shape of channel frequencies.</span>
+<span class="sd">    Convert baselines to lambda and broadcast to match shape of channel frequencies.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        u (1D array nvis): baseline [m]</span>
@@ -295,7 +295,7 @@ document.write(`
 <span class="sd">        chan_freq (1D array nchan): frequencies [Hz]</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        (u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]</span>
+<span class="sd">        (u, v) each of which are (nchan, nvis) arrays of baselines in [lambda]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">nchan</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chan_freq</span><span class="p">)</span>
@@ -309,9 +309,9 @@ document.write(`
     <span class="c1"># calculate wavelengths in meters</span>
     <span class="n">wavelengths</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">chan_freq</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>  <span class="c1"># m</span>
 
-    <span class="c1"># calculate baselines in klambda</span>
-    <span class="n">uu</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">uu</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
-    <span class="n">vv</span> <span class="o">=</span> <span class="mf">1e-3</span> <span class="o">*</span> <span class="n">vv</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [klambda]</span>
+    <span class="c1"># calculate baselines in lambda</span>
+    <span class="n">uu</span> <span class="o">=</span> <span class="n">uu</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [lambda]</span>
+    <span class="n">vv</span> <span class="o">=</span> <span class="n">vv</span> <span class="o">/</span> <span class="n">wavelengths</span>  <span class="c1"># [lambda]</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">)</span></div>
 

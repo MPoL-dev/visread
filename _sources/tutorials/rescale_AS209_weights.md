@@ -558,4 +558,4 @@ for ID in SPECTRAL_WINDOW_ID:
     print(ID, "{:.2f}".format(sigma_rescale_factors[ID]))
 ```
 
-If you wanted to use these visibilities for forward modeling or [Regularized Maximum Likelihood (RML) imaging](https://mpol-dev.github.io/MPoL/), you will want to read and export the correctly flagged and rescaled visibilities and convert baselines to kilolambda.
+If you wanted to use these visibilities for forward modeling or [Regularized Maximum Likelihood (RML) imaging](https://mpol-dev.github.io/MPoL/), you will want to read and export the correctly flagged and rescaled visibilities and convert baselines to lambda.

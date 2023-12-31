@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Visread API &#8212; visread 0.1.dev1+g2b0b745 documentation</title>
+    <title>Visread API &#8212; visread 0.1.dev1+g1049f6c documentation</title>
   
   
   
@@ -137,7 +137,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+g2b0b745 documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+g1049f6c documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -360,7 +360,7 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.convert_baselines">
 <span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baselines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.convert_baselines" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert baselines in meters to kilolambda. Assumes that baselines and freq will broadcast under division.</p>
+<dd><p>Convert baselines in meters to lambda. Assumes that baselines and freq will broadcast under division.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -369,7 +369,7 @@ document.write(`
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>baselines in [klambda]</p>
+<dd class="field-even"><p>baselines in [lambda]</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(1D array nvis)</p>
@@ -380,7 +380,7 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.broadcast_and_convert_baselines">
 <span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">broadcast_and_convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chan_freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#broadcast_and_convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.broadcast_and_convert_baselines" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert baselines to kilolambda and broadcast to match shape of channel frequencies.</p>
+<dd><p>Convert baselines to lambda and broadcast to match shape of channel frequencies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -390,7 +390,7 @@ document.write(`
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>(u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]</p>
+<dd class="field-even"><p>(u, v) each of which are (nchan, nvis) arrays of baselines in [lambda]</p>
 </dd>
 </dl>
 </dd></dl>

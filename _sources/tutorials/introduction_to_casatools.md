@@ -198,8 +198,8 @@ ax.set_xlabel(r"$u$ [m]")
 ax.set_ylabel(r"$v$ [m]")
 ```
 
-### Convert baselines to units of kilolambda
-To convert the baselines to units of kilolambda, we need to know the observing frequency (or wavelength). For a spectral window with multiple channels (like this one), the baselines (if expressed in units of kilolambda) will be slightly different for each channel because the observing frequency is different for each channel. Here is one way to go about broadcasting the baselines to all channels and then converting them to units of kilolambda.
+### Convert baselines to units of lambda
+To convert the baselines to units of lambda, we need to know the observing frequency (or wavelength). For a spectral window with multiple channels (like this one), the baselines (if expressed in units of lambda) will be slightly different for each channel because the observing frequency is different for each channel. Here is one way to go about broadcasting the baselines to all channels and then converting them to units of lambda.
 
 ```{code-cell}
 # broadcast to the same shape as the data
@@ -215,16 +215,16 @@ wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 ```
 
 ```{code-cell}
-# convert baselines to klambda
-uu = 1e-3 * uu / wavelengths  # [klambda]
-vv = 1e-3 * vv / wavelengths  # [klambda]
+# convert baselines to lambda
+uu = uu / wavelengths  # [lambda]
+vv = vv / wavelengths  # [lambda]
 ```
 
-Let's plot up the baseline coverage for the first channel of the cube (index `0`).
+Let's plot up the baseline coverage for the first channel of the cube (index `0`). For the plot only, we'll convert to units of k$\lambda$ to make it easier to read.
 
 ```{code-cell}
 fig, ax = plt.subplots(nrows=1, figsize=(3.5, 3.5))
-ax.scatter(uu[0], vv[0], s=1.5, rasterized=True, linewidths=0.0, c="k")
+ax.scatter(uu[0] * 1e-3, vv[0] * 1e-3, s=1.5, rasterized=True, linewidths=0.0, c="k")
 ax.set_xlabel(r"$u$ [k$\lambda$]")
 ax.set_ylabel(r"$v$ [k$\lambda$]")
 ```
@@ -422,7 +422,7 @@ mask = ~flag
 ```
 
 ```{code-cell}
-# convert uu and vv to kilolambda
+# convert uu and vv to lambda
 uu, vv, ww = uvw  # unpack into len nvis vectors
 # broadcast to the same shape as the data
 # stub to broadcast uu,vv, and weights to all channels
@@ -438,9 +438,9 @@ wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 ```
 
 ```{code-cell}
-# calculate baselines in klambda
-uu = 1e-3 * uu / wavelengths  # [klambda]
-vv = 1e-3 * vv / wavelengths  # [klambda]
+# calculate baselines in lambda
+uu = uu / wavelengths  # [lambda]
+vv = vv / wavelengths  # [lambda]
 ```
 
 ```{code-cell}
@@ -456,8 +456,8 @@ Since we have a multi-channel dataset, we need to make a decision about how to t
 np.savez(
     "visibilities.npz",
     frequencies=frequencies,  # [GHz]
-    uu=uu,  # [klambda]
-    vv=vv,  # [klambda]
+    uu=uu,  # [lambda]
+    vv=vv,  # [lambda]
     weight=weight,  # [1/Jy^2]
     data=data,  # [Jy]
     mask=mask,  # [Bool]
