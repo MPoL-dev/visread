@@ -215,9 +215,9 @@ wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 ```
 
 ```{code-cell}
-# convert baselines to klambda
-uu = 1e-3 * uu / wavelengths  # [klambda]
-vv = 1e-3 * vv / wavelengths  # [klambda]
+# convert baselines to lambda
+uu = uu / wavelengths  # [lambda]
+vv = vv / wavelengths  # [lambda]
 ```
 
 Let's plot up the baseline coverage for the first channel of the cube (index `0`).
@@ -438,9 +438,9 @@ wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 ```
 
 ```{code-cell}
-# calculate baselines in klambda
-uu = 1e-3 * uu / wavelengths  # [klambda]
-vv = 1e-3 * vv / wavelengths  # [klambda]
+# calculate baselines in lambda
+uu = uu / wavelengths  # [lambda]
+vv = vv / wavelengths  # [lambda]
 ```
 
 ```{code-cell}
@@ -456,8 +456,8 @@ Since we have a multi-channel dataset, we need to make a decision about how to t
 np.savez(
     "visibilities.npz",
     frequencies=frequencies,  # [GHz]
-    uu=uu,  # [klambda]
-    vv=vv,  # [klambda]
+    uu=uu,  # [lambda]
+    vv=vv,  # [lambda]
     weight=weight,  # [1/Jy^2]
     data=data,  # [Jy]
     mask=mask,  # [Bool]

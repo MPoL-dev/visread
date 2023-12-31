@@ -261,9 +261,9 @@ def read(filename, datacolumn="CORRECTED_DATA"):
     # calculate wavelengths in meters
     wavelengths = c_ms / chan_freq[:, np.newaxis]  # m
 
-    # calculate baselines in klambda
-    uu = 1e-3 * uu / wavelengths  # [klambda]
-    vv = 1e-3 * vv / wavelengths  # [klambda]
+    # calculate baselines in lambda
+    uu = uu / wavelengths  # [lambda]
+    vv = vv / wavelengths  # [lambda]
 
     frequencies = chan_freq * 1e-9  # [GHz]
 

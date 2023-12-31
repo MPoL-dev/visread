@@ -11,18 +11,18 @@ def convert_baselines(baselines, freq):
         freq (float or np.array): frequencies in [Hz]. If either ``baselines`` or ``freq`` are numpy arrays, their shapes must be broadcast-able.
 
     Returns:
-        (1D array nvis): baselines in [klambda]
+        (1D array nvis): baselines in [lambda]
     """
     # calculate wavelengths in meters
     wavelengths = c.value / freq  # m
 
-    # calculate baselines in klambda
-    return 1e-3 * baselines / wavelengths  # [klambda]
+    # calculate baselines in lambda
+    return baselines / wavelengths  # [lambda]
 
 
 def broadcast_and_convert_baselines(u, v, chan_freq):
     r"""
-    Convert baselines to kilolambda and broadcast to match shape of channel frequencies.
+    Convert baselines to lambda and broadcast to match shape of channel frequencies.
 
     Args:
         u (1D array nvis): baseline [m]
@@ -30,7 +30,7 @@ def broadcast_and_convert_baselines(u, v, chan_freq):
         chan_freq (1D array nchan): frequencies [Hz]
 
     Returns:
-        (u, v) each of which are (nchan, nvis) arrays of baselines in [klambda]
+        (u, v) each of which are (nchan, nvis) arrays of baselines in [lambda]
     """
 
     nchan = len(chan_freq)
@@ -44,9 +44,9 @@ def broadcast_and_convert_baselines(u, v, chan_freq):
     # calculate wavelengths in meters
     wavelengths = c.value / chan_freq[:, np.newaxis]  # m
 
-    # calculate baselines in klambda
-    uu = 1e-3 * uu / wavelengths  # [klambda]
-    vv = 1e-3 * vv / wavelengths  # [klambda]
+    # calculate baselines in lambda
+    uu = uu / wavelengths  # [lambda]
+    vv = vv / wavelengths  # [lambda]
 
     return (uu, vv)
 
