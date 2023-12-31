@@ -20,7 +20,6 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install setuptools wheel twine
-        sudo apt-get install libgfortran3      
         pip install pep517 --user
     - name: Install vanilla package 
       run: |
