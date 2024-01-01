@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>visread.process &#8212; visread 0.1.dev1+g40633a4 documentation</title>
+    <title>visread.process &#8212; visread 0.1.dev1+gfc94e7b documentation</title>
   
   
   
@@ -132,7 +132,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+g40633a4 documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+gfc94e7b documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -265,6 +265,149 @@ document.write(`
   <h1>Source code for visread.process</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">astropy.constants</span> <span class="kn">import</span> <span class="n">c</span>
+
+<span class="n">arcsec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="p">(</span><span class="mf">180.0</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span>  <span class="c1"># [radians]  = 1/206265 radian/arcsec</span>
+
+
+<div class="viewcode-block" id="safe_baseline_constant_meters"><a class="viewcode-back" href="../../api.html#visread.process.safe_baseline_constant_meters">[docs]</a><span class="k">def</span> <span class="nf">safe_baseline_constant_meters</span><span class="p">(</span>
+    <span class="n">uu</span><span class="p">,</span>
+    <span class="n">vv</span><span class="p">,</span>
+    <span class="n">freqs</span><span class="p">,</span>
+    <span class="n">cell_size</span><span class="p">,</span>
+    <span class="n">npix</span><span class="p">,</span>
+    <span class="n">uv_cell_frac</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This routine determines whether the baselines can safely be assumed to be constant</span>
+<span class="sd">    with channel when they converted from meters to units of kilolambda.</span>
+
+<span class="sd">    The antenna baselines *are* the same as a function of channel when they are measured</span>
+<span class="sd">    in physical distance units, such as meters. However, when these baselines are</span>
+<span class="sd">    converted to spatial frequency units, via</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        u = \frac{D}{\lambda},</span>
+
+<span class="sd">    it&#39;s possible that the :math:`u` and :math:`v` values of each channel are</span>
+<span class="sd">    significantly different if the :math:`\lambda` values of each channel are</span>
+<span class="sd">    significantly different. This routine evaluates whether the maximum change in</span>
+<span class="sd">    :math:`u` or :math:`v` across channels (when represented in kilolambda) is smaller</span>
+<span class="sd">    than some threshold value, calculated as the fraction of a :math:`u,v` cell defined</span>
+<span class="sd">    by ``coords``.</span>
+
+<span class="sd">    If this function returns ``True``, then it would be safe to proceed with</span>
+<span class="sd">    parallelization in the :class:`mpol.fourier.NuFFT` layer via the coil dimension.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    uu : 1D np.array</span>
+<span class="sd">        a 1D array of length ``nvis`` array of the u (East-West)</span>
+<span class="sd">        spatial frequency coordinate in units of [m]</span>
+<span class="sd">    vv : 1D np.array</span>
+<span class="sd">        a 1D array of length ``nvis`` array of the v (North-South)</span>
+<span class="sd">        spatial frequency coordinate in units of [m]</span>
+<span class="sd">    freqs : 1D np.array</span>
+<span class="sd">        a 1D array of length ``nchan`` of the channel frequencies,</span>
+<span class="sd">        in units of [Hz].</span>
+<span class="sd">    coords: :class:`mpol.coordinates.GridCoords`</span>
+<span class="sd">        object which represents the image and uv-grid dimensions.</span>
+<span class="sd">    uv_cell_frac : float</span>
+<span class="sd">        the maximum threshold for a change in :math:`u` or</span>
+<span class="sd">        :math:`v` spatial frequency across channels, measured as a fraction of the</span>
+<span class="sd">        :math:`u,v` cell defined by ``coords``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    boolean</span>
+<span class="sd">        `True` if it is safe to assume that the baselines are constant with</span>
+<span class="sd">        channel (at a tolerance of ``uv_cell_frac``.) Otherwise returns `False`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># broadcast and convert baselines to kilolambda across channel</span>
+    <span class="n">uu</span><span class="p">,</span> <span class="n">vv</span> <span class="o">=</span> <span class="n">broadcast_and_convert_baselines</span><span class="p">(</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">,</span> <span class="n">freqs</span><span class="p">)</span>
+    <span class="c1"># should be (nchan, nvis) arrays</span>
+
+    <span class="n">dl</span> <span class="o">=</span> <span class="n">cell_size</span> <span class="o">*</span> <span class="n">arcsec</span>  <span class="c1"># [radians]</span>
+    <span class="n">du</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">npix</span> <span class="o">*</span> <span class="n">dl</span><span class="p">)</span>  <span class="c1"># [λ]</span>
+
+    <span class="c1"># convert uv_cell_frac to a lambda threshold</span>
+    <span class="n">delta_uv</span> <span class="o">=</span> <span class="n">uv_cell_frac</span> <span class="o">*</span> <span class="n">du</span>  <span class="c1"># [λ]</span>
+
+    <span class="c1"># find maximum change in baseline across channel</span>
+    <span class="c1"># concatenate arrays to save steps</span>
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">])</span>  <span class="c1"># (2, nchan, nvis) arrays</span>
+
+    <span class="c1"># find max - min along channel axis</span>
+    <span class="n">uv_min</span> <span class="o">=</span> <span class="n">uv</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">uv_max</span> <span class="o">=</span> <span class="n">uv</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">uv_diff</span> <span class="o">=</span> <span class="n">uv_max</span> <span class="o">-</span> <span class="n">uv_min</span>
+
+    <span class="c1"># find maximum of that</span>
+    <span class="n">max_diff</span> <span class="o">=</span> <span class="n">uv_diff</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># compare to uv_cell_frac</span>
+    <span class="k">return</span> <span class="n">max_diff</span> <span class="o">&lt;</span> <span class="n">delta_uv</span></div>
+
+
+<div class="viewcode-block" id="safe_baseline_constant_kilolambda"><a class="viewcode-back" href="../../api.html#visread.process.safe_baseline_constant_kilolambda">[docs]</a><span class="k">def</span> <span class="nf">safe_baseline_constant_kilolambda</span><span class="p">(</span>
+    <span class="n">uu</span><span class="p">,</span>
+    <span class="n">vv</span><span class="p">,</span>
+    <span class="n">cell_size</span><span class="p">,</span>
+    <span class="n">npix</span><span class="p">,</span>
+    <span class="n">uv_cell_frac</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This routine determines whether the baselines can safely be assumed to be constant</span>
+<span class="sd">    with channel, when the are represented in units of kilolambda.</span>
+
+<span class="sd">    Compared to :class:`mpol.fourier.safe_baseline_constant_meters`, this function works</span>
+<span class="sd">    with multidimensional arrays of ``uu`` and ``vv`` that are shape (nchan, nvis) and</span>
+<span class="sd">    have units of kilolambda.</span>
+
+<span class="sd">    If this routine returns True, then it should be safe for the user to either average</span>
+<span class="sd">    the baselines across channel or simply choose a single, representative channel. This</span>
+<span class="sd">    would enable parallelization in the {class}`mpol.fourier.NuFFT` via the coil</span>
+<span class="sd">    dimension.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        uu (1D np.array): a 1D array of length ``nvis`` array of the u (East-West)</span>
+<span class="sd">            spatial frequency coordinate in units of [m]</span>
+<span class="sd">        vv (1D np.array): a 1D array of length ``nvis`` array of the v (North-South)</span>
+<span class="sd">            spatial frequency coordinate in units of [m]</span>
+<span class="sd">        freqs (1D np.array): a 1D array of length ``nchan`` of the channel frequencies,</span>
+<span class="sd">            in units of [Hz].</span>
+<span class="sd">        coords: a :class:`mpol.coordinates.GridCoords` object which represents the</span>
+<span class="sd">            image and uv-grid dimensions.</span>
+<span class="sd">        uv_cell_frac (float): the maximum threshold for a change in :math:`u` or</span>
+<span class="sd">            :math:`v` spatial frequency across channels, measured as a fraction of the</span>
+<span class="sd">            :math:`u,v` cell defined by ``coords``.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        boolean: `True` if it is safe to assume that the baselines are constant with</span>
+<span class="sd">            channel (at a tolerance of ``uv_cell_frac``.) Otherwise returns `False`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dl</span> <span class="o">=</span> <span class="n">cell_size</span> <span class="o">*</span> <span class="n">arcsec</span>  <span class="c1"># [radians]</span>
+    <span class="n">du</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">npix</span> <span class="o">*</span> <span class="n">dl</span><span class="p">)</span>  <span class="c1"># [λ]</span>
+
+    <span class="c1"># convert uv_cell_frac to a kilolambda threshold</span>
+    <span class="n">delta_uv</span> <span class="o">=</span> <span class="n">uv_cell_frac</span> <span class="o">*</span> <span class="n">du</span>  <span class="c1"># [λ]</span>
+
+    <span class="c1"># find maximum change in baseline across channel</span>
+    <span class="c1"># concatenate arrays to save steps</span>
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">uu</span><span class="p">,</span> <span class="n">vv</span><span class="p">])</span>  <span class="c1"># (2, nchan, nvis) arrays</span>
+
+    <span class="c1"># find max - min along channel axis</span>
+    <span class="n">uv_min</span> <span class="o">=</span> <span class="n">uv</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">uv_max</span> <span class="o">=</span> <span class="n">uv</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">uv_diff</span> <span class="o">=</span> <span class="n">uv_max</span> <span class="o">-</span> <span class="n">uv_min</span>
+
+    <span class="c1"># find maximum of that</span>
+    <span class="n">max_diff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">uv_diff</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c1"># compare to uv_cell_frac</span>
+    <span class="k">return</span> <span class="n">max_diff</span> <span class="o">&lt;</span> <span class="n">delta_uv</span></div>
 
 
 <div class="viewcode-block" id="convert_baselines"><a class="viewcode-back" href="../../api.html#visread.process.convert_baselines">[docs]</a><span class="k">def</span> <span class="nf">convert_baselines</span><span class="p">(</span><span class="n">baselines</span><span class="p">,</span> <span class="n">freq</span><span class="p">):</span>

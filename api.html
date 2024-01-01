@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Visread API &#8212; visread 0.1.dev1+g40633a4 documentation</title>
+    <title>Visread API &#8212; visread 0.1.dev1+gfc94e7b documentation</title>
   
   
   
@@ -137,7 +137,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+g40633a4 documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+gfc94e7b documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -314,6 +314,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-visread.process">Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.safe_baseline_constant_meters"><code class="docutils literal notranslate"><span class="pre">safe_baseline_constant_meters()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.safe_baseline_constant_kilolambda"><code class="docutils literal notranslate"><span class="pre">safe_baseline_constant_kilolambda()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.convert_baselines"><code class="docutils literal notranslate"><span class="pre">convert_baselines()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.broadcast_and_convert_baselines"><code class="docutils literal notranslate"><span class="pre">broadcast_and_convert_baselines()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.broadcast_weights"><code class="docutils literal notranslate"><span class="pre">broadcast_weights()</span></code></a></li>
@@ -357,6 +359,90 @@ document.write(`
 <p>Visread tools without a <code class="docutils literal notranslate"><span class="pre">casatools</span></code> dependency</p>
 <section id="module-visread.process">
 <span id="process"></span><h2>Process<a class="headerlink" href="#module-visread.process" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.process.safe_baseline_constant_meters">
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">safe_baseline_constant_meters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uv_cell_frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#safe_baseline_constant_meters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.safe_baseline_constant_meters" title="Permalink to this definition">#</a></dt>
+<dd><p>This routine determines whether the baselines can safely be assumed to be constant
+with channel when they converted from meters to units of kilolambda.</p>
+<p>The antenna baselines <em>are</em> the same as a function of channel when they are measured
+in physical distance units, such as meters. However, when these baselines are
+converted to spatial frequency units, via</p>
+<div class="math notranslate nohighlight">
+\[u = \frac{D}{\lambda},\]</div>
+<p>it’s possible that the <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> values of each channel are
+significantly different if the <span class="math notranslate nohighlight">\(\lambda\)</span> values of each channel are
+significantly different. This routine evaluates whether the maximum change in
+<span class="math notranslate nohighlight">\(u\)</span> or <span class="math notranslate nohighlight">\(v\)</span> across channels (when represented in kilolambda) is smaller
+than some threshold value, calculated as the fraction of a <span class="math notranslate nohighlight">\(u,v\)</span> cell defined
+by <code class="docutils literal notranslate"><span class="pre">coords</span></code>.</p>
+<p>If this function returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, then it would be safe to proceed with
+parallelization in the <code class="xref py py-class docutils literal notranslate"><span class="pre">mpol.fourier.NuFFT</span></code> layer via the coil dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uu</strong> (<em>1D np.array</em>) – a 1D array of length <code class="docutils literal notranslate"><span class="pre">nvis</span></code> array of the u (East-West)
+spatial frequency coordinate in units of [m]</p></li>
+<li><p><strong>vv</strong> (<em>1D np.array</em>) – a 1D array of length <code class="docutils literal notranslate"><span class="pre">nvis</span></code> array of the v (North-South)
+spatial frequency coordinate in units of [m]</p></li>
+<li><p><strong>freqs</strong> (<em>1D np.array</em>) – a 1D array of length <code class="docutils literal notranslate"><span class="pre">nchan</span></code> of the channel frequencies,
+in units of [Hz].</p></li>
+<li><p><strong>coords</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">mpol.coordinates.GridCoords</span></code>) – object which represents the image and uv-grid dimensions.</p></li>
+<li><p><strong>uv_cell_frac</strong> (<em>float</em>) – the maximum threshold for a change in <span class="math notranslate nohighlight">\(u\)</span> or
+<span class="math notranslate nohighlight">\(v\)</span> spatial frequency across channels, measured as a fraction of the
+<span class="math notranslate nohighlight">\(u,v\)</span> cell defined by <code class="docutils literal notranslate"><span class="pre">coords</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>True</cite> if it is safe to assume that the baselines are constant with
+channel (at a tolerance of <code class="docutils literal notranslate"><span class="pre">uv_cell_frac</span></code>.) Otherwise returns <cite>False</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="visread.process.safe_baseline_constant_kilolambda">
+<span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">safe_baseline_constant_kilolambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uv_cell_frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#safe_baseline_constant_kilolambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.safe_baseline_constant_kilolambda" title="Permalink to this definition">#</a></dt>
+<dd><p>This routine determines whether the baselines can safely be assumed to be constant
+with channel, when the are represented in units of kilolambda.</p>
+<p>Compared to <code class="xref py py-class docutils literal notranslate"><span class="pre">mpol.fourier.safe_baseline_constant_meters</span></code>, this function works
+with multidimensional arrays of <code class="docutils literal notranslate"><span class="pre">uu</span></code> and <code class="docutils literal notranslate"><span class="pre">vv</span></code> that are shape (nchan, nvis) and
+have units of kilolambda.</p>
+<p>If this routine returns True, then it should be safe for the user to either average
+the baselines across channel or simply choose a single, representative channel. This
+would enable parallelization in the {class}`mpol.fourier.NuFFT` via the coil
+dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uu</strong> (<em>1D np.array</em>) – a 1D array of length <code class="docutils literal notranslate"><span class="pre">nvis</span></code> array of the u (East-West)
+spatial frequency coordinate in units of [m]</p></li>
+<li><p><strong>vv</strong> (<em>1D np.array</em>) – a 1D array of length <code class="docutils literal notranslate"><span class="pre">nvis</span></code> array of the v (North-South)
+spatial frequency coordinate in units of [m]</p></li>
+<li><p><strong>freqs</strong> (<em>1D np.array</em>) – a 1D array of length <code class="docutils literal notranslate"><span class="pre">nchan</span></code> of the channel frequencies,
+in units of [Hz].</p></li>
+<li><p><strong>coords</strong> – a <code class="xref py py-class docutils literal notranslate"><span class="pre">mpol.coordinates.GridCoords</span></code> object which represents the
+image and uv-grid dimensions.</p></li>
+<li><p><strong>uv_cell_frac</strong> (<em>float</em>) – the maximum threshold for a change in <span class="math notranslate nohighlight">\(u\)</span> or
+<span class="math notranslate nohighlight">\(v\)</span> spatial frequency across channels, measured as a fraction of the
+<span class="math notranslate nohighlight">\(u,v\)</span> cell defined by <code class="docutils literal notranslate"><span class="pre">coords</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt><cite>True</cite> if it is safe to assume that the baselines are constant with</dt><dd><p>channel (at a tolerance of <code class="docutils literal notranslate"><span class="pre">uv_cell_frac</span></code>.) Otherwise returns <cite>False</cite>.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="visread.process.convert_baselines">
 <span class="sig-prename descclassname"><span class="pre">visread.process.</span></span><span class="sig-name descname"><span class="pre">convert_baselines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baselines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/visread/process.html#convert_baselines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#visread.process.convert_baselines" title="Permalink to this definition">#</a></dt>
@@ -718,6 +804,8 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-visread.process">Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.safe_baseline_constant_meters"><code class="docutils literal notranslate"><span class="pre">safe_baseline_constant_meters()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.safe_baseline_constant_kilolambda"><code class="docutils literal notranslate"><span class="pre">safe_baseline_constant_kilolambda()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.convert_baselines"><code class="docutils literal notranslate"><span class="pre">convert_baselines()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.broadcast_and_convert_baselines"><code class="docutils literal notranslate"><span class="pre">broadcast_and_convert_baselines()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visread.process.broadcast_weights"><code class="docutils literal notranslate"><span class="pre">broadcast_weights()</span></code></a></li>
