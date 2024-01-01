@@ -1,6 +1,7 @@
 import numpy as np
 from astropy.constants import c
 
+
 def doppler_shift(freq, v):
     """
     Calculate the relativistic doppler shift. Negative velocities mean that the frequencies will be blueshifted.
