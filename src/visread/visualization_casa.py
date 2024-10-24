@@ -1,4 +1,4 @@
-from . import scatter, visualization
+from . import scatter_casa, visualization
 
 try:
     # initialize the relevant CASA tools
@@ -55,7 +55,7 @@ def plot_scatter_datadescid(
     if chan_slice is not None:
         print("apply_flags setting is ignored when chan_slice is not None")
 
-        scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
+        scatter_XX, scatter_YY = scatter_casa.get_scatter_datadescid(
             filename,
             datadescid,
             sigma_rescale,
@@ -68,7 +68,7 @@ def plot_scatter_datadescid(
         scatter_YY = scatter_YY[chan_slice]
 
     else:
-        scatter_XX, scatter_YY = scatter.get_scatter_datadescid(
+        scatter_XX, scatter_YY = scatter_casa.get_scatter_datadescid(
             filename,
             datadescid,
             sigma_rescale,

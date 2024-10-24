@@ -41,7 +41,8 @@ def get_scatter_datadescid(
         sigma_rescale (int):  multiply the uncertainties by this factor
         apply_flags (bool): calculate the scatter *after* the flags have been applied
         residual (bool): if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.
-        datacolumn (string): which datacolumn to use (i.e., 'corrected_data' or 'data').
+        datacolumn (string): which datacolumn to use (i.e., 'corrected_data' or 'data'). 
+        If 'corrected_data' is not available, will fall back to 'data'.
 
     Returns:
         scatter_XX, scatter_YY: a 2-tuple of numpy arrays containing the scatter in each polarization.
@@ -49,6 +50,17 @@ def get_scatter_datadescid(
         will retain its original shape, including channelization (e.g., shape ``nchan,nvis``).
 
     """
+
+    # see which keys are available
+    tb = casatools.table()
+    tb.open(filename)
+    colnames = tb.colnames()
+    tb.close()
+
+    if datacolumn == "corrected_data":
+        if datacolumn.upper() not in colnames:
+            datacolumn = "data"
+
     ms.open(filename)
     ms.selectinit(datadescid=datadescid)
     keys = ["weight", "flag", datacolumn]
@@ -67,7 +79,7 @@ def get_scatter_datadescid(
     else:
         model = None
 
-    scatter.get_scatter(
+    return scatter.get_scatter(
         q[datacolumn],
         q["weight"],
         q["flag"],
@@ -95,8 +107,8 @@ def get_sigma_rescale_datadescid(filename, datadescid, datacolumn="corrected_dat
 
     vals = np.array(
         [
-            scatter.calculate_rescale_factor(scatter)
-            for scatter in [
+            scatter.calculate_rescale_factor(scat)
+            for scat in [
                 scatter_XX.real,
                 scatter_XX.imag,
                 scatter_YY.real,
