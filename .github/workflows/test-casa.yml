@@ -23,7 +23,7 @@ jobs:
     - name: Install test deps 
       run: |
         pip install .[test,casa]
-        mkdir ~/.casa/data
+        mkdir -p ~/.casa/data
     
     - name: Test with pytest
       run: | 
