@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>visread.scatter_casa &#8212; visread 0.1.dev1+gfc94e7b documentation</title>
+    <title>visread.scatter_casa &#8212; visread 0.1.dev1+g5f5a2d1 documentation</title>
   
   
   
@@ -132,7 +132,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+gfc94e7b documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+g5f5a2d1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -306,7 +306,8 @@ document.write(`
 <span class="sd">        sigma_rescale (int):  multiply the uncertainties by this factor</span>
 <span class="sd">        apply_flags (bool): calculate the scatter *after* the flags have been applied</span>
 <span class="sd">        residual (bool): if True, subtract MODEL_DATA column (from a tclean model, most likely) to plot scatter of residual visibilities.</span>
-<span class="sd">        datacolumn (string): which datacolumn to use (i.e., &#39;corrected_data&#39; or &#39;data&#39;).</span>
+<span class="sd">        datacolumn (string): which datacolumn to use (i.e., &#39;corrected_data&#39; or &#39;data&#39;). </span>
+<span class="sd">        If &#39;corrected_data&#39; is not available, will fall back to &#39;data&#39;.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        scatter_XX, scatter_YY: a 2-tuple of numpy arrays containing the scatter in each polarization.</span>
@@ -314,6 +315,17 @@ document.write(`
 <span class="sd">        will retain its original shape, including channelization (e.g., shape ``nchan,nvis``).</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># see which keys are available</span>
+    <span class="n">tb</span> <span class="o">=</span> <span class="n">casatools</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">colnames</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">colnames</span><span class="p">()</span>
+    <span class="n">tb</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">datacolumn</span> <span class="o">==</span> <span class="s2">&quot;corrected_data&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">datacolumn</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">colnames</span><span class="p">:</span>
+            <span class="n">datacolumn</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
+
     <span class="n">ms</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">ms</span><span class="o">.</span><span class="n">selectinit</span><span class="p">(</span><span class="n">datadescid</span><span class="o">=</span><span class="n">datadescid</span><span class="p">)</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="n">datacolumn</span><span class="p">]</span>
@@ -332,7 +344,7 @@ document.write(`
     <span class="k">else</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="n">scatter</span><span class="o">.</span><span class="n">get_scatter</span><span class="p">(</span>
+    <span class="k">return</span> <span class="n">scatter</span><span class="o">.</span><span class="n">get_scatter</span><span class="p">(</span>
         <span class="n">q</span><span class="p">[</span><span class="n">datacolumn</span><span class="p">],</span>
         <span class="n">q</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">],</span>
         <span class="n">q</span><span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">],</span>
@@ -360,8 +372,8 @@ document.write(`
 
     <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="n">scatter</span><span class="o">.</span><span class="n">calculate_rescale_factor</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">scatter</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="n">scatter</span><span class="o">.</span><span class="n">calculate_rescale_factor</span><span class="p">(</span><span class="n">scat</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">scat</span> <span class="ow">in</span> <span class="p">[</span>
                 <span class="n">scatter_XX</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
                 <span class="n">scatter_XX</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span>
                 <span class="n">scatter_YY</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>

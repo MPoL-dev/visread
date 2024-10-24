@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &#8212; visread 0.1.dev1+gfc94e7b documentation</title>
+    <title>Walkthrough: Examining DSHARP AS 209 Weights and Exporting Visibilities &#8212; visread 0.1.dev1+g5f5a2d1 documentation</title>
   
   
   
@@ -137,7 +137,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+gfc94e7b documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+g5f5a2d1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -443,7 +443,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\Delta \\delta$ [${}^{\\prime\\prime}$]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/04ff6412041cce6113bde0ce7693963ec1e2450f841bbf7fca274ba7244d6204.png" src="../_images/04ff6412041cce6113bde0ce7693963ec1e2450f841bbf7fca274ba7244d6204.png" />
+<img alt="../_images/a95e45ca69962a88a2ea2ecffde58353b859cf66049212dd5d3abc5b441e1de0.png" src="../_images/a95e45ca69962a88a2ea2ecffde58353b859cf66049212dd5d3abc5b441e1de0.png" />
 </div>
 </div>
 <p>Great, it looks like things check out. Note that the main reason (at least for this tutorial) that we ran <code class="docutils literal notranslate"><span class="pre">tclean</span></code> was to generate the <code class="docutils literal notranslate"><span class="pre">MODEL_DATA</span></code> column in the measurement set. The actual CLEANed FITS image is just a nice byproduct.</p>
@@ -811,7 +811,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/364fbd3d65d7ad2063a0ea756dcad907abb855db3df39aa97bc4d609d5561740.png" src="../_images/364fbd3d65d7ad2063a0ea756dcad907abb855db3df39aa97bc4d609d5561740.png" />
+<img alt="../_images/2301388a9e9ec9cbaad1b4de410c5637d9e3ac0d83f3b55a6cc2fb490ea0d1cd.png" src="../_images/2301388a9e9ec9cbaad1b4de410c5637d9e3ac0d83f3b55a6cc2fb490ea0d1cd.png" />
 </div>
 </div>
 <p>Great, it looks like things are pretty much as we would expect here.</p>
@@ -826,7 +826,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/35d625a5e8e5703443089de26fd99185f8227dd8fc2e72607148af681c7ef75b.png" src="../_images/35d625a5e8e5703443089de26fd99185f8227dd8fc2e72607148af681c7ef75b.png" />
+<img alt="../_images/d932a8c8724523de9639d74e18763c692e54c2b5fd60b9775aa6514cf46a6cdc.png" src="../_images/d932a8c8724523de9639d74e18763c692e54c2b5fd60b9775aa6514cf46a6cdc.png" />
 </div>
 </div>
 <p>We find that something looks a little bit strange. Let’s try plotting things on a log scale to get a closer look.</p>
@@ -837,7 +837,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/525cb0384bebe95445007cc6fdc6f9ac89589c588c48d4616a6e52a0b204ab5b.png" src="../_images/525cb0384bebe95445007cc6fdc6f9ac89589c588c48d4616a6e52a0b204ab5b.png" />
+<img alt="../_images/48534e7b7993d164b4fa532b1902fdc19db2b12d6689de05f500f456c8d9534e.png" src="../_images/48534e7b7993d164b4fa532b1902fdc19db2b12d6689de05f500f456c8d9534e.png" />
 </div>
 </div>
 <p>It appears as though there are a bunch of “outlier” visibilities included in this spectral window (the histogram y-axis is the relative frequency or probability density, so in actually there are a relatively small number of outlier visibilities). If the calibration and data preparation processes were done correctly, most likely, these visibilities are actually flagged. Let’s try plotting only the valid, unflagged, visibilities</p>
@@ -848,7 +848,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b793cb245473f301d2e98fe2f6479acbac792f213cc4ea2e3645e7e17d2e19fd.png" src="../_images/b793cb245473f301d2e98fe2f6479acbac792f213cc4ea2e3645e7e17d2e19fd.png" />
+<img alt="../_images/6ba05283f55e9457907ed5d58cbe734393317c4cd1dab0867378f581e7d01e90.png" src="../_images/6ba05283f55e9457907ed5d58cbe734393317c4cd1dab0867378f581e7d01e90.png" />
 </div>
 </div>
 <p>This is certainly an improvement, it looks like all of the egregious outlier visibilities were correctly flagged. However, we also see that the scatter in the visibility residuals is overdispersed relative to the envelope we would expect from the supplied weights. Plotting this on a normal scale might make the discrepancy more visible</p>
@@ -859,7 +859,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b6c0b5784433eb0a0e771d8b5e2c9d535294dc0b7d4ac0f319443addc378e654.png" src="../_images/b6c0b5784433eb0a0e771d8b5e2c9d535294dc0b7d4ac0f319443addc378e654.png" />
+<img alt="../_images/4fbf51e63ba2697b5c48e207afe2f2e83b9dc4ab98e708aa0e2ea50c416261c8.png" src="../_images/4fbf51e63ba2697b5c48e207afe2f2e83b9dc4ab98e708aa0e2ea50c416261c8.png" />
 </div>
 </div>
 <p>Lets write a routine to estimate by how much the <span class="math notranslate nohighlight">\(\sigma_0\)</span> values would need to be rescaled in order for the residual visibility scatter to match the expected reference Gaussian.</p>
@@ -938,7 +938,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b3c4aad8fe2a77c06c21f686ec7e18f35e70d634f6be955c2dfbec429535c4ff.png" src="../_images/b3c4aad8fe2a77c06c21f686ec7e18f35e70d634f6be955c2dfbec429535c4ff.png" />
+<img alt="../_images/dadba05f0a54d84a8678b02924506a611583d82c869bda54ba074c349151da50.png" src="../_images/dadba05f0a54d84a8678b02924506a611583d82c869bda54ba074c349151da50.png" />
 </div>
 </div>
 <p>It’s not really clear why this factor works, but factors of <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> and 2 appear in changes to the CASA weight calculations (<a class="reference external" href="https://casa.nrao.edu/casadocs-devel/stable/calibration-and-visibility-data/data-weights">which have changed across recent CASA versions</a>). Since this DSHARP measurement set contains visibilities acquired in previous ALMA cycles (and potentially calibrated with earlier versions of CASA), these changes in weight definitions may be responsible for the varying weight scatter across spectral window.</p>
@@ -1051,7 +1051,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$v$ [km]&#39;)
 </pre></div>
 </div>
-<img alt="../_images/027b3a7bdbe029e1947260dd07450348103f6c81725ac52834272b82e15eeb80.png" src="../_images/027b3a7bdbe029e1947260dd07450348103f6c81725ac52834272b82e15eeb80.png" />
+<img alt="../_images/ddd697c8326da0e3540e4a8a8ccca00e36e35cf4fe1db804d3ff56e71667e5bb.png" src="../_images/ddd697c8326da0e3540e4a8a8ccca00e36e35cf4fe1db804d3ff56e71667e5bb.png" />
 </div>
 </div>
 <p>We don’t appear to see any large scale pattern with baseline, suggesting that the CLEAN model is doing a reasonable job of fitting the data across many spatial scales. We do see some of the largest outliers (most blue/red) at the beginning (or end) of the tracks. This probably has something to do with a less-than-optimal calibration at the beginning (or end) of the observation. Since there are no large systematic trends with baseline, we’ll just accept these rescaled weights as is.</p>

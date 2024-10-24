@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>visread.visualization_casa &#8212; visread 0.1.dev1+gfc94e7b documentation</title>
+    <title>visread.visualization_casa &#8212; visread 0.1.dev1+g5f5a2d1 documentation</title>
   
   
   
@@ -132,7 +132,7 @@
   
   
   
-    <p class="title logo__title">visread 0.1.dev1+gfc94e7b documentation</p>
+    <p class="title logo__title">visread 0.1.dev1+g5f5a2d1 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -263,7 +263,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for visread.visualization_casa</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">scatter</span><span class="p">,</span> <span class="n">visualization</span>
+<span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">scatter_casa</span><span class="p">,</span> <span class="n">visualization</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="c1"># initialize the relevant CASA tools</span>
@@ -320,7 +320,7 @@ document.write(`
     <span class="k">if</span> <span class="n">chan_slice</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;apply_flags setting is ignored when chan_slice is not None&quot;</span><span class="p">)</span>
 
-        <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter</span><span class="o">.</span><span class="n">get_scatter_datadescid</span><span class="p">(</span>
+        <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_casa</span><span class="o">.</span><span class="n">get_scatter_datadescid</span><span class="p">(</span>
             <span class="n">filename</span><span class="p">,</span>
             <span class="n">datadescid</span><span class="p">,</span>
             <span class="n">sigma_rescale</span><span class="p">,</span>
@@ -333,7 +333,7 @@ document.write(`
         <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_YY</span><span class="p">[</span><span class="n">chan_slice</span><span class="p">]</span>
 
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter</span><span class="o">.</span><span class="n">get_scatter_datadescid</span><span class="p">(</span>
+        <span class="n">scatter_XX</span><span class="p">,</span> <span class="n">scatter_YY</span> <span class="o">=</span> <span class="n">scatter_casa</span><span class="o">.</span><span class="n">get_scatter_datadescid</span><span class="p">(</span>
             <span class="n">filename</span><span class="p">,</span>
             <span class="n">datadescid</span><span class="p">,</span>
             <span class="n">sigma_rescale</span><span class="p">,</span>
